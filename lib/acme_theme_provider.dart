@@ -1,6 +1,7 @@
 library acme_theme_provider;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'src/asset_theme_provider.dart';
 import 'src/network_theme_provider.dart';
@@ -32,4 +33,8 @@ abstract class AcmeThemeProvider extends StatelessWidget {
     ThemeOverride? overrideFn,
     Map<String, String>? headers,
   }) = NetworkThemeProvider;
+
+  static Future<void> prefetchAsset(String assetPath) async {
+    await rootBundle.loadString(assetPath);
+  }
 }
