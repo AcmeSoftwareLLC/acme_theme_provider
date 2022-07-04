@@ -101,23 +101,21 @@ packages:
       name: json_class
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.2+4"
+    version: "2.1.2+7"
   json_schema2:
     dependency: transitive
     description:
       name: json_schema2
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.2+4"
   json_theme:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: e33c5d3eae8b29e2081625164e5524b60488ce15
-      url: "https://github.com/sarbagyastha/json_theme.git"
-    source: git
-    version: "3.3.1"
+      name: json_theme
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0+4"
   logging:
     dependency: transitive
     description:
@@ -166,7 +164,7 @@ packages:
       name: rest_client
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.4"
+    version: "2.1.4+4"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -255,7 +253,7 @@ packages:
       name: yaon
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0+1"
+    version: "1.0.1+2"
 sdks:
-  dart: ">=2.17.0 <3.0.0"
-  flutter: ">=3.0.0"
+  dart: ">=2.17.5 <3.0.0"
+  flutter: ">=3.0.4"
