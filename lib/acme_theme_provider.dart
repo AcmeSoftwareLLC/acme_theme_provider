@@ -7,6 +7,8 @@ import 'src/asset_theme_provider.dart';
 import 'src/network_theme_provider.dart';
 import 'src/typedefs.dart';
 
+export 'src/custom_colors.dart';
+
 abstract class AcmeThemeProvider extends StatelessWidget {
   final String source;
   final ThemedWidgetBuilder builder;
