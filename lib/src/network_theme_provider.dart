@@ -1,32 +1,24 @@
 import 'package:acme_theme_provider/acme_theme_provider.dart';
 import 'package:acme_theme_provider/src/theme.dart';
-import 'package:acme_theme_provider/src/typedefs.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
-class NetworkThemeProvider extends AcmeThemeProvider {
-  final String url;
-  final ThemedWidgetBuilder builder;
-  final ThemeOverride? overrideFn;
-  final Map<String, String>? headers;
-
-  late final Uri? _uri;
-
+class NetworkThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
   NetworkThemeProvider({
-    Key? key,
-    required this.url,
-    required this.builder,
+    super.key,
+    required String url,
+    required super.builder,
     this.headers,
-    this.overrideFn,
-  }) : super(
-          key: key,
-          source: url,
-          builder: builder,
-          overrideFn: overrideFn,
-        ) {
+    super.overrideFn,
+    super.customColorsConverterCreator,
+  }) : super(source: url) {
     _uri = Uri.tryParse(url);
     assert(_uri != null, 'Invalid Theme URL: $url');
   }
+
+  final Map<String, String>? headers;
+
+  late final Uri? _uri;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +27,14 @@ class NetworkThemeProvider extends AcmeThemeProvider {
       builder: (context, snapshot) {
         AcmeTheme theme;
         if (snapshot.hasData) {
-          theme = AcmeTheme.fromJson(snapshot.data!.body);
+          theme = AcmeTheme<T>.fromJson(
+            snapshot.data!.body,
+            customColorsConverterCreator: customColorsConverterCreator,
+          );
         } else {
-          theme = AcmeTheme.fallback();
+          theme = AcmeTheme<T>.fallback(
+            customColorsConverterCreator: customColorsConverterCreator,
+          );
         }
 
         theme = overrideFn?.call(theme) ?? theme;

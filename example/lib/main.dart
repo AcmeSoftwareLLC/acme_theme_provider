@@ -1,4 +1,5 @@
 import 'package:acme_theme_provider/acme_theme_provider.dart';
+import 'package:example/brand_colors.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,9 +14,10 @@ class MyApp extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: AcmeThemeProvider.asset(
+            child: AcmeThemeProvider<BrandColors>.asset(
               path: 'assets/example-theme.acme',
               overrideFn: (theme) => theme.copyWith(themeMode: ThemeMode.light),
+              customColorsConverterCreator: BrandColorsConverter.new,
               builder: (context, theme) {
                 return MaterialApp(
                   title: 'Asset Theme Example',
@@ -28,10 +30,11 @@ class MyApp extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: AcmeThemeProvider.network(
+            child: AcmeThemeProvider<BrandColors>.network(
               url:
-                  'https://gist.githubusercontent.com/sarbagya-acme/590775de1d3866d2a0250bb192e6b585/raw/6195c092fdb9478a7498294059e781bc5d2d8a92/gistfile1.txt',
-              overrideFn: (theme) => theme.copyWith(themeMode: ThemeMode.light),
+                  'https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/sarbagya/custom-colors/example/assets/example-theme.acme',
+              overrideFn: (theme) => theme.copyWith(themeMode: ThemeMode.dark),
+              customColorsConverterCreator: BrandColorsConverter.new,
               builder: (context, theme) {
                 return MaterialApp(
                   title: 'Network Theme Example',
@@ -42,7 +45,7 @@ class MyApp extends StatelessWidget {
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );
@@ -79,10 +82,13 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               'You have pushed the button this many times:',
+              style: TextStyle(color: BrandColors.of(context).live),
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headline4!.copyWith(
+                    color: BrandColors.of(context).dead,
+                  ),
             ),
           ],
         ),

@@ -1,9 +1,10 @@
 import 'dart:convert';
 
+import 'package:acme_theme_provider/acme_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:json_theme/json_theme.dart';
 
-class AcmeTheme {
+class AcmeTheme<T extends Object> {
   final String name;
   final ThemeData lightTheme;
   final ThemeData darkTheme;
@@ -16,20 +17,33 @@ class AcmeTheme {
     required this.themeMode,
   });
 
-  factory AcmeTheme.fallback() {
+  factory AcmeTheme.fallback({
+    CustomColorsConverterCreator<T>? customColorsConverterCreator,
+  }) {
+    final extensions = [
+      if (customColorsConverterCreator != null)
+        CustomColors<T>(
+          converter: customColorsConverterCreator,
+          colors: {},
+        ),
+    ];
+
     return AcmeTheme._(
       name: 'Acme Theme',
-      lightTheme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
+      lightTheme: ThemeData.light().copyWith(extensions: extensions),
+      darkTheme: ThemeData.dark().copyWith(extensions: extensions),
       themeMode: ThemeMode.light,
     );
   }
 
-  factory AcmeTheme.fromJson(String json) {
+  factory AcmeTheme.fromJson(
+    String json, {
+    CustomColorsConverterCreator<T>? customColorsConverterCreator,
+  }) {
     Map<String, dynamic> themeMap;
     try {
       themeMap = Map.from(jsonDecode(json));
-    } on Exception {
+    } catch (_) {
       throw InvalidAcmeThemeException();
     }
 
@@ -42,8 +56,16 @@ class AcmeTheme {
 
     return AcmeTheme._(
       name: themeMap['name'] ?? 'Acme Theme',
-      lightTheme: _resolveTheme(themeMap['theme_data'], Brightness.light),
-      darkTheme: _resolveTheme(themeMap['dark_theme_data'], Brightness.dark),
+      lightTheme: _resolveTheme<T>(
+        themeMap['theme_data'],
+        Brightness.light,
+        customColorsConverterCreator: customColorsConverterCreator,
+      ),
+      darkTheme: _resolveTheme<T>(
+        themeMap['dark_theme_data'],
+        Brightness.dark,
+        customColorsConverterCreator: customColorsConverterCreator,
+      ),
       themeMode: ThemeMode.values[themeMap['theme_mode'] ?? 1],
     );
   }
@@ -64,12 +86,44 @@ class AcmeTheme {
 
 String _keyRequired(String key) => '"$key" key is required in json theme.';
 
-ThemeData _resolveTheme(
+ThemeData _resolveTheme<T extends Object>(
   Object rawThemeData,
-  Brightness fallbackBrightness,
-) {
-  return ThemeDecoder.decodeThemeData(rawThemeData) ??
-      ThemeData(brightness: fallbackBrightness);
+  Brightness fallbackBrightness, {
+  CustomColorsConverterCreator<T>? customColorsConverterCreator,
+}) {
+  if (rawThemeData is Map) {
+    final customColors = Map.from(rawThemeData['custom_colors'] ?? {});
+    final extensions = [
+      if (customColorsConverterCreator != null)
+        CustomColors<T>(
+          converter: customColorsConverterCreator,
+          colors: customColors.map(
+            (k, v) => MapEntry(k, ThemeDecoder.decodeColor(v)!),
+          ),
+        ),
+    ];
+
+    final decodedThemeData = ThemeDecoder.decodeThemeData(rawThemeData)
+        ?.copyWith(extensions: extensions);
+
+    final fallbackThemeData = ThemeData(
+      brightness: fallbackBrightness,
+      extensions: extensions,
+    );
+
+    return decodedThemeData ?? fallbackThemeData;
+  }
+
+  return ThemeData(
+    brightness: fallbackBrightness,
+    extensions: [
+      if (customColorsConverterCreator != null)
+        CustomColors<T>(
+          converter: customColorsConverterCreator,
+          colors: {},
+        ),
+    ],
+  );
 }
 
 class InvalidAcmeThemeException {
