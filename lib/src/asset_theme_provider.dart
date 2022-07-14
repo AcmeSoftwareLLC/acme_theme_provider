@@ -1,24 +1,17 @@
 import 'package:acme_theme_provider/acme_theme_provider.dart';
 import 'package:acme_theme_provider/src/theme.dart';
-import 'package:acme_theme_provider/src/typedefs.dart';
 import 'package:flutter/material.dart';
 
-class AssetThemeProvider extends AcmeThemeProvider {
-  final String path;
-  final ThemedWidgetBuilder builder;
-  final ThemeOverride? overrideFn;
-
+class AssetThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
   const AssetThemeProvider({
-    Key? key,
+    super.key,
     required this.path,
-    required this.builder,
-    this.overrideFn,
-  }) : super(
-          key: key,
-          source: path,
-          builder: builder,
-          overrideFn: overrideFn,
-        );
+    required super.builder,
+    super.overrideFn,
+    super.customColorsConverterCreator,
+  }) : super(source: path);
+
+  final String path;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +20,14 @@ class AssetThemeProvider extends AcmeThemeProvider {
       builder: (context, snapshot) {
         AcmeTheme theme;
         if (snapshot.hasData) {
-          theme = AcmeTheme.fromJson(snapshot.data!);
+          theme = AcmeTheme<T>.fromJson(
+            snapshot.data!,
+            customColorsConverterCreator: customColorsConverterCreator,
+          );
         } else {
-          theme = AcmeTheme.fallback();
+          theme = AcmeTheme<T>.fallback(
+            customColorsConverterCreator: customColorsConverterCreator,
+          );
         }
 
         theme = overrideFn?.call(theme) ?? theme;

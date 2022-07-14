@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+typedef CustomColorsConverterCreator<T extends Object>
+    = CustomColorsConverter<T> Function(Map<String, Color>);
+
 abstract class CustomColorsConverter<T extends Object> {
   const CustomColorsConverter(Map<String, Color> colors) : _colors = colors;
 
@@ -7,7 +10,7 @@ abstract class CustomColorsConverter<T extends Object> {
 
   T convert();
 
-  Color call(String key) => _colors[key]!;
+  Color call(String key) => _colors[key] ?? Colors.black;
 }
 
 class CustomColors<T extends Object> extends ThemeExtension<CustomColors<T>> {
@@ -16,7 +19,7 @@ class CustomColors<T extends Object> extends ThemeExtension<CustomColors<T>> {
     required Map<String, Color> colors,
   }) : _colors = colors;
 
-  final CustomColorsConverter<T> Function(Map<String, Color>) converter;
+  final CustomColorsConverterCreator<T> converter;
   final Map<String, Color> _colors;
 
   @override
