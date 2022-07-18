@@ -92,13 +92,13 @@ ThemeData _resolveTheme<T extends Object>(
   CustomColorsConverterCreator<T>? customColorsConverterCreator,
 }) {
   if (rawThemeData is Map) {
-    final customColors = Map.from(rawThemeData['custom_colors'] ?? {});
+    final customColors = Map.from(rawThemeData['customColors'] ?? {});
     final extensions = [
       if (customColorsConverterCreator != null)
         CustomColors<T>(
           converter: customColorsConverterCreator,
           colors: customColors.map(
-            (k, v) => MapEntry(k, ThemeDecoder.decodeColor(v)!),
+            (k, v) => MapEntry(k, CustomColor.fromMap(k, v)),
           ),
         ),
     ];
