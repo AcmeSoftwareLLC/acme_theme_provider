@@ -1,9 +1,19 @@
 {
     "name": "Example",
     "theme_data": {
-        "custom_colors": {
-            "dead": "#ffff0000",
-            "live": "#ff00ff00"
+        "customColors": {
+            "dead": {
+              "default": "#ffff0000",
+              "on": "#ffff0000",
+              "container": "#ffff0000",
+              "onContainer": "#ffff0000"
+            },
+            "live": {
+              "default": "#ff00ff00",
+              "on": "#ff00ff00",
+              "container": "#ff00ff00",
+              "onContainer": "#ff00ff00"
+            }
         },
         "applyElevationOverlayColor": false,
         "backgroundColor": "#ffffffff",
@@ -805,10 +815,20 @@
         "visualDensity": "compact"
     },
     "dark_theme_data": {
-        "custom_colors": {
-            "live": "#ffff0000",
-            "dead": "#ff00ff00"
-        },
+        "customColors": {
+                    "dead": {
+                      "default": "#ffff0000",
+                      "on": "#ffff0000",
+                      "container": "#ffff0000",
+                      "onContainer": "#ffff0000"
+                    },
+                    "live": {
+                      "default": "#ff00ff00",
+                      "on": "#ff00ff00",
+                      "container": "#ff00ff00",
+                      "onContainer": "#ff00ff00"
+                    }
+                },
         "applyElevationOverlayColor": true,
         "backgroundColor": "#ff121212",
         "bottomAppBarColor": "#ff121212",

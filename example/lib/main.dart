@@ -82,12 +82,12 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               'You have pushed the button this many times:',
-              style: TextStyle(color: BrandColors.of(context).live),
+              style: TextStyle(color: BrandColors.of(context).live.color),
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4!.copyWith(
-                    color: BrandColors.of(context).dead,
+                    color: BrandColors.of(context).dead.color,
                   ),
             ),
           ],

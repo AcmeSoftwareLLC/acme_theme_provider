@@ -13,8 +13,8 @@ class BrandColors extends CustomColors<BrandColors> {
           converter: BrandColorsConverter.new,
         );
 
-  final Color live;
-  final Color dead;
+  final CustomColor live;
+  final CustomColor dead;
 
   static BrandColors of(BuildContext context) {
     return CustomColors.of<BrandColors>(context);
