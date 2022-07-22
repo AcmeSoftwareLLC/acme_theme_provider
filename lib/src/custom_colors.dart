@@ -59,8 +59,15 @@ class CustomColors<T extends Object> extends ThemeExtension<CustomColors<T>> {
   ) {
     if (other is! CustomColors) return this;
 
+    final currentKeys = _colors.keys.toSet();
+    final otherKeys = other._colors.keys.toSet();
+    final commonKeys = currentKeys.intersection(otherKeys);
+
     return CustomColors(
-      colors: _colors.map((k, v) => MapEntry(k, v.lerp(other._colors[k]!, t))),
+      colors: {
+        for (final key in commonKeys)
+          key: _colors[key]!.lerp(other._colors[key]!, t)
+      },
       converter: converter,
     );
   }
