@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:acme_theme_provider/acme_theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:json_theme/json_theme.dart';
 
 class AcmeTheme<T extends Object> {
@@ -111,7 +112,28 @@ ThemeData _resolveTheme<T extends Object>(
       extensions: extensions,
     );
 
-    return decodedThemeData ?? fallbackThemeData;
+    final themeData = decodedThemeData ?? fallbackThemeData;
+    final textTheme = themeData.textTheme;
+
+    return themeData.copyWith(
+      textTheme: textTheme.copyWith(
+        displayLarge: _getStyle(textTheme.displayLarge),
+        displayMedium: _getStyle(textTheme.displayMedium),
+        displaySmall: _getStyle(textTheme.displaySmall),
+        headlineLarge: _getStyle(textTheme.headlineLarge),
+        headlineMedium: _getStyle(textTheme.headlineMedium),
+        headlineSmall: _getStyle(textTheme.headlineSmall),
+        titleLarge: _getStyle(textTheme.titleLarge),
+        titleMedium: _getStyle(textTheme.titleMedium),
+        titleSmall: _getStyle(textTheme.titleSmall),
+        labelLarge: _getStyle(textTheme.labelLarge),
+        labelMedium: _getStyle(textTheme.labelMedium),
+        labelSmall: _getStyle(textTheme.labelSmall),
+        bodyLarge: _getStyle(textTheme.bodyLarge),
+        bodyMedium: _getStyle(textTheme.bodyMedium),
+        bodySmall: _getStyle(textTheme.bodySmall),
+      ),
+    );
   }
 
   return ThemeData(
@@ -124,6 +146,15 @@ ThemeData _resolveTheme<T extends Object>(
         ),
     ],
   );
+}
+
+TextStyle? _getStyle(TextStyle? style) {
+  var fontFamily = style?.fontFamily ?? 'Roboto';
+  if (fontFamily.contains('_')) fontFamily = fontFamily.split('_').first;
+
+  final textStyleBuilder =
+      GoogleFonts.asMap()[fontFamily] ?? GoogleFonts.roboto;
+  return style?.merge(textStyleBuilder());
 }
 
 class InvalidAcmeThemeException {
