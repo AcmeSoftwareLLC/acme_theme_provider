@@ -1,5 +1,4 @@
 import 'package:acme_theme_provider/acme_theme_provider.dart';
-import 'package:acme_theme_provider/src/theme.dart';
 import 'package:flutter/material.dart';
 
 class AssetThemeProvider<T extends Object> extends AcmeThemeProvider<T> {

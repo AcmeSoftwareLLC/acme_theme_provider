@@ -1,6 +1,6 @@
 name: acme_theme_provider
 description: A theme provider for themes generated using Acme Theme Components.
-version: 0.3.3
+version: 0.3.4
 homepage: https://acmesoftware.com
 
 environment:

@@ -9,6 +9,7 @@ import 'src/network_theme_provider.dart';
 import 'src/typedefs.dart';
 
 export 'src/custom_colors.dart';
+export 'src/theme.dart' show AcmeTheme, TextStyleBuilder;
 
 abstract class AcmeThemeProvider<T extends Object> extends StatelessWidget {
   final String source;
