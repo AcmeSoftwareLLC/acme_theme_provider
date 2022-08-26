@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui' as ui;
 
 import 'package:acme_theme_provider/acme_theme_provider.dart';
 import 'package:flutter/material.dart';
@@ -115,23 +116,27 @@ ThemeData _resolveTheme<T extends Object>(
     final themeData = decodedThemeData ?? fallbackThemeData;
     final textTheme = themeData.textTheme;
 
+    final fonts = GoogleFonts.asMap().map(
+      (k, v) => MapEntry(k.replaceAll(' ', ''), v),
+    );
+
     return themeData.copyWith(
       textTheme: textTheme.copyWith(
-        displayLarge: _getStyle(textTheme.displayLarge),
-        displayMedium: _getStyle(textTheme.displayMedium),
-        displaySmall: _getStyle(textTheme.displaySmall),
-        headlineLarge: _getStyle(textTheme.headlineLarge),
-        headlineMedium: _getStyle(textTheme.headlineMedium),
-        headlineSmall: _getStyle(textTheme.headlineSmall),
-        titleLarge: _getStyle(textTheme.titleLarge),
-        titleMedium: _getStyle(textTheme.titleMedium),
-        titleSmall: _getStyle(textTheme.titleSmall),
-        labelLarge: _getStyle(textTheme.labelLarge),
-        labelMedium: _getStyle(textTheme.labelMedium),
-        labelSmall: _getStyle(textTheme.labelSmall),
-        bodyLarge: _getStyle(textTheme.bodyLarge),
-        bodyMedium: _getStyle(textTheme.bodyMedium),
-        bodySmall: _getStyle(textTheme.bodySmall),
+        displayLarge: _getStyle(fonts, textTheme.displayLarge),
+        displayMedium: _getStyle(fonts, textTheme.displayMedium),
+        displaySmall: _getStyle(fonts, textTheme.displaySmall),
+        headlineLarge: _getStyle(fonts, textTheme.headlineLarge),
+        headlineMedium: _getStyle(fonts, textTheme.headlineMedium),
+        headlineSmall: _getStyle(fonts, textTheme.headlineSmall),
+        titleLarge: _getStyle(fonts, textTheme.titleLarge),
+        titleMedium: _getStyle(fonts, textTheme.titleMedium),
+        titleSmall: _getStyle(fonts, textTheme.titleSmall),
+        labelLarge: _getStyle(fonts, textTheme.labelLarge),
+        labelMedium: _getStyle(fonts, textTheme.labelMedium),
+        labelSmall: _getStyle(fonts, textTheme.labelSmall),
+        bodyLarge: _getStyle(fonts, textTheme.bodyLarge),
+        bodyMedium: _getStyle(fonts, textTheme.bodyMedium),
+        bodySmall: _getStyle(fonts, textTheme.bodySmall),
       ),
     );
   }
@@ -148,12 +153,11 @@ ThemeData _resolveTheme<T extends Object>(
   );
 }
 
-TextStyle? _getStyle(TextStyle? style) {
+TextStyle? _getStyle(Map<String, TextStyleBuilder> fonts, TextStyle? style) {
   var fontFamily = style?.fontFamily ?? 'Roboto';
   if (fontFamily.contains('_')) fontFamily = fontFamily.split('_').first;
 
-  final textStyleBuilder =
-      GoogleFonts.asMap()[fontFamily] ?? GoogleFonts.roboto;
+  final textStyleBuilder = fonts[fontFamily] ?? GoogleFonts.roboto;
   return style?.merge(textStyleBuilder());
 }
 
@@ -161,3 +165,25 @@ class InvalidAcmeThemeException {
   @override
   String toString() => 'Invalid Acme Theme';
 }
+
+typedef TextStyleBuilder = TextStyle Function({
+  TextStyle? textStyle,
+  Color? color,
+  Color? backgroundColor,
+  double? fontSize,
+  FontWeight? fontWeight,
+  FontStyle? fontStyle,
+  double? letterSpacing,
+  double? wordSpacing,
+  TextBaseline? textBaseline,
+  double? height,
+  Locale? locale,
+  Paint? foreground,
+  Paint? background,
+  List<ui.Shadow>? shadows,
+  List<ui.FontFeature>? fontFeatures,
+  TextDecoration? decoration,
+  Color? decorationColor,
+  TextDecorationStyle? decorationStyle,
+  double? decorationThickness,
+});
