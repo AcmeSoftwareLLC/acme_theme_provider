@@ -37,6 +37,7 @@ abstract class AcmeThemeProvider<T extends Object> extends StatelessWidget {
     Key? key,
     required String url,
     required ThemedWidgetBuilder builder,
+    String? fallbackAssetPath,
     ThemeOverride? overrideFn,
     Map<String, String>? headers,
     CustomColorsConverterCreator<T>? customColorsConverterCreator,
