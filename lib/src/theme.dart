@@ -30,10 +30,35 @@ class AcmeTheme<T extends Object> {
         ),
     ];
 
+    final typography = Typography.material2021();
+
+    final lightTheme = ThemeData.from(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.red,
+      ),
+      useMaterial3: true,
+      textTheme: typography.black,
+    ).copyWith(
+      extensions: extensions,
+      primaryTextTheme: typography.black,
+    );
+
+    final darkTheme = ThemeData.from(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.green,
+        brightness: Brightness.dark,
+      ),
+      useMaterial3: true,
+      textTheme: typography.white,
+    ).copyWith(
+      extensions: extensions,
+      primaryTextTheme: typography.white,
+    );
+
     return AcmeTheme._(
       name: 'Acme Theme',
-      lightTheme: ThemeData.light().copyWith(extensions: extensions),
-      darkTheme: ThemeData.dark().copyWith(extensions: extensions),
+      lightTheme: lightTheme,
+      darkTheme: darkTheme,
       themeMode: ThemeMode.light,
     );
   }
