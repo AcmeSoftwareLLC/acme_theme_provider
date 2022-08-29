@@ -41,6 +41,7 @@ abstract class AcmeThemeProvider<T extends Object> extends StatelessWidget {
     ThemeOverride? overrideFn,
     Map<String, String>? headers,
     CustomColorsConverterCreator<T>? customColorsConverterCreator,
+    String cacheKey,
   }) = NetworkThemeProvider;
 
   static Future<void> prefetchAsset(String assetPath) async {

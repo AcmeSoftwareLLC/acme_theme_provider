@@ -18,6 +18,7 @@ class NetworkThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
     this.headers,
     super.overrideFn,
     super.customColorsConverterCreator,
+    this.cacheKey = 'theme_cache',
   }) : super(source: url) {
     _uri = Uri.tryParse(url);
     assert(_uri != null, 'Invalid Theme URL: $url');
@@ -27,6 +28,8 @@ class NetworkThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
   final String? fallbackAssetPath;
 
   final Map<String, String>? headers;
+
+  final String cacheKey;
 
   late final Uri? _uri;
 
@@ -95,7 +98,7 @@ class NetworkThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
   Future<String> get _themeCachePath async {
     final tempDirectory = await getTemporaryDirectory();
 
-    return join(tempDirectory.path, 'theme.acme');
+    return join(tempDirectory.path, '$cacheKey.acme');
   }
 
   Future<bool> get _hasThemeExpired async {
