@@ -1,6 +1,6 @@
 name: acme_theme_provider
 description: A theme provider for themes generated using Acme Theme Components.
-version: 0.3.6
+version: 0.3.7
 homepage: https://acmesoftware.com
 
 environment:
@@ -13,6 +13,8 @@ dependencies:
   google_fonts: ^3.0.1
   http: ^0.13.5
   json_theme: ^4.0.0+8
+  path_provider: ^2.0.11
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
