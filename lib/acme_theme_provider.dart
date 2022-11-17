@@ -4,10 +4,10 @@ import 'package:acme_theme_provider/src/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'src/asset_theme_provider.dart';
+import 'src/providers/asset_theme_provider.dart';
 import 'src/core/component_config.dart';
 import 'src/custom_colors.dart';
-import 'src/network_theme_provider.dart';
+import 'src/providers/network_theme_provider.dart';
 import 'src/typedefs.dart';
 
 export 'src/custom_colors.dart';
