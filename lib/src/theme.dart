@@ -126,7 +126,7 @@ ThemeData _resolveTheme<T extends Object>(
   Brightness fallbackBrightness, {
   CustomColorsConverterCreator<T>? customColorsConverterCreator,
 }) {
-  if (rawThemeData is Map) {
+  if (rawThemeData is Map && rawThemeData.isNotEmpty) {
     final customColors = Map.from(rawThemeData['customColors'] ?? {});
     final extensions = [
       if (customColorsConverterCreator != null)
@@ -144,6 +144,7 @@ ThemeData _resolveTheme<T extends Object>(
     final fallbackThemeData = ThemeData(
       brightness: fallbackBrightness,
       extensions: extensions,
+      useMaterial3: true,
     );
 
     final themeData = decodedThemeData ?? fallbackThemeData;
@@ -183,6 +184,7 @@ ThemeData _resolveTheme<T extends Object>(
           colors: {},
         ),
     ],
+    useMaterial3: true,
   );
 }
 
