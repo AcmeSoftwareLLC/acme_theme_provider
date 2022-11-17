@@ -103,7 +103,7 @@ class AcmeTheme<T extends Object> {
     ThemeMode? themeMode,
   }) {
     return AcmeTheme._(
-      name: this.name,
+      name: name,
       lightTheme: lightTheme ?? this.lightTheme,
       darkTheme: darkTheme ?? this.darkTheme,
       themeMode: themeMode ?? this.themeMode,

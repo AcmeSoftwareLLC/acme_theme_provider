@@ -25,7 +25,7 @@ abstract class AcmeThemeProvider<T extends Object> extends StatelessWidget {
     this.customColorsConverterCreator,
   });
 
-  factory AcmeThemeProvider.asset({
+  const factory AcmeThemeProvider.asset({
     Key? key,
     required String path,
     required ThemedWidgetBuilder builder,
