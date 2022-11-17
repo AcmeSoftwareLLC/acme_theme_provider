@@ -12,8 +12,10 @@ import 'src/typedefs.dart';
 
 export 'src/custom_colors.dart';
 export 'src/theme.dart' show TextStyleBuilder;
+export 'src/typedefs.dart';
+export 'src/widgets.dart';
 
-abstract class AcmeThemeProvider<T extends Object> extends StatelessWidget {
+class AcmeThemeProvider<T extends Object> extends StatelessWidget {
   final String source;
   final ThemedWidgetBuilder builder;
   final ThemeOverride? overrideFn;
@@ -46,6 +48,11 @@ abstract class AcmeThemeProvider<T extends Object> extends StatelessWidget {
     String cacheKey,
   }) = NetworkThemeProvider;
 
+  @override
+  Widget build(BuildContext context) {
+    return scopedBuilder(context, AcmeTheme.fromJson(source));
+  }
+
   Widget scopedBuilder(BuildContext context, AcmeTheme theme) {
     return ComponentScope(
       components: theme.components,
@@ -59,9 +66,16 @@ abstract class AcmeThemeProvider<T extends Object> extends StatelessWidget {
 
   static T _of<T extends ComponentConfig>(BuildContext context, String name) {
     final result = context.dependOnInheritedWidgetOfExactType<ComponentScope>();
-    assert(result != null, 'No AcmeThemeProvider found in context');
+    final components = result?.components;
 
-    return result!.components[name] as T;
+    assert(components != null, '\n\nNo AcmeThemeProvider found in context\n');
+    assert(
+      components!.containsKey(name),
+      '\n\nNo configuration found for "$name".\n\n'
+      'Please ensure that config for the component is present in the theme json.\n',
+    );
+
+    return components![name] as T;
   }
 }
 

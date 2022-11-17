@@ -99,7 +99,7 @@ class AcmeTheme<T extends Object> {
       ),
       themeMode: ThemeMode.values[themeMap['theme_mode'] ?? 1],
       components: Map.from(themeMap['components']).map(
-        (k, v) => MapEntry(k, ComponentConfig.decode(k, v)),
+        (k, v) => MapEntry(k, ComponentConfig.decode(v['type'], v)),
       ),
     );
   }
