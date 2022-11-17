@@ -1,37 +1,23 @@
-import 'package:acme_theme_provider/acme_theme_provider.dart';
+import 'package:acme_theme_provider/src/core/configs/app_bar_config.dart';
+import 'package:acme_theme_provider/src/core/core_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../configs/app_bar_config.dart';
-
-class CoreAppBar extends StatefulWidget {
+class CoreAppBar extends CoreWidget {
   const CoreAppBar({
     super.key,
-    required this.parent,
+    required super.parent,
     required this.title,
     this.leading,
   });
 
-  final Widget parent;
   final Widget title;
   final Widget? leading;
 
   @override
-  State<CoreAppBar> createState() => _CoreAppBarState();
+  CoreState<CoreAppBar, AppBarConfig> createState() => _CoreAppBarState();
 }
 
-class _CoreAppBarState extends State<CoreAppBar> {
-  bool _configInitialized = false;
-  late final AppBarConfig config;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (!_configInitialized) {
-      config = context.config(widget.parent.runtimeType.toString());
-      _configInitialized = true;
-    }
-  }
-
+class _CoreAppBarState extends CoreState<CoreAppBar, AppBarConfig> {
   @override
   Widget build(BuildContext context) {
     return AppBar(

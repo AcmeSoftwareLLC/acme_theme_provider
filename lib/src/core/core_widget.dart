@@ -1,0 +1,30 @@
+import 'package:acme_theme_provider/acme_theme_provider.dart';
+import 'package:acme_theme_provider/src/core/component_config.dart';
+import 'package:flutter/widgets.dart';
+
+abstract class CoreWidget extends StatefulWidget {
+  const CoreWidget({
+    super.key,
+    required this.parent,
+  });
+
+  final Widget parent;
+
+  @override
+  CoreState createState();
+}
+
+abstract class CoreState<T extends CoreWidget, C extends ComponentConfig>
+    extends State<T> {
+  bool _configInitialized = false;
+  late final C config;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_configInitialized) {
+      config = context.config(widget.parent.runtimeType.toString());
+      _configInitialized = true;
+    }
+  }
+}
