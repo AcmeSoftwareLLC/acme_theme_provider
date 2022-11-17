@@ -20,10 +20,27 @@ class CoreAppBar extends CoreWidget {
 class _CoreAppBarState extends CoreState<CoreAppBar, AppBarConfig> {
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      leading: widget.leading,
-      title: widget.title,
-      backgroundColor: config.theme.backgroundColor,
+    final dividerConfig = config.divider;
+    final dividerThickness = dividerConfig?.thickness;
+
+    final bottom = dividerConfig == null || dividerThickness == null
+        ? null
+        : PreferredSize(
+            preferredSize: Size.fromHeight(dividerThickness),
+            child: Divider(
+              height: 0,
+              thickness: dividerThickness,
+              color: dividerConfig.color,
+            ),
+          );
+
+    return Theme(
+      data: Theme.of(context).copyWith(appBarTheme: config.theme),
+      child: AppBar(
+        leading: widget.leading,
+        title: widget.title,
+        bottom: bottom,
+      ),
     );
   }
 }

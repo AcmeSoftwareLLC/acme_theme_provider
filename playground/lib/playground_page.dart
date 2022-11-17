@@ -17,9 +17,12 @@ class PlaygroundPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: const [
-            OneAppBar(
-              title: Text('One App Bar'),
-              leading: Icon(Icons.menu),
+            SizedBox(
+              height: 100,
+              child: OneAppBar(
+                title: Text('One App Bar'),
+                leading: Icon(Icons.menu),
+              ),
             ),
             TwoAppBar(
               title: Text('Two App Bar'),
