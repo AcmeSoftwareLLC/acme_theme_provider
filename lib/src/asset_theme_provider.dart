@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:acme_theme_provider/acme_theme_provider.dart';
 import 'package:acme_theme_provider/src/theme.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,7 @@ class AssetThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
       future: DefaultAssetBundle.of(context).loadString(source),
       builder: (context, snapshot) {
         AcmeTheme theme;
+
         if (snapshot.hasData) {
           theme = AcmeTheme<T>.fromJson(
             snapshot.data!,
@@ -31,7 +34,7 @@ class AssetThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
         }
 
         theme = overrideFn?.call(theme) ?? theme;
-        return builder(context, theme);
+        return scopedBuilder(context, theme);
       },
     );
   }

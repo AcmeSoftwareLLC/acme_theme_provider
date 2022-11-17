@@ -61,7 +61,7 @@ class NetworkThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
         }
 
         theme = overrideFn?.call(theme) ?? theme;
-        return builder(context, theme);
+        return scopedBuilder(context, theme);
       },
     );
   }

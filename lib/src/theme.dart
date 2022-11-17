@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ui' as ui;
 
 import 'package:acme_theme_provider/acme_theme_provider.dart';
+import 'package:acme_theme_provider/src/core/component_config.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:json_theme/json_theme.dart';
@@ -11,12 +12,14 @@ class AcmeTheme<T extends Object> {
   final ThemeData lightTheme;
   final ThemeData darkTheme;
   final ThemeMode themeMode;
+  final Map<String, ComponentConfig> components;
 
   AcmeTheme._({
     required this.name,
     required this.lightTheme,
     required this.darkTheme,
     required this.themeMode,
+    required this.components,
   });
 
   factory AcmeTheme.fallback({
@@ -60,6 +63,7 @@ class AcmeTheme<T extends Object> {
       lightTheme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.light,
+      components: {},
     );
   }
 
@@ -94,6 +98,9 @@ class AcmeTheme<T extends Object> {
         customColorsConverterCreator: customColorsConverterCreator,
       ),
       themeMode: ThemeMode.values[themeMap['theme_mode'] ?? 1],
+      components: Map.from(themeMap['components']).map(
+        (k, v) => MapEntry(k, ComponentConfig.decode(k, v)),
+      ),
     );
   }
 
@@ -107,6 +114,7 @@ class AcmeTheme<T extends Object> {
       lightTheme: lightTheme ?? this.lightTheme,
       darkTheme: darkTheme ?? this.darkTheme,
       themeMode: themeMode ?? this.themeMode,
+      components: components,
     );
   }
 }
