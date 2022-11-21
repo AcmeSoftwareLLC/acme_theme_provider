@@ -1,15 +1,21 @@
 import 'package:clean_framework/clean_framework_providers.dart';
 
 class NoteEntity extends Entity {
-  final String title ;
-  final String content ;
-  final String noteID ;
+  final String title;
+  final String content;
+  final String noteID;
   final String noteDate;
   final String category;
 
-  NoteEntity({this.title = '', this.content= '', this.noteID= '', this.noteDate = '', this.category = ''});
+  NoteEntity({
+    this.title = '',
+    this.content = '',
+    this.noteID = '',
+    this.noteDate = '',
+    this.category = '',
+  });
 
-  NoteEntity copyWith({
+  NoteEntity merge({
     String? title,
     String? content,
     String? noteID,

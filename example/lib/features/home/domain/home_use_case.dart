@@ -12,7 +12,7 @@ class HomeUseCase extends UseCase<HomeEntity> {
       HomeUIOutput: (HomeEntity entity) {
         return HomeUIOutput(
           noteTitles: entity.noteTitles,
-          title: 'Note 1',
+          title: entity.noteTitles.first,
           noteDate: 'DateTime(2022)',
         );
       },
@@ -23,6 +23,7 @@ class HomeUseCase extends UseCase<HomeEntity> {
     await request<HomeGetNotesGatewayOutput, HomeGetNotesSuccessInput>(
       HomeGetNotesGatewayOutput(),
       onSuccess: (input) {
+        print('The data is: ${input.noteTitles.first}');
         return entity.copyWith(
             noteTitles: input.noteTitles
         );

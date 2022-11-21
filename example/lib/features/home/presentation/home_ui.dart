@@ -57,7 +57,7 @@ class _NoteItem extends StatelessWidget{
         );
       }
       else return  NoteCard.rectangular(
-        title: viewModel.noteTitles.last,
+        title: 'viewModel.noteTitles.last',
         content: 'New idea',
       );
     },

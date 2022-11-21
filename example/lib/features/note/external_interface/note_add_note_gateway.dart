@@ -5,7 +5,6 @@ import 'package:example/core/database/db_success_response.dart';
 import 'package:example/features/theme/note.dart';
 import 'package:example/providers.dart';
 
-
 class NoteAddNoteGateway extends DbGateway<NoteAddNoteGatewayOutput,
     NoteAddNoteSuccessResponse, NoteAddNoteSuccessInput> {
   NoteAddNoteGateway({
@@ -19,32 +18,37 @@ class NoteAddNoteGateway extends DbGateway<NoteAddNoteGatewayOutput,
 
   @override
   NoteAddNoteSuccessInput onSuccess(
-      NoteAddNoteSuccessResponse response,
-      ) {
-    return NoteAddNoteSuccessInput();
+    NoteAddNoteSuccessResponse response,
+  ) {
+    return NoteAddNoteSuccessInput(note: response.note);
   }
 }
 
 class NoteAddNoteRequest extends DbRequest {
   NoteAddNoteRequest({required this.note});
+
   final Note note;
 }
 
 class NoteAddNoteSuccessResponse extends DbSuccessResponse {
-  NoteAddNoteSuccessResponse({required this.title, required this.content, required this.noteId,});
+  NoteAddNoteSuccessResponse({
+    required this.note,
+  });
 
-  final String title;
-  final String content;
-  final String noteId;
+  final Note note;
 }
 
 class NoteAddNoteGatewayOutput extends Output {
-  NoteAddNoteGatewayOutput({required this.note,});
+  NoteAddNoteGatewayOutput({required this.note});
 
   final Note note;
 
   @override
-  List<Object?> get props => [note,];
+  List<Object?> get props => [note];
 }
 
-class NoteAddNoteSuccessInput extends SuccessInput {}
+class NoteAddNoteSuccessInput extends SuccessInput {
+  final Note note;
+
+  NoteAddNoteSuccessInput({required this.note});
+}

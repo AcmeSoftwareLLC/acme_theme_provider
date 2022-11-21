@@ -14,7 +14,7 @@ class HomePresenter
 
   @override
   void onLayoutReady(BuildContext context, HomeUseCase useCase) {
-    // useCase.init();
+    useCase.init();
   }
 
   @override

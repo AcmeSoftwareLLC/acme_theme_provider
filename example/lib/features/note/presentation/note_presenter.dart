@@ -1,11 +1,11 @@
 import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:example/features/home/domain/home_ui_output.dart';
-import 'package:example/features/home/domain/home_use_case.dart';
-import 'package:example/features/home/presentation/home_view_model.dart';
+import 'package:example/features/note/domain/note_ui_output.dart';
+import 'package:example/features/note/presentation/note_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:example/features/note/domain/note_use_case.dart';
 
 class NotePresenter
-    extends Presenter<HomeViewModel, HomeUIOutput, HomeUseCase> {
+    extends Presenter<NoteViewModel, NoteUIOutput, NoteUseCase> {
   const NotePresenter({
     super.key,
     required super.provider,
@@ -13,12 +13,20 @@ class NotePresenter
   });
 
   @override
-  void onLayoutReady(BuildContext context, HomeUseCase useCase) {
-    useCase.init();
-  }
+  void onLayoutReady(BuildContext context, NoteUseCase useCase) {}
 
   @override
-  HomeViewModel createViewModel(HomeUseCase useCase, HomeUIOutput output) {
-    return HomeViewModel(output.noteTitles, output.noteDate);
+  NoteViewModel createViewModel(NoteUseCase useCase, NoteUIOutput output) {
+    return NoteViewModel(
+      title: output.title,
+      content: output.content,
+      addNote: useCase.addNote,
+      enterTitle: (String title) => useCase.onTitleEntered(
+        title: title,
+      ),
+      enterContent: (String content) => useCase.onContentEntered(
+        content: content,
+      ),
+    );
   }
 }
