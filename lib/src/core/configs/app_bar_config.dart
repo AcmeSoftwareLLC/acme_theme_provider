@@ -8,12 +8,12 @@ class AppBarConfig extends ComponentConfig {
     required this.divider,
   });
 
-  final AppBarTheme theme;
+  final AppBarTheme? theme;
   final DividerAppBarConfig? divider;
 
   factory AppBarConfig.fromMap(Map<String, dynamic> map) {
     return AppBarConfig(
-      theme: ThemeDecoder.decodeAppBarTheme(map['theme'])!,
+      theme: ThemeDecoder.decodeAppBarTheme(map['theme']),
       divider: map.containsKey('divider')
           ? DividerAppBarConfig.fromMap(map['divider'])
           : null,
