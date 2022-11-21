@@ -20,7 +20,7 @@ class NoteAddNoteGateway extends DbGateway<NoteAddNoteGatewayOutput,
   NoteAddNoteSuccessInput onSuccess(
     NoteAddNoteSuccessResponse response,
   ) {
-    return NoteAddNoteSuccessInput();
+    return NoteAddNoteSuccessInput(note: response.note);
   }
 }
 
@@ -32,20 +32,14 @@ class NoteAddNoteRequest extends DbRequest {
 
 class NoteAddNoteSuccessResponse extends DbSuccessResponse {
   NoteAddNoteSuccessResponse({
-    required this.title,
-    required this.content,
-    required this.noteId,
+    required this.note,
   });
 
-  final String title;
-  final String content;
-  final String noteId;
+  final Note note;
 }
 
 class NoteAddNoteGatewayOutput extends Output {
-  NoteAddNoteGatewayOutput({
-    required this.note,
-  });
+  NoteAddNoteGatewayOutput({required this.note});
 
   final Note note;
 
@@ -53,4 +47,8 @@ class NoteAddNoteGatewayOutput extends Output {
   List<Object?> get props => [note];
 }
 
-class NoteAddNoteSuccessInput extends SuccessInput {}
+class NoteAddNoteSuccessInput extends SuccessInput {
+  final Note note;
+
+  NoteAddNoteSuccessInput({required this.note});
+}

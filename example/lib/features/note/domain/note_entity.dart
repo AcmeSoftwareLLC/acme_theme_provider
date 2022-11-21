@@ -15,7 +15,7 @@ class NoteEntity extends Entity {
     this.category = '',
   });
 
-  NoteEntity copyWith({
+  NoteEntity merge({
     String? title,
     String? content,
     String? noteID,

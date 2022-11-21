@@ -20,6 +20,13 @@ class NotePresenter
     return NoteViewModel(
       title: output.title,
       content: output.content,
+      addNote: useCase.addNote,
+      enterTitle: (String title) => useCase.onTitleEntered(
+        title: title,
+      ),
+      enterContent: (String content) => useCase.onContentEntered(
+        content: content,
+      ),
     );
   }
 }
