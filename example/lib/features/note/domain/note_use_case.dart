@@ -41,7 +41,7 @@ class NoteUseCase extends UseCase<NoteEntity> {
             title: input.note.title,
             content: input.note.content,
             noteDate: input.note.noteDate.toString(),
-            noteID: input.note.noteID);
+            noteID: '${input.note.noteDate.toString()}-${input.note.title}');
       },
       onFailure: (e) {
         print('the error is: ${e.message}');
@@ -50,3 +50,4 @@ class NoteUseCase extends UseCase<NoteEntity> {
     );
   }
 }
+

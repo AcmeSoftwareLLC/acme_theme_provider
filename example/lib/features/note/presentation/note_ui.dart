@@ -27,7 +27,7 @@ class NoteUI extends UI<NoteViewModel> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () {
-            context.router.go(Routes.home);
+            context.router.push(Routes.home);
           },
         ),
         title: Text('Add note'),

@@ -51,7 +51,10 @@ class NoteCardSquared extends NoteCard {
       child: SizedBox(
           height: squareCardHeight,
           width: screenWidth/2,
-          child: Text(title, overflow: TextOverflow.ellipsis,)),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(title, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.headlineMedium, textAlign: TextAlign.left,),
+          )),
     );
   }
 }
@@ -80,7 +83,10 @@ class NoteCardRectangular extends NoteCard {
       color: Theme.of(context).colorScheme.surfaceVariant,
       shadowColor: Theme.of(context).colorScheme.shadow,
       surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
-      child: SizedBox(height: rectangularCardHeight, child: Text(title, overflow: TextOverflow.ellipsis,)),
+      child: SizedBox(height: rectangularCardHeight, child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(title, style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.ellipsis, textAlign: TextAlign.right,),
+      )),
     );
   }
 }

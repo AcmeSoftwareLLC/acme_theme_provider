@@ -22,7 +22,7 @@ class HomeNotesStoreExternalInterface extends DbExternalInterface {
 
     on<NoteAddNoteRequest>(
         (request, send) async {
-          await db.update(store: _noteStore, key: request.note.noteID, value: request.note.toJson(),);
+          await db.update(store: _noteStore, key: request.note.title, value: request.note.toJson(),);
         }
     );
   }

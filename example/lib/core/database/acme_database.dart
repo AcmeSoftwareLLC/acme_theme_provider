@@ -81,7 +81,7 @@ class AcmeDatabase {
   }
 
   Future<void> drop() async {
-    final storeNames = ['component_store', 'theme_store'];
+    final storeNames = ['notes_store',];
 
     for (final storeName in storeNames) {
       await store(storeName).drop(await _db);
