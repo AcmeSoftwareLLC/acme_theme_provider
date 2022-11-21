@@ -9,6 +9,7 @@ class NoteUI extends UI<NoteViewModel> {
     super.key,
     super.create,
   });
+
   @override
   Presenter create(PresenterBuilder<NoteViewModel> builder) {
     return NotePresenter(
@@ -19,8 +20,10 @@ class NoteUI extends UI<NoteViewModel> {
 
   @override
   Widget build(BuildContext context, NoteViewModel viewModel) {
-    return Center(
-      child: Text('welcome to main note app'),
+    return Scaffold(
+      body: Center(
+        child: Text('welcome to main note app'),
+      ),
     );
   }
 }

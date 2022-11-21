@@ -8,17 +8,11 @@ class NoteUseCase extends UseCase<NoteEntity> {
           entity: NoteEntity(),
           outputFilters: {
             NoteUIOutput: (NoteEntity entity) {
-              try {
-                return NoteUIOutput(
-                  title: entity.title,
-                  content: entity.content,
-                  noteID: entity.noteID,
-                );
-              } catch (e, s) {
-                print('the error is : $e');
-                print(s);
-                rethrow;
-              }
+              return NoteUIOutput(
+                title: entity.title,
+                content: entity.content,
+                noteID: entity.noteID,
+              );
             },
           },
         );
