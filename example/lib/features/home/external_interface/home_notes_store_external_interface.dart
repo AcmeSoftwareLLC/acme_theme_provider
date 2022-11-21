@@ -7,24 +7,22 @@ import 'package:example/features/note/external_interface/note_add_note_gateway.d
 class HomeNotesStoreExternalInterface extends DbExternalInterface {
   HomeNotesStoreExternalInterface({required super.gatewayConnections});
 
-
-
   MapStoreRef get _noteStore => db.store('note_store');
 
   @override
   void handleRequest() {
-    on<HomeGetNotesRequest>(
-        (_, send) async {
-          final notes = await db.findAllKeys(store: _noteStore);
-          send(HomeGetNotesSuccessResponse(noteTitles: notes));
-        }
-    );
+    on<HomeGetNotesRequest>((_, send) async {
+      final notes = await db.findAllKeys(store: _noteStore);
+      send(HomeGetNotesSuccessResponse(noteTitles: notes));
+    });
 
-    on<NoteAddNoteRequest>(
-        (request, send) async {
-          await db.update(store: _noteStore, key: request.note.title, value: request.note.toJson(),);
-        }
-    );
+    on<NoteAddNoteRequest>((request, send) async {
+      await db.update(
+        store: _noteStore,
+        key: request.note.title,
+        value: request.note.toJson(),
+      );
+    });
   }
 
   @override

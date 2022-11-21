@@ -7,13 +7,12 @@ import 'package:example/features/home/external_interface/home_get_notes_gateway.
 class HomeUseCase extends UseCase<HomeEntity> {
   HomeUseCase()
       : super(
-    entity: HomeEntity(),
+    entity: HomeEntity(noteTitles: [], noteContent: []),
     outputFilters: {
       HomeUIOutput: (HomeEntity entity) {
         return HomeUIOutput(
           noteTitles: entity.noteTitles,
-          title: entity.noteTitles.first,
-          noteDate: 'DateTime(2022)',
+          noteContent: entity.noteContent,
         );
       },
     },
@@ -23,7 +22,7 @@ class HomeUseCase extends UseCase<HomeEntity> {
     await request<HomeGetNotesGatewayOutput, HomeGetNotesSuccessInput>(
       HomeGetNotesGatewayOutput(),
       onSuccess: (input) {
-        print('The data is: ${input.noteTitles.first}');
+        // print('The data is: ${input.noteTitles.first}');
         return entity.copyWith(
             noteTitles: input.noteTitles
         );

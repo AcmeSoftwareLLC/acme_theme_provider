@@ -23,7 +23,6 @@ class HomeUI extends UI<HomeViewModel> {
 
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
-    final List<NoteItem> noteItems = [];
     return Scaffold(
       body: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
@@ -38,24 +37,14 @@ class HomeUI extends UI<HomeViewModel> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _TileCard(),
-                  viewModel.noteTitles.length == 0?
-                      Text('Add a new note') :
                   MediaQuery.removePadding(
                       context: context,
                       removeTop: true,
-                      child: NoteItem(
+                      child: _NoteItem(
                         viewModel: viewModel,
                       )),
                 ],
               )),
-              // Expanded(
-              //   child: MediaQuery.removePadding(
-              //       context: context,
-              //       removeTop: true,
-              //       child: _NoteItem2(
-              //         viewModel: viewModel,
-              //       )),
-              // ),
             ],
           ),
         ),
@@ -83,32 +72,32 @@ class _TileCard extends StatelessWidget {
   }
 }
 
-class NoteItem extends StatelessWidget {
+class _NoteItem extends StatelessWidget {
   final HomeViewModel viewModel;
 
-  const NoteItem({required this.viewModel});
+  const _NoteItem({required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
-        if (index == 0) {
+        if (viewModel.noteTitles.isEmpty) {
           return GestureDetector(
             onTap: () => context.router.go(Routes.note),
             child: NoteCard.squared(
               title: 'Tap\nto\nstart\nnoting',
-              content: 'New idea',
+              content: '',
             ),
           );
         } else if (index.isEven) {
           return NoteCard.squared(
             title: viewModel.noteTitles[index],
-            content: 'New idea',
+            content: '',
           );
         } else
           return NoteCard.rectangular(
             title: viewModel.noteTitles[index],
-            content: 'New idea',
+            content: '',
           );
       },
       itemCount: viewModel.noteTitles.length,
@@ -118,34 +107,3 @@ class NoteItem extends StatelessWidget {
   }
 }
 
-class _NoteItem2 extends StatelessWidget {
-  final HomeViewModel viewModel;
-
-  const _NoteItem2({required this.viewModel});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        if (index == 0) {
-          return NoteCard.rectangular(
-            title: 'Tap\nto\nstart\nnoting',
-            content: 'New idea',
-          );
-        } else if (index.isOdd) {
-          return NoteCard.squared(
-            title: viewModel.noteTitles[index],
-            content: 'New idea',
-          );
-        } else
-          return NoteCard.rectangular(
-            title: viewModel.noteTitles[index],
-            content: 'New idea',
-          );
-      },
-      itemCount: viewModel.noteTitles.length,
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-    );
-  }
-}

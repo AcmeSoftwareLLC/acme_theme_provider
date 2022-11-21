@@ -23,8 +23,13 @@ class NoteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 20.0,
-      color: Colors.green,
-      child: Text(title, overflow: TextOverflow.ellipsis,),
+      color: Theme.of(context).colorScheme.surface,
+      child: Column(
+        children: [
+          Text(title, overflow: TextOverflow.ellipsis,),
+          Text(content, overflow: TextOverflow.ellipsis,),
+        ],
+      ),
     );
   }
 }
@@ -53,7 +58,13 @@ class NoteCardSquared extends NoteCard {
           width: screenWidth/2,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(title, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.headlineMedium, textAlign: TextAlign.left,),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.headlineMedium, textAlign: TextAlign.left,),
+                Text(content, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.bodySmall, textAlign: TextAlign.left,),
+              ],
+            ),
           )),
     );
   }
@@ -85,7 +96,13 @@ class NoteCardRectangular extends NoteCard {
       surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
       child: SizedBox(height: rectangularCardHeight, child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text(title, style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.ellipsis, textAlign: TextAlign.right,),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(title, style: Theme.of(context).textTheme.headlineMedium, overflow: TextOverflow.ellipsis, textAlign: TextAlign.right,),
+            Text(content, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.bodySmall, textAlign: TextAlign.right,),
+          ],
+        ),
       )),
     );
   }

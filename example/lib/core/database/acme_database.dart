@@ -11,7 +11,7 @@ typedef MapStoreRef = StoreRef<String, Map<String, dynamic>>;
 
 class AcmeDatabase {
   final Completer<Database> _database = Completer();
-  final String _dbName = 'notes_app-db.acme';
+  final String _dbName = 'notes_app_9-db.acme';
 
   void init() => _database.complete(_openDatabase());
 

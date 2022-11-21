@@ -29,19 +29,19 @@ class NoteUseCase extends UseCase<NoteEntity> {
 
   Future<void> addNote() async {
     await request<NoteAddNoteGatewayOutput, NoteAddNoteSuccessInput>(
+
       NoteAddNoteGatewayOutput(
           note: Note(
         title: entity.title,
         content: entity.content,
-        noteDate: DateTime.now().toString(),
         noteID: entity.noteID,
       )),
       onSuccess: (input) {
+        print('Entity ${input.note.title}');
         return entity.merge(
             title: input.note.title,
             content: input.note.content,
-            noteDate: input.note.noteDate.toString(),
-            noteID: '${input.note.noteDate.toString()}-${input.note.title}');
+            noteID: input.note.noteID);
       },
       onFailure: (e) {
         print('the error is: ${e.message}');

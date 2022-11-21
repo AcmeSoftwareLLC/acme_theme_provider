@@ -2,16 +2,16 @@ import 'package:clean_framework/clean_framework_providers.dart';
 
 class HomeViewModel extends ViewModel {
   final List<String> noteTitles;
-  final String noteDate;
+  final List<String> noteContent;
 
   const HomeViewModel(
     this.noteTitles,
-    this.noteDate,
+      this.noteContent,
   );
 
   @override
   List<Object?> get props => [
         noteTitles,
-        noteDate,
+    noteContent,
       ];
 }
