@@ -14,7 +14,7 @@ export 'src/custom_colors.dart';
 export 'src/theme.dart' show TextStyleBuilder;
 export 'src/typedefs.dart';
 export 'src/widgets.dart';
-export 'src/core/component_config.dart' show ComponentType;
+export 'src/core/component_config.dart';
 
 class AcmeThemeProvider<T extends Object> extends StatelessWidget {
   final String source;

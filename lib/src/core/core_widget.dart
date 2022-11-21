@@ -1,5 +1,4 @@
 import 'package:acme_theme_provider/acme_theme_provider.dart';
-import 'package:acme_theme_provider/src/core/component_config.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class CoreWidget<T extends Object> extends StatefulWidget {

@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:ui' as ui;
 
 import 'package:acme_theme_provider/acme_theme_provider.dart';
-import 'package:acme_theme_provider/src/core/component_config.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:json_theme/json_theme.dart';
