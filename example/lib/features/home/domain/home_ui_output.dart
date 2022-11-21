@@ -5,10 +5,9 @@ class HomeUIOutput extends Output {
   final String title;
   final String noteDate;
 
-  HomeUIOutput(this.noteTitles, {required this.title, required this.noteDate});
+  HomeUIOutput({required this.noteTitles, required this.title, required this.noteDate});
 
   @override
-  List<Object?> get props {
-    return [noteTitles, title, noteDate,];
-  }
+  List<Object?> get props => [noteTitles, title, noteDate,];
+
 }

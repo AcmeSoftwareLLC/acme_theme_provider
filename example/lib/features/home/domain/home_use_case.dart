@@ -11,7 +11,7 @@ class HomeUseCase extends UseCase<HomeEntity> {
     outputFilters: {
       HomeUIOutput: (HomeEntity entity) {
         return HomeUIOutput(
-          entity.noteTitles,
+          noteTitles: entity.noteTitles,
           title: 'Note 1',
           noteDate: 'DateTime(2022)',
         );

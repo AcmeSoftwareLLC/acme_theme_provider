@@ -14,9 +14,7 @@ class HomeEntity extends Entity {
   }
 
   @override
-  List<Object?> get props {
-    return [
-      noteTitles,
-    ];
-  }
+  List<Object?> get props => [
+        noteTitles,
+      ];
 }

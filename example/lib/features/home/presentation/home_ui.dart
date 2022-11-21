@@ -22,7 +22,6 @@ class HomeUI extends UI<HomeViewModel> {
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
     return Scaffold(
-      appBar: AppBar(title: Text('My Notes',), centerTitle: true, ),
       body: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         child: Padding(

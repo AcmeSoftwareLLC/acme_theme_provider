@@ -24,7 +24,7 @@ class NoteCard extends StatelessWidget {
     return Card(
       elevation: 20.0,
       color: Colors.green,
-      child: Text(title),
+      child: Text(title, overflow: TextOverflow.ellipsis,),
     );
   }
 }
@@ -51,7 +51,7 @@ class NoteCardSquared extends NoteCard {
       child: SizedBox(
           height: squareCardHeight,
           width: screenWidth/2,
-          child: Text(title)),
+          child: Text(title, overflow: TextOverflow.ellipsis,)),
     );
   }
 }
@@ -80,7 +80,7 @@ class NoteCardRectangular extends NoteCard {
       color: Theme.of(context).colorScheme.surfaceVariant,
       shadowColor: Theme.of(context).colorScheme.shadow,
       surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
-      child: SizedBox(height: rectangularCardHeight, child: Text(title)),
+      child: SizedBox(height: rectangularCardHeight, child: Text(title, overflow: TextOverflow.ellipsis,)),
     );
   }
 }
