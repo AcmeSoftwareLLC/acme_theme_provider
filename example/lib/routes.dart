@@ -1,6 +1,5 @@
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/features/home/presentation/home_ui.dart';
-import 'package:flutter/material.dart';
 
 enum Routes with RoutesMixin {
   home('/'),

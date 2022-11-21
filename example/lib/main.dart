@@ -22,12 +22,14 @@ class MyApp extends StatelessWidget {
         overrideFn: (theme) => theme.copyWith(themeMode: ThemeMode.light),
         customColorsConverterCreator: BrandColorsConverter.new,
         builder: (context, theme) {
-          return MaterialApp(
-            title: 'Notes Example App',
-            theme: theme.lightTheme,
-            darkTheme: theme.darkTheme,
-            themeMode: theme.themeMode,
-            home: HomeUI(),
+          return AppRouterScope(
+            builder: (context) => MaterialApp.router(
+              title: 'Notes Example App',
+              theme: theme.lightTheme,
+              darkTheme: theme.darkTheme,
+              themeMode: theme.themeMode,
+              routerConfig: context.router.config,
+            ), create: () => NoteRouter(),
           );
         },
       ),

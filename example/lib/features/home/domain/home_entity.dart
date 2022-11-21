@@ -1,9 +1,9 @@
 import 'package:clean_framework/clean_framework_providers.dart';
 
 class HomeEntity extends Entity {
-  final List<String>? noteTitles;
+  final List<String> noteTitles;
 
-  HomeEntity({this.noteTitles});
+  HomeEntity({this.noteTitles = const ['hello', 'sports', 'food']});
 
   HomeEntity copyWith({
     List<String>? noteTitles,
