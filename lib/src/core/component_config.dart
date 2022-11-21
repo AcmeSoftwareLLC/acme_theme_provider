@@ -20,9 +20,11 @@ abstract class ComponentConfig {
 
     switch (resolvedType) {
       case ComponentType.appBar:
-        return AppBarConfig.from(rawConfig);
+        return AppBarConfig.fromMap(rawConfig);
       case ComponentType.unknown:
         throw UnsupportedError('Unsupported component type: $type');
     }
   }
+
+  Map<String, dynamic> toMap();
 }
