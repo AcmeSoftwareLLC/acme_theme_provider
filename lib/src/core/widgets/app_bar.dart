@@ -2,7 +2,7 @@ import 'package:acme_theme_provider/src/core/configs/app_bar_config.dart';
 import 'package:acme_theme_provider/src/core/core_widget.dart';
 import 'package:flutter/material.dart';
 
-class CoreAppBar extends CoreWidget {
+class CoreAppBar<T extends Object> extends CoreWidget<T> {
   const CoreAppBar({
     super.key,
     required super.parent,

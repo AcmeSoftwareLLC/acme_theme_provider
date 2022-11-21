@@ -2,13 +2,13 @@ import 'package:acme_theme_provider/acme_theme_provider.dart';
 import 'package:acme_theme_provider/src/core/component_config.dart';
 import 'package:flutter/widgets.dart';
 
-abstract class CoreWidget extends StatefulWidget {
+abstract class CoreWidget<T extends Object> extends StatefulWidget {
   const CoreWidget({
     super.key,
     required this.parent,
-  });
+  }) : assert(parent is String || parent is Widget);
 
-  final Widget parent;
+  final T parent;
 
   @override
   CoreState createState();
@@ -23,7 +23,11 @@ abstract class CoreState<T extends CoreWidget, C extends ComponentConfig>
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (!_configInitialized) {
-      config = context.config(widget.parent.runtimeType.toString());
+      final parent = widget.parent;
+
+      config = context.config(
+        parent is String ? parent : parent.runtimeType.toString(),
+      );
       _configInitialized = true;
     }
   }
