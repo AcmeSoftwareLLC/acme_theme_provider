@@ -1,5 +1,7 @@
 import 'configs/app_bar_config.dart';
 
+export 'configs/app_bar_config.dart';
+
 enum ComponentType {
   appBar('app.bar'),
   unknown('unknown');
