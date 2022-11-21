@@ -23,6 +23,7 @@ class AppBarConfig extends ComponentConfig {
   @override
   Map<String, dynamic> toMap() {
     return {
+      'type': ComponentType.appBar.value,
       'theme': ThemeEncoder.encodeAppBarTheme(theme),
       'divider': divider?.toMap(),
     };
