@@ -20,6 +20,8 @@ class CoreAppBar<T extends Object> extends CoreWidget<T> {
 class _CoreAppBarState extends CoreState<CoreAppBar, AppBarConfig> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     final dividerConfig = config.divider;
     final dividerThickness = dividerConfig?.thickness;
 
