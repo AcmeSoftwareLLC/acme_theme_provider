@@ -4,15 +4,19 @@ class NoteUIOutput extends Output {
   NoteUIOutput({
     required this.title,
     required this.content,
-    required this.noteID,
+    required this.imagePath,
   });
 
   final String title;
   final String content;
-  final String noteID;
+  final String imagePath;
 
   @override
   List<Object?> get props {
-    return [title, content, noteID];
+    return [
+      title,
+      content,
+      imagePath,
+    ];
   }
 }

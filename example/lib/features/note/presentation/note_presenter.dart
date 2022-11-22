@@ -20,7 +20,9 @@ class NotePresenter
     return NoteViewModel(
       title: output.title,
       content: output.content,
+      imagePath: output.imagePath,
       addNote: useCase.addNote,
+      openCamera: useCase.pickImage,
       enterTitle: (String title) => useCase.onTitleEntered(
         title: title,
       ),
