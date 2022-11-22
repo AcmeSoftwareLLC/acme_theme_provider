@@ -8,10 +8,16 @@ class CoreAppBar<T extends Object> extends CoreWidget<T> {
     required super.parent,
     required this.title,
     this.leading,
+    this.actions,
+    this.flexibleSpace,
+    this.shapeBorder,
   });
 
   final Widget title;
   final Widget? leading;
+  final List<Widget>? actions;
+  final Widget? flexibleSpace;
+  final ShapeBorder? shapeBorder;
 
   @override
   CoreState<CoreAppBar, AppBarConfig> createState() => _CoreAppBarState();
@@ -39,6 +45,16 @@ class _CoreAppBarState extends CoreState<CoreAppBar, AppBarConfig> {
       child: AppBar(
         leading: widget.leading,
         title: widget.title,
+        actions: widget.actions,
+        flexibleSpace: widget.flexibleSpace,
+        shape: widget.shapeBorder,
+        elevation: config.elevation,
+        scrolledUnderElevation: config.scrolledUnderElevation,
+        titleSpacing: config.titleSpacing,
+        toolbarHeight: config.toolbarHeight,
+        leadingWidth: config.leadingWidth,
+        toolbarOpacity: config.toolbarOpacity,
+        bottomOpacity: config.bottomOpacity,
         bottom: bottom,
       ),
     );

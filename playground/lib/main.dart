@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
           'type': 'app.bar',
           'theme': {
             'backgroundColor': '#55FF0000',
-            'elevation': 0.0,
           },
           'divider': {
             'thickness': 4.0,
@@ -34,6 +33,9 @@ class MyApp extends StatelessWidget {
           'theme': {
             'backgroundColor': '#0000FF',
           },
+          'leadingWidth': 80.0,
+          'toolbarOpacity': 1.0,
+          'toolbarHeight': 200.0,
         },
       },
     };
