@@ -185,7 +185,7 @@ packages:
     source: hosted
     version: "2.0.1+1"
   image_cropper:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: image_cropper
       url: "https://pub.dartlang.org"
@@ -206,7 +206,7 @@ packages:
     source: hosted
     version: "3.0.3"
   image_picker:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: image_picker
       url: "https://pub.dartlang.org"
