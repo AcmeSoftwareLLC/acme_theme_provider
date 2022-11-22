@@ -35,6 +35,30 @@ class MyApp extends StatelessWidget {
             'backgroundColor': '#0000FF',
           },
         },
+        'AcmeOutlinedButton': {
+          'type': 'button',
+          'style': {
+            'elevation': 2.0,
+            'backgroundColor': '#000000',
+          },
+          'buttonType': 'outlined'
+        },
+        'AcmeTextButton': {
+          'type': 'button',
+          'style': {
+            'elevation': 2.0,
+            'backgroundColor': '#800000',
+          },
+          'buttonType': 'text',
+        },
+        'AcmeElevatedButton': {
+          'type': 'button',
+          'style': {
+            'elevation': 2.0,
+            'backgroundColor': '#FFFF00',
+          },
+          'buttonType': 'elevated',
+        },
       },
     };
 
