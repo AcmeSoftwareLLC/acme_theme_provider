@@ -67,7 +67,7 @@ class UploadImage extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      imagePath.isEmpty ? 'Open Camera' : 'Retake Camera',
+                      imagePath.isEmpty ? 'Open gallery' : 'Change image',
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
                             color: Theme.of(context).colorScheme.primary,
                           ),

@@ -16,13 +16,26 @@ class NotePresenter
   void onLayoutReady(BuildContext context, NoteUseCase useCase) {}
 
   @override
-  NoteViewModel createViewModel(NoteUseCase useCase, NoteUIOutput output) {
+  NoteViewModel createViewModel(
+    NoteUseCase useCase,
+    NoteUIOutput output,
+  ) {
+    final noteList = output.notes
+        .map(
+          (note) => NoteList(
+            title: note.title,
+            content: note.content,
+            imagePath: note.imagePath,
+          ),
+        )
+        .toList();
     return NoteViewModel(
       title: output.title,
       content: output.content,
       imagePath: output.imagePath,
+      notes: noteList,
       addNote: useCase.addNote,
-      openCamera: useCase.pickImage,
+      openGallery: useCase.pickImage,
       enterTitle: (String title) => useCase.onTitleEntered(
         title: title,
       ),

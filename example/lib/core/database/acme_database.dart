@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:example/features/theme/note.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -81,7 +82,9 @@ class AcmeDatabase {
   }
 
   Future<void> drop() async {
-    final storeNames = ['notes_store',];
+    final storeNames = [
+      'notes_store',
+    ];
 
     for (final storeName in storeNames) {
       await store(storeName).drop(await _db);

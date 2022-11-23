@@ -11,10 +11,20 @@ class NoteUseCase extends UseCase<NoteEntity> {
           entity: NoteEntity(),
           outputFilters: {
             NoteUIOutput: (NoteEntity entity) {
+              final noteListOutput = entity.notes.values
+                  .map(
+                    (note) => NoteListOutput(
+                      title: note.title,
+                      content: note.content,
+                      imagePath: note.imagePath,
+                    ),
+                  )
+                  .toList();
               return NoteUIOutput(
                 title: entity.title,
                 content: entity.content,
                 imagePath: entity.imagePath,
+                notes: noteListOutput,
               );
             },
           },
@@ -44,17 +54,24 @@ class NoteUseCase extends UseCase<NoteEntity> {
   Future<void> addNote() async {
     await request<NoteAddNoteGatewayOutput, NoteAddNoteSuccessInput>(
       NoteAddNoteGatewayOutput(
-          note: Note(
-        title: entity.title,
-        content: entity.content,
-        imagePath: entity.imagePath,
-      )),
+        note: Note(
+          title: entity.title,
+          content: entity.content,
+          imagePath: entity.imagePath,
+        ),
+      ),
       onSuccess: (input) {
-        print('Entity ${input.note.title}');
+        final notes = <String, Note>{};
+        for (final note in input.notes) {
+          notes[note.title] = Note(
+            title: note.title,
+            content: note.content,
+            imagePath: note.imagePath,
+          );
+        }
+        print(Note);
         return entity.merge(
-          title: input.note.title,
-          content: input.note.content,
-          imagePath: input.note.imagePath,
+          notes: notes,
         );
       },
       onFailure: (e) {

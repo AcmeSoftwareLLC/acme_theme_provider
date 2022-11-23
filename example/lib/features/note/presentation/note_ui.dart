@@ -2,6 +2,7 @@ import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/features/note/presentation/note_presenter.dart';
 import 'package:example/features/note/presentation/note_view_model.dart';
+import 'package:example/features/theme/note.dart';
 import 'package:example/providers.dart';
 import 'package:example/routes.dart';
 import 'package:example/widgets/dialogs.dart';
@@ -129,7 +130,7 @@ class AddNoteUIBody extends StatelessWidget {
           // ),
           UploadImage(
             imagePath: viewModel.imagePath,
-            onOpenCamera: viewModel.openCamera,
+            onOpenCamera: viewModel.openGallery,
           ),
           Center(
             child: GestureDetector(
@@ -157,9 +158,9 @@ class AddNoteUIBody extends StatelessWidget {
                       title: 'Are you sure you wanna add to the notes?',
                       content: 'This will add to your note',
                       onOk: () {
-                        // viewModel.enterTitle(titleText.text);
-                        // viewModel.enterContent(contentText.text);
-                        // viewModel.addNote();
+                        viewModel.enterTitle(titleText.text);
+                        viewModel.enterContent(contentText.text);
+                        viewModel.addNote();
                         Navigator.pop(context);
                       });
                 }

@@ -38,7 +38,7 @@ class NoteImagePickerGateway extends ImageUtilGateway<
   }
 }
 
-class NoteCameraImagePickerRequest extends CameraImagePickerRequest {
+class NoteCameraImagePickerRequest extends GalleryImagePickerRequest {
   NoteCameraImagePickerRequest()
       : super(
           maxHeight: 1000,
@@ -55,5 +55,6 @@ class NoteImagePickerGatewayOutput extends Output {
 
 class NoteImagePickerGatewaySuccessInput extends SuccessInput {
   NoteImagePickerGatewaySuccessInput({required this.imagePath});
+
   final String? imagePath;
 }

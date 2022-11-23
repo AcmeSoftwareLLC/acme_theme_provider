@@ -1,32 +1,30 @@
 import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:example/features/theme/note.dart';
 
 class NoteEntity extends Entity {
   final String title;
   final String content;
-  final String noteDate;
-  final String category;
   final String imagePath;
+  final Map<String, Note> notes;
 
-  NoteEntity(
-      {this.title = '',
-      this.content = '',
-      this.noteDate = '',
-      this.category = '',
-      this.imagePath = ''});
+  NoteEntity({
+    this.title = '',
+    this.content = '',
+    this.imagePath = '',
+    this.notes = const {},
+  });
 
   NoteEntity merge({
     String? title,
     String? content,
-    String? noteDate,
-    String? category,
     String? imagePath,
+    Map<String, Note>? notes,
   }) {
     return NoteEntity(
       title: title ?? this.title,
       content: content ?? this.content,
-      noteDate: noteDate ?? this.noteDate,
-      category: category ?? this.category,
       imagePath: imagePath ?? this.imagePath,
+      notes: notes ?? this.notes,
     );
   }
 
@@ -35,9 +33,8 @@ class NoteEntity extends Entity {
     return [
       title,
       content,
-      noteDate,
-      category,
       imagePath,
+      notes,
     ];
   }
 }

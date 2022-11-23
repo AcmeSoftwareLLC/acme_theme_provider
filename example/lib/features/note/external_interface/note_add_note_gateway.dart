@@ -1,3 +1,4 @@
+import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:example/core/database/db_gateway.dart';
 import 'package:example/core/database/db_request.dart';
@@ -20,7 +21,19 @@ class NoteAddNoteGateway extends DbGateway<NoteAddNoteGatewayOutput,
   NoteAddNoteSuccessInput onSuccess(
     NoteAddNoteSuccessResponse response,
   ) {
-    return NoteAddNoteSuccessInput(note: response.note);
+    final deserializer = Deserializer(response.notes);
+    return NoteAddNoteSuccessInput(
+      notes: deserializer.getList(
+        'data',
+        converter: (map) {
+          final deserializer = Deserializer(map);
+          final title = deserializer.getString('title');
+          final content = deserializer.getString('content');
+          final imagePath = deserializer.getString('imagePath');
+          return Note(title: title, content: content, imagePath: imagePath);
+        },
+      ),
+    );
   }
 }
 
@@ -32,10 +45,10 @@ class NoteAddNoteRequest extends DbRequest {
 
 class NoteAddNoteSuccessResponse extends DbSuccessResponse {
   NoteAddNoteSuccessResponse({
-    required this.note,
+    required this.notes,
   });
 
-  final Note note;
+  final List<Note> notes;
 }
 
 class NoteAddNoteGatewayOutput extends Output {
@@ -48,7 +61,7 @@ class NoteAddNoteGatewayOutput extends Output {
 }
 
 class NoteAddNoteSuccessInput extends SuccessInput {
-  final Note note;
+  final List<Note> notes;
 
-  NoteAddNoteSuccessInput({required this.note});
+  NoteAddNoteSuccessInput({required this.notes});
 }
