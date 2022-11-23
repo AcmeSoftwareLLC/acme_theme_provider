@@ -1,9 +1,12 @@
+import 'package:acme_theme_provider/src/core/configs/button_config.dart';
+
 import 'configs/app_bar_config.dart';
 
 export 'configs/app_bar_config.dart';
 
 enum ComponentType {
   appBar('app.bar'),
+  button('button'),
   unknown('unknown');
 
   const ComponentType(this.value);
@@ -23,6 +26,8 @@ abstract class ComponentConfig {
     switch (resolvedType) {
       case ComponentType.appBar:
         return AppBarConfig.fromMap(rawConfig);
+      case ComponentType.button:
+        return ButtonConfig.fromMap(rawConfig);
       case ComponentType.unknown:
         throw UnsupportedError('Unsupported component type: $type');
     }
