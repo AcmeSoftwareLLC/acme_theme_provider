@@ -6,17 +6,29 @@ class AppBarConfig extends ComponentConfig {
   const AppBarConfig({
     required this.theme,
     required this.divider,
+    this.toolbarOpacity = 1,
+    this.bottomOpacity = 1,
+    required this.leadingWidth,
   });
 
   final AppBarTheme? theme;
   final DividerAppBarConfig? divider;
+  final double toolbarOpacity;
+  final double bottomOpacity;
+  final double? leadingWidth;
 
   factory AppBarConfig.fromMap(Map<String, dynamic> map) {
     final divider = map['divider'];
+    final leadingWidth = map['leadingWidth'];
+    final toolbarOpacity = map['toolbarOpacity'];
+    final bottomOpacity = map['bottomOpacity'];
 
     return AppBarConfig(
       theme: ThemeDecoder.decodeAppBarTheme(map['theme']),
       divider: divider == null ? null : DividerAppBarConfig.fromMap(divider),
+      toolbarOpacity: toolbarOpacity ?? 1,
+      bottomOpacity: bottomOpacity ?? 1,
+      leadingWidth: leadingWidth ?? 56,
     );
   }
 
@@ -26,16 +38,25 @@ class AppBarConfig extends ComponentConfig {
       'type': ComponentType.appBar.value,
       'theme': ThemeEncoder.encodeAppBarTheme(theme),
       'divider': divider?.toMap(),
+      'toolbarOpacity': toolbarOpacity,
+      'bottomOpacity': bottomOpacity,
+      'leadingWidth': leadingWidth,
     };
   }
 
   AppBarConfig copyWith({
     AppBarTheme? theme,
     DividerAppBarConfig? divider,
+    double? toolbarOpacity,
+    double? bottomOpacity,
+    double? leadingWidth,
   }) {
     return AppBarConfig(
       theme: theme ?? this.theme,
       divider: divider ?? this.divider,
+      toolbarOpacity: toolbarOpacity ?? this.toolbarOpacity,
+      bottomOpacity: bottomOpacity ?? this.bottomOpacity,
+      leadingWidth: leadingWidth ?? this.leadingWidth,
     );
   }
 }
