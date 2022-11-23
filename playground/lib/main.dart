@@ -33,9 +33,6 @@ class MyApp extends StatelessWidget {
           'theme': {
             'backgroundColor': '#0000FF',
           },
-          'leadingWidth': 80.0,
-          'toolbarOpacity': 1.0,
-          'toolbarHeight': 200.0,
         },
       },
     };
