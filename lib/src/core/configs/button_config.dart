@@ -17,7 +17,7 @@ class ButtonConfig extends ComponentConfig {
     final type = map['buttonType'];
     final buttonType = ButtonType.values.firstWhere(
       (e) => e.value == type,
-      orElse: () => throw UnsupportedError('Unsupported button type: $type'),
+      orElse: () => ButtonType.unknown,
     );
     return ButtonConfig(
       style: ThemeDecoder.decodeButtonStyle(map['style']),
@@ -52,7 +52,8 @@ class ButtonConfig extends ComponentConfig {
 enum ButtonType {
   elevated('elevated'),
   outlined('outlined'),
-  text('text');
+  text('text'),
+  unknown('unknown');
 
   const ButtonType(this.value);
 

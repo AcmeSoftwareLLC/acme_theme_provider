@@ -8,10 +8,22 @@ class CoreButton<T extends Object> extends CoreWidget<T> {
     required super.parent,
     required this.child,
     required this.onPressed,
+    this.onLongPress,
+    this.onHover,
+    this.onFocusChange,
+    this.focusNode,
+    this.autofocus = false,
+    this.statesController,
   });
 
   final Widget child;
   final VoidCallback onPressed;
+  final VoidCallback? onLongPress;
+  final ValueChanged<bool>? onHover;
+  final ValueChanged<bool>? onFocusChange;
+  final FocusNode? focusNode;
+  final bool autofocus;
+  final MaterialStatesController? statesController;
 
   @override
   CoreState<CoreButton, ButtonConfig> createState() => _CoreButtonState();
@@ -27,6 +39,12 @@ class _CoreButtonState extends CoreState<CoreButton, ButtonConfig> {
           onPressed: widget.onPressed,
           style: config.style,
           clipBehavior: config.clip,
+          onHover: widget.onHover,
+          onFocusChange: widget.onFocusChange,
+          onLongPress: widget.onLongPress,
+          focusNode: widget.focusNode,
+          autofocus: widget.autofocus,
+          statesController: widget.statesController,
           child: widget.child,
         );
       case ButtonType.outlined:
@@ -34,6 +52,12 @@ class _CoreButtonState extends CoreState<CoreButton, ButtonConfig> {
           onPressed: widget.onPressed,
           style: config.style,
           clipBehavior: config.clip,
+          onHover: widget.onHover,
+          onFocusChange: widget.onFocusChange,
+          onLongPress: widget.onLongPress,
+          focusNode: widget.focusNode,
+          autofocus: widget.autofocus,
+          statesController: widget.statesController,
           child: widget.child,
         );
       case ButtonType.text:
@@ -41,8 +65,16 @@ class _CoreButtonState extends CoreState<CoreButton, ButtonConfig> {
           onPressed: widget.onPressed,
           style: config.style,
           clipBehavior: config.clip,
+          onHover: widget.onHover,
+          onFocusChange: widget.onFocusChange,
+          onLongPress: widget.onLongPress,
+          focusNode: widget.focusNode,
+          autofocus: widget.autofocus,
+          statesController: widget.statesController,
           child: widget.child,
         );
+      case ButtonType.unknown:
+        throw UnsupportedError('Unsupported button type');
     }
   }
 }
