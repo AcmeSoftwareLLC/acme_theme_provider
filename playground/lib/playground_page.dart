@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playground/widgets/playground_appbars.dart';
 import 'package:playground/widgets/playground_buttons.dart';
+import 'package:playground/widgets/playground_text_fields.dart';
 
 class PlaygroundPage extends StatelessWidget {
   const PlaygroundPage({super.key});
@@ -8,7 +9,7 @@ class PlaygroundPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Playground'),
@@ -17,6 +18,7 @@ class PlaygroundPage extends StatelessWidget {
             tabs: [
               Tab(text: 'App Bars'),
               Tab(text: 'Buttons'),
+              Tab(text: 'Text Fields'),
             ],
           ),
         ),
@@ -24,6 +26,7 @@ class PlaygroundPage extends StatelessWidget {
           children: [
             PlayGroundAppBars(),
             PlayGroundButtons(),
+            PlayGroundTextFields(),
           ],
         ),
       ),

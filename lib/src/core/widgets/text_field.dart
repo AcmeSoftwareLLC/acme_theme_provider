@@ -7,7 +7,7 @@ class CoreTextField<T extends Object> extends CoreWidget<T> {
   const CoreTextField({
     super.key,
     required super.parent,
-    required this.onTap,
+    this.onTap,
     this.onChanged,
     this.onSubmitted,
     this.onEditingComplete,
@@ -25,7 +25,7 @@ class CoreTextField<T extends Object> extends CoreWidget<T> {
     this.selectionControls,
   });
 
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final VoidCallback? onEditingComplete;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
