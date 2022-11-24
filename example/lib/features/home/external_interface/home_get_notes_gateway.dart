@@ -17,8 +17,8 @@ class HomeGetNotesGateway extends DbGateway<HomeGetNotesGatewayOutput,
 
   @override
   HomeGetNotesSuccessInput onSuccess(
-      HomeGetNotesSuccessResponse response,
-      ) {
+    HomeGetNotesSuccessResponse response,
+  ) {
     return HomeGetNotesSuccessInput(noteTitles: response.noteTitles);
   }
 }
