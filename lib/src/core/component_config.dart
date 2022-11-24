@@ -1,4 +1,5 @@
 import 'package:acme_theme_provider/src/core/configs/button_config.dart';
+import 'package:acme_theme_provider/src/core/configs/card_config.dart';
 import 'package:acme_theme_provider/src/core/configs/text_field_config.dart';
 
 import 'configs/app_bar_config.dart';
@@ -9,6 +10,7 @@ enum ComponentType {
   appBar('app.bar'),
   button('button'),
   textField('textField'),
+  card('card'),
   unknown('unknown');
 
   const ComponentType(this.value);
@@ -32,6 +34,8 @@ abstract class ComponentConfig {
         return ButtonConfig.fromMap(rawConfig);
       case ComponentType.textField:
         return TextFieldConfig.fromMap(rawConfig);
+      case ComponentType.card:
+        return CardConfig.fromMap(rawConfig);
       case ComponentType.unknown:
         throw UnsupportedError('Unsupported component type: $type');
     }

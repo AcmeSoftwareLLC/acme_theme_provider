@@ -45,10 +45,6 @@ class MyApp extends StatelessWidget {
         },
         'AcmeTextButton': {
           'type': 'button',
-          'style': {
-            'elevation': 2.0,
-            'backgroundColor': '#800000',
-          },
           'buttonType': 'text',
         },
         'AcmeElevatedButton': {
@@ -73,6 +69,23 @@ class MyApp extends StatelessWidget {
             'labelStyle': {
               'color': '#FFFFFF',
             }
+          },
+        },
+        'FirstCard': {
+          'type': 'card',
+          'theme': {
+            "color": '#FF00FF',
+            "elevation": 4.0,
+          },
+        },
+        'SecondCard': {
+          'type': 'card',
+          'theme': {
+            "color": '#FFDDFF',
+            "elevation": 8.0,
+            "shadowColor": '#800000',
+            "shape": {"type": "stadium"},
+            "surfaceTintColor": '#55FF0000'
           },
         },
       },
