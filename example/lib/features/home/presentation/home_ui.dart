@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/features/home/presentation/home_presenter.dart';
@@ -88,6 +90,7 @@ class _NoteItem extends StatelessWidget {
             child: NoteCard.squared(
               title: 'Tap\nto\nstart\nnoting',
               content: '',
+              imagePath: '',
             ),
           );
         } else
@@ -95,11 +98,13 @@ class _NoteItem extends StatelessWidget {
           return NoteCard.squared(
             title: viewModel.notes[index].title,
             content: viewModel.notes[index].content,
+            imagePath: viewModel.notes[index].imagePath,
           );
         } else
           return NoteCard.rectangular(
             title: viewModel.notes[index].title,
             content: viewModel.notes[index].content,
+            imagePath: viewModel.notes[index].imagePath,
           );
       },
       itemCount: viewModel.notes.length,

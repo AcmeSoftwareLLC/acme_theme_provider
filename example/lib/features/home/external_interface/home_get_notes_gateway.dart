@@ -28,10 +28,9 @@ class HomeGetNotesGateway extends DbGateway<HomeGetNotesGatewayOutput,
   }
 
   NoteData _getNoteData(Map<String, dynamic> mapData){
-    print('The mapData is: $mapData');
     final deserializer = Deserializer(mapData);
     final noteItem = deserializer ('value');
-    return NoteData(title: deserializer.getString('key'), content: noteItem.getString('content'));
+    return NoteData(title: deserializer.getString('key'), content: noteItem.getString('content'), imagePath: noteItem.getString('imagePath'));
   }
 }
 
@@ -57,6 +56,7 @@ class HomeGetNotesSuccessInput extends SuccessInput {
 class NoteData {
   final String title;
   final String content;
+  final String imagePath;
 
-  const NoteData({required this.title, required this.content});
+  const NoteData({required this.title, required this.content, required this.imagePath,});
 }

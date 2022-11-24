@@ -21,14 +21,13 @@ class HomeUseCase extends UseCase<HomeEntity> {
     await request<HomeGetNotesGatewayOutput, HomeGetNotesSuccessInput>(
       HomeGetNotesGatewayOutput(),
       onSuccess: (input) {
-        print('The data is: ${input.notes}');
         return entity.copyWith(
           notes: [
             for (var noteData in input.notes)
               Note(
                   title: noteData.title,
                   content: noteData.content,
-                  imagePath: '')
+                  imagePath: noteData.imagePath,)
           ],
         );
       },
