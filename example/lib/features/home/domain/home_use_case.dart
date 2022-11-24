@@ -1,30 +1,35 @@
-
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:example/features/home/domain/home_entity.dart';
 import 'package:example/features/home/domain/home_ui_output.dart';
 import 'package:example/features/home/external_interface/home_get_notes_gateway.dart';
+import 'package:example/features/theme/note.dart';
 
 class HomeUseCase extends UseCase<HomeEntity> {
   HomeUseCase()
       : super(
-    entity: HomeEntity(noteTitles: [], noteContent: []),
-    outputFilters: {
-      HomeUIOutput: (HomeEntity entity) {
-        return HomeUIOutput(
-          noteTitles: entity.noteTitles,
-          noteContent: entity.noteContent,
+          entity: HomeEntity(),
+          outputFilters: {
+            HomeUIOutput: (HomeEntity entity) {
+              return HomeUIOutput(
+                notes: entity.notes,
+              );
+            },
+          },
         );
-      },
-    },
-  );
 
   Future<void> init({bool isReset = false}) async {
     await request<HomeGetNotesGatewayOutput, HomeGetNotesSuccessInput>(
       HomeGetNotesGatewayOutput(),
       onSuccess: (input) {
-        // print('The data is: ${input.noteTitles.first}');
+        print('The data is: ${input.notes}');
         return entity.copyWith(
-            noteTitles: input.noteTitles
+          notes: [
+            for (var noteData in input.notes)
+              Note(
+                  title: noteData.title,
+                  content: noteData.content,
+                  imagePath: '')
+          ],
         );
       },
       onFailure: (e) {

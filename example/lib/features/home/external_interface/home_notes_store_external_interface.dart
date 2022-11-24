@@ -11,9 +11,9 @@ class HomeNotesStoreExternalInterface extends DbExternalInterface {
 
   @override
   void handleRequest() {
-    on<HomeGetNotesRequest>((_, send) async {
-      final notes = await db.findAllKeys(store: _noteStore);
-      send(HomeGetNotesSuccessResponse(noteTitles: notes));
+    on<HomeGetNotesRequest>((request, send) async {
+      final notes = await db.findAll(store: _noteStore);
+      send(HomeGetNotesSuccessResponse(notes: notes));
     });
 
     on<NoteAddNoteRequest>((request, send) async {

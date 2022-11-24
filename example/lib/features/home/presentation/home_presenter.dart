@@ -19,6 +19,8 @@ class HomePresenter
 
   @override
   HomeViewModel createViewModel(HomeUseCase useCase, HomeUIOutput output) {
-    return HomeViewModel(output.noteTitles, output.noteContent,);
+    return HomeViewModel(
+      notes: output.notes,
+    );
   }
 }

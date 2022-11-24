@@ -79,9 +79,10 @@ class _NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return ListView.builder(
       itemBuilder: (context, index) {
-        if (viewModel.noteTitles.isEmpty) {
+        if (viewModel.notes.isEmpty) {
           return GestureDetector(
             onTap: () => context.router.go(Routes.note),
             child: NoteCard.squared(
@@ -89,18 +90,19 @@ class _NoteItem extends StatelessWidget {
               content: '',
             ),
           );
-        } else if (index.isEven) {
+        } else
+          if (index.isEven) {
           return NoteCard.squared(
-            title: viewModel.noteTitles[index],
-            content: '',
+            title: viewModel.notes[index].title,
+            content: viewModel.notes[index].content,
           );
         } else
           return NoteCard.rectangular(
-            title: viewModel.noteTitles[index],
-            content: '',
+            title: viewModel.notes[index].title,
+            content: viewModel.notes[index].content,
           );
       },
-      itemCount: viewModel.noteTitles.length,
+      itemCount: viewModel.notes.length,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
     );
