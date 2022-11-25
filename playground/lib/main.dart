@@ -87,6 +87,21 @@ class MyApp extends StatelessWidget {
             "surfaceTintColor": '#55FF0000'
           },
         },
+        'FirstDropdownButton': {
+          'type': 'dropdownButton',
+        },
+        'SecondDropdownButton': {
+          'type': 'dropdownButton',
+          'isExpanded': true,
+          'borderRadius': {
+            'radius': 8.0,
+            'type': 'circular',
+          },
+          'dropdownColor': '#55FF00AA',
+          'focusColor': '#55FF00BB',
+          'iconDisabledColor': '#55FF00CC',
+          'iconEnabledColor': '#55AA00DD',
+        },
       },
     };
 
