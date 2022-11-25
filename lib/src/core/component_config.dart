@@ -10,9 +10,9 @@ export 'configs/app_bar_config.dart';
 enum ComponentType {
   appBar('app.bar'),
   button('button'),
-  textField('textField'),
+  textField('text.field'),
   card('card'),
-  dropDown('dropdownButton'),
+  dropDown('dropdown.button'),
   unknown('unknown');
 
   const ComponentType(this.value);
