@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
           'type': 'app.bar',
           'theme': {
             'backgroundColor': '#55FF0000',
-            'elevation': 0.0,
           },
           'divider': {
             'thickness': 4.0,

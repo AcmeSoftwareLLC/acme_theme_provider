@@ -15,19 +15,26 @@ abstract class CoreWidget<T extends Object> extends StatefulWidget {
 
 abstract class CoreState<T extends CoreWidget, C extends ComponentConfig>
     extends State<T> {
-  bool _configInitialized = false;
-  late final C config;
+  late C config;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (!_configInitialized) {
-      final parent = widget.parent;
+  @mustCallSuper
+  Widget build(BuildContext context) {
+    final parent = widget.parent;
 
-      config = context.config(
-        parent is String ? parent : parent.runtimeType.toString(),
-      );
-      _configInitialized = true;
-    }
+    config = context.config(
+      parent is String ? parent : parent.runtimeType.toString(),
+    );
+
+    return _NullWidget();
+  }
+}
+
+class _NullWidget extends StatelessWidget {
+  const _NullWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    throw FlutterError('CoreWidgets must call super.build()');
   }
 }
