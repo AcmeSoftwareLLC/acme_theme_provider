@@ -24,48 +24,46 @@ class HomeUI extends UI<HomeViewModel> {
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _TileCard(),
-              MediaQuery.removePadding(
-                  context: context,
-                  removeTop: true,
-                  child: _NoteItem(
-                    viewModel: viewModel,
-                  )),
-            ],
-          ),
+      appBar: AppBar(
+        title: Text(
+          'My Notes',
         ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        leading: SizedBox.shrink(),
       ),
+      body: viewModel.isLoading
+          ? Center(
+              child: CircularProgressIndicator(
+                color: Theme.of(context).primaryColor,
+              ),
+            )
+          : viewModel.notes.isEmpty
+              ? Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/no_data.png',
+                      ),
+                      Text('You have no notes. Tap on Add Note to add one'),
+                    ],
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SingleChildScrollView(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    child: MediaQuery.removePadding(
+                        context: context,
+                        removeTop: true,
+                        child: _NoteItem(
+                          viewModel: viewModel,
+                        )),
+                  ),
+                ),
       floatingActionButton: AddNoteButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    );
-  }
-}
-
-class _TileCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-    return Card(
-      child: SizedBox(
-          height: screenHeight / 10,
-          width: screenWidth / 2,
-          child: Center(
-              child: Text(
-            'My Notes',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ))),
-      color: Theme.of(context).colorScheme.surface,
-      shadowColor: Theme.of(context).colorScheme.shadow,
-      surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
     );
   }
 }
@@ -85,13 +83,7 @@ class _NoteItem extends StatelessWidget {
           mainAxisSpacing: 10),
       itemCount: viewModel.notes.length,
       itemBuilder: (BuildContext ctx, index) {
-        if (viewModel.notes.isEmpty) {
-          return NoteCard.surface(
-            title: 'Tap\nto\nstart\nnoting',
-            content: '',
-            imagePath: '',
-          );
-        } else if (index.isEven) {
+        if (index.isEven) {
           return GestureDetector(
             onTap: () {
               viewModel.onNoteSelected(

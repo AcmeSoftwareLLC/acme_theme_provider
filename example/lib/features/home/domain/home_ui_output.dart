@@ -3,10 +3,16 @@ import 'package:example/features/theme/note.dart';
 
 class HomeUIOutput extends Output {
   final List<Note> notes;
+  final bool isLoading;
 
-  HomeUIOutput({required this.notes,});
+  HomeUIOutput({
+    required this.notes,
+    required this.isLoading,
+  });
 
   @override
-  List<Object?> get props => [notes,];
-
+  List<Object?> get props => [
+        notes,
+        isLoading,
+      ];
 }

@@ -37,7 +37,7 @@ class NoteCard extends StatelessWidget {
           children: [
             Image.file(
               File(imagePath),
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
             Text(
               title,

@@ -21,15 +21,17 @@ class HomeGetAllNotesGateway extends DbGateway<HomeGetAllNotesGatewayOutput,
     HomeGetAllNotesSuccessResponse response,
   ) {
     return HomeGetAllNotesSuccessInput(
-      notes: response.notes.map(_getNoteData).toList(growable: false)
-    );
-
+        notes: response.notes.map(_getNoteData).toList(growable: false));
   }
 
-  NoteData _getNoteData(Map<String, dynamic> mapData){
+  NoteData _getNoteData(Map<String, dynamic> mapData) {
     final deserializer = Deserializer(mapData);
-    final noteItem = deserializer ('value');
-    return NoteData(title: deserializer.getString('key'), content: noteItem.getString('content'), imagePath: noteItem.getString('imagePath'));
+    final noteItem = deserializer('value');
+    return NoteData(
+        title: deserializer.getString('key'),
+        content: noteItem.getString('content'),
+        imagePath: noteItem.getString('imagePath'),
+        noteID: noteItem.getString('noteID'));
   }
 }
 
@@ -56,6 +58,12 @@ class NoteData {
   final String title;
   final String content;
   final String imagePath;
+  final String noteID;
 
-  const NoteData({required this.title, required this.content, required this.imagePath,});
+  const NoteData({
+    required this.title,
+    required this.content,
+    required this.imagePath,
+    required this.noteID,
+  });
 }

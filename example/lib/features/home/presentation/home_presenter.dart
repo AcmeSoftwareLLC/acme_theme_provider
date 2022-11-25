@@ -22,6 +22,7 @@ class HomePresenter
     return HomeViewModel(
       notes: output.notes,
       onNoteSelected: useCase.getSelectedNote,
+      isLoading: output.isLoading,
     );
   }
 }

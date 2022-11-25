@@ -13,6 +13,7 @@ class HomeUseCase extends UseCase<HomeEntity> {
             HomeUIOutput: (HomeEntity entity) {
               return HomeUIOutput(
                 notes: entity.notes,
+                isLoading: entity.isLoading,
               );
             },
           },
@@ -31,6 +32,7 @@ class HomeUseCase extends UseCase<HomeEntity> {
                 imagePath: noteData.imagePath,
               )
           ],
+          isLoading: false,
         );
       },
       onFailure: (e) {
@@ -43,7 +45,6 @@ class HomeUseCase extends UseCase<HomeEntity> {
   Future<void> getSelectedNote(String title) async {
     await request<HomeGetNoteGatewayOutput, HomeGetNoteSuccessInput>(
         HomeGetNoteGatewayOutput(title: title), onSuccess: (input) {
-          print('The title is: ${input.note.title}');
       return entity.copyWith(
         noteTitle: input.note.title,
       );
