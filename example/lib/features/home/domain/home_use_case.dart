@@ -2,16 +2,16 @@ import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:example/features/home/domain/home_entity.dart';
 import 'package:example/features/home/domain/home_ui_output.dart';
 import 'package:example/features/home/external_interface/home_get_notes_gateway.dart';
+import 'package:example/features/theme/note.dart';
 
 class HomeUseCase extends UseCase<HomeEntity> {
   HomeUseCase()
       : super(
-          entity: HomeEntity(noteTitles: [], noteContent: []),
+          entity: HomeEntity(),
           outputFilters: {
             HomeUIOutput: (HomeEntity entity) {
               return HomeUIOutput(
-                noteTitles: entity.noteTitles,
-                noteContent: entity.noteContent,
+                notes: entity.notes,
               );
             },
           },
@@ -21,8 +21,15 @@ class HomeUseCase extends UseCase<HomeEntity> {
     await request<HomeGetNotesGatewayOutput, HomeGetNotesSuccessInput>(
       HomeGetNotesGatewayOutput(),
       onSuccess: (input) {
-        // print('The data is: ${input.noteTitles.first}');
-        return entity.copyWith(noteTitles: input.noteTitles);
+        return entity.copyWith(
+          notes: [
+            for (var noteData in input.notes)
+              Note(
+                  title: noteData.title,
+                  content: noteData.content,
+                  imagePath: noteData.imagePath,)
+          ],
+        );
       },
       onFailure: (e) {
         print('the error is: ${e.message}');

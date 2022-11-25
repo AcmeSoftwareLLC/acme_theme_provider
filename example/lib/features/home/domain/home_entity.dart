@@ -1,23 +1,29 @@
 import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:example/features/theme/note.dart';
 
 class HomeEntity extends Entity {
-  final List<String> noteTitles;
-  final List<String> noteContent;
+  final List<Note> notes;
+  final String noteTitle;
+  final List<String> titles;
 
-  HomeEntity({required this.noteTitles , required this.noteContent });
+  HomeEntity({this.notes = const [], this.noteTitle = '', this.titles = const []});
 
   HomeEntity copyWith({
-    List<String>? noteTitles,
-    List<String>? noteContent,
+    List<Note>? notes,
+    String? noteTitle,
+    List<String>? titles,
   }) {
     return HomeEntity(
-      noteTitles: noteTitles ?? this.noteTitles,
-      noteContent: noteContent?? this.noteContent,
+      notes: notes?? this.notes,
+      noteTitle: noteTitle?? this.noteTitle,
+      titles: titles ?? this.titles,
     );
   }
 
   @override
   List<Object?> get props => [
-        noteTitles,
+    notes,
+    noteTitle,
+    titles,
       ];
 }

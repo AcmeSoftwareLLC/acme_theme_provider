@@ -14,13 +14,9 @@ class Note {
 
   Map<String, dynamic> toJson() {
     return {
-      "data": [
-        {
-          'title': title,
-          'content': content,
-          'imagePath': imagePath,
-        }
-      ]
+      'title': title,
+      'content': content,
+      'imagePath': imagePath,
     };
   }
 }

@@ -11,6 +11,7 @@ class NoteViewModel extends ViewModel {
     required this.enterTitle,
     required this.enterContent,
     required this.openGallery,
+    required this.refresh,
   });
 
   final String title;
@@ -21,6 +22,7 @@ class NoteViewModel extends ViewModel {
   final VoidCallback openGallery;
   final ValueChanged<String> enterTitle;
   final ValueChanged<String> enterContent;
+  final VoidCallback refresh;
 
   @override
   List<Object?> get props {

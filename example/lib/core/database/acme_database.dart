@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:example/features/theme/note.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -12,7 +10,7 @@ typedef MapStoreRef = StoreRef<String, Map<String, dynamic>>;
 
 class AcmeDatabase {
   final Completer<Database> _database = Completer();
-  final String _dbName = 'notes_app_9-db.acme';
+  final String _dbName = 'notes_app_1-db.acme';
 
   void init() => _database.complete(_openDatabase());
 
@@ -42,10 +40,10 @@ class AcmeDatabase {
     return true;
   }
 
-  Future<List<String>> findAllKeys({required MapStoreRef store}) async {
+  Future<List<Map<String, dynamic>>> findAll({required MapStoreRef store}) async {
     final records = await store.find(await _db);
 
-    return records.map((r) => r.key).toList(growable: false);
+    return records.map((r) => {'key' : r.key, 'value' : r.value,}).toList(growable: false);
   }
 
   Future<List<Map<String, dynamic>>> findValues({

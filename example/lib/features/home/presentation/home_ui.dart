@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/features/home/presentation/home_presenter.dart';
@@ -79,28 +81,33 @@ class _NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return ListView.builder(
       itemBuilder: (context, index) {
-        if (viewModel.noteTitles.isEmpty) {
+        if (viewModel.notes.isEmpty) {
           return GestureDetector(
             onTap: () => context.router.go(Routes.note),
             child: NoteCard.squared(
               title: 'Tap\nto\nstart\nnoting',
               content: '',
+              imagePath: '',
             ),
           );
-        } else if (index.isEven) {
+        } else
+          if (index.isEven) {
           return NoteCard.squared(
-            title: viewModel.noteTitles[index],
-            content: '',
+            title: viewModel.notes[index].title,
+            content: viewModel.notes[index].content,
+            imagePath: viewModel.notes[index].imagePath,
           );
         } else
           return NoteCard.rectangular(
-            title: viewModel.noteTitles[index],
-            content: '',
+            title: viewModel.notes[index].title,
+            content: viewModel.notes[index].content,
+            imagePath: viewModel.notes[index].imagePath,
           );
       },
-      itemCount: viewModel.noteTitles.length,
+      itemCount: viewModel.notes.length,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
     );

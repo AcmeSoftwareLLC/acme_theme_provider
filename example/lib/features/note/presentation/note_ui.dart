@@ -2,7 +2,6 @@ import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/features/note/presentation/note_presenter.dart';
 import 'package:example/features/note/presentation/note_view_model.dart';
-import 'package:example/features/theme/note.dart';
 import 'package:example/providers.dart';
 import 'package:example/routes.dart';
 import 'package:example/widgets/dialogs.dart';
@@ -64,8 +63,6 @@ class AddNoteUIBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController titleText = TextEditingController();
-    TextEditingController contentText = TextEditingController();
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +80,6 @@ class AddNoteUIBody extends StatelessWidget {
               border: Border.all(),
             ),
             child: TextField(
-              controller: titleText,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(
@@ -91,6 +87,7 @@ class AddNoteUIBody extends StatelessWidget {
                   ),
                 ),
               ),
+              onChanged: (val) => viewModel.enterTitle(val),
             ),
           ),
           SizedBox(
@@ -107,7 +104,6 @@ class AddNoteUIBody extends StatelessWidget {
             ),
             child: TextField(
               maxLines: 10,
-              controller: contentText,
               decoration: InputDecoration(
                 hintText: 'Type something.....',
                 focusedBorder: OutlineInputBorder(
@@ -116,6 +112,7 @@ class AddNoteUIBody extends StatelessWidget {
                   ),
                 ),
               ),
+              onChanged: (val) => viewModel.enterContent(val),
             ),
           ),
           SizedBox(
@@ -135,19 +132,17 @@ class AddNoteUIBody extends StatelessWidget {
           Center(
             child: GestureDetector(
               onTap: () {
-                print(titleText);
-                print(contentText);
-                if (titleText.text.isEmpty && contentText.text.isEmpty) {
+                if (viewModel.title.isEmpty && viewModel.content.isEmpty) {
                   showErrorSnackBar(
                     context,
                     'Both the title and description are empty...',
                   );
-                } else if (titleText.text.isEmpty) {
+                } else if (viewModel.title.isEmpty) {
                   showErrorSnackBar(
                     context,
                     'The title text is empty',
                   );
-                } else if (contentText.text.isEmpty) {
+                } else if (viewModel.content.isEmpty) {
                   showErrorSnackBar(
                     context,
                     'The content text is empty',
@@ -158,10 +153,9 @@ class AddNoteUIBody extends StatelessWidget {
                       title: 'Are you sure you wanna add to the notes?',
                       content: 'This will add to your note',
                       onOk: () {
-                        viewModel.enterTitle(titleText.text);
-                        viewModel.enterContent(contentText.text);
                         viewModel.addNote();
-                        Navigator.pop(context);
+                        context.router.go(Routes.home);
+                        viewModel.refresh();
                       });
                 }
               },
