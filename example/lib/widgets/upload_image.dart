@@ -5,11 +5,11 @@ class UploadImage extends StatelessWidget {
   const UploadImage({
     super.key,
     required this.imagePath,
-    required this.onOpenCamera,
+    required this.onOpenGallery,
   });
 
   final String imagePath;
-  final VoidCallback onOpenCamera;
+  final VoidCallback onOpenGallery;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class UploadImage extends StatelessWidget {
               height: 10,
             ),
             GestureDetector(
-              onTap: onOpenCamera,
+              onTap: onOpenGallery,
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 color: Theme.of(context).colorScheme.surface,

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/features/note/presentation/note_presenter.dart';
@@ -5,7 +7,6 @@ import 'package:example/features/note/presentation/note_view_model.dart';
 import 'package:example/providers.dart';
 import 'package:example/routes.dart';
 import 'package:example/widgets/dialogs.dart';
-import 'package:example/widgets/upload_image.dart';
 import 'package:flutter/material.dart';
 
 class NoteUI extends UI<NoteViewModel> {
@@ -24,32 +25,53 @@ class NoteUI extends UI<NoteViewModel> {
 
   @override
   Widget build(BuildContext context, NoteViewModel viewModel) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        leading: IconButton(
-          onPressed: () {
-            context.router.go(Routes.home);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios_new,
-          ),
-        ),
-        title: Text('Add Notes'),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.alarm,
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              floating: false,
+              pinned: true,
+              automaticallyImplyLeading: false,
+              expandedHeight: 200,
+              backgroundColor: Theme.of(context).primaryColor,
+              flexibleSpace: FlexibleSpaceBar(
+                centerTitle: true,
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      viewModel.imagePath.isEmpty
+                          ? 'Add image'
+                          : 'Change image',
+                    ),
+                    IconButton(
+                      onPressed: viewModel.openGallery,
+                      icon: Icon(
+                        Icons.add_photo_alternate_outlined,
+                      ),
+                    ),
+                  ],
+                ),
+                background: viewModel.imagePath.isEmpty
+                    ? const SizedBox()
+                    : Image.file(
+                        File(viewModel.imagePath),
+                        height: 300,
+                        width: 500,
+                        fit: BoxFit.fill,
+                      ),
+              ),
             ),
+          ];
+        },
+        body: Padding(
+          padding: EdgeInsets.all(16),
+          child: AddNoteUIBody(
+            viewModel: viewModel,
           ),
-        ],
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: AddNoteUIBody(
-          viewModel: viewModel,
         ),
       ),
     );
@@ -119,16 +141,27 @@ class AddNoteUIBody extends StatelessWidget {
             height: 10,
           ),
           // Center(
-          //   child: AddNoteButton(
-          //     titleText: titleText.text.toString(),
-          //     contentText: contentText.text.toString(),
-          //     viewModel: viewModel,
+          //   child: GestureDetector(
+          //     onTap: () => viewModel.openGallery,
+          //     child: Container(
+          //       height: 50,
+          //       width: 100,
+          //       decoration: BoxDecoration(
+          //         color: Theme.of(context).colorScheme.primaryContainer,
+          //         borderRadius: BorderRadius.circular(12),
+          //       ),
+          //       child: Center(
+          //         child: Text(
+          //           'Add image',
+          //           style: Theme.of(context).textTheme.labelMedium,
+          //         ),
+          //       ),
+          //     ),
           //   ),
           // ),
-          UploadImage(
-            imagePath: viewModel.imagePath,
-            onOpenCamera: viewModel.openGallery,
-          ),
+          // SizedBox(
+          //   height: 10,
+          // ),
           Center(
             child: GestureDetector(
               onTap: () {
