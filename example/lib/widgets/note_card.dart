@@ -30,25 +30,26 @@ class NoteCard extends StatelessWidget {
     return Card(
       elevation: 20.0,
       color: Theme.of(context).colorScheme.surface,
-      child: Stack(
-        children: [
-          Image.file(
-            File(imagePath),
-            fit: BoxFit.fill,
-          ),
-          Column(
-            children: [
-              Text(
-                title,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                content,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.file(
+              File(imagePath),
+              fit: BoxFit.fill,
+            ),
+            Text(
+              title,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              content,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Expanded(child: SizedBox(height: 10,)),
+          ],
+        ),
       ),
     );
   }
@@ -74,7 +75,7 @@ class NoteCardSquared extends NoteCard {
       shadowColor: Theme.of(context).colorScheme.shadow,
       surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
       child: SizedBox(
-          height: squareCardHeight/2,
+          height: squareCardHeight / 2,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -98,6 +99,10 @@ class NoteCardSquared extends NoteCard {
                   style: Theme.of(context).textTheme.bodySmall,
                   textAlign: TextAlign.left,
                 ),
+                Expanded(
+                    child: SizedBox(
+                  height: 10,
+                )),
               ],
             ),
           )),
@@ -140,7 +145,7 @@ class NoteCardRectangular extends NoteCard {
               children: [
                 Image.file(
                   File(imagePath),
-                  height: rectangularCardHeight /1.25,
+                  height: rectangularCardHeight / 1.25,
                   width: screenWidth,
                   fit: BoxFit.cover,
                 ),
@@ -156,6 +161,10 @@ class NoteCardRectangular extends NoteCard {
                   style: Theme.of(context).textTheme.bodySmall,
                   textAlign: TextAlign.right,
                 ),
+                Expanded(
+                    child: SizedBox(
+                  height: 10,
+                )),
               ],
             ),
           )),

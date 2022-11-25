@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/features/home/presentation/home_presenter.dart';
@@ -66,7 +64,11 @@ class _TileCard extends StatelessWidget {
       child: SizedBox(
           height: screenHeight / 10,
           width: screenWidth / 2,
-          child: Center(child: Text('My Notes',  style: Theme.of(context).textTheme.headlineMedium,))),
+          child: Center(
+              child: Text(
+            'My Notes',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ))),
       color: Theme.of(context).colorScheme.surface,
       shadowColor: Theme.of(context).colorScheme.shadow,
       surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
@@ -81,30 +83,41 @@ class _NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ListView.builder(
       itemBuilder: (context, index) {
         if (viewModel.notes.isEmpty) {
+          return NoteCard.squared(
+            title: 'Tap\nto\nstart\nnoting',
+            content: '',
+            imagePath: '',
+          );
+        } else if (index.isEven) {
           return GestureDetector(
-            onTap: () => context.router.go(Routes.note),
+            onTap: () {
+              viewModel.onNoteSelected(
+                viewModel.notes[index].title,
+              );
+              context.router.go(Routes.note);
+            },
             child: NoteCard.squared(
-              title: 'Tap\nto\nstart\nnoting',
-              content: '',
-              imagePath: '',
+              title: viewModel.notes[index].title,
+              content: viewModel.notes[index].content,
+              imagePath: viewModel.notes[index].imagePath,
             ),
           );
         } else
-          if (index.isEven) {
-          return NoteCard.squared(
-            title: viewModel.notes[index].title,
-            content: viewModel.notes[index].content,
-            imagePath: viewModel.notes[index].imagePath,
-          );
-        } else
-          return NoteCard.rectangular(
-            title: viewModel.notes[index].title,
-            content: viewModel.notes[index].content,
-            imagePath: viewModel.notes[index].imagePath,
+          return GestureDetector(
+            onTap: () {
+              viewModel.onNoteSelected(
+                viewModel.notes[index].title,
+              );
+              context.router.go(Routes.note);
+            },
+            child: NoteCard.rectangular(
+              title: viewModel.notes[index].title,
+              content: viewModel.notes[index].content,
+              imagePath: viewModel.notes[index].imagePath,
+            ),
           );
       },
       itemCount: viewModel.notes.length,
@@ -113,4 +126,3 @@ class _NoteItem extends StatelessWidget {
     );
   }
 }
-
