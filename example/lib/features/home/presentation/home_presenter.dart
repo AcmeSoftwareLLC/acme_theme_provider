@@ -21,6 +21,7 @@ class HomePresenter
   HomeViewModel createViewModel(HomeUseCase useCase, HomeUIOutput output) {
     return HomeViewModel(
       notes: output.notes,
+      onNoteSelected: useCase.getSelectedNote,
     );
   }
 }

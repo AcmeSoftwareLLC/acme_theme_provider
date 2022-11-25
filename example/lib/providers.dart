@@ -1,11 +1,12 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:example/core/dependency/image_util_ext_interface/image_util_external_interface.dart';
+import 'package:example/features/home/external_interface/home_get_note_gateway.dart';
 import 'package:example/features/note/domain/note_entity.dart';
 import 'package:example/features/home/domain/home_entity.dart';
 import 'package:example/features/home/domain/home_use_case.dart';
 import 'package:example/features/home/external_interface/home_notes_store_external_interface.dart';
-import 'package:example/features/home/external_interface/home_get_notes_gateway.dart';
+import 'package:example/features/home/external_interface/home_get_all_notes_gateway.dart';
 import 'package:example/features/note/domain/note_use_case.dart';
 import 'package:example/features/note/external_interface/note_add_note_gateway.dart';
 import 'package:example/features/note/external_interface/note_image_picker_gateway.dart';
@@ -21,8 +22,12 @@ final noteImagePickerGatewayProvider = GatewayProvider<NoteImagePickerGateway>(
   (_) => NoteImagePickerGateway(),
 );
 
-final homeGetNotesGatewayProvider = GatewayProvider<HomeGetNotesGateway>(
-  (_) => HomeGetNotesGateway(provider: homeUseCaseProvider),
+final homeGetAllNotesGatewayProvider = GatewayProvider<HomeGetAllNotesGateway>(
+  (_) => HomeGetAllNotesGateway(provider: homeUseCaseProvider),
+);
+
+final homeGetNoteGatewayProvider = GatewayProvider<HomeGetNoteGateway>(
+  (_) => HomeGetNoteGateway(provider: homeUseCaseProvider),
 );
 
 final noteAddNoteGatewayProvider = GatewayProvider<NoteAddNoteGateway>(
@@ -31,7 +36,8 @@ final noteAddNoteGatewayProvider = GatewayProvider<NoteAddNoteGateway>(
 
 final notesStoreExternalInterfaceProvider = ExternalInterfaceProvider(
     (_) => HomeNotesStoreExternalInterface(gatewayConnections: [
-          () => homeGetNotesGatewayProvider.getGateway(providersContext),
+          () => homeGetAllNotesGatewayProvider.getGateway(providersContext),
+          () => homeGetNoteGatewayProvider.getGateway(providersContext),
           () => noteAddNoteGatewayProvider.getGateway(providersContext),
         ]));
 

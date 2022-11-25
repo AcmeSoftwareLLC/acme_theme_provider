@@ -19,4 +19,12 @@ class Note {
       'imagePath': imagePath,
     };
   }
+
+  factory Note.fromJson(Map<String, dynamic> json) {
+    return Note(
+      title: json['title'] ?? '',
+      content: json['content'] ?? '',
+      imagePath: json['imagePath'] ?? '',
+    );
+  }
 }

@@ -1,7 +1,8 @@
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:example/core/database/acme_database.dart';
 import 'package:example/core/database/db_external_interface.dart';
-import 'package:example/features/home/external_interface/home_get_notes_gateway.dart';
+import 'package:example/features/home/external_interface/home_get_all_notes_gateway.dart';
+import 'package:example/features/home/external_interface/home_get_note_gateway.dart';
 import 'package:example/features/note/external_interface/note_add_note_gateway.dart';
 
 class HomeNotesStoreExternalInterface extends DbExternalInterface {
@@ -11,9 +12,15 @@ class HomeNotesStoreExternalInterface extends DbExternalInterface {
 
   @override
   void handleRequest() {
-    on<HomeGetNotesRequest>((request, send) async {
+    on<HomeGetAllNotesRequest>((request, send) async {
       final notes = await db.findAll(store: _noteStore);
-      send(HomeGetNotesSuccessResponse(notes: notes));
+      send(HomeGetAllNotesSuccessResponse(notes: notes));
+    });
+
+
+    on<HomeGetNoteRequest>((request, send) async {
+    final note = await db.findFirst(store: _noteStore, key: request.noteTitle);
+    send(HomeGetNoteSuccessResponse(note: note!));
     });
 
     on<NoteAddNoteRequest>((request, send) async {

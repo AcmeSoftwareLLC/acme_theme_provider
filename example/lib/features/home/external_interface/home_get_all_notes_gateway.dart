@@ -3,25 +3,24 @@ import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:example/core/database/db_gateway.dart';
 import 'package:example/core/database/db_request.dart';
 import 'package:example/core/database/db_success_response.dart';
-import 'package:example/features/theme/note.dart';
 import 'package:example/providers.dart';
 
-class HomeGetNotesGateway extends DbGateway<HomeGetNotesGatewayOutput,
-    HomeGetNotesSuccessResponse, HomeGetNotesSuccessInput> {
-  HomeGetNotesGateway({
+class HomeGetAllNotesGateway extends DbGateway<HomeGetAllNotesGatewayOutput,
+    HomeGetAllNotesSuccessResponse, HomeGetAllNotesSuccessInput> {
+  HomeGetAllNotesGateway({
     required super.provider,
   }) : super(context: providersContext);
 
   @override
-  DbRequest buildRequest(HomeGetNotesGatewayOutput output) {
-    return HomeGetNotesRequest();
+  DbRequest buildRequest(HomeGetAllNotesGatewayOutput output) {
+    return HomeGetAllNotesRequest();
   }
 
   @override
-  HomeGetNotesSuccessInput onSuccess(
-    HomeGetNotesSuccessResponse response,
+  HomeGetAllNotesSuccessInput onSuccess(
+    HomeGetAllNotesSuccessResponse response,
   ) {
-    return HomeGetNotesSuccessInput(
+    return HomeGetAllNotesSuccessInput(
       notes: response.notes.map(_getNoteData).toList(growable: false)
     );
 
@@ -34,21 +33,21 @@ class HomeGetNotesGateway extends DbGateway<HomeGetNotesGatewayOutput,
   }
 }
 
-class HomeGetNotesRequest extends DbRequest {}
+class HomeGetAllNotesRequest extends DbRequest {}
 
-class HomeGetNotesSuccessResponse extends DbSuccessResponse {
-  HomeGetNotesSuccessResponse({required this.notes});
+class HomeGetAllNotesSuccessResponse extends DbSuccessResponse {
+  HomeGetAllNotesSuccessResponse({required this.notes});
 
   final List<Map<String, dynamic>> notes;
 }
 
-class HomeGetNotesGatewayOutput extends Output {
+class HomeGetAllNotesGatewayOutput extends Output {
   @override
   List<Object?> get props => [];
 }
 
-class HomeGetNotesSuccessInput extends SuccessInput {
-  HomeGetNotesSuccessInput({required this.notes});
+class HomeGetAllNotesSuccessInput extends SuccessInput {
+  HomeGetAllNotesSuccessInput({required this.notes});
 
   final List<NoteData> notes;
 }
