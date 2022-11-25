@@ -82,14 +82,22 @@ class NoteUI extends UI<NoteViewModel> {
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
-                      viewModel.imagePath.isEmpty
-                          ? 'Add image'
-                          : 'Change image',
+                    IconButton(
+                      onPressed: () {
+                        context.router.push(Routes.home);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                      ),
                     ),
+                    Text(
+                        viewModel.title.isEmpty ? 'add image' : viewModel.title,
+                        style: Theme.of(context).textTheme.titleSmall),
                     IconButton(
                       onPressed: viewModel.openGallery,
                       icon: Icon(
+                        color: Theme.of(context).colorScheme.primaryContainer,
                         Icons.add_photo_alternate_outlined,
                       ),
                     ),
@@ -99,7 +107,7 @@ class NoteUI extends UI<NoteViewModel> {
                     ? const SizedBox()
                     : Image.file(
                         File(viewModel.imagePath),
-                        fit: BoxFit.fill,
+                        fit: BoxFit.fitWidth,
                       ),
               ),
             ),
