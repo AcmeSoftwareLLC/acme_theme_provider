@@ -46,7 +46,10 @@ class HomeUI extends UI<HomeViewModel> {
                       Image.asset(
                         'assets/no_data.png',
                       ),
-                      Text('You have no notes. Tap on Add Note to add one'),
+                      Text(
+                        'You have no notes. Tap on Add Note to add one',
+                        textAlign: TextAlign.center,
+                      ),
                     ],
                   ),
                 )
@@ -57,8 +60,11 @@ class HomeUI extends UI<HomeViewModel> {
                     child: MediaQuery.removePadding(
                         context: context,
                         removeTop: true,
-                        child: _NoteItem(
-                          viewModel: viewModel,
+                        child: Hero(
+                          tag: 'cardImage',
+                          child: _NoteItem(
+                            viewModel: viewModel,
+                          ),
                         )),
                   ),
                 ),
