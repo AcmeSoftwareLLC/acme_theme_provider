@@ -8,10 +8,14 @@ class CoreAppBar<T extends Object> extends CoreWidget<T> {
     required super.parent,
     required this.title,
     this.leading,
+    this.actions,
+    this.flexibleSpace,
   });
 
   final Widget title;
   final Widget? leading;
+  final List<Widget>? actions;
+  final Widget? flexibleSpace;
 
   @override
   CoreState<CoreAppBar, AppBarConfig> createState() => _CoreAppBarState();
@@ -20,6 +24,8 @@ class CoreAppBar<T extends Object> extends CoreWidget<T> {
 class _CoreAppBarState extends CoreState<CoreAppBar, AppBarConfig> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     final dividerConfig = config.divider;
     final dividerThickness = dividerConfig?.thickness;
 
@@ -39,6 +45,11 @@ class _CoreAppBarState extends CoreState<CoreAppBar, AppBarConfig> {
       child: AppBar(
         leading: widget.leading,
         title: widget.title,
+        actions: widget.actions,
+        flexibleSpace: widget.flexibleSpace,
+        leadingWidth: config.leadingWidth,
+        toolbarOpacity: config.toolbarOpacity,
+        bottomOpacity: config.bottomOpacity,
         bottom: bottom,
       ),
     );
