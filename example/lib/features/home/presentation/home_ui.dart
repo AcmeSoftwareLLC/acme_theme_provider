@@ -24,27 +24,21 @@ class HomeUI extends UI<HomeViewModel> {
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
     return Scaffold(
-      body: SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _TileCard(),
-                  MediaQuery.removePadding(
-                      context: context,
-                      removeTop: true,
-                      child: _NoteItem(
-                        viewModel: viewModel,
-                      )),
-                ],
-              )),
+              _TileCard(),
+              MediaQuery.removePadding(
+                  context: context,
+                  removeTop: true,
+                  child: _NoteItem(
+                    viewModel: viewModel,
+                  )),
             ],
           ),
         ),
@@ -83,10 +77,16 @@ class _NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index) {
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          childAspectRatio: 2 / 3,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10),
+      itemCount: viewModel.notes.length,
+      itemBuilder: (BuildContext ctx, index) {
         if (viewModel.notes.isEmpty) {
-          return NoteCard.squared(
+          return NoteCard.surface(
             title: 'Tap\nto\nstart\nnoting',
             content: '',
             imagePath: '',
@@ -99,30 +99,30 @@ class _NoteItem extends StatelessWidget {
               );
               context.router.go(Routes.note);
             },
-            child: NoteCard.squared(
+            child: NoteCard.surface(
               title: viewModel.notes[index].title,
               content: viewModel.notes[index].content,
               imagePath: viewModel.notes[index].imagePath,
             ),
           );
-        } else
+        } else {
           return GestureDetector(
             onTap: () {
               viewModel.onNoteSelected(
                 viewModel.notes[index].title,
               );
-              context.router.go(Routes.note);
+              context.router.push(Routes.note);
             },
-            child: NoteCard.rectangular(
+            child: NoteCard.surfaceVariant(
               title: viewModel.notes[index].title,
               content: viewModel.notes[index].content,
               imagePath: viewModel.notes[index].imagePath,
             ),
           );
+        }
       },
-      itemCount: viewModel.notes.length,
-      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
     );
   }
 }
