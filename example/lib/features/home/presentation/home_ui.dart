@@ -47,7 +47,7 @@ class HomeUI extends UI<HomeViewModel> {
                         'assets/no_data.png',
                       ),
                       Text(
-                        'You have no notes. Tap on Add Note to add one',
+                        'You have no notes. Tap on \'Add Note\' to add one',
                         textAlign: TextAlign.center,
                       ),
                     ],

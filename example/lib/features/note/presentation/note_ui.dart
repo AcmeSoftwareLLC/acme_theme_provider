@@ -97,13 +97,10 @@ class NoteUI extends UI<NoteViewModel> {
                 ),
                 background: viewModel.imagePath.isEmpty
                     ? const SizedBox()
-                    : Hero(
-                      tag: 'cardImage',
-                      child: Image.file(
-                          File(viewModel.imagePath),
-                          fit: BoxFit.fill,
-                        ),
-                    ),
+                    : Image.file(
+                        File(viewModel.imagePath),
+                        fit: BoxFit.fill,
+                      ),
               ),
             ),
           ];
