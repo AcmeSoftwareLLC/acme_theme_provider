@@ -58,6 +58,22 @@ class MyApp extends StatelessWidget {
           },
           'buttonType': 'elevated',
         },
+        'FirstTextField': {
+          'type': 'textField',
+          'theme': {
+            'fillColor': '#FFFF00',
+          },
+        },
+        'SecondTextField': {
+          'type': 'textField',
+          'theme': {
+            'fillColor': '#800000',
+            'filled': true,
+            'labelStyle': {
+              'color': '#FFFFFF',
+            }
+          },
+        },
       },
     };
 
