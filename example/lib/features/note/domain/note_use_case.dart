@@ -69,7 +69,6 @@ class NoteUseCase extends UseCase<NoteEntity> {
             imagePath: note.imagePath,
           );
         }
-        print(Note);
         return entity.merge(
           notes: notes,
         );
@@ -79,5 +78,10 @@ class NoteUseCase extends UseCase<NoteEntity> {
         return entity;
       },
     );
+    await refresh();
+  }
+
+  Future<void> refresh() async {
+    entity = NoteEntity();
   }
 }

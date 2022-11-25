@@ -6,7 +6,7 @@ class AddNoteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
-      onPressed: () => context.router.go(Routes.note),
+      onPressed: () => context.router.push(Routes.note),
       label: Text(
         'Add Note',
       ),

@@ -42,6 +42,7 @@ class NotePresenter
       enterContent: (String content) => useCase.onContentEntered(
         content: content,
       ),
+      refresh: useCase.refresh,
     );
   }
 }

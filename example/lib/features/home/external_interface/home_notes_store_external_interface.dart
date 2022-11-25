@@ -24,6 +24,7 @@ class HomeNotesStoreExternalInterface extends DbExternalInterface {
     });
 
     on<NoteAddNoteRequest>((request, send) async {
+      print(request.note.content);
       await db.update(
         store: _noteStore,
         key: request.note.title,

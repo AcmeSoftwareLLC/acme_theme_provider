@@ -1,12 +1,12 @@
+import 'dart:io';
+
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/features/note/presentation/note_presenter.dart';
 import 'package:example/features/note/presentation/note_view_model.dart';
-import 'package:example/features/theme/note.dart';
 import 'package:example/providers.dart';
 import 'package:example/routes.dart';
 import 'package:example/widgets/dialogs.dart';
-import 'package:example/widgets/upload_image.dart';
 import 'package:flutter/material.dart';
 
 class NoteUI extends UI<NoteViewModel> {
@@ -25,32 +25,53 @@ class NoteUI extends UI<NoteViewModel> {
 
   @override
   Widget build(BuildContext context, NoteViewModel viewModel) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        leading: IconButton(
-          onPressed: () {
-            context.router.go(Routes.home);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios_new,
-          ),
-        ),
-        title: Text('Add Notes'),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.alarm,
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              floating: false,
+              pinned: true,
+              automaticallyImplyLeading: false,
+              expandedHeight: 200,
+              backgroundColor: Theme.of(context).primaryColor,
+              flexibleSpace: FlexibleSpaceBar(
+                centerTitle: true,
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      viewModel.imagePath.isEmpty
+                          ? 'Add image'
+                          : 'Change image',
+                    ),
+                    IconButton(
+                      onPressed: viewModel.openGallery,
+                      icon: Icon(
+                        Icons.add_photo_alternate_outlined,
+                      ),
+                    ),
+                  ],
+                ),
+                background: viewModel.imagePath.isEmpty
+                    ? const SizedBox()
+                    : Image.file(
+                        File(viewModel.imagePath),
+                        height: 300,
+                        width: 500,
+                        fit: BoxFit.fill,
+                      ),
+              ),
             ),
+          ];
+        },
+        body: Padding(
+          padding: EdgeInsets.all(16),
+          child: AddNoteUIBody(
+            viewModel: viewModel,
           ),
-        ],
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: AddNoteUIBody(
-          viewModel: viewModel,
         ),
       ),
     );
@@ -64,8 +85,6 @@ class AddNoteUIBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController titleText = TextEditingController();
-    TextEditingController contentText = TextEditingController();
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +102,6 @@ class AddNoteUIBody extends StatelessWidget {
               border: Border.all(),
             ),
             child: TextField(
-              controller: titleText,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(
@@ -91,6 +109,7 @@ class AddNoteUIBody extends StatelessWidget {
                   ),
                 ),
               ),
+              onChanged: (val) => viewModel.enterTitle(val),
             ),
           ),
           SizedBox(
@@ -107,7 +126,6 @@ class AddNoteUIBody extends StatelessWidget {
             ),
             child: TextField(
               maxLines: 10,
-              controller: contentText,
               decoration: InputDecoration(
                 hintText: 'Type something.....',
                 focusedBorder: OutlineInputBorder(
@@ -116,38 +134,48 @@ class AddNoteUIBody extends StatelessWidget {
                   ),
                 ),
               ),
+              onChanged: (val) => viewModel.enterContent(val),
             ),
           ),
           SizedBox(
             height: 10,
           ),
           // Center(
-          //   child: AddNoteButton(
-          //     titleText: titleText.text.toString(),
-          //     contentText: contentText.text.toString(),
-          //     viewModel: viewModel,
+          //   child: GestureDetector(
+          //     onTap: () => viewModel.openGallery,
+          //     child: Container(
+          //       height: 50,
+          //       width: 100,
+          //       decoration: BoxDecoration(
+          //         color: Theme.of(context).colorScheme.primaryContainer,
+          //         borderRadius: BorderRadius.circular(12),
+          //       ),
+          //       child: Center(
+          //         child: Text(
+          //           'Add image',
+          //           style: Theme.of(context).textTheme.labelMedium,
+          //         ),
+          //       ),
+          //     ),
           //   ),
           // ),
-          UploadImage(
-            imagePath: viewModel.imagePath,
-            onOpenCamera: viewModel.openGallery,
-          ),
+          // SizedBox(
+          //   height: 10,
+          // ),
           Center(
             child: GestureDetector(
               onTap: () {
-                print(titleText);
-                print(contentText);
-                if (titleText.text.isEmpty && contentText.text.isEmpty) {
+                if (viewModel.title.isEmpty && viewModel.content.isEmpty) {
                   showErrorSnackBar(
                     context,
                     'Both the title and description are empty...',
                   );
-                } else if (titleText.text.isEmpty) {
+                } else if (viewModel.title.isEmpty) {
                   showErrorSnackBar(
                     context,
                     'The title text is empty',
                   );
-                } else if (contentText.text.isEmpty) {
+                } else if (viewModel.content.isEmpty) {
                   showErrorSnackBar(
                     context,
                     'The content text is empty',
@@ -158,10 +186,9 @@ class AddNoteUIBody extends StatelessWidget {
                       title: 'Are you sure you wanna add to the notes?',
                       content: 'This will add to your note',
                       onOk: () {
-                        viewModel.enterTitle(titleText.text);
-                        viewModel.enterContent(contentText.text);
                         viewModel.addNote();
-                        Navigator.pop(context);
+                        context.router.push(Routes.home);
+                        viewModel.refresh();
                       });
                 }
               },
