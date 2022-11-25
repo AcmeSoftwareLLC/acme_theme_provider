@@ -154,7 +154,7 @@ class AddNoteUIBody extends StatelessWidget {
                       content: 'This will add to your note',
                       onOk: () {
                         viewModel.addNote();
-                        context.router.go(Routes.home);
+                        context.router.push(Routes.home);
                         viewModel.refresh();
                       });
                 }

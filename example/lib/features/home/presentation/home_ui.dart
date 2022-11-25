@@ -38,11 +38,12 @@ class HomeUI extends UI<HomeViewModel> {
                 children: [
                   _TileCard(),
                   MediaQuery.removePadding(
-                      context: context,
-                      removeTop: true,
-                      child: _NoteItem(
-                        viewModel: viewModel,
-                      )),
+                    context: context,
+                    removeTop: true,
+                    child: _NoteItem(
+                      viewModel: viewModel,
+                    ),
+                  ),
                 ],
               )),
             ],
@@ -62,13 +63,15 @@ class _TileCard extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     return Card(
       child: SizedBox(
-          height: screenHeight / 10,
-          width: screenWidth / 2,
-          child: Center(
-              child: Text(
+        height: screenHeight / 10,
+        width: screenWidth / 2,
+        child: Center(
+          child: Text(
             'My Notes',
             style: Theme.of(context).textTheme.headlineMedium,
-          ))),
+          ),
+        ),
+      ),
       color: Theme.of(context).colorScheme.surface,
       shadowColor: Theme.of(context).colorScheme.shadow,
       surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
@@ -97,7 +100,7 @@ class _NoteItem extends StatelessWidget {
               viewModel.onNoteSelected(
                 viewModel.notes[index].title,
               );
-              context.router.go(Routes.note);
+              context.router.push(Routes.note);
             },
             child: NoteCard.squared(
               title: viewModel.notes[index].title,
@@ -111,7 +114,7 @@ class _NoteItem extends StatelessWidget {
               viewModel.onNoteSelected(
                 viewModel.notes[index].title,
               );
-              context.router.go(Routes.note);
+              context.router.push(Routes.note);
             },
             child: NoteCard.rectangular(
               title: viewModel.notes[index].title,

@@ -47,7 +47,10 @@ class NoteCard extends StatelessWidget {
               content,
               overflow: TextOverflow.ellipsis,
             ),
-            Expanded(child: SizedBox(height: 10,)),
+            Expanded(
+                child: SizedBox(
+              height: 10,
+            )),
           ],
         ),
       ),
@@ -81,11 +84,13 @@ class NoteCardSquared extends NoteCard {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.file(
-                  File(imagePath),
-                  height: squareCardHeight / 4,
-                  width: screenWidth,
-                  fit: BoxFit.cover,
+                Expanded(
+                  child: Image.file(
+                    File(imagePath),
+                    height: squareCardHeight / 4,
+                    width: screenWidth,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Text(
                   title,
@@ -143,11 +148,13 @@ class NoteCardRectangular extends NoteCard {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Image.file(
-                  File(imagePath),
-                  height: rectangularCardHeight / 1.25,
-                  width: screenWidth,
-                  fit: BoxFit.cover,
+                Expanded(
+                  child: Image.file(
+                    File(imagePath),
+                    height: rectangularCardHeight / 1.25,
+                    width: screenWidth,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Text(
                   title,
@@ -163,7 +170,7 @@ class NoteCardRectangular extends NoteCard {
                 ),
                 Expanded(
                     child: SizedBox(
-                  height: 10,
+                  height: 30,
                 )),
               ],
             ),
