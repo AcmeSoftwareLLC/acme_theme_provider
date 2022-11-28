@@ -40,6 +40,7 @@ class _CoreDropdownButtonState
     extends CoreState<CoreDropdownButton, DropdownButtonConfig> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return DropdownButton(
       style: config.style,
       autofocus: config.autofocus,

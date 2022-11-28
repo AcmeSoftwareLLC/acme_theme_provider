@@ -55,13 +55,13 @@ class MyApp extends StatelessWidget {
           'buttonType': 'elevated',
         },
         'FirstTextField': {
-          'type': 'textField',
+          'type': 'text.field',
           'theme': {
             'fillColor': '#FFFF00',
           },
         },
         'SecondTextField': {
-          'type': 'textField',
+          'type': 'text.field',
           'theme': {
             'fillColor': '#800000',
             'filled': true,
@@ -88,10 +88,10 @@ class MyApp extends StatelessWidget {
           },
         },
         'FirstDropdownButton': {
-          'type': 'dropdownButton',
+          'type': 'dropdown.button',
         },
         'SecondDropdownButton': {
-          'type': 'dropdownButton',
+          'type': 'dropdown.button',
           'isExpanded': true,
           'borderRadius': {
             'radius': 8.0,

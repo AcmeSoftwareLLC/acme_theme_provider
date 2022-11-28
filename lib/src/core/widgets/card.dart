@@ -18,6 +18,7 @@ class CoreCard<T extends Object> extends CoreWidget<T> {
 class _CoreCardState extends CoreState<CoreCard, CardConfig> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Theme(
       data: Theme.of(context).copyWith(cardTheme: config.theme),
       child: Card(

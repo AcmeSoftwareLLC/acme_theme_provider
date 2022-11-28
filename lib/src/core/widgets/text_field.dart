@@ -50,6 +50,7 @@ class CoreTextField<T extends Object> extends CoreWidget<T> {
 class _CoreTextFieldState extends CoreState<CoreTextField, TextFieldConfig> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Theme(
       data: Theme.of(context).copyWith(
         inputDecorationTheme: config.theme,

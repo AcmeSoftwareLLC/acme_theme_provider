@@ -32,6 +32,7 @@ class CoreButton<T extends Object> extends CoreWidget<T> {
 class _CoreButtonState extends CoreState<CoreButton, ButtonConfig> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final buttonType = config.buttonType;
     switch (buttonType) {
       case ButtonType.elevated:
