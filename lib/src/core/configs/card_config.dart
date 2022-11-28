@@ -24,7 +24,7 @@ class CardConfig extends ComponentConfig {
   @override
   Map<String, dynamic> toMap() {
     return {
-      'type': ComponentType.button.value,
+      'type': ComponentType.card.value,
       'theme': ThemeEncoder.encodeCardTheme(theme),
       'semanticContainer': semanticContainer,
       'borderOnForeground': borderOnForeground,

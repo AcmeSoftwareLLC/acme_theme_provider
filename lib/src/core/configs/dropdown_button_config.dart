@@ -57,7 +57,7 @@ class DropdownButtonConfig extends ComponentConfig {
   @override
   Map<String, dynamic> toMap() {
     return {
-      'type': ComponentType.button.value,
+      'type': ComponentType.dropDown.value,
       'style': ThemeEncoder.encodeTextStyle(style),
       'iconSize': iconSize,
       'isExpanded': isExpanded,

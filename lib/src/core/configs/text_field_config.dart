@@ -81,7 +81,7 @@ class TextFieldConfig extends ComponentConfig {
   @override
   Map<String, dynamic> toMap() {
     return {
-      'type': ComponentType.button.value,
+      'type': ComponentType.textField.value,
       'theme': ThemeEncoder.encodeInputDecorationTheme(theme),
       'textAlign': ThemeEncoder.encodeTextAlign(textAlign),
       'clip': ThemeEncoder.encodeClip(clip),
