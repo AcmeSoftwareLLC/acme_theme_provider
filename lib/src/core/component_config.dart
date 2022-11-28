@@ -6,6 +6,7 @@ import 'package:acme_theme_provider/src/core/configs/text_field_config.dart';
 import 'configs/app_bar_config.dart';
 
 export 'configs/app_bar_config.dart';
+export 'configs/card_config.dart';
 
 enum ComponentType {
   appBar('app.bar'),
