@@ -3,10 +3,10 @@ import 'package:acme_theme_provider/src/core/core_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CoreTextField<T extends Object> extends CoreWidget<T> {
+class CoreTextField extends CoreWidget<TextFieldConfig> {
   const CoreTextField({
     super.key,
-    required super.parent,
+    super.name,
     this.onTap,
     this.onChanged,
     this.onSubmitted,
@@ -43,13 +43,7 @@ class CoreTextField<T extends Object> extends CoreWidget<T> {
   final AppPrivateCommandCallback? onAppPrivateCommand;
 
   @override
-  CoreState<CoreTextField, TextFieldConfig> createState() =>
-      _CoreTextFieldState();
-}
-
-class _CoreTextFieldState extends CoreState<CoreTextField, TextFieldConfig> {
-  @override
-  Widget build(BuildContext context) {
+  Widget render(BuildContext context, TextFieldConfig config) {
     return Theme(
       data: Theme.of(context).copyWith(
         inputDecorationTheme: config.theme,
@@ -63,8 +57,8 @@ class _CoreTextFieldState extends CoreState<CoreTextField, TextFieldConfig> {
         textDirection: config.textDirection,
         toolbarOptions: config.toolbarOptions,
         maxLength: config.maxLength,
-        autofillHints: widget.autofillHints,
-        buildCounter: widget.buildCounter,
+        autofillHints: autofillHints,
+        buildCounter: buildCounter,
         cursorHeight: config.cursorHeight,
         cursorRadius: config.cursorRadius,
         cursorWidth: config.cursorWidth,
@@ -76,19 +70,19 @@ class _CoreTextFieldState extends CoreState<CoreTextField, TextFieldConfig> {
         textAlignVertical: config.textAlignVertical,
         textCapitalization: config.textCapitalization,
         textInputAction: config.textInputAction,
-        onTap: widget.onTap,
-        decoration: widget.inputDecoration,
-        onChanged: widget.onChanged,
-        onEditingComplete: widget.onEditingComplete,
-        focusNode: widget.focusNode,
-        autofocus: widget.autofocus,
-        selectionControls: widget.selectionControls,
-        onAppPrivateCommand: widget.onAppPrivateCommand,
-        onSubmitted: widget.onSubmitted,
-        restorationId: widget.restorationId,
-        scrollController: widget.scrollController,
-        controller: widget.controller,
-        inputFormatters: widget.inputFormatters,
+        onTap: onTap,
+        decoration: inputDecoration,
+        onChanged: onChanged,
+        onEditingComplete: onEditingComplete,
+        focusNode: focusNode,
+        autofocus: autofocus,
+        selectionControls: selectionControls,
+        onAppPrivateCommand: onAppPrivateCommand,
+        onSubmitted: onSubmitted,
+        restorationId: restorationId,
+        scrollController: scrollController,
+        controller: controller,
+        inputFormatters: inputFormatters,
       ),
     );
   }

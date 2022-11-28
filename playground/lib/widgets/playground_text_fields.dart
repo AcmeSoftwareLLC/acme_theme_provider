@@ -10,6 +10,7 @@ class PlayGroundTextFields extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: const [
           FirstTextField(),
           SecondTextField(),

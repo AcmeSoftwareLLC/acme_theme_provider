@@ -22,16 +22,18 @@ class MyApp extends StatelessWidget {
           'type': 'app.bar',
           'theme': {
             'backgroundColor': '#55FF0000',
+            'toolbarHeight': 300,
           },
           'divider': {
             'thickness': 4.0,
-            'color': '#00FF00',
+            'color': '#FFAAAAAA',
           },
         },
         'TwoAppBar': {
           'type': 'app.bar',
           'theme': {
             'backgroundColor': '#0000FF',
+            'foregroundColor': '#FFFFFF',
           },
         },
         'AcmeOutlinedButton': {
@@ -55,13 +57,13 @@ class MyApp extends StatelessWidget {
           'buttonType': 'elevated',
         },
         'FirstTextField': {
-          'type': 'textField',
+          'type': 'text.field',
           'theme': {
             'fillColor': '#FFFF00',
           },
         },
         'SecondTextField': {
-          'type': 'textField',
+          'type': 'text.field',
           'theme': {
             'fillColor': '#800000',
             'filled': true,
@@ -88,16 +90,16 @@ class MyApp extends StatelessWidget {
           },
         },
         'FirstDropdownButton': {
-          'type': 'dropdownButton',
+          'type': 'dropdown.button',
         },
         'SecondDropdownButton': {
-          'type': 'dropdownButton',
+          'type': 'dropdown.button',
           'isExpanded': true,
           'borderRadius': {
             'radius': 8.0,
             'type': 'circular',
           },
-          'dropdownColor': '#55FF00AA',
+          'dropdownColor': '#FFFF00AA',
           'focusColor': '#55FF00BB',
           'iconDisabledColor': '#55FF00CC',
           'iconEnabledColor': '#55AA00DD',
