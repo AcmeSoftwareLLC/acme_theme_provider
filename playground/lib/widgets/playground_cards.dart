@@ -10,9 +10,20 @@ class PlayGroundCards extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: const [
-          FirstCard(),
-          SecondCard(),
+        children: [
+          FirstCard(
+            child: const Text(
+              'Lorem ipsum dolor sit amet. 33 aperiam rerum vel sint veniam nam dolor placeat! Aut quis sint aut repellat dolorum 33 minus accusamus.',
+            ),
+          ),
+          const SecondCard(
+            child: Padding(
+              padding: EdgeInsets.all(40),
+              child: Text(
+                'Lorem ipsum dolor sit amet. Non vero voluptatem 33 impedit dolores eos unde soluta aut adipisci vitae qui nesciunt assumenda sed rerum aliquam. Et internos animi ex reiciendis iusto ut deleniti rerum sed deleniti libero ut praesentium tempora in amet ducimus.',
+              ),
+            ),
+          ),
         ],
       ),
     );

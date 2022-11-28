@@ -1,40 +1,30 @@
 import 'package:acme_theme_provider/acme_theme_provider.dart';
 import 'package:flutter/widgets.dart';
 
-abstract class CoreWidget<T extends Object> extends StatefulWidget {
+abstract class CoreWidget<C extends ComponentConfig> extends StatefulWidget {
   const CoreWidget({
     super.key,
-    required this.parent,
-  }) : assert(parent is String || parent is Widget);
+    this.name,
+  });
 
-  final T parent;
+  final String? name;
 
   @override
-  CoreState createState();
+  State<CoreWidget> createState() => _CoreState<C>();
+
+  Widget render(BuildContext context, C config);
+
+  Widget build(BuildContext context, Widget child) => child;
 }
 
-abstract class CoreState<T extends CoreWidget, C extends ComponentConfig>
-    extends State<T> {
-  late C config;
-
+class _CoreState<C extends ComponentConfig> extends State<CoreWidget> {
   @override
-  @mustCallSuper
   Widget build(BuildContext context) {
-    final parent = widget.parent;
-
-    config = context.config(
-      parent is String ? parent : parent.runtimeType.toString(),
+    final child = widget.render(
+      context,
+      context.config<C>(widget.name ?? widget.runtimeType.toString()),
     );
 
-    return _NullWidget();
-  }
-}
-
-class _NullWidget extends StatelessWidget {
-  const _NullWidget();
-
-  @override
-  Widget build(BuildContext context) {
-    throw FlutterError('CoreWidgets must call super.build()');
+    return widget.build(context, child);
   }
 }
