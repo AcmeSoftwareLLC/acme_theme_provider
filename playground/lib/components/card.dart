@@ -1,36 +1,17 @@
 import 'package:acme_theme_provider/acme_theme_provider.dart';
 import 'package:flutter/material.dart';
 
-class FirstCard extends StatelessWidget {
-  const FirstCard({
+class FirstCard extends CoreCard {
+  FirstCard({
     super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return CoreCard(
-      parent: this,
-      child: const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Text('First Card'),
-      ),
-    );
-  }
+    required Widget child,
+    EdgeInsetsGeometry padding = const EdgeInsets.all(8),
+  }) : super(child: Padding(padding: padding, child: child));
 }
 
-class SecondCard extends StatelessWidget {
+class SecondCard extends CoreCard {
   const SecondCard({
     super.key,
+    required super.child,
   });
-
-  @override
-  Widget build(BuildContext context) {
-    return CoreCard(
-      parent: this,
-      child: const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Text('Second Card'),
-      ),
-    );
-  }
 }

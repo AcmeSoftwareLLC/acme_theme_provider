@@ -1,11 +1,12 @@
 import 'package:acme_theme_provider/src/core/configs/dropdown_button_config.dart';
 import 'package:acme_theme_provider/src/core/core_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class CoreDropdownButton<T extends Object> extends CoreWidget<T> {
+abstract class CoreDropdownButton<T> extends CoreWidget<DropdownButtonConfig> {
   const CoreDropdownButton({
     super.key,
-    required super.parent,
+    super.name,
     this.alignment = AlignmentDirectional.centerStart,
     this.items,
     this.onChanged,
@@ -32,15 +33,8 @@ class CoreDropdownButton<T extends Object> extends CoreWidget<T> {
   final T? value;
 
   @override
-  CoreState<CoreDropdownButton, DropdownButtonConfig> createState() =>
-      _CoreDropdownButtonState();
-}
-
-class _CoreDropdownButtonState
-    extends CoreState<CoreDropdownButton, DropdownButtonConfig> {
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
+  @nonVirtual
+  Widget render(BuildContext context, DropdownButtonConfig config) {
     return DropdownButton(
       style: config.style,
       autofocus: config.autofocus,
@@ -56,17 +50,17 @@ class _CoreDropdownButtonState
       iconSize: config.iconSize,
       itemHeight: config.itemHeight,
       menuMaxHeight: config.menuMaxHeight,
-      value: widget.value,
-      icon: widget.icon,
-      underline: widget.underline,
-      hint: widget.hint,
-      focusNode: widget.focusNode,
-      alignment: widget.alignment,
-      disabledHint: widget.disabledHint,
-      items: widget.items,
-      onChanged: widget.onChanged,
-      onTap: widget.onTap,
-      selectedItemBuilder: widget.selectedItemBuilder,
+      value: value,
+      icon: icon,
+      underline: underline,
+      hint: hint,
+      focusNode: focusNode,
+      alignment: alignment,
+      disabledHint: disabledHint,
+      items: items,
+      onChanged: onChanged,
+      onTap: onTap,
+      selectedItemBuilder: selectedItemBuilder,
     );
   }
 }

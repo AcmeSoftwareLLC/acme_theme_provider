@@ -7,23 +7,41 @@ class PlayGroundAppBars extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: const [
-          SizedBox(
-            height: 100,
-            child: OneAppBar(
-              title: Text('One App Bar'),
-              leading: Icon(Icons.menu),
+    return DefaultTabController(
+      length: 3,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            const Spacer(),
+            Expanded(
+              child: Scaffold(
+                primary: false,
+                appBar: OneAppBar(
+                  title: const Text('One App Bar'),
+                  leading: const Icon(Icons.menu),
+                  bottom: const TabBar(
+                    tabs: [
+                      Tab(text: 'Tab 1'),
+                      Tab(text: 'Tab 2'),
+                      Tab(text: 'Tab 3'),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
-          TwoAppBar(
-            title: Text('Two App Bar'),
-            leading: Icon(Icons.menu),
-          ),
-        ],
+            Expanded(
+              child: Scaffold(
+                primary: false,
+                appBar: TwoAppBar(
+                  title: const Text('Two App Bar'),
+                  leading: const Icon(Icons.home),
+                ),
+              ),
+            ),
+            const Spacer(),
+          ],
+        ),
       ),
     );
   }
