@@ -3,7 +3,7 @@ import 'package:acme_theme_provider/src/core/core_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class CoreDropdownButton<T> extends CoreWidget<DropdownButtonConfig> {
+abstract class CoreDropdownButton<T> extends CoreWidget<DropdownButtonConfig> {
   const CoreDropdownButton({
     super.key,
     super.name,

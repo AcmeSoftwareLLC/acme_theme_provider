@@ -2,7 +2,7 @@ import 'package:acme_theme_provider/acme_theme_provider.dart';
 import 'package:acme_theme_provider/src/core/core_widget.dart';
 import 'package:flutter/material.dart';
 
-class CoreAppBar extends AppBar implements CoreWidget<AppBarConfig> {
+abstract class CoreAppBar extends AppBar implements CoreWidget<AppBarConfig> {
   CoreAppBar({
     super.key,
     super.title,

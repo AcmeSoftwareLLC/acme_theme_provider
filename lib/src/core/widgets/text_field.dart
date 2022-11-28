@@ -3,7 +3,7 @@ import 'package:acme_theme_provider/src/core/core_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CoreTextField extends CoreWidget<TextFieldConfig> {
+abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
   const CoreTextField({
     super.key,
     super.name,

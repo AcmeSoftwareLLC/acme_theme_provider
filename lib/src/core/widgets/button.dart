@@ -2,7 +2,7 @@ import 'package:acme_theme_provider/src/core/configs/button_config.dart';
 import 'package:acme_theme_provider/src/core/core_widget.dart';
 import 'package:flutter/material.dart';
 
-class CoreButton extends CoreWidget<ButtonConfig> {
+abstract class CoreButton extends CoreWidget<ButtonConfig> {
   const CoreButton({
     super.key,
     super.name,
