@@ -104,6 +104,15 @@ class MyApp extends StatelessWidget {
           'iconDisabledColor': '#55FF00CC',
           'iconEnabledColor': '#55AA00DD',
         },
+        'FirstSlider': {
+          'type': 'slider',
+          'theme': {'thumbColor': '#000000'},
+        },
+        'SecondSlider': {
+          'type': 'slider',
+          'activeColor': '#55FF00CC',
+          'inactiveColor': '#55AA00DD',
+        },
       },
     };
 
