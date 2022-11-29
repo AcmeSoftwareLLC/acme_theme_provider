@@ -10,7 +10,7 @@ class GetRandomUserGateway extends RestGateway<GetRandomUserGatewayOutput,
     UseCaseProvider? provider,
   }) : super(
           context: context ?? providersContext,
-          provider: provider ?? noteUseCaseProvider,
+          provider: provider ?? addPostUseCaseProvider,
         );
 
   @override

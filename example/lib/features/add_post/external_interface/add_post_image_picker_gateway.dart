@@ -13,7 +13,7 @@ class AddPostPickerGateway extends ImageUtilGateway<AddPostPickerGatewayOutput,
     UseCaseProvider? provider,
   }) : super(
           context: context ?? providersContext,
-          provider: provider ?? noteUseCaseProvider,
+          provider: provider ?? addPostUseCaseProvider,
         );
 
   @override

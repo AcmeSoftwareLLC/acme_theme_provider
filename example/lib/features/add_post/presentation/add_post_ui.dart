@@ -18,7 +18,7 @@ class AddPostUI extends UI<AddPostViewModel> {
   Presenter create(PresenterBuilder<AddPostViewModel> builder) {
     return AddPostPresenter(
       builder: builder,
-      provider: noteUseCaseProvider,
+      provider: addPostUseCaseProvider,
     );
   }
 

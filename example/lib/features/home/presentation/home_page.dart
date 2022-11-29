@@ -1,4 +1,6 @@
 import 'package:example/features/home/presentation/home_ui.dart';
+import 'package:example/ui/notifications_ui.dart';
+import 'package:example/ui/search_ui.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,12 +13,8 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> _widgetOptions = <Widget>[
     HomeUI(),
-    Text(
-      'Index 1: Business',
-    ),
-    Text(
-      'Index 2: School',
-    ),
+    SearchUI(),
+    NotificationsUI(),
   ];
 
   void _onItemTapped(int index) {
