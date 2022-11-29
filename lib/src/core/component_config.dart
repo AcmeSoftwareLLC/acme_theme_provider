@@ -10,16 +10,17 @@ export 'configs/card_config.dart';
 export 'configs/text_field_config.dart';
 
 enum ComponentType {
-  appBar('app.bar'),
-  button('button'),
-  textField('text.field'),
-  card('card'),
-  dropDown('dropdown.button'),
-  unknown('unknown');
+  appBar('app.bar', 'AppBar'),
+  button('button', 'Button'),
+  textField('text.field', 'TextField'),
+  card('card', 'Card'),
+  dropDown('dropdown.button', 'DropdownButton'),
+  unknown('unknown', 'Unknown');
 
-  const ComponentType(this.value);
+  const ComponentType(this.value, this.name);
 
   final String value;
+  final String name;
 }
 
 abstract class ComponentConfig {
