@@ -35,10 +35,12 @@ class NoteCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.file(
-              File(imagePath),
-              fit: BoxFit.cover,
-            ),
+            imagePath.isNotEmpty
+                ? Image.file(
+                    File(imagePath),
+                    fit: BoxFit.cover,
+                  )
+                : SizedBox(),
             Text(
               title,
               overflow: TextOverflow.ellipsis,
@@ -47,7 +49,10 @@ class NoteCard extends StatelessWidget {
               content,
               overflow: TextOverflow.ellipsis,
             ),
-            Expanded(child: SizedBox(height: 10,)),
+            Expanded(
+                child: SizedBox(
+              height: 10,
+            )),
           ],
         ),
       ),
@@ -81,12 +86,14 @@ class NoteCardSurface extends NoteCard {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Image.file(
-                  File(imagePath),
-                  height: squareCardHeight / 4,
-                  width: screenWidth,
-                  fit: BoxFit.cover,
-                ),
+                imagePath.isNotEmpty
+                    ? Image.file(
+                        File(imagePath),
+                        height: squareCardHeight / 4,
+                        width: screenWidth,
+                        fit: BoxFit.cover,
+                      )
+                    : SizedBox(),
                 Text(
                   title,
                   overflow: TextOverflow.ellipsis,
@@ -111,9 +118,11 @@ class NoteCardSurface extends NoteCard {
 }
 
 class NoteCardSurfaceVariant extends NoteCard {
-  NoteCardSurfaceVariant._(
-      {required super.title, required super.content, required super.imagePath})
-      : super._();
+  NoteCardSurfaceVariant._({
+    required super.title,
+    required super.content,
+    required super.imagePath,
+  }) : super._();
 
   @override
   Widget build(BuildContext context) {
@@ -136,37 +145,41 @@ class NoteCardSurfaceVariant extends NoteCard {
       shadowColor: Theme.of(context).colorScheme.shadow,
       surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
       child: SizedBox(
-          height: rectangularCardHeight /2 ,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Image.file(
-                  File(imagePath),
-                  height: rectangularCardHeight / 4,
-                  width: screenWidth,
-                  fit: BoxFit.cover,
-                ),
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.right,
-                ),
-                Text(
-                  content,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodySmall,
-                  textAlign: TextAlign.right,
-                ),
-                Expanded(
-                    child: SizedBox(
+        height: rectangularCardHeight / 2,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              imagePath.isNotEmpty
+                  ? Image.file(
+                      File(imagePath),
+                      height: rectangularCardHeight / 4,
+                      width: screenWidth,
+                      fit: BoxFit.cover,
+                    )
+                  : SizedBox(),
+              Text(
+                title,
+                style: Theme.of(context).textTheme.headlineMedium,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.right,
+              ),
+              Text(
+                content,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodySmall,
+                textAlign: TextAlign.right,
+              ),
+              Expanded(
+                child: SizedBox(
                   height: 10,
-                )),
-              ],
-            ),
-          )),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

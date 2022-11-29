@@ -23,55 +23,19 @@ class HomeUI extends UI<HomeViewModel> {
 
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
-    int _selectedIndex = 0;
-
-    List<Widget> _widgetOptions = <Widget>[
-      _NoteItem(viewModel: viewModel),
-      Text(
-        'Index 1: Business',
-      ),
-      Text(
-        'Index 2: School',
-      ),
-    ];
-
-    void _onItemTapped(int index) {
-      _selectedIndex = index;
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'My Notes',
+          'My Tweet',
         ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         leading: SizedBox.shrink(),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: _NoteItem(
+        viewModel: viewModel,
       ),
-      floatingActionButton: AddNoteButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
+      floatingActionButton: AddTweetButton(),
     );
   }
 }
@@ -98,7 +62,7 @@ class _NoteItem extends StatelessWidget {
                       'assets/no_data.png',
                     ),
                     Text(
-                      'You have no notes. Tap on \'Add Note\' to add one',
+                      'You have no tweets. Tap on \'Add Tweets\' to add one',
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -128,11 +92,11 @@ class _NoteItem extends StatelessWidget {
                                   viewModel.onTweetSelected(
                                     viewModel.tweets[index].userName,
                                   );
-                                  context.router.go(Routes.note);
+                                  context.router.go(Routes.addTweet);
                                 },
                                 child: NoteCard.surface(
                                   title: viewModel.tweets[index].userName,
-                                  content: viewModel.tweets[index].post,
+                                  content: '',
                                   imagePath: viewModel.tweets[index].imagePath,
                                 ),
                               );
@@ -142,11 +106,11 @@ class _NoteItem extends StatelessWidget {
                                   viewModel.onTweetSelected(
                                     viewModel.tweets[index].userName,
                                   );
-                                  context.router.push(Routes.note);
+                                  context.router.push(Routes.addTweet);
                                 },
                                 child: NoteCard.surfaceVariant(
                                   title: viewModel.tweets[index].userName,
-                                  content: viewModel.tweets[index].post,
+                                  content: '',
                                   imagePath: viewModel.tweets[index].imagePath,
                                 ),
                               );

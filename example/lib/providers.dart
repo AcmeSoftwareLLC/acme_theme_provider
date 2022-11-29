@@ -1,6 +1,8 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework_rest/clean_framework_rest.dart';
 import 'package:example/core/dependency/image_util_ext_interface/image_util_external_interface.dart';
+import 'package:example/features/add_post/external_interface/get_random_user_gateway.dart';
 import 'package:example/features/home/external_interface/home_get_tweet_gateway.dart';
 import 'package:example/features/add_post/domain/add_post_entity.dart';
 import 'package:example/features/home/domain/home_entity.dart';
@@ -48,6 +50,17 @@ final imageUtilExternalInterface = ExternalInterfaceProvider(
     ],
   ),
 );
+final getRandomUserProvider = GatewayProvider<GetRandomUserGateway>(
+  (_) => GetRandomUserGateway(),
+);
+final getRandomUser = ExternalInterfaceProvider(
+  (_) => RestExternalInterface(
+    baseUrl: 'https://randomuser.me/api/',
+    gatewayConnections: [
+      () => getRandomUserProvider.getGateway(providersContext),
+    ],
+  ),
+);
 
 void loadProviders() {
   homeUseCaseProvider.getUseCaseFromContext(providersContext);
@@ -55,4 +68,6 @@ void loadProviders() {
   notesStoreExternalInterfaceProvider.getExternalInterface(providersContext);
   imageUtilExternalInterface.getExternalInterface(providersContext);
   noteImagePickerGatewayProvider.getGateway(providersContext);
+  getRandomUserProvider.getGateway(providersContext);
+  getRandomUser.getExternalInterface(providersContext);
 }

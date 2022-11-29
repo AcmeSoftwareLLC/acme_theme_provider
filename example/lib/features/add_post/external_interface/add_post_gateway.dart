@@ -28,9 +28,8 @@ class AddPostGateway extends DbGateway<AddPostGatewayOutput,
         converter: (map) {
           final deserializer = Deserializer(map);
           final userName = deserializer.getString('userName');
-          final post = deserializer.getString('post');
           final imagePath = deserializer.getString('imagePath');
-          return Tweet(userName: userName, post: post, imagePath: imagePath);
+          return Tweet(userName: userName, imagePath: imagePath);
         },
       ),
     );

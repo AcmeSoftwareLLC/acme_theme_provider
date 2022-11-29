@@ -36,6 +36,13 @@ Future<void> showOKDialog({
         ),
         actions: <Widget>[
           TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              'Cancel',
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
+          ),
+          TextButton(
             onPressed: onOk,
             child: Text(
               'OK',

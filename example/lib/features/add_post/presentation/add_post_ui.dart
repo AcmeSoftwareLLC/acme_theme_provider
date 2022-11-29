@@ -27,99 +27,108 @@ class AddPostUI extends UI<AddPostViewModel> {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(
+          screenHeight / 12,
+        ),
+        child: AppBar(
+          leadingWidth: screenWidth / 1.5,
+          backgroundColor: Colors.white,
+          leading: Row(
+            children: [
+              SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    viewModel.refresh();
+                    context.router.push(Routes.home);
+                  },
+                  child: Text(
+                    'cancel',
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            GestureDetector(
+              onTap: () {
+                if (viewModel.userName.isEmpty) {
+                  showErrorSnackBar(
+                    context,
+                    'Write Your thought to post...',
+                  );
+                } else if (viewModel.imagePath.isEmpty) {
+                  showOKDialog(
+                    context: context,
+                    title:
+                        'Are you sure you wanna add to tweet without an image?',
+                    content: 'This will add to your post without an image',
+                    onOk: () {
+                      viewModel.getRandomUser();
+                      viewModel.addTweet();
+                      viewModel.refresh();
+                      context.router.push(Routes.home);
+                    },
+                  );
+                } else {
+                  showOKDialog(
+                    context: context,
+                    title: 'Are you sure you wanna add to the post?',
+                    content:
+                        'This will add to your post, you can see in the feed',
+                    onOk: () {
+                      viewModel.getRandomUser();
+                      viewModel.addTweet();
+                      viewModel.refresh();
+                      context.router.push(Routes.home);
+                    },
+                  );
+                }
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(25),
+                  ),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Text(
+                    'Tweet',
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton.extended(
         isExtended: true,
         onPressed: () {
-          if (viewModel.userName.isEmpty && viewModel.post.isEmpty) {
-            showErrorSnackBar(
-              context,
-              'Both fields are empty...',
-            );
-          } else if (viewModel.userName.isEmpty) {
-            showErrorSnackBar(
-              context,
-              'Please enter user name',
-            );
-          } else if (viewModel.post.isEmpty) {
-            showErrorSnackBar(
-              context,
-              'Please enter post',
-            );
-          } else if (viewModel.imagePath.isEmpty) {
-            showErrorSnackBar(
-              context,
-              'Please upload image',
-            );
-          } else {
-            showOKDialog(
-                context: context,
-                title: 'Are you sure you wanna add to the post?',
-                content: 'This will add to your post, you can see in the feed',
-                onOk: () {
-                  viewModel.addPost();
-                  viewModel.refresh();
-                  context.router.push(Routes.home);
-                });
-          }
+          viewModel.openGallery();
         },
         icon: Icon(Icons.add),
         label: Text(
-          'Add post',
+          viewModel.imagePath.isEmpty ? 'Add image' : 'Change image',
           style: Theme.of(context).textTheme.labelMedium,
         ),
       ),
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            SliverAppBar(
-              floating: false,
-              pinned: true,
-              automaticallyImplyLeading: false,
-              expandedHeight: screenHeight / 3,
-              backgroundColor: Theme.of(context).primaryColor,
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true,
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        context.router.push(Routes.home);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                      ),
-                    ),
-                    Text(
-                      viewModel.userName.isEmpty
-                          ? 'Add image'
-                          : viewModel.userName,
-                    ),
-                    IconButton(
-                      onPressed: viewModel.openGallery,
-                      icon: Icon(
-                        Icons.add_photo_alternate_outlined,
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                      ),
-                    ),
-                  ],
-                ),
-                background: viewModel.imagePath.isEmpty
-                    ? const SizedBox()
-                    : Image.file(
-                        File(viewModel.imagePath),
-                        fit: BoxFit.fill,
-                      ),
-              ),
-            ),
-          ];
-        },
-        body: Padding(
-          padding: EdgeInsets.all(16),
-          child: AddPostUIBody(
-            viewModel: viewModel,
-          ),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: AddPostUIBody(
+          viewModel: viewModel,
+          screenHeight: screenHeight,
+          screenWidth: screenWidth,
         ),
       ),
     );
@@ -127,9 +136,15 @@ class AddPostUI extends UI<AddPostViewModel> {
 }
 
 class AddPostUIBody extends StatelessWidget {
-  AddPostUIBody({required this.viewModel});
+  AddPostUIBody({
+    required this.viewModel,
+    required this.screenHeight,
+    required this.screenWidth,
+  });
 
   final AddPostViewModel viewModel;
+  final double screenHeight;
+  final double screenWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -141,31 +156,27 @@ class AddPostUIBody extends StatelessWidget {
             height: 10,
           ),
           TextField(
+            maxLines: 4,
             style: Theme.of(context).textTheme.titleLarge,
             cursorColor: Theme.of(context).primaryColor,
             decoration: InputDecoration(
               border: InputBorder.none,
               focusColor: Theme.of(context).primaryColor,
-              hintText: 'User Name',
+              hintText: 'Write your thought',
             ),
             onChanged: (val) => viewModel.enterUserName(val),
           ),
           SizedBox(
             height: 10,
           ),
-          TextField(
-            style: Theme.of(context).textTheme.labelMedium,
-            cursorColor: Theme.of(context).primaryColor,
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                focusColor: Theme.of(context).primaryColor,
-                hintText: 'your post'),
-            maxLines: 30,
-            onChanged: (val) => viewModel.enterPost(val),
-          ),
-          SizedBox(
-            height: 10,
-          ),
+          viewModel.imagePath.isNotEmpty
+              ? Image.file(
+                  File(viewModel.imagePath),
+                  height: screenHeight / 3,
+                  width: screenWidth,
+                  fit: BoxFit.fill,
+                )
+              : SizedBox(),
         ],
       ),
     );

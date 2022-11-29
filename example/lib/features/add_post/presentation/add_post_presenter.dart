@@ -24,23 +24,19 @@ class AddPostPresenter
         .map(
           (note) => AddPostList(
             userName: note.userName,
-            post: note.post,
             imagePath: note.imagePath,
           ),
         )
         .toList();
     return AddPostViewModel(
       userName: output.userName,
-      post: output.post,
       imagePath: output.imagePath,
       tweets: tweetList,
-      addPost: useCase.addPost,
+      getRandomUser: useCase.getRandomUser,
+      addTweet: useCase.addTweet,
       openGallery: useCase.pickImage,
       enterUserName: (String title) => useCase.onUserNameEntered(
         userName: title,
-      ),
-      enterPost: (String content) => useCase.onPostEntered(
-        post: content,
       ),
       refresh: useCase.refresh,
     );

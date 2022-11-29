@@ -3,6 +3,7 @@ import 'package:example/features/add_post/domain/add_post_entity.dart';
 import 'package:example/features/add_post/domain/add_post_ui_output.dart';
 import 'package:example/features/add_post/external_interface/add_post_gateway.dart';
 import 'package:example/features/add_post/external_interface/add_post_image_picker_gateway.dart';
+import 'package:example/features/add_post/external_interface/get_random_user_gateway.dart';
 import 'package:example/features/theme/tweet.dart';
 
 class AddPostUseCase extends UseCase<AddPostEntity> {
@@ -15,14 +16,12 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
                   .map(
                     (note) => AddPostOutput(
                       userName: note.userName,
-                      post: note.post,
                       imagePath: note.imagePath,
                     ),
                   )
                   .toList();
               return AddPostUIOutput(
                 userName: entity.userName,
-                post: entity.post,
                 imagePath: entity.imagePath,
                 tweets: noteListOutput,
               );
@@ -32,10 +31,6 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
 
   void onUserNameEntered({required String userName}) {
     entity = entity.merge(userName: userName);
-  }
-
-  void onPostEntered({required String post}) {
-    entity = entity.merge(post: post);
   }
 
   Future<void> pickImage() async {
@@ -50,12 +45,35 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
     );
   }
 
-  Future<void> addPost() async {
+  Future<void> getRandomUser() async {
+    await request<GetRandomUserGatewayOutput, GetRandomUserSuccessInput>(
+      GetRandomUserGatewayOutput(),
+      onSuccess: (input) {
+        final getRandomUser = <String, RandomUsers>{};
+        for (final randomUser in input.randomUsers) {
+          getRandomUser[randomUser.userEmail] = RandomUsers(
+            firstName: randomUser.firstName,
+            lastName: randomUser.lastName,
+            userEmail: randomUser.userEmail,
+            userImage: randomUser.userImage,
+          );
+        }
+
+        return entity.merge(
+          randomUsers: getRandomUser,
+        );
+      },
+      onFailure: (failure) {
+        return entity;
+      },
+    );
+  }
+
+  Future<void> addTweet() async {
     await request<AddPostGatewayOutput, AddPostSuccessInput>(
       AddPostGatewayOutput(
         tweet: Tweet(
           userName: entity.userName,
-          post: entity.post,
           imagePath: entity.imagePath,
         ),
       ),
@@ -64,7 +82,6 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
         for (final note in input.tweets) {
           notes[note.userName] = Tweet(
             userName: note.userName,
-            post: note.post,
             imagePath: note.imagePath,
           );
         }

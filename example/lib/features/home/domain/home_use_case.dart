@@ -28,7 +28,6 @@ class HomeUseCase extends UseCase<HomeEntity> {
             for (var tweetData in input.tweets)
               Tweet(
                 userName: tweetData.userName,
-                post: tweetData.post,
                 imagePath: tweetData.imagePath,
               )
           ],
