@@ -1,7 +1,9 @@
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
+import 'package:example/features/home/presentation/another_ui.dart';
 import 'package:example/features/home/presentation/home_presenter.dart';
 import 'package:example/features/home/presentation/home_view_model.dart';
+import 'package:example/features/home/presentation/new_ui.dart';
 import 'package:example/providers.dart';
 import 'package:example/routes.dart';
 import 'package:example/widgets/add_note_button.dart';
@@ -21,23 +23,16 @@ class HomeUI extends UI<HomeViewModel> {
     );
   }
 
+  var _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
-    int _selectedIndex = 0;
 
     List<Widget> _widgetOptions = <Widget>[
       _NoteItem(viewModel: viewModel),
-      Text(
-        'Index 1: Business',
-      ),
-      Text(
-        'Index 2: School',
-      ),
+      NewUI(),
+      AnotherUI(),
     ];
-
-    void _onItemTapped(int index) {
-      _selectedIndex = index;
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -54,24 +49,26 @@ class HomeUI extends UI<HomeViewModel> {
       floatingActionButton: AddNoteButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.business),
+              label: 'Business',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.school),
+              label: 'School',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: (index) {
+            _selectedIndex = index;
+          },
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
     );
   }
 }

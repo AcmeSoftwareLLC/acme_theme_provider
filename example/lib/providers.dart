@@ -15,30 +15,30 @@ final providersContext = ProvidersContext();
 
 final homeUseCaseProvider =
     UseCaseProvider<HomeEntity, HomeUseCase>((_) => HomeUseCase());
-final noteUseCaseProvider =
+final addPostUseCaseProvider =
     UseCaseProvider<AddPostEntity, AddPostUseCase>((_) => AddPostUseCase());
 
 final noteImagePickerGatewayProvider = GatewayProvider<AddPostPickerGateway>(
   (_) => AddPostPickerGateway(),
 );
 
-final homeGetAllNotesGatewayProvider = GatewayProvider<HomeGetAllTweetsGateway>(
+final homeGetAllTweetsGatewayProvider = GatewayProvider<HomeGetAllTweetsGateway>(
   (_) => HomeGetAllTweetsGateway(provider: homeUseCaseProvider),
 );
 
-final homeGetNoteGatewayProvider = GatewayProvider<HomeGetTweetGateway>(
+final homeGetTweetGatewayProvider = GatewayProvider<HomeGetTweetGateway>(
   (_) => HomeGetTweetGateway(provider: homeUseCaseProvider),
 );
 
-final noteAddNoteGatewayProvider = GatewayProvider<AddPostGateway>(
-  (_) => AddPostGateway(provider: noteUseCaseProvider),
+final addPostGatewayProvider = GatewayProvider<AddPostGateway>(
+  (_) => AddPostGateway(provider: addPostUseCaseProvider),
 );
 
 final notesStoreExternalInterfaceProvider = ExternalInterfaceProvider(
     (_) => HomeTweetsStoreExternalInterface(gatewayConnections: [
-          () => homeGetAllNotesGatewayProvider.getGateway(providersContext),
-          () => homeGetNoteGatewayProvider.getGateway(providersContext),
-          () => noteAddNoteGatewayProvider.getGateway(providersContext),
+          () => homeGetAllTweetsGatewayProvider.getGateway(providersContext),
+          () => homeGetTweetGatewayProvider.getGateway(providersContext),
+          () => addPostGatewayProvider.getGateway(providersContext),
         ]));
 
 final imageUtilExternalInterface = ExternalInterfaceProvider(
@@ -51,7 +51,7 @@ final imageUtilExternalInterface = ExternalInterfaceProvider(
 
 void loadProviders() {
   homeUseCaseProvider.getUseCaseFromContext(providersContext);
-  noteUseCaseProvider.getUseCaseFromContext(providersContext);
+  addPostUseCaseProvider.getUseCaseFromContext(providersContext);
   notesStoreExternalInterfaceProvider.getExternalInterface(providersContext);
   imageUtilExternalInterface.getExternalInterface(providersContext);
   noteImagePickerGatewayProvider.getGateway(providersContext);

@@ -2,7 +2,6 @@ import 'package:acme_theme_provider/acme_theme_provider.dart';
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/brand_colors.dart';
-import 'package:example/features/home/presentation/home_ui.dart';
 import 'package:example/providers.dart';
 import 'package:example/routes.dart';
 import 'package:flutter/material.dart';
