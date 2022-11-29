@@ -19,7 +19,7 @@ enum ComponentType {
   textField('text.field', 'TextField'),
   card('card', 'Card'),
   dropDown('dropdown.button', 'DropdownButton'),
-  switchButton('switch', 'Switch'),
+  switchToggle('switch', 'Switch'),
   unknown('unknown', 'Unknown');
 
   const ComponentType(this.value, this.name);
@@ -48,7 +48,7 @@ abstract class ComponentConfig {
         return CardConfig.fromMap(rawConfig);
       case ComponentType.dropDown:
         return DropdownButtonConfig.fromMap(rawConfig);
-      case ComponentType.switchButton:
+      case ComponentType.switchToggle:
         return SwitchConfig.fromMap(rawConfig);
       case ComponentType.unknown:
         throw UnsupportedError('Unsupported component type: $type');

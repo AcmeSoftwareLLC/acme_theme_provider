@@ -48,7 +48,7 @@ class SwitchConfig extends ComponentConfig {
   @override
   Map<String, dynamic> toMap() {
     return {
-      'type': ComponentType.switchButton.value,
+      'type': ComponentType.switchToggle.value,
       'theme': ThemeEncoder.encodeSwitchThemeData(theme),
       'focusColor': ThemeEncoder.encodeColor(focusColor),
       'activeColor': ThemeEncoder.encodeColor(activeColor),
