@@ -9,6 +9,9 @@ import 'configs/app_bar_config.dart';
 export 'configs/app_bar_config.dart';
 export 'configs/card_config.dart';
 export 'configs/text_field_config.dart';
+export 'configs/dropdown_button_config.dart';
+export 'configs/switch_config.dart';
+export 'configs/button_config.dart';
 
 enum ComponentType {
   appBar('app.bar', 'AppBar'),
