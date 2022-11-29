@@ -1,6 +1,6 @@
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/features/home/presentation/home_ui.dart';
-import 'package:example/features/note/presentation/note_ui.dart';
+import 'package:example/features/add_post/presentation/add_post_ui.dart';
 
 enum Routes with RoutesMixin {
   home('/'),
@@ -21,7 +21,7 @@ class NoteRouter extends AppRouter<Routes> {
         route: Routes.home,
       ),
       AppRoute(
-        builder: (context, state) => NoteUI(),
+        builder: (context, state) => AddPostUI(),
         route: Routes.note,
       ),
     ]);

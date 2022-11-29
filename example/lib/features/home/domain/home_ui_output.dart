@@ -1,18 +1,18 @@
 import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:example/features/theme/note.dart';
+import 'package:example/features/theme/tweet.dart';
 
 class HomeUIOutput extends Output {
-  final List<Note> notes;
+  final List<Tweet> tweets;
   final bool isLoading;
 
   HomeUIOutput({
-    required this.notes,
+    required this.tweets,
     required this.isLoading,
   });
 
   @override
   List<Object?> get props => [
-        notes,
+        tweets,
         isLoading,
       ];
 }

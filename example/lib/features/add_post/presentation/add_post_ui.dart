@@ -1,49 +1,49 @@
 import 'dart:io';
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
-import 'package:example/features/note/presentation/note_presenter.dart';
-import 'package:example/features/note/presentation/note_view_model.dart';
+import 'package:example/features/add_post/presentation/add_post_presenter.dart';
+import 'package:example/features/add_post/presentation/add_post_view_model.dart';
 import 'package:example/providers.dart';
 import 'package:example/routes.dart';
 import 'package:example/widgets/dialogs.dart';
 import 'package:flutter/material.dart';
 
-class NoteUI extends UI<NoteViewModel> {
-  NoteUI({
+class AddPostUI extends UI<AddPostViewModel> {
+  AddPostUI({
     super.key,
     super.create,
   });
 
   @override
-  Presenter create(PresenterBuilder<NoteViewModel> builder) {
-    return NotePresenter(
+  Presenter create(PresenterBuilder<AddPostViewModel> builder) {
+    return AddPostPresenter(
       builder: builder,
       provider: noteUseCaseProvider,
     );
   }
 
   @override
-  Widget build(BuildContext context, NoteViewModel viewModel) {
+  Widget build(BuildContext context, AddPostViewModel viewModel) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         isExtended: true,
         onPressed: () {
-          if (viewModel.title.isEmpty && viewModel.content.isEmpty) {
+          if (viewModel.userName.isEmpty && viewModel.post.isEmpty) {
             showErrorSnackBar(
               context,
-              'Both the title and description are empty...',
+              'Both fields are empty...',
             );
-          } else if (viewModel.title.isEmpty) {
+          } else if (viewModel.userName.isEmpty) {
             showErrorSnackBar(
               context,
-              'The title text is empty',
+              'Please enter user name',
             );
-          } else if (viewModel.content.isEmpty) {
+          } else if (viewModel.post.isEmpty) {
             showErrorSnackBar(
               context,
-              'The content text is empty',
+              'Please enter post',
             );
           } else if (viewModel.imagePath.isEmpty) {
             showErrorSnackBar(
@@ -53,18 +53,18 @@ class NoteUI extends UI<NoteViewModel> {
           } else {
             showOKDialog(
                 context: context,
-                title: 'Are you sure you wanna add to the notes?',
-                content: 'This will add to your note',
+                title: 'Are you sure you wanna add to the post?',
+                content: 'This will add to your post, you can see in the feed',
                 onOk: () {
-                  viewModel.addNote();
-                  context.router.push(Routes.home);
+                  viewModel.addPost();
                   viewModel.refresh();
+                  context.router.push(Routes.home);
                 });
           }
         },
         icon: Icon(Icons.add),
         label: Text(
-          'Add note',
+          'Add post',
           style: Theme.of(context).textTheme.labelMedium,
         ),
       ),
@@ -82,15 +82,25 @@ class NoteUI extends UI<NoteViewModel> {
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    IconButton(
+                      onPressed: () {
+                        context.router.push(Routes.home);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                      ),
+                    ),
                     Text(
-                      viewModel.imagePath.isEmpty
+                      viewModel.userName.isEmpty
                           ? 'Add image'
-                          : 'Change image',
+                          : viewModel.userName,
                     ),
                     IconButton(
                       onPressed: viewModel.openGallery,
                       icon: Icon(
                         Icons.add_photo_alternate_outlined,
+                        color: Theme.of(context).colorScheme.primaryContainer,
                       ),
                     ),
                   ],
@@ -107,7 +117,7 @@ class NoteUI extends UI<NoteViewModel> {
         },
         body: Padding(
           padding: EdgeInsets.all(16),
-          child: AddNoteUIBody(
+          child: AddPostUIBody(
             viewModel: viewModel,
           ),
         ),
@@ -116,10 +126,10 @@ class NoteUI extends UI<NoteViewModel> {
   }
 }
 
-class AddNoteUIBody extends StatelessWidget {
-  AddNoteUIBody({required this.viewModel});
+class AddPostUIBody extends StatelessWidget {
+  AddPostUIBody({required this.viewModel});
 
-  final NoteViewModel viewModel;
+  final AddPostViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -136,9 +146,9 @@ class AddNoteUIBody extends StatelessWidget {
             decoration: InputDecoration(
               border: InputBorder.none,
               focusColor: Theme.of(context).primaryColor,
-              hintText: 'Note title',
+              hintText: 'User Name',
             ),
-            onChanged: (val) => viewModel.enterTitle(val),
+            onChanged: (val) => viewModel.enterUserName(val),
           ),
           SizedBox(
             height: 10,
@@ -149,9 +159,9 @@ class AddNoteUIBody extends StatelessWidget {
             decoration: InputDecoration(
                 border: InputBorder.none,
                 focusColor: Theme.of(context).primaryColor,
-                hintText: 'Note description'),
+                hintText: 'your post'),
             maxLines: 30,
-            onChanged: (val) => viewModel.enterContent(val),
+            onChanged: (val) => viewModel.enterPost(val),
           ),
           SizedBox(
             height: 10,

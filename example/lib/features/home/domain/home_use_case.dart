@@ -1,9 +1,9 @@
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:example/features/home/domain/home_entity.dart';
 import 'package:example/features/home/domain/home_ui_output.dart';
-import 'package:example/features/home/external_interface/home_get_all_notes_gateway.dart';
-import 'package:example/features/home/external_interface/home_get_note_gateway.dart';
-import 'package:example/features/theme/note.dart';
+import 'package:example/features/home/external_interface/home_get_all_tweets_gateway.dart';
+import 'package:example/features/home/external_interface/home_get_tweet_gateway.dart';
+import 'package:example/features/theme/tweet.dart';
 
 class HomeUseCase extends UseCase<HomeEntity> {
   HomeUseCase()
@@ -12,7 +12,7 @@ class HomeUseCase extends UseCase<HomeEntity> {
           outputFilters: {
             HomeUIOutput: (HomeEntity entity) {
               return HomeUIOutput(
-                notes: entity.notes,
+                tweets: entity.tweets,
                 isLoading: entity.isLoading,
               );
             },
@@ -20,16 +20,16 @@ class HomeUseCase extends UseCase<HomeEntity> {
         );
 
   Future<void> init({bool isReset = false}) async {
-    await request<HomeGetAllNotesGatewayOutput, HomeGetAllNotesSuccessInput>(
-      HomeGetAllNotesGatewayOutput(),
+    await request<HomeGetAllTweetsGatewayOutput, HomeGetAllTweetsSuccessInput>(
+      HomeGetAllTweetsGatewayOutput(),
       onSuccess: (input) {
         return entity.copyWith(
-          notes: [
-            for (var noteData in input.notes)
-              Note(
-                title: noteData.title,
-                content: noteData.content,
-                imagePath: noteData.imagePath,
+          tweets: [
+            for (var tweetData in input.tweets)
+              Tweet(
+                userName: tweetData.userName,
+                post: tweetData.post,
+                imagePath: tweetData.imagePath,
               )
           ],
           isLoading: false,
@@ -42,11 +42,11 @@ class HomeUseCase extends UseCase<HomeEntity> {
     );
   }
 
-  Future<void> getSelectedNote(String title) async {
-    await request<HomeGetNoteGatewayOutput, HomeGetNoteSuccessInput>(
-        HomeGetNoteGatewayOutput(title: title), onSuccess: (input) {
+  Future<void> getSelectedTweet(String title) async {
+    await request<HomeGetTweetGatewayOutput, HomeGetTweetSuccessInput>(
+        HomeGetTweetGatewayOutput(userName: title), onSuccess: (input) {
       return entity.copyWith(
-        noteTitle: input.note.title,
+        userName: input.tweet.userName,
       );
     }, onFailure: (e) {
       return entity;

@@ -6,11 +6,9 @@ import 'package:example/core/dependency/image_util_ext_interface/image_util_resp
 
 import 'package:example/providers.dart';
 
-class NoteImagePickerGateway extends ImageUtilGateway<
-    NoteImagePickerGatewayOutput,
-    ImagePickerRequest,
-    NoteImagePickerGatewaySuccessInput> {
-  NoteImagePickerGateway({
+class AddPostPickerGateway extends ImageUtilGateway<AddPostPickerGatewayOutput,
+    ImagePickerRequest, AddPostPickerGatewaySuccessInput> {
+  AddPostPickerGateway({
     ProvidersContext? context,
     UseCaseProvider? provider,
   }) : super(
@@ -20,9 +18,9 @@ class NoteImagePickerGateway extends ImageUtilGateway<
 
   @override
   ImagePickerRequest buildRequest(
-    NoteImagePickerGatewayOutput output,
+    AddPostPickerGatewayOutput output,
   ) {
-    return NoteCameraImagePickerRequest();
+    return AddPostImagePickerRequest();
   }
 
   @override
@@ -31,30 +29,30 @@ class NoteImagePickerGateway extends ImageUtilGateway<
   }
 
   @override
-  NoteImagePickerGatewaySuccessInput onSuccess(
+  AddPostPickerGatewaySuccessInput onSuccess(
     covariant ImageUtilSuccessResponse response,
   ) {
-    return NoteImagePickerGatewaySuccessInput(imagePath: response.path);
+    return AddPostPickerGatewaySuccessInput(imagePath: response.path);
   }
 }
 
-class NoteCameraImagePickerRequest extends GalleryImagePickerRequest {
-  NoteCameraImagePickerRequest()
+class AddPostImagePickerRequest extends GalleryImagePickerRequest {
+  AddPostImagePickerRequest()
       : super(
           maxHeight: 1000,
           maxWidth: 1000,
         );
 }
 
-class NoteImagePickerGatewayOutput extends Output {
-  NoteImagePickerGatewayOutput();
+class AddPostPickerGatewayOutput extends Output {
+  AddPostPickerGatewayOutput();
 
   @override
   List<Object?> get props => [];
 }
 
-class NoteImagePickerGatewaySuccessInput extends SuccessInput {
-  NoteImagePickerGatewaySuccessInput({required this.imagePath});
+class AddPostPickerGatewaySuccessInput extends SuccessInput {
+  AddPostPickerGatewaySuccessInput({required this.imagePath});
 
   final String? imagePath;
 }

@@ -1,41 +1,41 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:example/core/dependency/image_util_ext_interface/image_util_external_interface.dart';
-import 'package:example/features/home/external_interface/home_get_note_gateway.dart';
-import 'package:example/features/note/domain/note_entity.dart';
+import 'package:example/features/home/external_interface/home_get_tweet_gateway.dart';
+import 'package:example/features/add_post/domain/add_post_entity.dart';
 import 'package:example/features/home/domain/home_entity.dart';
 import 'package:example/features/home/domain/home_use_case.dart';
-import 'package:example/features/home/external_interface/home_notes_store_external_interface.dart';
-import 'package:example/features/home/external_interface/home_get_all_notes_gateway.dart';
-import 'package:example/features/note/domain/note_use_case.dart';
-import 'package:example/features/note/external_interface/note_add_note_gateway.dart';
-import 'package:example/features/note/external_interface/note_image_picker_gateway.dart';
+import 'package:example/features/home/external_interface/home_tweets_store_external_interface.dart';
+import 'package:example/features/home/external_interface/home_get_all_tweets_gateway.dart';
+import 'package:example/features/add_post/domain/add_post_use_case.dart';
+import 'package:example/features/add_post/external_interface/add_post_gateway.dart';
+import 'package:example/features/add_post/external_interface/add_post_image_picker_gateway.dart';
 
 final providersContext = ProvidersContext();
 
 final homeUseCaseProvider =
     UseCaseProvider<HomeEntity, HomeUseCase>((_) => HomeUseCase());
 final noteUseCaseProvider =
-    UseCaseProvider<NoteEntity, NoteUseCase>((_) => NoteUseCase());
+    UseCaseProvider<AddPostEntity, AddPostUseCase>((_) => AddPostUseCase());
 
-final noteImagePickerGatewayProvider = GatewayProvider<NoteImagePickerGateway>(
-  (_) => NoteImagePickerGateway(),
+final noteImagePickerGatewayProvider = GatewayProvider<AddPostPickerGateway>(
+  (_) => AddPostPickerGateway(),
 );
 
-final homeGetAllNotesGatewayProvider = GatewayProvider<HomeGetAllNotesGateway>(
-  (_) => HomeGetAllNotesGateway(provider: homeUseCaseProvider),
+final homeGetAllNotesGatewayProvider = GatewayProvider<HomeGetAllTweetsGateway>(
+  (_) => HomeGetAllTweetsGateway(provider: homeUseCaseProvider),
 );
 
-final homeGetNoteGatewayProvider = GatewayProvider<HomeGetNoteGateway>(
-  (_) => HomeGetNoteGateway(provider: homeUseCaseProvider),
+final homeGetNoteGatewayProvider = GatewayProvider<HomeGetTweetGateway>(
+  (_) => HomeGetTweetGateway(provider: homeUseCaseProvider),
 );
 
-final noteAddNoteGatewayProvider = GatewayProvider<NoteAddNoteGateway>(
-  (_) => NoteAddNoteGateway(provider: noteUseCaseProvider),
+final noteAddNoteGatewayProvider = GatewayProvider<AddPostGateway>(
+  (_) => AddPostGateway(provider: noteUseCaseProvider),
 );
 
 final notesStoreExternalInterfaceProvider = ExternalInterfaceProvider(
-    (_) => HomeNotesStoreExternalInterface(gatewayConnections: [
+    (_) => HomeTweetsStoreExternalInterface(gatewayConnections: [
           () => homeGetAllNotesGatewayProvider.getGateway(providersContext),
           () => homeGetNoteGatewayProvider.getGateway(providersContext),
           () => noteAddNoteGatewayProvider.getGateway(providersContext),
