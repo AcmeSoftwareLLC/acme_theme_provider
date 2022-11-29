@@ -7,6 +7,7 @@ import 'configs/app_bar_config.dart';
 
 export 'configs/app_bar_config.dart';
 export 'configs/card_config.dart';
+export 'configs/text_field_config.dart';
 
 enum ComponentType {
   appBar('app.bar'),
