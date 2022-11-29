@@ -75,18 +75,18 @@ class MyApp extends StatelessWidget {
         'FirstCard': {
           'type': 'card',
           'theme': {
-            "color": '#FF00FF',
-            "elevation": 4.0,
+            'color': '#FF00FF',
+            'elevation': 4.0,
           },
         },
         'SecondCard': {
           'type': 'card',
           'theme': {
-            "color": '#FFDDFF',
-            "elevation": 8.0,
-            "shadowColor": '#800000',
-            "shape": {"type": "stadium"},
-            "surfaceTintColor": '#55FF0000'
+            'color': '#FFDDFF',
+            'elevation': 8.0,
+            'shadowColor': '#800000',
+            'shape': {'type': 'stadium'},
+            'surfaceTintColor': '#55FF0000'
           },
         },
         'FirstDropdownButton': {
@@ -103,6 +103,24 @@ class MyApp extends StatelessWidget {
           'focusColor': '#55FF00BB',
           'iconDisabledColor': '#55FF00CC',
           'iconEnabledColor': '#55AA00DD',
+        },
+        'FirstSwitch': {
+          'type': 'switch',
+          'theme': {
+            'overlayColor': '#FFFFFFAA',
+            'splashRadius': 20.0,
+            'thumbColor': '#FFFFFF',
+            'trackColor': '#55AA00DD'
+          }
+        },
+        'SecondSwitch': {
+          'type': 'switch',
+          'focusColor': '#FFFF00AA',
+          'activeColor': '#551100BB',
+          'activeTrackColor': '#55BB00BB',
+          'hoverColor': '#55CC00BB',
+          'inactiveThumbColor': '#DD00FF',
+          'inactiveTrackColor': '#EEFFBB',
         },
       },
     };
