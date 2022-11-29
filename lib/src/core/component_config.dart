@@ -3,6 +3,7 @@ import 'package:acme_theme_provider/src/core/configs/card_config.dart';
 import 'package:acme_theme_provider/src/core/configs/chip_config.dart';
 import 'package:acme_theme_provider/src/core/configs/dropdown_button_config.dart';
 import 'package:acme_theme_provider/src/core/configs/slider_config.dart';
+import 'package:acme_theme_provider/src/core/configs/switch_config.dart';
 import 'package:acme_theme_provider/src/core/configs/text_field_config.dart';
 
 import 'configs/app_bar_config.dart';
@@ -11,6 +12,10 @@ export 'configs/app_bar_config.dart';
 export 'configs/card_config.dart';
 export 'configs/text_field_config.dart';
 export 'configs/chip_config.dart';
+export 'configs/dropdown_button_config.dart';
+export 'configs/switch_config.dart';
+export 'configs/button_config.dart';
+export 'configs/slider_config.dart';
 
 enum ComponentType {
   appBar('app.bar', 'AppBar'),
@@ -18,6 +23,7 @@ enum ComponentType {
   textField('text.field', 'TextField'),
   card('card', 'Card'),
   dropDown('dropdown.button', 'DropdownButton'),
+  switchToggle('switch', 'Switch'),
   slider('slider', 'Slider'),
   chip('chip', 'Chip'),
   unknown('unknown', 'Unknown');
@@ -48,6 +54,8 @@ abstract class ComponentConfig {
         return CardConfig.fromMap(rawConfig);
       case ComponentType.dropDown:
         return DropdownButtonConfig.fromMap(rawConfig);
+      case ComponentType.switchToggle:
+        return SwitchConfig.fromMap(rawConfig);
       case ComponentType.slider:
         return SliderConfig.fromMap(rawConfig);
       case ComponentType.chip:
