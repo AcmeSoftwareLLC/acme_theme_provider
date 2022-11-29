@@ -1,6 +1,7 @@
 import 'package:acme_theme_provider/src/core/configs/button_config.dart';
 import 'package:acme_theme_provider/src/core/configs/card_config.dart';
 import 'package:acme_theme_provider/src/core/configs/dropdown_button_config.dart';
+import 'package:acme_theme_provider/src/core/configs/slider_config.dart';
 import 'package:acme_theme_provider/src/core/configs/switch_config.dart';
 import 'package:acme_theme_provider/src/core/configs/text_field_config.dart';
 
@@ -20,6 +21,7 @@ enum ComponentType {
   card('card', 'Card'),
   dropDown('dropdown.button', 'DropdownButton'),
   switchToggle('switch', 'Switch'),
+  slider('slider', 'Slider'),
   unknown('unknown', 'Unknown');
 
   const ComponentType(this.value, this.name);
@@ -50,6 +52,8 @@ abstract class ComponentConfig {
         return DropdownButtonConfig.fromMap(rawConfig);
       case ComponentType.switchToggle:
         return SwitchConfig.fromMap(rawConfig);
+      case ComponentType.slider:
+        return SliderConfig.fromMap(rawConfig);
       case ComponentType.unknown:
         throw UnsupportedError('Unsupported component type: $type');
     }

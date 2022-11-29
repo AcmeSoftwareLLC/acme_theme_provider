@@ -122,6 +122,15 @@ class MyApp extends StatelessWidget {
           'inactiveThumbColor': '#DD00FF',
           'inactiveTrackColor': '#EEFFBB',
         },
+        'FirstSlider': {
+          'type': 'slider',
+          'theme': {'thumbColor': '#000000'},
+        },
+        'SecondSlider': {
+          'type': 'slider',
+          'activeColor': '#55FF00CC',
+          'inactiveColor': '#55AA00DD',
+        },
       },
     };
 
