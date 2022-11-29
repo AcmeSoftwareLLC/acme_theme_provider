@@ -3,6 +3,7 @@ import 'package:playground/widgets/playground_appbars.dart';
 import 'package:playground/widgets/playground_buttons.dart';
 import 'package:playground/widgets/playground_cards.dart';
 import 'package:playground/widgets/playground_dropdown_buttons.dart';
+import 'package:playground/widgets/playground_switches.dart';
 import 'package:playground/widgets/playground_sliders.dart';
 import 'package:playground/widgets/playground_text_fields.dart';
 
@@ -12,7 +13,7 @@ class PlaygroundPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 6,
+      length: 7,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Playground'),
@@ -26,6 +27,7 @@ class PlaygroundPage extends StatelessWidget {
               Tab(text: 'Cards'),
               Tab(text: 'DropdownButtons'),
               Tab(text: 'Sliders'),
+              Tab(text: 'Switches'),
             ],
           ),
         ),
@@ -37,6 +39,7 @@ class PlaygroundPage extends StatelessWidget {
             PlayGroundCards(),
             PlayGroundDropdownButtons(),
             PlayGroundSliders(),
+            PlayGroundSwitches(),
           ],
         ),
       ),
