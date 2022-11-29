@@ -27,23 +27,41 @@ abstract class CoreSwitch extends CoreWidget<SwitchConfig> {
   Widget render(BuildContext context, SwitchConfig config) {
     return Theme(
       data: Theme.of(context).copyWith(switchTheme: config.theme),
-      child: Switch(
-        value: value,
-        onChanged: onChanged,
-        focusNode: focusNode,
-        activeThumbImage: activeThumbImage,
-        inactiveThumbImage: inactiveThumbImage,
-        onActiveThumbImageError: onActiveThumbImageError,
-        onInactiveThumbImageError: onInactiveThumbImageError,
-        focusColor: config.focusColor,
-        autofocus: config.autofocus,
-        dragStartBehavior: config.dragStartBehavior,
-        activeColor: config.activeColor,
-        activeTrackColor: config.activeTrackColor,
-        hoverColor: config.hoverColor,
-        inactiveThumbColor: config.inactiveThumbColor,
-        inactiveTrackColor: config.inactiveTrackColor,
-      ),
+      child: config.adaptive
+          ? Switch.adaptive(
+              value: value,
+              onChanged: onChanged,
+              focusNode: focusNode,
+              activeThumbImage: activeThumbImage,
+              inactiveThumbImage: inactiveThumbImage,
+              onActiveThumbImageError: onActiveThumbImageError,
+              onInactiveThumbImageError: onInactiveThumbImageError,
+              focusColor: config.focusColor,
+              autofocus: config.autofocus,
+              dragStartBehavior: config.dragStartBehavior,
+              activeColor: config.activeColor,
+              activeTrackColor: config.activeTrackColor,
+              hoverColor: config.hoverColor,
+              inactiveThumbColor: config.inactiveThumbColor,
+              inactiveTrackColor: config.inactiveTrackColor,
+            )
+          : Switch(
+              value: value,
+              onChanged: onChanged,
+              focusNode: focusNode,
+              activeThumbImage: activeThumbImage,
+              inactiveThumbImage: inactiveThumbImage,
+              onActiveThumbImageError: onActiveThumbImageError,
+              onInactiveThumbImageError: onInactiveThumbImageError,
+              focusColor: config.focusColor,
+              autofocus: config.autofocus,
+              dragStartBehavior: config.dragStartBehavior,
+              activeColor: config.activeColor,
+              activeTrackColor: config.activeTrackColor,
+              hoverColor: config.hoverColor,
+              inactiveThumbColor: config.inactiveThumbColor,
+              inactiveTrackColor: config.inactiveTrackColor,
+            ),
     );
   }
 }

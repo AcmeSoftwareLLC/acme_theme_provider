@@ -13,6 +13,7 @@ class SwitchConfig extends ComponentConfig {
     required this.inactiveThumbColor,
     required this.inactiveTrackColor,
     required this.autofocus,
+    required this.adaptive,
     required this.dragStartBehavior,
   });
 
@@ -24,6 +25,7 @@ class SwitchConfig extends ComponentConfig {
   final Color? inactiveThumbColor;
   final Color? inactiveTrackColor;
   final bool autofocus;
+  final bool adaptive;
   final DragStartBehavior dragStartBehavior;
 
   factory SwitchConfig.fromMap(Map<String, dynamic> map) {
@@ -39,6 +41,7 @@ class SwitchConfig extends ComponentConfig {
           ThemeDecoder.decodeDragStartBehavior(map['dragStartBehavior']) ??
               DragStartBehavior.start,
       autofocus: map['autofocus'] ?? false,
+      adaptive: map['adaptive'] ?? false,
     );
   }
 
@@ -56,6 +59,7 @@ class SwitchConfig extends ComponentConfig {
       'dragStartBehavior':
           ThemeEncoder.encodeDragStartBehavior(dragStartBehavior),
       'autofocus': autofocus,
+      'adaptive': adaptive,
     };
   }
 
@@ -68,6 +72,7 @@ class SwitchConfig extends ComponentConfig {
     final Color? inactiveThumbColor,
     final Color? inactiveTrackColor,
     final bool? autofocus,
+    final bool? adaptive,
     final DragStartBehavior? dragStartBehavior,
   }) {
     return SwitchConfig(
@@ -79,6 +84,7 @@ class SwitchConfig extends ComponentConfig {
       inactiveThumbColor: inactiveThumbColor ?? this.inactiveThumbColor,
       inactiveTrackColor: inactiveTrackColor ?? this.inactiveTrackColor,
       autofocus: autofocus ?? this.autofocus,
+      adaptive: adaptive ?? this.adaptive,
       dragStartBehavior: dragStartBehavior ?? this.dragStartBehavior,
     );
   }
