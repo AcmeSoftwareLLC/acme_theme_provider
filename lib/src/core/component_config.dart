@@ -1,8 +1,11 @@
+import 'package:acme_theme_provider/src/core/configs/alert_dialog_config.dart';
 import 'package:acme_theme_provider/src/core/configs/button_config.dart';
 import 'package:acme_theme_provider/src/core/configs/card_config.dart';
 import 'package:acme_theme_provider/src/core/configs/dialog_config.dart';
+import 'package:acme_theme_provider/src/core/configs/chip_config.dart';
 import 'package:acme_theme_provider/src/core/configs/dropdown_button_config.dart';
 import 'package:acme_theme_provider/src/core/configs/slider_config.dart';
+import 'package:acme_theme_provider/src/core/configs/snack_bar_config.dart';
 import 'package:acme_theme_provider/src/core/configs/switch_config.dart';
 import 'package:acme_theme_provider/src/core/configs/text_field_config.dart';
 
@@ -11,10 +14,15 @@ import 'configs/app_bar_config.dart';
 export 'configs/app_bar_config.dart';
 export 'configs/card_config.dart';
 export 'configs/text_field_config.dart';
+export 'configs/chip_config.dart';
 export 'configs/dropdown_button_config.dart';
 export 'configs/switch_config.dart';
 export 'configs/button_config.dart';
 export 'configs/dialog_config.dart';
+export 'configs/alert_dialog_config.dart';
+export 'configs/slider_config.dart';
+export 'configs/slider_config.dart';
+export 'configs/snack_bar_config.dart';
 
 enum ComponentType {
   appBar('app.bar', 'AppBar'),
@@ -24,6 +32,9 @@ enum ComponentType {
   dropDown('dropdown.button', 'DropdownButton'),
   switchToggle('switch', 'Switch'),
   slider('slider', 'Slider'),
+  chip('chip', 'Chip'),
+  snackBar('snack.bar', 'SnackBar'),
+  alertDialog('alert.dialog', 'AlertDialog'),
   dialog('dialog', 'Dialog'),
   unknown('unknown', 'Unknown');
 
@@ -57,6 +68,12 @@ abstract class ComponentConfig {
         return SwitchConfig.fromMap(rawConfig);
       case ComponentType.slider:
         return SliderConfig.fromMap(rawConfig);
+      case ComponentType.chip:
+        return ChipConfig.fromMap(rawConfig);
+      case ComponentType.snackBar:
+        return SnackBarConfig.fromMap(rawConfig);
+      case ComponentType.alertDialog:
+        return AlertDialogConfig.fromMap(rawConfig);
       case ComponentType.dialog:
         return DialogConfig.fromMap(rawConfig);
       case ComponentType.unknown:
