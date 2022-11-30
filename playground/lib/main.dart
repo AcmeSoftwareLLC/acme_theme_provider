@@ -131,6 +131,12 @@ class MyApp extends StatelessWidget {
           'activeColor': '#55FF00CC',
           'inactiveColor': '#55AA00DD',
         },
+        'FirstAlertDialog': {
+          'type': 'alert.dialog',
+          'theme': {
+            'backgroundColor': '#FFFF00',
+          }
+        },
       },
     };
 
