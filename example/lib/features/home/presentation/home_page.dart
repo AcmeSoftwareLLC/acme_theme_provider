@@ -1,4 +1,5 @@
 import 'package:example/features/home/presentation/home_ui.dart';
+import 'package:example/ui/message_ui.dart';
 import 'package:example/ui/notifications_ui.dart';
 import 'package:example/ui/search_ui.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class _HomePageState extends State<HomePage> {
     HomeUI(),
     SearchUI(),
     NotificationsUI(),
+    MessageUI(),
   ];
 
   void _onItemTapped(int index) {
@@ -50,6 +52,10 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
             label: 'School',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message),
+            label: 'Messages',
           ),
         ],
         currentIndex: _selectedIndex,

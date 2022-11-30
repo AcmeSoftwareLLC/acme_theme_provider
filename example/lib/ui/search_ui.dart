@@ -8,7 +8,7 @@ class SearchUI extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: ProfileIcon(),
+        leading: ProfileIcon.small(imagePath: 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',),
         title: _SearchBar(),
         actions: [Padding(
           padding: const EdgeInsets.all(8.0),
