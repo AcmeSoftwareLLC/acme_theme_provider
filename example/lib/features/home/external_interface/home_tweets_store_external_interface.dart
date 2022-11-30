@@ -26,7 +26,7 @@ class HomeTweetsStoreExternalInterface extends DbExternalInterface {
     on<AddPostRequest>((request, send) async {
       await db.update(
         store: _tweetStore,
-        key: request.tweet.userName,
+        key: request.tweet.post,
         value: request.tweet.toJson(),
       );
     });

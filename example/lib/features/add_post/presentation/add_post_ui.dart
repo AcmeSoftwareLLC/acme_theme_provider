@@ -58,7 +58,7 @@ class AddPostUI extends UI<AddPostViewModel> {
           actions: [
             GestureDetector(
               onTap: () {
-                if (viewModel.userName.isEmpty) {
+                if (viewModel.post.isEmpty) {
                   showErrorSnackBar(
                     context,
                     'Write Your thought to post...',
@@ -70,7 +70,6 @@ class AddPostUI extends UI<AddPostViewModel> {
                         'Are you sure you wanna add to tweet without an image?',
                     content: 'This will add to your post without an image',
                     onOk: () {
-                      viewModel.getRandomUser();
                       viewModel.addTweet();
                       viewModel.refresh();
                       context.router.push(Routes.home);
@@ -83,7 +82,6 @@ class AddPostUI extends UI<AddPostViewModel> {
                     content:
                         'This will add to your post, you can see in the feed',
                     onOk: () {
-                      viewModel.getRandomUser();
                       viewModel.addTweet();
                       viewModel.refresh();
                       context.router.push(Routes.home);
@@ -164,7 +162,7 @@ class AddPostUIBody extends StatelessWidget {
               focusColor: Theme.of(context).primaryColor,
               hintText: 'Write your thought',
             ),
-            onChanged: (val) => viewModel.enterUserName(val),
+            onChanged: (val) => viewModel.enterPost(val),
           ),
           SizedBox(
             height: 10,

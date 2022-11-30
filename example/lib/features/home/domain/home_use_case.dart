@@ -27,8 +27,12 @@ class HomeUseCase extends UseCase<HomeEntity> {
           tweets: [
             for (var tweetData in input.tweets)
               Tweet(
-                userName: tweetData.userName,
+                post: tweetData.userName,
                 imagePath: tweetData.imagePath,
+                firstName: tweetData.firstName,
+                lastName: tweetData.lastName,
+                userName: tweetData.emailId,
+                userImage: tweetData.userImage,
               )
           ],
           isLoading: false,
@@ -45,7 +49,7 @@ class HomeUseCase extends UseCase<HomeEntity> {
     await request<HomeGetTweetGatewayOutput, HomeGetTweetSuccessInput>(
         HomeGetTweetGatewayOutput(userName: title), onSuccess: (input) {
       return entity.copyWith(
-        userName: input.tweet.userName,
+        userName: input.tweet.post,
       );
     }, onFailure: (e) {
       return entity;

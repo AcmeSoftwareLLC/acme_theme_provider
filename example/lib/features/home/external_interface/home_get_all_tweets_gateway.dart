@@ -31,6 +31,10 @@ class HomeGetAllTweetsGateway extends DbGateway<HomeGetAllTweetsGatewayOutput,
     return TweetData(
       userName: deserializer.getString('key'),
       imagePath: tweetItem.getString('imagePath'),
+      firstName: tweetItem.getString('firstName'),
+      lastName: tweetItem.getString('lastName'),
+      emailId: tweetItem.getString('userName'),
+      userImage: tweetItem.getString('userImage'),
     );
   }
 }
@@ -56,11 +60,18 @@ class HomeGetAllTweetsSuccessInput extends SuccessInput {
 
 class TweetData {
   final String userName;
-
+  final String firstName;
+  final String lastName;
+  final String emailId;
+  final String userImage;
   final String imagePath;
 
   const TweetData({
     required this.userName,
     required this.imagePath,
+    required this.firstName,
+    required this.lastName,
+    required this.emailId,
+    required this.userImage,
   });
 }

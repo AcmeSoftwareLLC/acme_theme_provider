@@ -1,42 +1,55 @@
 import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:example/features/add_post/external_interface/get_random_user_gateway.dart';
 import 'package:example/features/theme/tweet.dart';
 
 class AddPostEntity extends Entity {
+  final String post;
+  final String firstName;
+  final String lastName;
   final String userName;
-
+  final String userImage;
   final String imagePath;
-  final Map<String, RandomUsers> randomUsers;
   final Map<String, Tweet> tweets;
 
   AddPostEntity({
+    this.post = '',
+    this.firstName = '',
+    this.lastName = '',
     this.userName = '',
+    this.userImage = '',
     this.imagePath = '',
     this.tweets = const {},
-    this.randomUsers = const {},
   });
 
   AddPostEntity merge({
+    String? post,
+    String? firstName,
+    String? lastName,
     String? userName,
+    String? userImage,
     String? imagePath,
     Map<String, Tweet>? tweets,
-    Map<String, RandomUsers>? randomUsers,
   }) {
     return AddPostEntity(
+      post: post ?? this.post,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
       userName: userName ?? this.userName,
+      userImage: userImage ?? this.userImage,
       imagePath: imagePath ?? this.imagePath,
       tweets: tweets ?? this.tweets,
-      randomUsers: randomUsers ?? this.randomUsers,
     );
   }
 
   @override
   List<Object?> get props {
     return [
+      post,
+      firstName,
+      lastName,
       userName,
+      userImage,
       imagePath,
       tweets,
-      randomUsers,
     ];
   }
 }

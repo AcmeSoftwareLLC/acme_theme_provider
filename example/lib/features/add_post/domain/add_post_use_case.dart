@@ -12,25 +12,16 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
           entity: AddPostEntity(),
           outputFilters: {
             AddPostUIOutput: (AddPostEntity entity) {
-              final noteListOutput = entity.tweets.values
-                  .map(
-                    (note) => AddPostOutput(
-                      userName: note.userName,
-                      imagePath: note.imagePath,
-                    ),
-                  )
-                  .toList();
               return AddPostUIOutput(
-                userName: entity.userName,
+                post: entity.post,
                 imagePath: entity.imagePath,
-                tweets: noteListOutput,
               );
             },
           },
         );
 
-  void onUserNameEntered({required String userName}) {
-    entity = entity.merge(userName: userName);
+  void onPostEntered({required String post}) {
+    entity = entity.merge(post: post);
   }
 
   Future<void> pickImage() async {
@@ -49,18 +40,11 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
     await request<GetRandomUserGatewayOutput, GetRandomUserSuccessInput>(
       GetRandomUserGatewayOutput(),
       onSuccess: (input) {
-        final getRandomUser = <String, RandomUsers>{};
-        for (final randomUser in input.randomUsers) {
-          getRandomUser[randomUser.userEmail] = RandomUsers(
-            firstName: randomUser.firstName,
-            lastName: randomUser.lastName,
-            userEmail: randomUser.userEmail,
-            userImage: randomUser.userImage,
-          );
-        }
-
         return entity.merge(
-          randomUsers: getRandomUser,
+          firstName: input.firstName,
+          lastName: input.lastName,
+          userName: input.userName,
+          userImage: input.userImage,
         );
       },
       onFailure: (failure) {
@@ -73,20 +57,29 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
     await request<AddPostGatewayOutput, AddPostSuccessInput>(
       AddPostGatewayOutput(
         tweet: Tweet(
-          userName: entity.userName,
+          post: entity.post,
           imagePath: entity.imagePath,
+          firstName: entity.firstName,
+          lastName: entity.lastName,
+          userName: entity.userName,
+          userImage: entity.userImage,
         ),
       ),
       onSuccess: (input) {
-        final notes = <String, Tweet>{};
-        for (final note in input.tweets) {
-          notes[note.userName] = Tweet(
-            userName: note.userName,
-            imagePath: note.imagePath,
+        final tweets = <String, Tweet>{};
+        for (final tweet in input.tweets) {
+          tweets[tweet.post] = Tweet(
+            post: tweet.post,
+            imagePath: tweet.imagePath,
+            firstName: tweet.firstName,
+            lastName: tweet.lastName,
+            userName: tweet.userName,
+            userImage: tweet.imagePath,
           );
         }
+
         return entity.merge(
-          tweets: notes,
+          tweets: tweets,
         );
       },
       onFailure: (e) {

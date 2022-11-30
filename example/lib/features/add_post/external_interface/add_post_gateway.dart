@@ -27,9 +27,20 @@ class AddPostGateway extends DbGateway<AddPostGatewayOutput,
         'data',
         converter: (map) {
           final deserializer = Deserializer(map);
-          final userName = deserializer.getString('userName');
+          final post = deserializer.getString('post');
           final imagePath = deserializer.getString('imagePath');
-          return Tweet(userName: userName, imagePath: imagePath);
+          final firsName = deserializer.getString('firstName');
+          final lastName = deserializer.getString('lastName');
+          final userName = deserializer.getString('userName');
+          final userImage = deserializer.getString('userImage');
+          return Tweet(
+            post: post,
+            imagePath: imagePath,
+            firstName: firsName,
+            lastName: lastName,
+            userName: userName,
+            userImage: userImage,
+          );
         },
       ),
     );

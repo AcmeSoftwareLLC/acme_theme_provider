@@ -34,23 +34,15 @@ class GetRandomUserGateway extends RestGateway<GetRandomUserGatewayOutput,
     RestSuccessResponse response,
   ) {
     final deserializer = Deserializer(response.data);
-
+    final results = deserializer.getList('results', converter: (v) => v).first;
+    final name = results.deserialize('name');
+    final picture = results.deserialize('picture');
+    final login = results.deserialize('login');
     return GetRandomUserSuccessInput(
-      randomUsers: deserializer.getList(
-        'results',
-        converter: (map) {
-          final deserializer = Deserializer(map);
-          final name = deserializer('name');
-          final picture = deserializer('picture');
-
-          return RandomUsers(
-            firstName: name.getString('first'),
-            lastName: name.getString('last'),
-            userEmail: deserializer.getString('email'),
-            userImage: picture.getString('large'),
-          );
-        },
-      ),
+      firstName: name.getString('first'),
+      lastName: name.getString('last'),
+      userName: login.getString('username'),
+      userImage: picture.getString('large'),
     );
   }
 }
@@ -63,9 +55,17 @@ class GetRandomUserGatewayOutput extends Output {
 }
 
 class GetRandomUserSuccessInput extends SuccessInput {
-  GetRandomUserSuccessInput({required this.randomUsers});
+  GetRandomUserSuccessInput({
+    required this.firstName,
+    required this.lastName,
+    required this.userName,
+    required this.userImage,
+  });
 
-  final List<RandomUsers> randomUsers;
+  final String firstName;
+  final String lastName;
+  final String userName;
+  final String userImage;
 }
 
 class RandomUserGatewayRequest extends GetRestRequest {
@@ -73,20 +73,6 @@ class RandomUserGatewayRequest extends GetRestRequest {
 
   @override
   String get path => '?nat=us&randomapi';
-}
-
-class RandomUsers {
-  const RandomUsers({
-    required this.firstName,
-    required this.lastName,
-    required this.userImage,
-    required this.userEmail,
-  });
-
-  final String firstName;
-  final String lastName;
-  final String userImage;
-  final String userEmail;
 }
 
 class InvalidTokenFailureInput extends FailureInput {}

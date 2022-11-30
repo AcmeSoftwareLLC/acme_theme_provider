@@ -13,30 +13,22 @@ class AddPostPresenter
   });
 
   @override
-  void onLayoutReady(BuildContext context, AddPostUseCase useCase) {}
+  void onLayoutReady(BuildContext context, AddPostUseCase useCase) {
+    useCase.getRandomUser();
+  }
 
   @override
   AddPostViewModel createViewModel(
     AddPostUseCase useCase,
     AddPostUIOutput output,
   ) {
-    final tweetList = output.tweets
-        .map(
-          (note) => AddPostList(
-            userName: note.userName,
-            imagePath: note.imagePath,
-          ),
-        )
-        .toList();
     return AddPostViewModel(
-      userName: output.userName,
+      post: output.post,
       imagePath: output.imagePath,
-      tweets: tweetList,
-      getRandomUser: useCase.getRandomUser,
       addTweet: useCase.addTweet,
       openGallery: useCase.pickImage,
-      enterUserName: (String title) => useCase.onUserNameEntered(
-        userName: title,
+      enterPost: (String post) => useCase.onPostEntered(
+        post: post,
       ),
       refresh: useCase.refresh,
     );
