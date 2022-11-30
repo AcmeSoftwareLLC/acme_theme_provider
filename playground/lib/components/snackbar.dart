@@ -4,5 +4,7 @@ class FirstSnackBar extends CoreSnackBar {
   const FirstSnackBar({
     super.key,
     required super.content,
+    super.animation,
+    super.action,
   });
 }

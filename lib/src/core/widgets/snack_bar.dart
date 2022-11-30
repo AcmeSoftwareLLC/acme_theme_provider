@@ -13,6 +13,14 @@ abstract class CoreSnackBar extends SnackBar
     super.dismissDirection,
     super.onVisible,
     super.action,
+    super.backgroundColor,
+    super.elevation,
+    super.margin,
+    super.padding,
+    super.width,
+    super.shape,
+    super.behavior,
+    super.clipBehavior,
   });
 
   @override
@@ -29,7 +37,6 @@ abstract class CoreSnackBar extends SnackBar
         content: content,
         duration: duration,
         action: action,
-        //animation: const AlwaysStoppedAnimation(1.0),
         animation: animation,
         dismissDirection: dismissDirection,
         onVisible: onVisible,
@@ -42,6 +49,28 @@ abstract class CoreSnackBar extends SnackBar
 
   @override
   Widget build(BuildContext context, Widget child) => child;
+
+  @override
+  SnackBar withAnimation(Animation<double> newAnimation, {Key? fallbackKey}) {
+    return _SnackBar(
+      key: key ?? fallbackKey,
+      name: runtimeType.toString(),
+      content: content,
+      backgroundColor: backgroundColor,
+      elevation: elevation,
+      margin: margin,
+      padding: padding,
+      width: width,
+      shape: shape,
+      behavior: behavior,
+      action: action,
+      duration: duration,
+      animation: newAnimation,
+      onVisible: onVisible,
+      dismissDirection: dismissDirection,
+      clipBehavior: clipBehavior,
+    );
+  }
 }
 
 class _CoreSnackBarState extends State<CoreSnackBar> {
@@ -55,4 +84,25 @@ class _CoreSnackBarState extends State<CoreSnackBar> {
     );
     return widget.build(context, child);
   }
+}
+
+class _SnackBar extends CoreSnackBar {
+  const _SnackBar({
+    required super.key,
+    required super.name,
+    required super.content,
+    required super.backgroundColor,
+    required super.elevation,
+    required super.margin,
+    required super.padding,
+    required super.width,
+    required super.shape,
+    required super.behavior,
+    required super.action,
+    required super.duration,
+    required super.animation,
+    required super.onVisible,
+    required super.dismissDirection,
+    required super.clipBehavior,
+  });
 }

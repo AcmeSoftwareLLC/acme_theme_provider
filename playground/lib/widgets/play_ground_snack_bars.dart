@@ -4,21 +4,30 @@ import 'package:playground/components/snackbar.dart';
 class PlayGroundSnackBar extends StatelessWidget {
   const PlayGroundSnackBar({Key? key}) : super(key: key);
 
-  final snackBar = const FirstSnackBar(
-    content: Text('Yay! A SnackBar!'),
-  );
-
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: OutlinedButton(
+    const content = Text('Yay! A SnackBar!');
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        FirstSnackBar(
+          animation: const AlwaysStoppedAnimation(1),
+          content: content,
+          action: SnackBarAction(
+            label: 'CLICK ME',
+            onPressed: () {},
+          ),
+        ),
+        ElevatedButton(
+          child: const Text('SHOW SNACK'),
           onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            ScaffoldMessenger.of(context).showSnackBar(
+              const FirstSnackBar(content: content),
+            );
           },
-          child: const Text('Show SnackBar')),
-      // child: FirstSnackBar(
-      //   content: Text('Yay! A SnackBar!'),
-      // ),
+        )
+      ],
     );
   }
 }
