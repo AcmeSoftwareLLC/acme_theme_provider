@@ -131,6 +131,28 @@ class MyApp extends StatelessWidget {
           'activeColor': '#55FF00CC',
           'inactiveColor': '#55AA00DD',
         },
+        'FirstChip': {
+          'type': 'chip',
+          'theme': {
+            'backgroundColor': '#000000',
+            'brightness': 'dark',
+            'disabledColor': '#FF0000',
+            'secondarySelectedColor': '#FF0000',
+            'selectedColor': '#AABBCC',
+            'labelStyle': {'fontSize': 36.0},
+            'secondaryLabelStyle': {'fontSize': 36.0},
+            'padding': {
+              'bottom': 16.0,
+              'left': 16.0,
+              'right': 16.0,
+              'top': 16.0
+            }
+          },
+        },
+        'SecondChip': {
+          'type': 'chip',
+          'surfaceTintColor': '#55FF00CC',
+        },
       },
     };
 
