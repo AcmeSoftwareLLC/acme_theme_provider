@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playground/widgets/play_ground_snack_bars.dart';
+import 'package:playground/widgets/playground_alert_dialogs.dart';
 import 'package:playground/widgets/playground_appbars.dart';
 import 'package:playground/widgets/playground_buttons.dart';
 import 'package:playground/widgets/playground_cards.dart';
@@ -15,7 +16,7 @@ class PlaygroundPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 9,
+      length: 10,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Playground'),
@@ -32,6 +33,7 @@ class PlaygroundPage extends StatelessWidget {
               Tab(text: 'Switches'),
               Tab(text: 'Chips'),
               Tab(text: 'SnackBar'),
+              Tab(text: 'AlertDialog'),
             ],
           ),
         ),
@@ -46,6 +48,7 @@ class PlaygroundPage extends StatelessWidget {
             PlayGroundSwitches(),
             PlayGroundChips(),
             PlayGroundSnackBar(),
+            PlayGroundAlertDialogs(),
           ],
         ),
       ),

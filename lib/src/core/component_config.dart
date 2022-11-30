@@ -1,3 +1,4 @@
+import 'package:acme_theme_provider/src/core/configs/alert_dialog_config.dart';
 import 'package:acme_theme_provider/src/core/configs/button_config.dart';
 import 'package:acme_theme_provider/src/core/configs/card_config.dart';
 import 'package:acme_theme_provider/src/core/configs/chip_config.dart';
@@ -16,6 +17,7 @@ export 'configs/chip_config.dart';
 export 'configs/dropdown_button_config.dart';
 export 'configs/switch_config.dart';
 export 'configs/button_config.dart';
+export 'configs/alert_dialog_config.dart';
 export 'configs/slider_config.dart';
 export 'configs/slider_config.dart';
 export 'configs/snack_bar_config.dart';
@@ -30,6 +32,7 @@ enum ComponentType {
   slider('slider', 'Slider'),
   chip('chip', 'Chip'),
   snackBar('snack.bar', 'SnackBar'),
+  alertDialog('alert.dialog', 'AlertDialog'),
   unknown('unknown', 'Unknown');
 
   const ComponentType(this.value, this.name);
@@ -66,6 +69,8 @@ abstract class ComponentConfig {
         return ChipConfig.fromMap(rawConfig);
       case ComponentType.snackBar:
         return SnackBarConfig.fromMap(rawConfig);
+      case ComponentType.alertDialog:
+        return AlertDialogConfig.fromMap(rawConfig);
       case ComponentType.unknown:
         throw UnsupportedError('Unsupported component type: $type');
     }
