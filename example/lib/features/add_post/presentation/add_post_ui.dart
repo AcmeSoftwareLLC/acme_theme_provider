@@ -72,7 +72,7 @@ class AddPostUI extends UI<AddPostViewModel> {
                     onOk: () {
                       viewModel.addTweet();
                       viewModel.refresh();
-                      context.router.push(Routes.home);
+                      context.router.go(Routes.home);
                     },
                   );
                 } else {
@@ -121,14 +121,18 @@ class AddPostUI extends UI<AddPostViewModel> {
           style: Theme.of(context).textTheme.labelMedium,
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: AddPostUIBody(
-          viewModel: viewModel,
-          screenHeight: screenHeight,
-          screenWidth: screenWidth,
-        ),
-      ),
+      body: viewModel.showLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : Padding(
+              padding: EdgeInsets.all(16),
+              child: AddPostUIBody(
+                viewModel: viewModel,
+                screenHeight: screenHeight,
+                screenWidth: screenWidth,
+              ),
+            ),
     );
   }
 }

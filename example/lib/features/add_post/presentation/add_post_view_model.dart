@@ -5,6 +5,7 @@ class AddPostViewModel extends ViewModel {
   const AddPostViewModel({
     required this.post,
     required this.imagePath,
+    required this.showLoading,
     required this.addTweet,
     required this.enterPost,
     required this.openGallery,
@@ -13,6 +14,7 @@ class AddPostViewModel extends ViewModel {
 
   final String post;
   final String imagePath;
+  final bool showLoading;
   final VoidCallback addTweet;
   final VoidCallback openGallery;
   final ValueChanged<String> enterPost;
@@ -22,6 +24,7 @@ class AddPostViewModel extends ViewModel {
   List<Object?> get props {
     return [
       post,
+      showLoading,
       imagePath,
     ];
   }

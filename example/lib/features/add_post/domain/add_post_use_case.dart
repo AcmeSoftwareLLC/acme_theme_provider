@@ -15,6 +15,7 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
               return AddPostUIOutput(
                 post: entity.post,
                 imagePath: entity.imagePath,
+                showLoading: entity.showLoading,
               );
             },
           },
@@ -79,6 +80,7 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
         }
 
         return entity.merge(
+          showLoading: true,
           tweets: tweets,
         );
       },
