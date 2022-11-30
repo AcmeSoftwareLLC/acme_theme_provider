@@ -28,45 +28,55 @@ abstract class CoreButton extends CoreWidget<ButtonConfig> {
   @override
   Widget render(BuildContext context, ButtonConfig config) {
     final buttonType = config.buttonType;
+    final theme = Theme.of(context).copyWith(buttonTheme: config.theme);
     switch (buttonType) {
       case ButtonType.elevated:
-        return ElevatedButton(
-          onPressed: onPressed,
-          style: config.style,
-          clipBehavior: config.clip,
-          onHover: onHover,
-          onFocusChange: onFocusChange,
-          onLongPress: onLongPress,
-          focusNode: focusNode,
-          autofocus: autofocus,
-          statesController: statesController,
-          child: child,
+        return Theme(
+          data: theme,
+          child: ElevatedButton(
+            onPressed: onPressed,
+            style: config.style,
+            clipBehavior: config.clip,
+            onHover: onHover,
+            onFocusChange: onFocusChange,
+            onLongPress: onLongPress,
+            focusNode: focusNode,
+            autofocus: autofocus,
+            statesController: statesController,
+            child: child,
+          ),
         );
       case ButtonType.outlined:
-        return OutlinedButton(
-          onPressed: onPressed,
-          style: config.style,
-          clipBehavior: config.clip,
-          onHover: onHover,
-          onFocusChange: onFocusChange,
-          onLongPress: onLongPress,
-          focusNode: focusNode,
-          autofocus: autofocus,
-          statesController: statesController,
-          child: child,
+        return Theme(
+          data: theme,
+          child: OutlinedButton(
+            onPressed: onPressed,
+            style: config.style,
+            clipBehavior: config.clip,
+            onHover: onHover,
+            onFocusChange: onFocusChange,
+            onLongPress: onLongPress,
+            focusNode: focusNode,
+            autofocus: autofocus,
+            statesController: statesController,
+            child: child,
+          ),
         );
       case ButtonType.text:
-        return TextButton(
-          onPressed: onPressed,
-          style: config.style,
-          clipBehavior: config.clip,
-          onHover: onHover,
-          onFocusChange: onFocusChange,
-          onLongPress: onLongPress,
-          focusNode: focusNode,
-          autofocus: autofocus,
-          statesController: statesController,
-          child: child,
+        return Theme(
+          data: theme,
+          child: TextButton(
+            onPressed: onPressed,
+            style: config.style,
+            clipBehavior: config.clip,
+            onHover: onHover,
+            onFocusChange: onFocusChange,
+            onLongPress: onLongPress,
+            focusNode: focusNode,
+            autofocus: autofocus,
+            statesController: statesController,
+            child: child,
+          ),
         );
       case ButtonType.unknown:
         throw UnsupportedError('Unsupported button type');
