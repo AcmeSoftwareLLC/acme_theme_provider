@@ -1,5 +1,6 @@
 import 'package:acme_theme_provider/src/core/configs/button_config.dart';
 import 'package:acme_theme_provider/src/core/configs/card_config.dart';
+import 'package:acme_theme_provider/src/core/configs/dialog_config.dart';
 import 'package:acme_theme_provider/src/core/configs/dropdown_button_config.dart';
 import 'package:acme_theme_provider/src/core/configs/slider_config.dart';
 import 'package:acme_theme_provider/src/core/configs/switch_config.dart';
@@ -13,6 +14,7 @@ export 'configs/text_field_config.dart';
 export 'configs/dropdown_button_config.dart';
 export 'configs/switch_config.dart';
 export 'configs/button_config.dart';
+export 'configs/dialog_config.dart';
 
 enum ComponentType {
   appBar('app.bar', 'AppBar'),
@@ -22,6 +24,7 @@ enum ComponentType {
   dropDown('dropdown.button', 'DropdownButton'),
   switchToggle('switch', 'Switch'),
   slider('slider', 'Slider'),
+  dialog('dialog', 'Dialog'),
   unknown('unknown', 'Unknown');
 
   const ComponentType(this.value, this.name);
@@ -54,6 +57,8 @@ abstract class ComponentConfig {
         return SwitchConfig.fromMap(rawConfig);
       case ComponentType.slider:
         return SliderConfig.fromMap(rawConfig);
+      case ComponentType.dialog:
+        return DialogConfig.fromMap(rawConfig);
       case ComponentType.unknown:
         throw UnsupportedError('Unsupported component type: $type');
     }

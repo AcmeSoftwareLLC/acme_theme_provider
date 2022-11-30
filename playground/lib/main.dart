@@ -131,6 +131,13 @@ class MyApp extends StatelessWidget {
           'activeColor': '#55FF00CC',
           'inactiveColor': '#55AA00DD',
         },
+        'FirstDialog': {
+          'type': 'dialog',
+          'theme': {
+            'backgroundColor': '#55FF00CC',
+            'shape': {'type': 'stadium'}
+          },
+        },
       },
     };
 
