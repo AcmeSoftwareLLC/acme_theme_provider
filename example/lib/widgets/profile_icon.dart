@@ -20,7 +20,7 @@ class ProfileIcon extends StatelessWidget {
         imagePath,
         fit: BoxFit.cover,
       ),
-      decoration: BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
+      decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary, shape: BoxShape.circle),
     );
   }
 }
@@ -58,7 +58,7 @@ class ProfileIconMedium extends ProfileIcon {
               imagePath,
               fit: BoxFit.contain,
             )),
-        decoration: BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
+        decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary, shape: BoxShape.circle),
       ),
     );
   }
@@ -79,7 +79,7 @@ class ProfileIconLarge extends ProfileIcon {
           fit: BoxFit.contain,
         ),
       ),
-      decoration: BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
+      decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary, shape: BoxShape.circle),
     );
   }
 }

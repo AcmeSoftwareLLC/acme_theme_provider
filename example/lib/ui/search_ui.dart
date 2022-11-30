@@ -12,10 +12,16 @@ class SearchUI extends StatelessWidget {
         title: _SearchBar(),
         actions: [Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Icon(Icons.settings),
+          child: Icon(Icons.settings_outlined, color: Theme.of(context).colorScheme.primary,),
         )],
       ),
-      body: _TrendsWidget(),
+      body: Container(child: Column(
+        children: [
+          _TrendsWidget(),
+        ],
+      ),
+        color: Theme.of(context).colorScheme.surfaceVariant,
+      ),
     );
   }
 }
@@ -24,6 +30,7 @@ class _SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 40,
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
@@ -36,7 +43,7 @@ class _SearchBar extends StatelessWidget {
         children: [
           Icon(Icons.search),
           SizedBox(width: 10,),
-          Text('Search Twitter'),
+          Text('Search Twitter', style: TextStyle(fontSize: 16),),
         ],
       ),
     );
@@ -47,31 +54,36 @@ class _TrendsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _screenWidth = MediaQuery.of(context).size.width;
+    final _screenHeight = MediaQuery.of(context).size.height;
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
+
         Container(
           width: _screenWidth,
-          padding: EdgeInsets.all(8),
-          child: Text('Trends for you'),
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(24),
-          child: Container(
-            child: Column(
-              children: [
-                Text('No new trends for you'),
-                SizedBox(height: 20),
-                Text(
-                    'It seems like there\'s not a lot to show you right\n now, but you can see trends for other areas'),
-                SizedBox(height: 20),
-                AppElevatedButton(title: 'Change location')
-              ],
-            ),
+          color: Theme.of(context).colorScheme.surface,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: _screenWidth,
+                padding: EdgeInsets.all(8),
+                child: Text('Trends for you', style: Theme.of(context).textTheme.titleMedium),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Theme.of(context).colorScheme.surfaceVariant,),
+                ),
+              ),
+              SizedBox(height: _screenHeight/10,),
+              Text('No new trends for you', style: Theme.of(context).textTheme.titleLarge,),
+              SizedBox(height: 20),
+              Text(
+                  'It seems like there\'s not a lot to show you right\n now, but you can see trends for other areas'),
+              SizedBox(height: 20),
+              AppElevatedButton(title: 'Change location'),
+              SizedBox(height: 40),
+            ],
           ),
         )
       ],

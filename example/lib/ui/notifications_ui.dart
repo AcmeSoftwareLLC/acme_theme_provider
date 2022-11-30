@@ -8,17 +8,17 @@ class NotificationsUI extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Text('Notifications'),
+          title: Text('Notifications', style: Theme.of(context).textTheme.titleMedium),
           centerTitle: true,
           leading: ProfileIcon.small(imagePath: 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',),
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.settings),
+              child: Icon(Icons.settings_outlined, color: Theme.of(context).colorScheme.primary,),
             )
           ],
           bottom: PreferredSize(
-            child: const TabBar(
+            child: TabBar(
               tabs: [
                 Tab(
                   text: 'All',
@@ -27,6 +27,10 @@ class NotificationsUI extends StatelessWidget {
                   text: 'Mentions',
                 ),
               ],
+              labelColor: Theme.of(context).colorScheme.primary,
+              unselectedLabelColor: Theme.of(context).colorScheme.outline,
+              indicatorColor: Theme.of(context).colorScheme.primary,
+
             ),
             preferredSize: Size.fromHeight(50),
           ),
@@ -65,9 +69,9 @@ class _NotificationCard extends StatelessWidget {
     final _screenHeight = MediaQuery.of(context).size.height;
     final _screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: _screenHeight / 1.5,
+      height: _screenHeight / 4,
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(width: 1, color: Colors.grey),),
+        border: Border(bottom: BorderSide(width: 1, color: Theme.of(context).colorScheme.surfaceVariant),),
       ),
       child: Column(
         children: [
@@ -89,9 +93,10 @@ class _NotificationCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 72),
+            padding: const EdgeInsets.only(left: 72, right: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('In case you missed Saad Drusteer\'s Tweet'),
                 Text(
@@ -129,9 +134,9 @@ class _MentionsCard extends StatelessWidget {
     final _screenHeight = MediaQuery.of(context).size.height;
     final _screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: _screenHeight / 1.5,
+      height: _screenHeight / 2,
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(width: 1, color: Colors.grey),),
+        border: Border(bottom: BorderSide(width: 1, color: Theme.of(context).colorScheme.surfaceVariant),),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,7 +150,9 @@ class _MentionsCard extends StatelessWidget {
                 Text('Mariane'),
                 SizedBox(width: 20,),
                 Text('1/21/20'),
-                SizedBox(width: 20,),
+                SizedBox(
+                  width: _screenWidth / 2.5,
+                ),
                 Icon(Icons.keyboard_arrow_down),
               ],
             ),
@@ -160,7 +167,7 @@ class _MentionsCard extends StatelessWidget {
                 Text('Mariane mentioned you in a post'),
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
+                    border: Border.all(color: Theme.of(context).colorScheme.surfaceVariant),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   child: ClipRRect(

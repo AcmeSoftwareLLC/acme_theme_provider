@@ -6,13 +6,13 @@ class MessageUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Messages'),
+        title: Text('Messages', style: Theme.of(context).textTheme.titleMedium),
         centerTitle: true,
         leading: ProfileIcon.small(imagePath: 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8),
-            child: Icon(Icons.settings),
+            child: Icon(Icons.settings_outlined, color: Theme.of(context).colorScheme.primary,),
           )
         ],
         bottom: PreferredSize(
@@ -30,7 +30,7 @@ class MessageUI extends StatelessWidget {
                 ],
               ),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
+                border: Border.all(color:  Theme.of(context).colorScheme.surfaceVariant,),
                 borderRadius: BorderRadius.all(
                   Radius.circular(24),
                 ),
@@ -67,7 +67,7 @@ class _MessageTile extends StatelessWidget {
     return Container(
       height: _screenHeight/10,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
+        border: Border.all(width: 0.5, color: Theme.of(context).colorScheme.surfaceVariant),
       ),
       child: ListTile(
         onTap: (){},

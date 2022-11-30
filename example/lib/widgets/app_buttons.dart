@@ -16,7 +16,9 @@ class AppElevatedButton extends StatelessWidget {
         onPressed: (){
           context.router.go(Routes.notifications);
         },
-        child: Text(title),
+        child: Text(title, style: TextStyle(color: Colors.white),),
+        style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.primary,),
+
       ),
     );
   }
