@@ -1,10 +1,9 @@
 import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/features/home/presentation/home_presenter.dart';
 import 'package:example/features/home/presentation/home_view_model.dart';
 import 'package:example/providers.dart';
-import 'package:example/routes.dart';
 import 'package:example/widgets/add_note_button.dart';
+import 'package:example/widgets/profile_icon.dart';
 import 'package:example/widgets/show_tweet.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +23,21 @@ class HomeUI extends UI<HomeViewModel> {
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text('Tweets'),
+        centerTitle: true,
+        leading: ProfileIcon.small(
+          imagePath:
+              'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.settings),
+          )
+        ],
+      ),
       body: _NoteItem(
         viewModel: viewModel,
       ),

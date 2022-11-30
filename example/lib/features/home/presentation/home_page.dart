@@ -28,14 +28,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Icon(Icons.person),
-        title: Icon(Icons.directions_bike_outlined),
-        centerTitle: true,
-        actions: [
-          Icon(Icons.settings),
-        ],
-      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
