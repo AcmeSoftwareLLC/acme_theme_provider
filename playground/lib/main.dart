@@ -153,6 +153,12 @@ class MyApp extends StatelessWidget {
           'type': 'chip',
           'surfaceTintColor': '#55FF00CC',
         },
+        'FirstAlertDialog': {
+          'type': 'alert.dialog',
+          'theme': {
+            'backgroundColor': '#FFFF00',
+          }
+        },
       },
     };
 
