@@ -131,6 +131,14 @@ class MyApp extends StatelessWidget {
           'activeColor': '#55FF00CC',
           'inactiveColor': '#55AA00DD',
         },
+        'FirstSnackBar': {
+          'type': 'snack.bar',
+          'theme': {
+            'backgroundColor': '#000000',
+            'behavior': 'floating',
+          },
+          'margin': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0}
+        },
         'FirstChip': {
           'type': 'chip',
           'theme': {
