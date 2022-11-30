@@ -8,17 +8,18 @@ class PlayGroundAlertDialogs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: OutlinedButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) => const FirstAlertDialog(
-                title: Text('Lorem ipsum dolor sit amet.'),
-                content: Text(
-                    'Lorem ipsum dolor sit amet. 33 aperiam rerum vel sint veniam nam dolor placeat! Aut quis sint aut repellat dolorum 33 minus accusamus.'),
-              ),
-            );
-          },
-          child: const Text('Show Dialog')),
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => const FirstAlertDialog(
+              title: Text('Lorem ipsum dolor sit amet.'),
+              content: Text(
+                  'Lorem ipsum dolor sit amet. 33 aperiam rerum vel sint veniam nam dolor placeat! Aut quis sint aut repellat dolorum 33 minus accusamus.'),
+            ),
+          );
+        },
+        child: const Text('Show Dialog'),
+      ),
     );
   }
 }
