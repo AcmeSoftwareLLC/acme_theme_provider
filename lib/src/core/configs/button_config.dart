@@ -4,11 +4,13 @@ import 'package:json_theme/json_theme.dart';
 
 class ButtonConfig extends ComponentConfig {
   const ButtonConfig({
+    required this.theme,
     required this.style,
     required this.clip,
     required this.buttonType,
   });
 
+  final ButtonThemeData? theme;
   final ButtonStyle? style;
   final Clip clip;
   final ButtonType buttonType;
@@ -20,6 +22,7 @@ class ButtonConfig extends ComponentConfig {
       orElse: () => ButtonType.unknown,
     );
     return ButtonConfig(
+      theme: ThemeDecoder.decodeButtonThemeData(map['theme']),
       style: ThemeDecoder.decodeButtonStyle(map['style']),
       clip: ThemeDecoder.decodeClip(map['clip']) ?? Clip.none,
       buttonType: buttonType,
@@ -30,6 +33,7 @@ class ButtonConfig extends ComponentConfig {
   Map<String, dynamic> toMap() {
     return {
       'type': ComponentType.button.value,
+      'theme': ThemeEncoder.encodeButtonThemeData(theme),
       'style': ThemeEncoder.encodeButtonStyle(style),
       'clip': ThemeEncoder.encodeClip(clip),
       'buttonType': buttonType.value,
@@ -37,11 +41,13 @@ class ButtonConfig extends ComponentConfig {
   }
 
   ButtonConfig copyWith({
+    ButtonThemeData? theme,
     ButtonStyle? style,
     Clip? clip,
     ButtonType? buttonType,
   }) {
     return ButtonConfig(
+      theme: theme ?? this.theme,
       style: style ?? this.style,
       clip: clip ?? this.clip,
       buttonType: buttonType ?? this.buttonType,
