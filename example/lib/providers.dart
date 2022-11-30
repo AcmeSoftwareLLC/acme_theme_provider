@@ -16,48 +16,48 @@ import 'package:example/features/add_post/external_interface/add_post_image_pick
 final providersContext = ProvidersContext();
 
 final homeUseCaseProvider =
-    UseCaseProvider<HomeEntity, HomeUseCase>((_) => HomeUseCase());
+UseCaseProvider<HomeEntity, HomeUseCase>((_) => HomeUseCase());
 final addPostUseCaseProvider =
-    UseCaseProvider<AddPostEntity, AddPostUseCase>((_) => AddPostUseCase());
+UseCaseProvider<AddPostEntity, AddPostUseCase>((_) => AddPostUseCase());
 
 final noteImagePickerGatewayProvider = GatewayProvider<AddPostPickerGateway>(
-  (_) => AddPostPickerGateway(),
+      (_) => AddPostPickerGateway(),
 );
 
 final homeGetAllTweetsGatewayProvider = GatewayProvider<HomeGetAllTweetsGateway>(
-  (_) => HomeGetAllTweetsGateway(provider: homeUseCaseProvider),
+      (_) => HomeGetAllTweetsGateway(provider: homeUseCaseProvider),
 );
 
 final homeGetTweetGatewayProvider = GatewayProvider<HomeGetTweetGateway>(
-  (_) => HomeGetTweetGateway(provider: homeUseCaseProvider),
+      (_) => HomeGetTweetGateway(provider: homeUseCaseProvider),
 );
 
 final addPostGatewayProvider = GatewayProvider<AddPostGateway>(
-  (_) => AddPostGateway(provider: addPostUseCaseProvider),
+      (_) => AddPostGateway(provider: addPostUseCaseProvider),
 );
 
 final notesStoreExternalInterfaceProvider = ExternalInterfaceProvider(
-    (_) => HomeTweetsStoreExternalInterface(gatewayConnections: [
+        (_) => HomeTweetsStoreExternalInterface(gatewayConnections: [
           () => homeGetAllTweetsGatewayProvider.getGateway(providersContext),
           () => homeGetTweetGatewayProvider.getGateway(providersContext),
           () => addPostGatewayProvider.getGateway(providersContext),
-        ]));
+    ]));
 
 final imageUtilExternalInterface = ExternalInterfaceProvider(
-  (_) => ImageUtilExternalInterface(
+      (_) => ImageUtilExternalInterface(
     gatewayConnections: [
-      () => noteImagePickerGatewayProvider.getGateway(providersContext),
+          () => noteImagePickerGatewayProvider.getGateway(providersContext),
     ],
   ),
 );
 final getRandomUserProvider = GatewayProvider<GetRandomUserGateway>(
-  (_) => GetRandomUserGateway(),
+      (_) => GetRandomUserGateway(),
 );
 final getRandomUser = ExternalInterfaceProvider(
-  (_) => RestExternalInterface(
+      (_) => RestExternalInterface(
     baseUrl: 'https://randomuser.me/api/',
     gatewayConnections: [
-      () => getRandomUserProvider.getGateway(providersContext),
+          () => getRandomUserProvider.getGateway(providersContext),
     ],
   ),
 );
