@@ -18,7 +18,7 @@ class PlayGroundAlertDialogs extends StatelessWidget {
             ),
           );
         },
-        child: const Text('Show Dialog'),
+        child: const Text('Show Alert Dialog'),
       ),
     );
   }
