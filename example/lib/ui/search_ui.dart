@@ -12,7 +12,7 @@ class SearchUI extends StatelessWidget {
         title: _SearchBar(),
         actions: [Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Icon(Icons.settings_outlined, color: Theme.of(context).colorScheme.primary,),
+          child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
         )],
       ),
       body: Container(child: Column(
@@ -29,22 +29,28 @@ class SearchUI extends StatelessWidget {
 class _SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.all(
-          Radius.circular(24),
+    return SizedBox(
+      child: Container(
+        height: 32,
+        child: TextField(
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+          decoration: InputDecoration(
+            filled: true,
+            fillColor:  Theme.of(context).colorScheme.surfaceVariant,
+            prefixIcon: ImageIcon(AssetImage('assets/icons/search_stroke_icon.png'), color: Theme.of(context).colorScheme.onSurfaceVariant,),
+            labelText: 'Search twitter',
+            labelStyle: Theme.of(context).textTheme.bodyLarge,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                width: 0,
+                style: BorderStyle.none,
+              ),
+            ),
+          ),
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.search),
-          SizedBox(width: 10,),
-          Text('Search Twitter', style: TextStyle(fontSize: 16),),
-        ],
       ),
     );
   }
@@ -68,15 +74,20 @@ class _TrendsWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
+                height: 48,
                 width: _screenWidth,
-                padding: EdgeInsets.all(8),
-                child: Text('Trends for you', style: Theme.of(context).textTheme.titleMedium),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  child: Text('Trends for you', style: Theme.of(context).textTheme.titleMedium),
+                ),
                 decoration: BoxDecoration(
                   border: Border.all(color: Theme.of(context).colorScheme.surfaceVariant,),
                 ),
               ),
-              SizedBox(height: _screenHeight/10,),
-              Text('No new trends for you', style: Theme.of(context).textTheme.titleLarge,),
+              Padding(
+                padding: const EdgeInsets.only(top: 36, left: 80, right: 80),
+                child: Text('No new trends for you', style: Theme.of(context).textTheme.titleLarge,),
+              ),
               SizedBox(height: 20),
               Text(
                   'It seems like there\'s not a lot to show you right\n now, but you can see trends for other areas'),

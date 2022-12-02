@@ -80,7 +80,7 @@ class _NotificationCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ImageIcon(AssetImage('assets/icons/star_solid_icon.png'), color: Colors.purpleAccent,),
+                ImageIcon(AssetImage('assets/icons/star_solid_icon.png'), color: Colors.deepPurple,),
                 ProfileIcon.medium(imagePath: index.isEven? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg' :'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',),
                 SizedBox(
                   width: _screenWidth / 2,
@@ -98,7 +98,7 @@ class _NotificationCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('In case you missed Saad Drusteer\'s Tweet'),
+                Text('In case you missed Saad Drusteer\'s Tweet', style: Theme.of(context).textTheme.bodyMedium,),
                 Text(
                     'Are you using WordPress and migrating to the JAMstack? I wrote up a case study about how the Smashing magazine moved to JAMstack and saw great performance improvements and better security'),
               ],

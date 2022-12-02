@@ -34,7 +34,7 @@ class HomeUI extends UI<HomeViewModel> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.settings),
+            child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
           )
         ],
       ),

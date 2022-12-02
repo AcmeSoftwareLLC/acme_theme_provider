@@ -9,9 +9,11 @@ class AppElevatedButton extends StatelessWidget {
   const AppElevatedButton({super.key, required this.title});
   @override
   Widget build(BuildContext context) {
+    final _screenHeight = MediaQuery.of(context).size.height;
+    final _screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: 60,
-      width: 200,
+      height: 36,
+      width: 136,
       child: ElevatedButton(
         onPressed: (){
           context.router.go(Routes.notifications);
