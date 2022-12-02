@@ -14,7 +14,7 @@ class NotificationsUI extends StatelessWidget {
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.settings_outlined, color: Theme.of(context).colorScheme.primary,),
+              child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
             )
           ],
           bottom: PreferredSize(
@@ -80,7 +80,7 @@ class _NotificationCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(Icons.star_outlined),
+                ImageIcon(AssetImage('assets/icons/star_solid_icon.png'), color: Colors.purpleAccent,),
                 ProfileIcon.medium(imagePath: index.isEven? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg' :'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',),
                 SizedBox(
                   width: _screenWidth / 2,
