@@ -32,27 +32,35 @@ class _HomePageState extends State<HomePage> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: ImageIcon(
+              AssetImage('assets/icons/home_icon.png'),
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: ImageIcon(
+              AssetImage('assets/icons/search_stroke_icon.png'),
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_outlined),
+            icon: ImageIcon(
+              AssetImage('assets/icons/bell_stroke_icon.png'),
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.email),
+            icon: ImageIcon(
+              AssetImage('assets/icons/message_stroke_icon.png'),
+            ),
             label: '',
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Theme.of(context).colorScheme.primary,
-        unselectedItemColor: Theme.of(context).colorScheme.primary,
+        unselectedItemColor: Theme.of(context).colorScheme.outline,
         type: BottomNavigationBarType.fixed,
         onTap: _onItemTapped,
       ),

@@ -30,6 +30,7 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+        buildToolsVersion '29.0.0'
     }
 
     defaultConfig {
