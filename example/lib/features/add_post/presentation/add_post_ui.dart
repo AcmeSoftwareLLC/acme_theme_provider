@@ -46,7 +46,7 @@ class AddPostUI extends UI<AddPostViewModel> {
                     context.router.push(Routes.home);
                   },
                   child: Text(
-                    'cancel',
+                    'Cancel',
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -97,7 +97,7 @@ class AddPostUI extends UI<AddPostViewModel> {
                   ),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: EdgeInsets.all(16),
                   child: Text(
                     'Tweet',
                   ),

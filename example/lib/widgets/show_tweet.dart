@@ -30,8 +30,20 @@ class ShowTweet extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ProfileIcon.large(imagePath: userImage),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Icon(
+                  Icons.favorite,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                ProfileIcon.large(imagePath: userImage),
+              ],
+            ),
             SizedBox(
               width: 8,
             ),
@@ -39,10 +51,14 @@ class ShowTweet extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(totalLike.isEven
+                      ? 'Zack John liked'
+                      : 'Richard Jones Liked'),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        firstName,
+                        firstName + ' ' + lastName,
                         style: Theme.of(context)
                             .textTheme
                             .headlineSmall!
@@ -51,22 +67,16 @@ class ShowTweet extends StatelessWidget {
                       SizedBox(
                         width: 5,
                       ),
-                      Text(
-                        lastName,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineSmall!
-                            .copyWith(fontSize: 16),
-                      ),
                       SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        '@$userName',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .copyWith(fontSize: 14),
+                        width: 80,
+                        child: Text(
+                          '@$userName',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(fontSize: 14),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                       SizedBox(
                         width: 5,
@@ -77,6 +87,9 @@ class ShowTweet extends StatelessWidget {
                             Theme.of(context).textTheme.titleMedium!.copyWith(
                                   fontSize: 12,
                                 ),
+                      ),
+                      SizedBox(
+                        width: 5,
                       ),
                     ],
                   ),
@@ -159,6 +172,9 @@ class ShowTweet extends StatelessWidget {
                 ],
               ),
             ),
+            Icon(
+              Icons.keyboard_arrow_down,
+            )
           ],
         ),
         SizedBox(

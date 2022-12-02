@@ -89,6 +89,7 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
         return entity;
       },
     );
+
     await refresh();
   }
 

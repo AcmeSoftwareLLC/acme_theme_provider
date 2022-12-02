@@ -28,7 +28,8 @@ class MyApp extends StatelessWidget {
               darkTheme: theme.darkTheme,
               themeMode: theme.themeMode,
               routerConfig: context.router.config,
-            ), create: () => NoteRouter(),
+            ),
+            create: () => NoteRouter(),
           );
         },
       ),
