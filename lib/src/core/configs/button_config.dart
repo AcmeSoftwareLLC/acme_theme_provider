@@ -19,7 +19,7 @@ class ButtonConfig extends ComponentConfig {
     final type = map['buttonType'];
     final buttonType = ButtonType.values.firstWhere(
       (e) => e.value == type,
-      orElse: () => ButtonType.unknown,
+      orElse: () => ButtonType.elevated,
     );
     return ButtonConfig(
       theme: ThemeDecoder.decodeButtonThemeData(map['theme']),
