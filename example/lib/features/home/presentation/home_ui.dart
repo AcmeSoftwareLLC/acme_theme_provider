@@ -36,11 +36,14 @@ class HomeUI extends UI<HomeViewModel> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.settings),
+            child: Icon(
+              Icons.settings_outlined,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           )
         ],
       ),
-      body: _NoteItem(
+      body: _TweetItem(
         viewModel: viewModel,
       ),
       floatingActionButton: AddTweetButton(),
@@ -48,10 +51,10 @@ class HomeUI extends UI<HomeViewModel> {
   }
 }
 
-class _NoteItem extends StatelessWidget {
+class _TweetItem extends StatelessWidget {
   final HomeViewModel viewModel;
 
-  const _NoteItem({required this.viewModel});
+  const _TweetItem({required this.viewModel});
 
   @override
   Widget build(BuildContext context) {

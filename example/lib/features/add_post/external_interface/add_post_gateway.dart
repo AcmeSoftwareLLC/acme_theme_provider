@@ -10,11 +10,15 @@ class AddPostGateway extends DbGateway<AddPostGatewayOutput,
     AddPostSuccessResponse, AddPostSuccessInput> {
   AddPostGateway({
     required super.provider,
-  }) : super(context: providersContext);
+  }) : super(
+          context: providersContext,
+        );
 
   @override
   DbRequest buildRequest(AddPostGatewayOutput output) {
-    return AddPostRequest(tweet: output.tweet);
+    return AddPostRequest(
+      tweet: output.tweet,
+    );
   }
 
   @override
@@ -48,7 +52,9 @@ class AddPostGateway extends DbGateway<AddPostGatewayOutput,
 }
 
 class AddPostRequest extends DbRequest {
-  AddPostRequest({required this.tweet});
+  AddPostRequest({
+    required this.tweet,
+  });
 
   final Tweet tweet;
 }
@@ -62,7 +68,9 @@ class AddPostSuccessResponse extends DbSuccessResponse {
 }
 
 class AddPostGatewayOutput extends Output {
-  AddPostGatewayOutput({required this.tweet});
+  AddPostGatewayOutput({
+    required this.tweet,
+  });
 
   final Tweet tweet;
 
@@ -73,5 +81,7 @@ class AddPostGatewayOutput extends Output {
 class AddPostSuccessInput extends SuccessInput {
   final List<Tweet> tweets;
 
-  AddPostSuccessInput({required this.tweets});
+  AddPostSuccessInput({
+    required this.tweets,
+  });
 }

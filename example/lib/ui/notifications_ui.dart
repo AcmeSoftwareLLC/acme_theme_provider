@@ -8,13 +8,19 @@ class NotificationsUI extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Text('Notifications', style: Theme.of(context).textTheme.titleMedium),
+          title: Text('Notifications',
+              style: Theme.of(context).textTheme.titleMedium),
           centerTitle: true,
-          leading: ProfileIcon.small(imagePath: 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',),
+          leading: ProfileIcon.small(
+            imagePath:
+                'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
+          ),
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
+              child: ImageIcon(
+                  AssetImage('assets/icons/settings_stroke_icon.png'),
+                  color: Theme.of(context).colorScheme.primary),
             )
           ],
           bottom: PreferredSize(
@@ -30,7 +36,6 @@ class NotificationsUI extends StatelessWidget {
               labelColor: Theme.of(context).colorScheme.primary,
               unselectedLabelColor: Theme.of(context).colorScheme.outline,
               indicatorColor: Theme.of(context).colorScheme.primary,
-
             ),
             preferredSize: Size.fromHeight(50),
           ),
@@ -57,13 +62,13 @@ class _AllNotificationsUI extends StatelessWidget {
       itemCount: 10,
     );
   }
-
 }
-class _NotificationCard extends StatelessWidget {
 
+class _NotificationCard extends StatelessWidget {
   final int index;
 
   const _NotificationCard({required this.index});
+
   @override
   Widget build(BuildContext context) {
     final _screenHeight = MediaQuery.of(context).size.height;
@@ -71,7 +76,10 @@ class _NotificationCard extends StatelessWidget {
     return Container(
       height: _screenHeight / 4,
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(width: 1, color: Theme.of(context).colorScheme.surfaceVariant),),
+        border: Border(
+          bottom: BorderSide(
+              width: 1, color: Theme.of(context).colorScheme.surfaceVariant),
+        ),
       ),
       child: Column(
         children: [
@@ -80,8 +88,15 @@ class _NotificationCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ImageIcon(AssetImage('assets/icons/star_solid_icon.png'), color: Colors.purpleAccent,),
-                ProfileIcon.medium(imagePath: index.isEven? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg' :'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',),
+                ImageIcon(
+                  AssetImage('assets/icons/star_solid_icon.png'),
+                  color: Colors.purpleAccent,
+                ),
+                ProfileIcon.medium(
+                  imagePath: index.isEven
+                      ? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg'
+                      : 'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',
+                ),
                 SizedBox(
                   width: _screenWidth / 2,
                 ),
@@ -136,7 +151,10 @@ class _MentionsCard extends StatelessWidget {
     return Container(
       height: _screenHeight / 2,
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(width: 1, color: Theme.of(context).colorScheme.surfaceVariant),),
+        border: Border(
+          bottom: BorderSide(
+              width: 1, color: Theme.of(context).colorScheme.surfaceVariant),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,9 +164,15 @@ class _MentionsCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                ProfileIcon.medium(imagePath: index.isOdd? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg' :'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',),
+                ProfileIcon.medium(
+                  imagePath: index.isOdd
+                      ? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg'
+                      : 'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',
+                ),
                 Text('Mariane'),
-                SizedBox(width: 20,),
+                SizedBox(
+                  width: 20,
+                ),
                 Text('1/21/20'),
                 SizedBox(
                   width: _screenWidth / 2.5,
@@ -167,7 +191,8 @@ class _MentionsCard extends StatelessWidget {
                 Text('Mariane mentioned you in a post'),
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: Theme.of(context).colorScheme.surfaceVariant),
+                    border: Border.all(
+                        color: Theme.of(context).colorScheme.surfaceVariant),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   child: ClipRRect(
@@ -187,12 +212,13 @@ class _MentionsCard extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Text('Top users of the month'),
                         ),
-
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -202,7 +228,9 @@ class _MentionsCard extends StatelessWidget {
                       Icon(Icons.repeat),
                       Icon(Icons.favorite),
                       Icon(Icons.file_upload_outlined),
-                      SizedBox(width: 10,)
+                      SizedBox(
+                        width: 10,
+                      )
                     ],
                   ),
                 )

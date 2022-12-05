@@ -25,13 +25,13 @@ class AddPostPresenter
     return AddPostViewModel(
       post: output.post,
       imagePath: output.imagePath,
-      showLoading: output.showLoading,
       addTweet: useCase.addTweet,
       openGallery: useCase.pickImage,
       enterPost: (String post) => useCase.onPostEntered(
         post: post,
       ),
       refresh: useCase.refresh,
+      tweetAdded: output.tweetAdded,
     );
   }
 }

@@ -33,15 +33,19 @@ class ShowTweet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Icon(
                   Icons.favorite,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                ProfileIcon.large(imagePath: userImage),
+                ProfileIcon.large(
+                  imagePath: userImage,
+                ),
               ],
             ),
             SizedBox(
@@ -51,18 +55,18 @@ class ShowTweet extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(totalLike.isEven
-                      ? 'Zack John liked'
-                      : 'Richard Jones Liked'),
+                  Text(
+                    totalLike.isEven
+                        ? 'Zack John liked'
+                        : 'Richard Jones Liked',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         firstName + ' ' + lastName,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineSmall!
-                            .copyWith(fontSize: 16),
+                        style: Theme.of(context).textTheme.labelLarge,
                       ),
                       SizedBox(
                         width: 5,
@@ -71,10 +75,7 @@ class ShowTweet extends StatelessWidget {
                         width: 80,
                         child: Text(
                           '@$userName',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .copyWith(fontSize: 14),
+                          style: Theme.of(context).textTheme.titleMedium,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -83,18 +84,12 @@ class ShowTweet extends StatelessWidget {
                       ),
                       Text(
                         '${time}h',
-                        style:
-                            Theme.of(context).textTheme.titleMedium!.copyWith(
-                                  fontSize: 12,
-                                ),
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                       SizedBox(
                         width: 5,
                       ),
                     ],
-                  ),
-                  SizedBox(
-                    height: 10,
                   ),
                   Text(
                     post,
@@ -110,33 +105,33 @@ class ShowTweet extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(
-                              Icons.mode_comment_outlined,
+                            ImageIcon(
+                              AssetImage(
+                                'assets/icons/comment_stroke_icon.png',
+                              ),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
                             ),
                             Text(
                               totalComment.toString(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(
-                                    fontSize: 12,
-                                  ),
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                           ],
                         ),
                         Row(
                           children: [
-                            Icon(
-                              Icons.refresh,
+                            ImageIcon(
+                              AssetImage(
+                                'assets/icons/retweet_solid_stroke_icon.png',
+                              ),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
                             ),
                             Text(
                               totalReTweet.toString(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(
-                                    fontSize: 12,
-                                  ),
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                           ],
                         ),
@@ -144,41 +139,50 @@ class ShowTweet extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.favorite_border,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
                             ),
                             Text(
                               totalLike.toString(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(
-                                    fontSize: 12,
-                                  ),
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                           ],
                         ),
-                        Icon(Icons.file_upload_outlined),
+                        ImageIcon(
+                          AssetImage('assets/icons/share_stroke_icon.png'),
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
                       ],
                     ),
                   ),
                   SizedBox(
                     height: 5,
                   ),
-                  Text(
-                    'Show this thread',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontSize: 15,
-                        ),
-                  ),
+                  totalReTweet.isOdd
+                      ? Text(
+                          'Show this thread',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                        )
+                      : SizedBox(),
                 ],
               ),
             ),
-            Icon(
-              Icons.keyboard_arrow_down,
-            )
+            ImageIcon(
+              AssetImage(
+                'assets/icons/down_arrow_icon.png',
+              ),
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
           ],
         ),
         SizedBox(
-          height: 10,
+          height: 5,
         ),
         imagePath.isNotEmpty
             ? Image.file(
