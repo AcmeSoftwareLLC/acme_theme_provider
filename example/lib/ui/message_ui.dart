@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 class MessageUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _screenHeight = MediaQuery.of(context).size.height;
-    final _screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text('Messages', style: Theme.of(context).textTheme.titleMedium),
@@ -31,7 +29,7 @@ class MessageUI extends StatelessWidget {
                   fillColor:  Theme.of(context).colorScheme.surfaceVariant,
                   prefixIcon: ImageIcon(AssetImage('assets/icons/search_stroke_icon.png'), color: Theme.of(context).colorScheme.onSurfaceVariant,),
                   labelText: 'Search for people and groups',
-                  labelStyle: Theme.of(context).textTheme.bodyLarge,
+                  labelStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.outline),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: BorderSide(
@@ -90,14 +88,14 @@ class _MessageTile extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text('Martha Craig'),
+                Text('Martha Craig', style: Theme.of(context).textTheme.titleMedium,),
                 SizedBox(width: 5,),
-                Text('@craig', style: Theme.of(context).textTheme.bodyLarge,),
+                Text('@craig', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.outline),),
                 Expanded(child: SizedBox(width: 40,)),
-                Text('12/2/2022', style: Theme.of(context).textTheme.bodyLarge,),
+                Text('12/2/2022',  style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.outline),),
               ],
             ),
-            Text('You: You\'re very welcome, Martha', style: Theme.of(context).textTheme.bodyLarge,),
+            Text('You: You\'re very welcome, Martha', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.outline),),
           ],
         ),
         leading: ProfileIcon.large(imagePath: index.isEven? 'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg' : 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg',),

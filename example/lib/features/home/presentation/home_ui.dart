@@ -1,7 +1,9 @@
 import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/features/home/presentation/home_presenter.dart';
 import 'package:example/features/home/presentation/home_view_model.dart';
 import 'package:example/providers.dart';
+import 'package:example/routes.dart';
 import 'package:example/widgets/add_note_button.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:example/widgets/show_tweet.dart';
@@ -34,7 +36,9 @@ class HomeUI extends UI<HomeViewModel> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
+            child: GestureDetector(
+              onTap: () => context.router.push(Routes.settings),
+                child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary)),
           )
         ],
       ),

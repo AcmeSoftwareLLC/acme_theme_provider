@@ -27,21 +27,23 @@ class SearchUI extends StatelessWidget {
 }
 
 class _SearchBar extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+
     return SizedBox(
       child: Container(
         height: 32,
         child: TextField(
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
-          ),
+          textAlign: TextAlign.center,
           decoration: InputDecoration(
             filled: true,
             fillColor:  Theme.of(context).colorScheme.surfaceVariant,
-            prefixIcon: ImageIcon(AssetImage('assets/icons/search_stroke_icon.png'), color: Theme.of(context).colorScheme.onSurfaceVariant,),
-            labelText: 'Search twitter',
-            labelStyle: Theme.of(context).textTheme.bodyLarge,
+            floatingLabelAlignment: FloatingLabelAlignment.center,
+            contentPadding: EdgeInsets.symmetric(horizontal: 40),
+            prefixIcon: ImageIcon(AssetImage('assets/icons/search_stroke_icon.png'), color: Theme.of(context).colorScheme.outline,),
+            labelText: 'Search Twitter',
+            labelStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.outline,),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide: BorderSide(
@@ -60,8 +62,6 @@ class _TrendsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _screenWidth = MediaQuery.of(context).size.width;
-    final _screenHeight = MediaQuery.of(context).size.height;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -78,7 +78,7 @@ class _TrendsWidget extends StatelessWidget {
                 width: _screenWidth,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  child: Text('Trends for you', style: Theme.of(context).textTheme.titleMedium),
+                  child: Text('Trends for you', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w900, )),
                 ),
                 decoration: BoxDecoration(
                   border: Border.all(color: Theme.of(context).colorScheme.surfaceVariant,),
@@ -86,11 +86,12 @@ class _TrendsWidget extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 36, left: 80, right: 80),
-                child: Text('No new trends for you', style: Theme.of(context).textTheme.titleLarge,),
+                child: Text('No new trends for you', style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600),),
               ),
               SizedBox(height: 20),
               Text(
-                  'It seems like there\'s not a lot to show you right\n now, but you can see trends for other areas'),
+                  'It seems like there\'s not a lot to show you right\n now, but you can see trends for other areas', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.outline
+              ),),
               SizedBox(height: 20),
               AppElevatedButton(title: 'Change location'),
               SizedBox(height: 40),

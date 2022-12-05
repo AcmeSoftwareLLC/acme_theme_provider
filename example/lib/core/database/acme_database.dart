@@ -46,6 +46,12 @@ class AcmeDatabase {
     return records.map((r) => {'key' : r.key, 'value' : r.value,}).toList(growable: false);
   }
 
+  Future<List<String>> findAllKeys({required MapStoreRef store}) async {
+    final records = await store.find(await _db);
+
+    return records.map((r) => r.key).toList(growable: false);
+  }
+
   Future<List<Map<String, dynamic>>> findValues({
     required MapStoreRef store,
     String? filterKey,

@@ -16,22 +16,55 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppProvidersContainer(
       providersContext: providersContext,
-      child: AcmeThemeProvider<BrandColors>.asset(
-        path: 'assets/example-theme.acme',
-        overrideFn: (theme) => theme.copyWith(themeMode: ThemeMode.light),
-        customColorsConverterCreator: BrandColorsConverter.new,
-        builder: (context, theme) {
-          return AppRouterScope(
-            builder: (context) => MaterialApp.router(
-              title: 'Notes Example App',
-              theme: theme.lightTheme,
-              darkTheme: theme.darkTheme,
-              themeMode: theme.themeMode,
-              routerConfig: context.router.config,
-            ), create: () => NoteRouter(),
+      child: ThemeScope(
+        notifier: ThemeNotifier(),
+        child: Builder(builder: (context) {
+          return AcmeThemeProvider<BrandColors>.asset(
+            path: ThemeScope.of(context).assetPath,
+            customColorsConverterCreator: BrandColorsConverter.new,
+            builder: (context, theme) {
+              return AppRouterScope(
+                builder: (context) => MaterialApp.router(
+                  title: 'Twitter Clone App',
+                  theme: theme.lightTheme,
+                  darkTheme: theme.darkTheme,
+                  themeMode: theme.themeMode,
+                  routerConfig: context.router.config,
+                ),
+                create: () => NoteRouter(),
+              );
+            },
           );
-        },
+        },),
       ),
     );
+  }
+}
+
+class ThemeNotifier extends ChangeNotifier {
+  String _assetPath = 'assets/example-theme.acme';
+
+  String get assetPath => _assetPath;
+
+  void changeAsset(String assetPath) {
+    if (_assetPath != assetPath) {
+      _assetPath = assetPath;
+      notifyListeners();
+    }
+  }
+}
+
+class ThemeScope extends InheritedNotifier<ThemeNotifier> {
+  ThemeScope({
+    required super.notifier,
+    required super.child,
+  });
+
+
+
+  static ThemeNotifier of(BuildContext context){
+    final scope = context.dependOnInheritedWidgetOfExactType<ThemeScope>();
+    assert (scope != null);
+    return scope!.notifier!;
   }
 }
