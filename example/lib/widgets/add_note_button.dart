@@ -5,13 +5,9 @@ import 'package:flutter/material.dart';
 class AddTweetButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton.extended(
+    return FloatingActionButton(
       onPressed: () => context.router.push(Routes.addTweet),
-      label: Text(
-        'Add Tweet',
-      ),
-      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-      icon: Icon(
+      child: Icon(
         Icons.add,
       ),
     );

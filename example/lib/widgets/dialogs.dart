@@ -20,16 +20,22 @@ Future<void> showOKDialog({
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        elevation: 3,
         title: Text(
           title,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall!
+              .copyWith(color: Theme.of(context).colorScheme.onSurface),
         ),
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
               Text(
                 content,
-                style: Theme.of(context).textTheme.titleSmall,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant),
               ),
             ],
           ),
@@ -39,14 +45,18 @@ Future<void> showOKDialog({
             onPressed: () => Navigator.pop(context),
             child: Text(
               'Cancel',
-              style: Theme.of(context).textTheme.labelLarge,
+              style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
             ),
           ),
           TextButton(
             onPressed: onOk,
             child: Text(
               'OK',
-              style: Theme.of(context).textTheme.labelLarge,
+              style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
             ),
           ),
         ],

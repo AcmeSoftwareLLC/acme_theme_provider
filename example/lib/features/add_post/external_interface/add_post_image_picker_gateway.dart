@@ -52,7 +52,9 @@ class AddPostPickerGatewayOutput extends Output {
 }
 
 class AddPostPickerGatewaySuccessInput extends SuccessInput {
-  AddPostPickerGatewaySuccessInput({required this.imagePath});
+  AddPostPickerGatewaySuccessInput({
+    required this.imagePath,
+  });
 
   final String? imagePath;
 }

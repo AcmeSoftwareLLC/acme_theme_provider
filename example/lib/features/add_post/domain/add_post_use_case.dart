@@ -1,10 +1,13 @@
 import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/features/add_post/domain/add_post_entity.dart';
 import 'package:example/features/add_post/domain/add_post_ui_output.dart';
 import 'package:example/features/add_post/external_interface/add_post_gateway.dart';
 import 'package:example/features/add_post/external_interface/add_post_image_picker_gateway.dart';
 import 'package:example/features/add_post/external_interface/get_random_user_gateway.dart';
 import 'package:example/features/theme/tweet.dart';
+import 'package:example/routes.dart';
+import 'package:flutter/cupertino.dart';
 
 class AddPostUseCase extends UseCase<AddPostEntity> {
   AddPostUseCase()
@@ -15,6 +18,7 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
               return AddPostUIOutput(
                 post: entity.post,
                 imagePath: entity.imagePath,
+                tweetAdded: entity.tweetAdded,
               );
             },
           },
@@ -80,6 +84,7 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
 
         return entity.merge(
           tweets: tweets,
+          tweetAdded: true,
         );
       },
       onFailure: (e) {

@@ -39,25 +39,20 @@ class AddPostUI extends UI<AddPostViewModel> {
               SizedBox(
                 width: 20,
               ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    viewModel.refresh();
-                    context.router.push(Routes.home);
-                  },
-                  child: Text(
-                    'cancel',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                  ),
+              TextButton(
+                onPressed: () {
+                  viewModel.refresh();
+                  context.router.go(Routes.home);
+                },
+                child: Text(
+                  'Cancel',
                 ),
               ),
             ],
           ),
           actions: [
-            GestureDetector(
-              onTap: () {
+            ElevatedButton(
+              onPressed: () {
                 if (viewModel.post.isEmpty) {
                   showErrorSnackBar(
                     context,
@@ -71,8 +66,7 @@ class AddPostUI extends UI<AddPostViewModel> {
                     content: 'This will add to your post without an image',
                     onOk: () {
                       viewModel.addTweet();
-                      viewModel.refresh();
-                      context.router.push(Routes.home);
+                      context.router.go(Routes.home);
                     },
                   );
                 } else {
@@ -83,25 +77,13 @@ class AddPostUI extends UI<AddPostViewModel> {
                         'This will add to your post, you can see in the feed',
                     onOk: () {
                       viewModel.addTweet();
-                      viewModel.refresh();
-                      context.router.push(Routes.home);
+                      context.router.go(Routes.home);
                     },
                   );
                 }
               },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(25),
-                  ),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Text(
-                    'Tweet',
-                  ),
-                ),
+              child: Text(
+                'Tweet',
               ),
             ),
             SizedBox(

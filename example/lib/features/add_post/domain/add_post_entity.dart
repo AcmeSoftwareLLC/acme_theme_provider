@@ -8,6 +8,7 @@ class AddPostEntity extends Entity {
   final String userName;
   final String userImage;
   final String imagePath;
+  final bool tweetAdded;
   final Map<String, Tweet> tweets;
 
   AddPostEntity({
@@ -17,6 +18,7 @@ class AddPostEntity extends Entity {
     this.userName = '',
     this.userImage = '',
     this.imagePath = '',
+    this.tweetAdded = false,
     this.tweets = const {},
   });
 
@@ -27,6 +29,7 @@ class AddPostEntity extends Entity {
     String? userName,
     String? userImage,
     String? imagePath,
+    bool? tweetAdded,
     Map<String, Tweet>? tweets,
   }) {
     return AddPostEntity(
@@ -36,6 +39,7 @@ class AddPostEntity extends Entity {
       userName: userName ?? this.userName,
       userImage: userImage ?? this.userImage,
       imagePath: imagePath ?? this.imagePath,
+      tweetAdded: tweetAdded ?? this.tweetAdded,
       tweets: tweets ?? this.tweets,
     );
   }
@@ -49,6 +53,7 @@ class AddPostEntity extends Entity {
       userName,
       userImage,
       imagePath,
+      tweetAdded,
       tweets,
     ];
   }

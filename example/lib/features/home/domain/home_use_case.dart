@@ -55,4 +55,8 @@ class HomeUseCase extends UseCase<HomeEntity> {
       return entity;
     });
   }
+
+  Future<void> refresh() async {
+    entity = HomeEntity();
+  }
 }
