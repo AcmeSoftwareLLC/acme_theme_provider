@@ -9,6 +9,9 @@ class ChipConfig extends ComponentConfig {
     required this.visualDensity,
     required this.materialTapTargetSize,
     required this.autofocus,
+    required this.iconTheme,
+    required this.surfaceTintColor,
+    required this.deleteIconColor,
   });
 
   final ChipThemeData? theme;
@@ -17,20 +20,29 @@ class ChipConfig extends ComponentConfig {
   final VisualDensity? visualDensity;
   final MaterialTapTargetSize? materialTapTargetSize;
   final bool autofocus;
+  final IconThemeData? iconTheme;
+  final Color? surfaceTintColor;
+  final Color? deleteIconColor;
 
   factory ChipConfig.fromMap(Map<String, dynamic> map) {
+    if (map['theme'] != null) {
+      if (map['theme']['backgroundColor'] == null) {
+        map['theme']['backgroundColor'] = '#FFFFFF';
+      }
+      if (map['theme']['brightness'] == null) {
+        map['theme']['brightness'] = 'light';
+      }
+    }
     return ChipConfig(
-      theme: (map['theme'] != null)
-          ? (map['theme']['backgroundColor'] != null &&
-                  map['theme']['brightness'] != null)
-              ? ThemeDecoder.decodeChipThemeData(map['theme'])
-              : const ChipThemeData()
-          : const ChipThemeData(),
+      theme: ThemeDecoder.decodeChipThemeData(map['theme']),
       clipBehaviour: ThemeDecoder.decodeClip(map['clipBehaviour']) ?? Clip.none,
       visualDensity: ThemeDecoder.decodeVisualDensity(map['visualDensity']),
       materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
           map['materialTapTargetSize']),
       autofocus: map['autofocus'] ?? false,
+      iconTheme: ThemeDecoder.decodeIconThemeData(map['iconTheme']),
+      surfaceTintColor: ThemeDecoder.decodeColor(map['surfaceTintColor']),
+      deleteIconColor: ThemeDecoder.decodeColor(map['deleteIconColor']),
     );
   }
 
@@ -44,11 +56,15 @@ class ChipConfig extends ComponentConfig {
       'materialTapTargetSize':
           ThemeEncoder.encodeMaterialTapTargetSize(materialTapTargetSize),
       'autofocus': autofocus,
+      'iconTheme': ThemeEncoder.encodeIconThemeData(iconTheme),
+      'surfaceTintColor': ThemeEncoder.encodeColor(surfaceTintColor),
+      'deleteIconColor': ThemeEncoder.encodeColor(deleteIconColor),
     };
   }
 
   ChipConfig copyWith({
     ChipThemeData? theme,
+    IconThemeData? iconTheme,
     Color? surfaceTintColor,
     Color? deleteIconColor,
     Clip? clipBehaviour,
@@ -63,6 +79,9 @@ class ChipConfig extends ComponentConfig {
       materialTapTargetSize:
           materialTapTargetSize ?? this.materialTapTargetSize,
       autofocus: autofocus ?? this.autofocus,
+      iconTheme: iconTheme ?? this.iconTheme,
+      surfaceTintColor: surfaceTintColor ?? this.surfaceTintColor,
+      deleteIconColor: deleteIconColor ?? this.deleteIconColor,
     );
   }
 }

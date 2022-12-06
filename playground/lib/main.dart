@@ -142,8 +142,6 @@ class MyApp extends StatelessWidget {
         'FirstChip': {
           'type': 'chip',
           'theme': {
-            'backgroundColor': '#000000',
-            'brightness': 'dark',
             'disabledColor': '#FF0000',
             'secondarySelectedColor': '#FF0000',
             'selectedColor': '#AABBCC',
