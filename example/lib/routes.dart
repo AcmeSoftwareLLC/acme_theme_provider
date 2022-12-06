@@ -3,7 +3,7 @@ import 'package:example/features/home/presentation/another_ui.dart';
 import 'package:example/features/home/presentation/home_page.dart';
 import 'package:example/features/add_post/presentation/add_post_ui.dart';
 import 'package:example/features/home/presentation/new_ui.dart';
-import 'package:example/features/settings/presentation/settings_ui.dart';
+import 'package:example/ui/settings_ui.dart';
 import 'package:example/ui/message_ui.dart';
 import 'package:example/ui/notifications_ui.dart';
 

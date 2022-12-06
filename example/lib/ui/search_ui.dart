@@ -1,3 +1,5 @@
+import 'package:clean_framework_router/clean_framework_router.dart';
+import 'package:example/routes.dart';
 import 'package:example/widgets/app_buttons.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:flutter/material.dart';
@@ -7,13 +9,18 @@ class SearchUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         leading: ProfileIcon.small(imagePath: 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',),
         title: _SearchBar(),
-        actions: [Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
-        )],
+        actions: [
+          GestureDetector(
+            onTap: () => context.router.push(Routes.settings,),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
+            ),
+          )
+        ],
       ),
       body: Container(child: Column(
         children: [
@@ -93,7 +100,7 @@ class _TrendsWidget extends StatelessWidget {
                   'It seems like there\'s not a lot to show you right\n now, but you can see trends for other areas', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.outline
               ),),
               SizedBox(height: 20),
-              AppElevatedButton(title: 'Change location'),
+              AppElevatedButton(title: 'Change location', onPressed: ( ){},),
               SizedBox(height: 40),
             ],
           ),

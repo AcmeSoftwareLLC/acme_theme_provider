@@ -1,3 +1,5 @@
+import 'package:clean_framework_router/clean_framework_router.dart';
+import 'package:example/routes.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -7,14 +9,17 @@ class NotificationsUI extends StatelessWidget {
     return DefaultTabController(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           title: Text('Notifications', style: Theme.of(context).textTheme.titleMedium),
           centerTitle: true,
           leading: ProfileIcon.small(imagePath: 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',),
           actions: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
+            GestureDetector(
+              onTap: () => context.router.push(Routes.settings,),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
+              ),
             )
           ],
           bottom: PreferredSize(

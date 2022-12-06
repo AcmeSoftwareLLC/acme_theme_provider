@@ -1,3 +1,5 @@
+import 'package:clean_framework_router/clean_framework_router.dart';
+import 'package:example/routes.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +12,12 @@ class MessageUI extends StatelessWidget {
         centerTitle: true,
         leading: ProfileIcon.small(imagePath: 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
+          GestureDetector(
+            onTap: () => context.router.push(Routes.settings,),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
+            ),
           )
         ],
         bottom: PreferredSize(
@@ -73,9 +78,8 @@ class _MessageTile extends StatelessWidget {
   const _MessageTile({required this.index});
   @override
   Widget build(BuildContext context) {
-    final _screenHeight = MediaQuery.of(context).size.height;
     return Container(
-      height: 80 ,
+      height: 80,
       decoration: BoxDecoration(
         border: Border.all(width: 0.5, color: Theme.of(context).colorScheme.surfaceVariant),
       ),
