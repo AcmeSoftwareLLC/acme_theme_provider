@@ -27,7 +27,7 @@ class HomeUI extends UI<HomeViewModel> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        title: Text('Tweets'),
+        title: Text('Tweets', style: Theme.of(context).textTheme.titleMedium),
         centerTitle: true,
         leading: ProfileIcon.small(
           imagePath:
@@ -35,10 +35,14 @@ class HomeUI extends UI<HomeViewModel> {
         ),
         actions: [
           GestureDetector(
-            onTap: () => context.router.push(Routes.settings,),
+            onTap: () => context.router.push(
+              Routes.settings,
+            ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
+              child: ImageIcon(
+                  AssetImage('assets/icons/settings_stroke_icon.png'),
+                  color: Theme.of(context).colorScheme.primary),
             ),
           )
         ],

@@ -137,8 +137,10 @@ class ShowTweet extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Icon(
-                              Icons.favorite_border,
+                            ImageIcon(
+                              AssetImage(
+                                'assets/icons/heart_stroke_icon.png',
+                              ),
                               color: Theme.of(context)
                                   .colorScheme
                                   .onSurfaceVariant,
@@ -162,10 +164,12 @@ class ShowTweet extends StatelessWidget {
                   totalReTweet.isOdd
                       ? Text(
                           'Show this thread',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    color: Colors.blueAccent,
-                                  ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
                         )
                       : SizedBox(),
                 ],
