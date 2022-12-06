@@ -27,7 +27,7 @@ class HomeUI extends UI<HomeViewModel> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        title: Text('Tweets', style: Theme.of(context).textTheme.titleMedium),
+        title: Text('Tweets', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w800),),
         centerTitle: true,
         leading: ProfileIcon.small(
           imagePath:

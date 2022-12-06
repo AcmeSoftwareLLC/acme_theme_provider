@@ -8,7 +8,7 @@ class MessageUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Messages', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground,)),
+        title: Text('Messages', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w800),),
         centerTitle: true,
         leading: ProfileIcon.small(imagePath: 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',),
         actions: [

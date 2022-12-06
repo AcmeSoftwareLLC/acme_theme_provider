@@ -10,7 +10,7 @@ class NotificationsUI extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.surface,
-          title: Text('Notifications', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground,)),
+          title: Text('Notifications', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w800),),
           centerTitle: true,
           leading: ProfileIcon.small(imagePath: 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',),
           actions: [
@@ -148,7 +148,7 @@ class _MentionsCard extends StatelessWidget {
     final _screenHeight = MediaQuery.of(context).size.height;
     final _screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: 472,
+      height: 440,
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(width: 1, color: Theme.of(context).colorScheme.surfaceVariant),),
       ),
@@ -166,9 +166,9 @@ class _MentionsCard extends StatelessWidget {
 
                 Text('Mariane', style: Theme.of(context).textTheme.titleMedium),
                 SizedBox(width: 4,),
-                Text('@mariane', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.outline),),
+                Text('@mariane', style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.outline),),
                 SizedBox(width: 4,),
-                Text('1/21/20',  style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.outline),),
+                Text('1/21/20',  style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.outline),),
                 SizedBox(
                   width: _screenWidth / 8,
                 ),
@@ -183,10 +183,10 @@ class _MentionsCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Hey', style: Theme.of(context).textTheme.bodyLarge),
-                Text('@theflaticon @iconmonstr @pixsellz @dan ielbruce_ @romanshamin @_vect_ @glyphish !', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.primary)),
-                Text('Check out our new article "Top Users of the month"', style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w400),),
-                Text('marianee.com/blog/top-users...', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.primary),),
+                Text('Hey', style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground),),
+                Text('@theflaticon @iconmonstr @pixsellz @dan ielbruce_ @romanshamin @_vect_ @glyphish !', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.primary)),
+                Text('Check out our new article "Top Users of the month"', style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground),),
+                Text('marianee.com/blog/top-users...', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.primary),),
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: Theme.of(context).colorScheme.surfaceVariant),
@@ -207,7 +207,7 @@ class _MentionsCard extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text('Top users of the month'),
+                          child: Text('Top users of the month', style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground),),
                         ),
 
                       ],

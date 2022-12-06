@@ -85,7 +85,7 @@ class _TrendsWidget extends StatelessWidget {
                 width: _screenWidth,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  child: Text('Trends for you', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w900, )),
+                  child: Text('Trends for you', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w800, )),
                 ),
                 decoration: BoxDecoration(
                   border: Border.all(color: Theme.of(context).colorScheme.surfaceVariant,),
@@ -93,12 +93,11 @@ class _TrendsWidget extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 36, left: 80, right: 80),
-                child: Text('No new trends for you', style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600),),
+                child: Text('No new trends for you', style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w800),),
               ),
               SizedBox(height: 20),
               Text(
-                  'It seems like there\'s not a lot to show you right\n now, but you can see trends for other areas', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.outline
-              ),),
+                  'It seems like there\'s not a lot to show you right\n now, but you can see trends for other areas', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant), ),
               SizedBox(height: 20),
               AppElevatedButton(title: 'Change location', onPressed: ( ){},),
               SizedBox(height: 40),
