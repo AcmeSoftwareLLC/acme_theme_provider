@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:example/features/home/presentation/home_presenter.dart';
 import 'package:example/features/home/presentation/home_view_model.dart';
@@ -64,37 +62,50 @@ class _TweetItem extends StatelessWidget {
               color: Theme.of(context).primaryColor,
             ),
           )
-        : viewModel.tweets.isEmpty
-            ? Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/no_data.png',
-                    ),
-                    Text(
-                      'You have no tweets. Tap on \'Add Tweets\' to add one',
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              )
-            : Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ShowTweet(
-                      post: viewModel.tweets[index].post,
-                      imagePath: viewModel.tweets[index].imagePath,
-                      firstName: viewModel.tweets[index].firstName,
-                      lastName: viewModel.tweets[index].lastName,
-                      userName: viewModel.tweets[index].userName,
-                      userImage: viewModel.tweets[index].userImage,
-                    );
-                  },
-                  itemCount: viewModel.tweets.length,
-                ),
-              );
+        : Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  ShowTweet(
+                      post: 'You can see all the typography in this tweet',
+                      imagePath: '',
+                      firstName: 'Hari',
+                      lastName: 'Bahadur',
+                      userName: 'haribahadur1992',
+                      userImage:
+                          'https://xsgames.co/randomusers/assets/avatars/female/40.jpg'),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          ShowTweet(
+                            post: viewModel.tweets[index].post,
+                            imagePath: viewModel.tweets[index].imagePath,
+                            firstName: viewModel.tweets[index].firstName,
+                            lastName: viewModel.tweets[index].lastName,
+                            userName: viewModel.tweets[index].userName,
+                            userImage: viewModel.tweets[index].userImage,
+                          ),
+                        ],
+                      );
+                    },
+                    itemCount: viewModel.tweets.length,
+                  ),
+                  ShowTweet(
+                    post: 'Welcome to the new age',
+                    imagePath: '',
+                    firstName: 'Alex',
+                    lastName: 'Rachel',
+                    userName: 'rachelforalex',
+                    userImage:
+                        'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
+                  ),
+                ],
+              ),
+            ),
+          );
   }
 }

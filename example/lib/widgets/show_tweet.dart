@@ -162,12 +162,10 @@ class ShowTweet extends StatelessWidget {
                   totalReTweet.isOdd
                       ? Text(
                           'Show this thread',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Colors.blueAccent,
+                                  ),
                         )
                       : SizedBox(),
                 ],
