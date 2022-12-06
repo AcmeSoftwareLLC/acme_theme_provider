@@ -137,8 +137,10 @@ class ShowTweet extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Icon(
-                              Icons.favorite_border,
+                            ImageIcon(
+                              AssetImage(
+                                'assets/icons/heart_stroke_icon.png',
+                              ),
                               color: Theme.of(context)
                                   .colorScheme
                                   .onSurfaceVariant,
