@@ -5,9 +5,6 @@ import 'package:json_theme/json_theme.dart';
 class ChipConfig extends ComponentConfig {
   const ChipConfig({
     required this.theme,
-    required this.iconTheme,
-    required this.surfaceTintColor,
-    required this.deleteIconColor,
     required this.clipBehaviour,
     required this.visualDensity,
     required this.materialTapTargetSize,
@@ -15,9 +12,7 @@ class ChipConfig extends ComponentConfig {
   });
 
   final ChipThemeData? theme;
-  final IconThemeData? iconTheme;
-  final Color? surfaceTintColor;
-  final Color? deleteIconColor;
+
   final Clip clipBehaviour;
   final VisualDensity? visualDensity;
   final MaterialTapTargetSize? materialTapTargetSize;
@@ -25,10 +20,12 @@ class ChipConfig extends ComponentConfig {
 
   factory ChipConfig.fromMap(Map<String, dynamic> map) {
     return ChipConfig(
-      theme: ThemeDecoder.decodeChipThemeData(map['theme']),
-      iconTheme: ThemeDecoder.decodeIconThemeData(map['iconTheme']),
-      surfaceTintColor: ThemeDecoder.decodeColor(map['surfaceTintColor']),
-      deleteIconColor: ThemeDecoder.decodeColor(map['deleteIconColor']),
+      theme: (map['theme'] != null)
+          ? (map['theme']['backgroundColor'] != null &&
+                  map['theme']['brightness'] != null)
+              ? ThemeDecoder.decodeChipThemeData(map['theme'])
+              : const ChipThemeData()
+          : const ChipThemeData(),
       clipBehaviour: ThemeDecoder.decodeClip(map['clipBehaviour']) ?? Clip.none,
       visualDensity: ThemeDecoder.decodeVisualDensity(map['visualDensity']),
       materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
@@ -42,9 +39,6 @@ class ChipConfig extends ComponentConfig {
     return {
       'type': ComponentType.chip.value,
       'theme': ThemeEncoder.encodeChipThemeData(theme),
-      'iconTheme': ThemeEncoder.encodeIconThemeData(iconTheme),
-      'surfaceTintColor': ThemeEncoder.encodeColor(surfaceTintColor),
-      'deleteIconColor': ThemeEncoder.encodeColor(deleteIconColor),
       'clipBehaviour': ThemeEncoder.encodeClip(clipBehaviour),
       'visualDensity': ThemeEncoder.encodeVisualDensity(visualDensity),
       'materialTapTargetSize':
@@ -55,7 +49,6 @@ class ChipConfig extends ComponentConfig {
 
   ChipConfig copyWith({
     ChipThemeData? theme,
-    IconThemeData? iconTheme,
     Color? surfaceTintColor,
     Color? deleteIconColor,
     Clip? clipBehaviour,
@@ -65,9 +58,6 @@ class ChipConfig extends ComponentConfig {
   }) {
     return ChipConfig(
       theme: theme ?? this.theme,
-      iconTheme: iconTheme ?? this.iconTheme,
-      surfaceTintColor: surfaceTintColor ?? this.surfaceTintColor,
-      deleteIconColor: deleteIconColor ?? this.deleteIconColor,
       clipBehaviour: clipBehaviour ?? this.clipBehaviour,
       visualDensity: visualDensity ?? this.visualDensity,
       materialTapTargetSize:

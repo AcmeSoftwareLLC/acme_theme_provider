@@ -32,13 +32,10 @@ abstract class CoreChip extends CoreWidget<ChipConfig> {
         deleteButtonTooltipMessage: deleteButtonTooltipMessage,
         deleteIcon: deleteIcon,
         onDeleted: onDeleted,
-        surfaceTintColor: config.surfaceTintColor,
         materialTapTargetSize: config.materialTapTargetSize,
         clipBehavior: config.clipBehaviour,
-        iconTheme: config.iconTheme,
         visualDensity: config.visualDensity,
         autofocus: config.autofocus,
-        deleteIconColor: config.deleteIconColor,
       ),
     );
   }
