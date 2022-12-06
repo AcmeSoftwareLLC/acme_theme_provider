@@ -34,5 +34,6 @@ flutter:
 
   assets:
     - assets/example-theme.acme
+    - assets/themes/
     - assets/no_data.png
     - assets/icons/

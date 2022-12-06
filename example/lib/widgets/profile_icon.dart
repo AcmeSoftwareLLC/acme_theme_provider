@@ -32,12 +32,14 @@ class ProfileIconSmall extends ProfileIcon {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: ClipRRect(
-          borderRadius: BorderRadius.circular(40),
-          child: Image.network(
-            imagePath,
-            fit: BoxFit.contain,
-          )),
+      child: Container(
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(40),
+            child: Image.network(
+              imagePath,
+              fit: BoxFit.contain,
+            )),
+      ),
     );
   }
 }
@@ -69,17 +71,15 @@ class ProfileIconLarge extends ProfileIcon {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      width: 50,
+    return SizedBox(
+      height: 55,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(40),
+        borderRadius: BorderRadius.circular(60),
         child: Image.network(
           imagePath,
           fit: BoxFit.contain,
         ),
       ),
-      decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary, shape: BoxShape.circle),
     );
   }
 }

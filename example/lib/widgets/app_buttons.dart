@@ -5,20 +5,18 @@ import 'package:flutter/material.dart';
 class AppElevatedButton extends StatelessWidget {
 
   final String title;
+  final VoidCallback onPressed;
 
-  const AppElevatedButton({super.key, required this.title});
+  const AppElevatedButton({super.key, required this.title, required this.onPressed});
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
-      width: 200,
+      height: 36,
+      width: 136,
       child: ElevatedButton(
-        onPressed: (){
-          context.router.go(Routes.notifications);
-        },
-        child: Text(title, style: TextStyle(color: Colors.white),),
+        onPressed: onPressed,
+        child: Text(title, style: Theme.of(context).textTheme.button!.copyWith(color: Theme.of(context).colorScheme.background,)),
         style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.primary,),
-
       ),
     );
   }
