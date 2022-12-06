@@ -73,14 +73,6 @@ class _TweetItem extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  ShowTweet(
-                      post: 'You can see all the typography in this tweet',
-                      imagePath: '',
-                      firstName: 'Hari',
-                      lastName: 'Bahadur',
-                      userName: 'haribahadur1992',
-                      userImage:
-                          'https://xsgames.co/randomusers/assets/avatars/female/40.jpg'),
                   ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
@@ -100,6 +92,14 @@ class _TweetItem extends StatelessWidget {
                     },
                     itemCount: viewModel.tweets.length,
                   ),
+                  ShowTweet(
+                      post: 'You can see all the typography in this tweet',
+                      imagePath: '',
+                      firstName: 'Hari',
+                      lastName: 'Bahadur',
+                      userName: 'haribahadur1992',
+                      userImage:
+                          'https://xsgames.co/randomusers/assets/avatars/female/40.jpg'),
                   ShowTweet(
                     post: 'Welcome to the new age',
                     imagePath: '',
