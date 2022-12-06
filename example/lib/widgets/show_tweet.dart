@@ -36,8 +36,10 @@ class ShowTweet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Icon(
-                  Icons.favorite,
+                ImageIcon(
+                  AssetImage(
+                    'assets/icons/heart_solid_icon.png',
+                  ),
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
                 SizedBox(
@@ -59,41 +61,55 @@ class ShowTweet extends StatelessWidget {
                     totalLike.isEven
                         ? 'Zack John liked'
                         : 'Richard Jones Liked',
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        firstName + ' ' + lastName,
-                        style: Theme.of(context).textTheme.labelLarge,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            firstName + ' ' + lastName,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(fontWeight: FontWeight.w700),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          SizedBox(
+                            width: 80,
+                            child: Text(
+                              '@$userName',
+                              style: Theme.of(context).textTheme.titleMedium,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            '${time}h',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      SizedBox(
-                        width: 80,
-                        child: Text(
-                          '@$userName',
-                          style: Theme.of(context).textTheme.titleMedium,
-                          overflow: TextOverflow.ellipsis,
+                      ImageIcon(
+                        AssetImage(
+                          'assets/icons/down_arrow_icon.png',
                         ),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        '${time}h',
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      SizedBox(
-                        width: 5,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ],
                   ),
                   Text(
                     post,
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   SizedBox(
                     height: 10,
@@ -175,12 +191,6 @@ class ShowTweet extends StatelessWidget {
                 ],
               ),
             ),
-            ImageIcon(
-              AssetImage(
-                'assets/icons/down_arrow_icon.png',
-              ),
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
           ],
         ),
         SizedBox(
@@ -198,8 +208,8 @@ class ShowTweet extends StatelessWidget {
           height: 10,
         ),
         Divider(
-          height: 5,
-          thickness: 2,
+          thickness: 0.5,
+          color: Theme.of(context).colorScheme.outline,
         ),
         SizedBox(
           height: 10,
