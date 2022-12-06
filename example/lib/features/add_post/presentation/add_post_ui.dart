@@ -27,31 +27,21 @@ class AddPostUI extends UI<AddPostViewModel> {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(
-          screenHeight / 12,
-        ),
-        child: AppBar(
-          leadingWidth: screenWidth / 1.5,
-          backgroundColor: Colors.white,
-          leading: Row(
-            children: [
-              SizedBox(
-                width: 20,
-              ),
-              TextButton(
-                onPressed: () {
-                  viewModel.refresh();
-                  context.router.go(Routes.home);
-                },
-                child: Text(
-                  'Cancel',
-                ),
-              ),
-            ],
+      appBar: AppBar(
+        leadingWidth: screenWidth / 5.5,
+        leading: TextButton(
+          onPressed: () {
+            viewModel.refresh();
+            context.router.go(Routes.home);
+          },
+          child: Text(
+            'Cancel',
           ),
-          actions: [
-            ElevatedButton(
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: ElevatedButton(
               onPressed: () {
                 if (viewModel.post.isEmpty) {
                   showErrorSnackBar(
@@ -86,11 +76,8 @@ class AddPostUI extends UI<AddPostViewModel> {
                 'Tweet',
               ),
             ),
-            SizedBox(
-              width: 20,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         isExtended: true,
@@ -136,13 +123,14 @@ class AddPostUIBody extends StatelessWidget {
             height: 10,
           ),
           TextField(
-            maxLines: 4,
-            style: Theme.of(context).textTheme.titleLarge,
+            maxLines: 2,
+            style: Theme.of(context).textTheme.bodyMedium,
             cursorColor: Theme.of(context).primaryColor,
             decoration: InputDecoration(
               border: InputBorder.none,
               focusColor: Theme.of(context).primaryColor,
               hintText: 'Write your thought',
+              hintStyle: Theme.of(context).textTheme.bodyMedium,
             ),
             onChanged: (val) => viewModel.enterPost(val),
           ),
