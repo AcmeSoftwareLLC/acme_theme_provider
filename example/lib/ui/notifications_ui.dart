@@ -92,7 +92,7 @@ class _NotificationCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ImageIcon(AssetImage('assets/icons/star_solid_icon.png'), color: Colors.deepPurple,),
+                ImageIcon(AssetImage('assets/icons/star_solid_icon.png'), color: Theme.of(context).colorScheme.primary,),
                 ProfileIcon.medium(imagePath: index.isEven? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg' :'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',),
                 SizedBox(
                   width: _screenWidth / 2,
@@ -148,7 +148,7 @@ class _MentionsCard extends StatelessWidget {
     final _screenHeight = MediaQuery.of(context).size.height;
     final _screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: 440,
+      height: 456,
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(width: 1, color: Theme.of(context).colorScheme.surfaceVariant),),
       ),
@@ -187,6 +187,7 @@ class _MentionsCard extends StatelessWidget {
                 Text('@theflaticon @iconmonstr @pixsellz @dan ielbruce_ @romanshamin @_vect_ @glyphish !', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.primary)),
                 Text('Check out our new article "Top Users of the month"', style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground),),
                 Text('marianee.com/blog/top-users...', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.primary),),
+                SizedBox(height: 10,),
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: Theme.of(context).colorScheme.surfaceVariant),
@@ -222,19 +223,19 @@ class _MentionsCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          ImageIcon(AssetImage('assets/icons/comment_stroke_icon.png'), color: Theme.of(context).colorScheme.onSurfaceVariant,),
+                          ImageIcon(AssetImage('assets/icons/comment_stroke_icon.png'), color: Theme.of(context).colorScheme.onBackground,),
                           Text('7'),
                         ],
                       ),
                       Row(
                         children: [
-                          ImageIcon(AssetImage('assets/icons/retweet_solid_stroke_icon.png'), color: Colors.green,),
+                          ImageIcon(AssetImage('assets/icons/retweet_solid_stroke_icon.png'), color: Theme.of(context).colorScheme.secondary,),
                         Text('1'),
                         ],
                       ),
                       Row(
                         children: [
-                          ImageIcon(AssetImage('assets/icons/heart_solid_icon.png'), color: Colors.pinkAccent,),
+                          ImageIcon(AssetImage('assets/icons/heart_solid_icon.png'), color: Theme.of(context).colorScheme.primary,),
                         Text('3'),
                         ],
                       ),
@@ -242,7 +243,7 @@ class _MentionsCard extends StatelessWidget {
                       SizedBox(width: 10,)
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),

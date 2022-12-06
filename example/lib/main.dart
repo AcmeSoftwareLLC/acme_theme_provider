@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 
 void main() {
   loadProviders();
-  runApp(MyApp());
+  runApp(SampleThemeApp());
 }
 
-class MyApp extends StatelessWidget {
+class SampleThemeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppProvidersContainer(
