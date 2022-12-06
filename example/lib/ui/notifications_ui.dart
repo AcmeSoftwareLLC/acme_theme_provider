@@ -10,7 +10,7 @@ class NotificationsUI extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.surface,
-          title: Text('Notifications', style: Theme.of(context).textTheme.titleMedium),
+          title: Text('Notifications', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onBackground,)),
           centerTitle: true,
           leading: ProfileIcon.small(imagePath: 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',),
           actions: [
@@ -33,6 +33,8 @@ class NotificationsUI extends StatelessWidget {
                 ),
               ],
               labelColor: Theme.of(context).colorScheme.primary,
+              labelStyle: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500,),
+              unselectedLabelStyle: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurfaceVariant,),
               unselectedLabelColor: Theme.of(context).colorScheme.outline,
               indicatorColor: Theme.of(context).colorScheme.primary,
 
@@ -77,10 +79,9 @@ class _NotificationCard extends StatelessWidget {
   const _NotificationCard({required this.index});
   @override
   Widget build(BuildContext context) {
-    final _screenHeight = MediaQuery.of(context).size.height;
     final _screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: 248,
+      height: 280,
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(width: 1, color: Theme.of(context).colorScheme.surfaceVariant),),
       ),
@@ -109,9 +110,9 @@ class _NotificationCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('In case you missed Saad Drusteer\'s Tweet', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.outline),),
+                Text('In case you missed Saad Drusteer\'s Tweet', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),),
                 Text(
-                    'Are you using WordPress and migrating to the JAMstack? I wrote up a case study about how the Smashing magazine moved to JAMstack and saw great performance improvements and better security', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.outline),),
+                    'Are you using WordPress and migrating to the JAMstack? I wrote up a case study about how the Smashing magazine moved to JAMstack and saw great performance improvements and better security', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant, fontWeight: FontWeight.w400,),),
                 SizedBox(height: 10,),
                 Text('smashingdrusteer.com/2020/01/migrat...', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.outline), ),
               ],
@@ -162,6 +163,7 @@ class _MentionsCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ProfileIcon.medium(imagePath: index.isOdd? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg' :'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',),
+
                 Text('Mariane', style: Theme.of(context).textTheme.titleMedium),
                 SizedBox(width: 4,),
                 Text('@mariane', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.outline),),
@@ -178,7 +180,7 @@ class _MentionsCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 80, right: 24,  ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Hey', style: Theme.of(context).textTheme.bodyLarge),
