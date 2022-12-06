@@ -8,7 +8,7 @@ class MessageUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Messages', style: Theme.of(context).textTheme.titleMedium),
+        title: Text('Messages', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w900)),
         centerTitle: true,
         leading: ProfileIcon.small(imagePath: 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',),
         actions: [
@@ -22,7 +22,7 @@ class MessageUI extends StatelessWidget {
         ],
         bottom: PreferredSize(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Container(
               height: 32,
               child: TextField(
@@ -32,6 +32,8 @@ class MessageUI extends StatelessWidget {
                 decoration: InputDecoration(
                   filled: true,
                   fillColor:  Theme.of(context).colorScheme.surfaceVariant,
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  contentPadding: EdgeInsets.symmetric(horizontal: 40),
                   prefixIcon: ImageIcon(AssetImage('assets/icons/search_stroke_icon.png'), color: Theme.of(context).colorScheme.onSurfaceVariant,),
                   labelText: 'Search for people and groups',
                   labelStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.outline),

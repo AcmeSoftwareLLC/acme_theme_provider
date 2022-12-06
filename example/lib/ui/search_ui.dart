@@ -46,7 +46,7 @@ class _SearchBar extends StatelessWidget {
           decoration: InputDecoration(
             filled: true,
             fillColor:  Theme.of(context).colorScheme.surfaceVariant,
-            floatingLabelAlignment: FloatingLabelAlignment.center,
+            floatingLabelBehavior: FloatingLabelBehavior.never,
             contentPadding: EdgeInsets.symmetric(horizontal: 40),
             prefixIcon: ImageIcon(AssetImage('assets/icons/search_stroke_icon.png'), color: Theme.of(context).colorScheme.outline,),
             labelText: 'Search Twitter',

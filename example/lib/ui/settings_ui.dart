@@ -18,7 +18,7 @@ class _SettingsUIState extends State<SettingsUI> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
       appBar: AppBar(
-        title: Text('Settings', style: Theme.of(context).textTheme.titleMedium),
+        title: Text('Settings', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w900)),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.surface,
         leading: ProfileIcon.small(
