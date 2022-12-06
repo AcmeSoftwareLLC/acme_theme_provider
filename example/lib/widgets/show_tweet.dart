@@ -201,7 +201,7 @@ class ShowTweet extends StatelessWidget {
                 File(imagePath),
                 height: 300,
                 width: 500,
-                fit: BoxFit.fill,
+                fit: BoxFit.contain,
               )
             : SizedBox(),
         SizedBox(

@@ -91,7 +91,7 @@ class AddPostUI extends UI<AddPostViewModel> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(8),
         child: AddPostUIBody(
           viewModel: viewModel,
           screenHeight: screenHeight,
@@ -119,9 +119,6 @@ class AddPostUIBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 10,
-          ),
           TextField(
             maxLines: 2,
             style: Theme.of(context).textTheme.bodyMedium,
@@ -142,7 +139,7 @@ class AddPostUIBody extends StatelessWidget {
                   File(viewModel.imagePath),
                   height: screenHeight / 3,
                   width: screenWidth,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.contain,
                 )
               : SizedBox(),
         ],
