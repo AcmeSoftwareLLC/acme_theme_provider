@@ -68,3 +68,4 @@ class ThemeScope extends InheritedNotifier<ThemeNotifier> {
     return scope!.notifier!;
   }
 }
+

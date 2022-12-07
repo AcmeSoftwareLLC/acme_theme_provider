@@ -54,7 +54,7 @@ class _SettingsUIState extends State<SettingsUI> {
               changeCurrentTheme: (theme) =>
                   ThemeScope.of(context).changeAsset('assets/themes/$theme.acme'),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             AppElevatedButton(
               title: 'Done', onPressed: ( ) => context.router.pop()
             ),
