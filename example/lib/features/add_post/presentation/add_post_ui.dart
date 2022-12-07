@@ -58,6 +58,7 @@ class AddPostUI extends UI<AddPostViewModel> {
                     onOk: () {
                       viewModel.addTweet();
                       context.router.push(Routes.home);
+                      viewModel.refresh();
                     },
                   );
                 } else {
@@ -69,6 +70,7 @@ class AddPostUI extends UI<AddPostViewModel> {
                     onOk: () {
                       viewModel.addTweet();
                       context.router.push(Routes.home);
+                      viewModel.refresh();
                     },
                   );
                 }
