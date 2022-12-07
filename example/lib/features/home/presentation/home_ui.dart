@@ -103,8 +103,8 @@ class _TweetItem extends StatelessWidget {
                   ShowTweet(
                       post: 'You can see all the typography in this tweet',
                       imagePath: '',
-                      firstName: 'Hari',
-                      lastName: 'Bahadur',
+                      firstName: 'James',
+                      lastName: 'Smith',
                       userName: 'haribahadur1992',
                       userImage:
                           'https://xsgames.co/randomusers/assets/avatars/female/40.jpg'),

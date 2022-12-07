@@ -213,7 +213,7 @@ class ShowTweet extends StatelessWidget {
           height: 5,
         ),
         Divider(
-          thickness: 0.5,
+          thickness: 0.2,
           color: Theme.of(context).colorScheme.outline,
         ),
         SizedBox(
