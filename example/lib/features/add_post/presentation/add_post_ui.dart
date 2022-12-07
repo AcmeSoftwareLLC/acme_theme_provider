@@ -28,6 +28,7 @@ class AddPostUI extends UI<AddPostViewModel> {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.surface,
         leadingWidth: screenWidth / 5.5,
         leading: TextButton(
           onPressed: () {
@@ -56,7 +57,7 @@ class AddPostUI extends UI<AddPostViewModel> {
                     content: 'This will add to your post without an image',
                     onOk: () {
                       viewModel.addTweet();
-                      context.router.go(Routes.home);
+                      context.router.push(Routes.home);
                     },
                   );
                 } else {
@@ -67,7 +68,7 @@ class AddPostUI extends UI<AddPostViewModel> {
                         'This will add to your post, you can see in the feed',
                     onOk: () {
                       viewModel.addTweet();
-                      context.router.go(Routes.home);
+                      context.router.push(Routes.home);
                     },
                   );
                 }
