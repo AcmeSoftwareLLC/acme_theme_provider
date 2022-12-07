@@ -137,8 +137,7 @@ class AddPostUIBody extends StatelessWidget {
           viewModel.imagePath.isNotEmpty
               ? Image.file(
                   File(viewModel.imagePath),
-                  height: screenHeight / 3,
-                  width: screenWidth,
+                  height: screenHeight / 3.2,
                   fit: BoxFit.contain,
                 )
               : SizedBox(),

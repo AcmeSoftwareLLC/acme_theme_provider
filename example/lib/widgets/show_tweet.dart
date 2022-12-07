@@ -26,6 +26,7 @@ class ShowTweet extends StatelessWidget {
     var totalComment = Random().nextInt(200);
     var totalReTweet = Random().nextInt(200);
     var totalLike = Random().nextInt(200);
+    final screenHeight = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -177,15 +178,30 @@ class ShowTweet extends StatelessWidget {
                   SizedBox(
                     height: 5,
                   ),
-                  totalReTweet.isOdd
-                      ? Text(
-                          'Show this thread',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                  Column(
+                    children: [
+                      totalReTweet.isOdd
+                          ? Text(
+                              'Show this thread',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                            )
+                          : SizedBox(),
+                      SizedBox(
+                        height: 5,
+                      ),
+                    ],
+                  ),
+                  imagePath.isNotEmpty
+                      ? Image.file(
+                          File(imagePath),
+                          height: screenHeight / 3.2,
+                          fit: BoxFit.contain,
                         )
                       : SizedBox(),
                 ],
@@ -195,17 +211,6 @@ class ShowTweet extends StatelessWidget {
         ),
         SizedBox(
           height: 5,
-        ),
-        imagePath.isNotEmpty
-            ? Image.file(
-                File(imagePath),
-                height: 300,
-                width: 500,
-                fit: BoxFit.contain,
-              )
-            : SizedBox(),
-        SizedBox(
-          height: 10,
         ),
         Divider(
           thickness: 0.5,
