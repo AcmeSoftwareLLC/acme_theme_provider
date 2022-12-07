@@ -27,7 +27,10 @@ class HomeUI extends UI<HomeViewModel> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        title: Text('Tweets', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w800),),
+        title: Text(
+          'Tweets',
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
         centerTitle: true,
         leading: ProfileIcon.small(
           imagePath:
@@ -41,8 +44,11 @@ class HomeUI extends UI<HomeViewModel> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ImageIcon(
-                  AssetImage('assets/icons/settings_stroke_icon.png',),
-                  color: Theme.of(context).colorScheme.primary, semanticLabel: 'Settings',),
+                AssetImage(
+                  'assets/icons/settings_stroke_icon.png',
+                ),
+                color: Theme.of(context).colorScheme.primary,
+              ),
             ),
           )
         ],
@@ -58,7 +64,9 @@ class HomeUI extends UI<HomeViewModel> {
 class _TweetItem extends StatelessWidget {
   final HomeViewModel viewModel;
 
-  const _TweetItem({required this.viewModel});
+  const _TweetItem({
+    required this.viewModel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -95,8 +103,8 @@ class _TweetItem extends StatelessWidget {
                   ShowTweet(
                       post: 'You can see all the typography in this tweet',
                       imagePath: '',
-                      firstName: 'Hari',
-                      lastName: 'Bahadur',
+                      firstName: 'James',
+                      lastName: 'Smith',
                       userName: 'haribahadur1992',
                       userImage:
                           'https://xsgames.co/randomusers/assets/avatars/female/40.jpg'),
