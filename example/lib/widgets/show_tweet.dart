@@ -175,9 +175,6 @@ class ShowTweet extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 5,
-                  ),
                   Column(
                     children: [
                       totalReTweet.isOdd
