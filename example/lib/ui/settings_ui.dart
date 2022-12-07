@@ -54,7 +54,7 @@ class _SettingsUIState extends State<SettingsUI> {
               changeCurrentTheme: (theme) =>
                   ThemeScope.of(context).changeAsset('assets/themes/$theme.acme'),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             AppElevatedButton(
               title: 'Done', onPressed: ( ) => context.router.pop()
             ),
@@ -95,7 +95,6 @@ class _ThemeSelectionTileState extends State<_ThemeSelectionTile> {
           decoration: BoxDecoration(
             border: Border.all(width: 0.5, color: Theme.of(context).colorScheme.surfaceVariant),
           ),
-          padding: EdgeInsets.all(8),
           child: ListTile(
             title: Text(themePaths[index]),
             selected: index == _selectedIndex,
