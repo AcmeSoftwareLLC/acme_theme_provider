@@ -18,24 +18,26 @@ class SampleThemeApp extends StatelessWidget {
       providersContext: providersContext,
       child: ThemeScope(
         notifier: ThemeNotifier(),
-        child: Builder(builder: (context) {
-          return AcmeThemeProvider<BrandColors>.asset(
-            path: ThemeScope.of(context).assetPath,
-            customColorsConverterCreator: BrandColorsConverter.new,
-            builder: (context, theme) {
-              return AppRouterScope(
-                builder: (context) => MaterialApp.router(
-                  title: 'Twitter Clone App',
-                  theme: theme.lightTheme,
-                  darkTheme: theme.darkTheme,
-                  themeMode: theme.themeMode,
-                  routerConfig: context.router.config,
-                ),
-                create: () => NoteRouter(),
-              );
-            },
-          );
-        },),
+        child: Builder(
+          builder: (context) {
+            return AcmeThemeProvider<BrandColors>.asset(
+              path: ThemeScope.of(context).assetPath,
+              customColorsConverterCreator: BrandColorsConverter.new,
+              builder: (context, theme) {
+                return AppRouterScope(
+                  builder: (context) => MaterialApp.router(
+                    title: 'Twitter Clone App',
+                    theme: theme.lightTheme,
+                    darkTheme: theme.darkTheme,
+                    themeMode: theme.themeMode,
+                    routerConfig: context.router.config,
+                  ),
+                  create: () => NoteRouter(),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
@@ -60,12 +62,9 @@ class ThemeScope extends InheritedNotifier<ThemeNotifier> {
     required super.child,
   });
 
-
-
-  static ThemeNotifier of(BuildContext context){
+  static ThemeNotifier of(BuildContext context) {
     final scope = context.dependOnInheritedWidgetOfExactType<ThemeScope>();
-    assert (scope != null);
+    assert(scope != null);
     return scope!.notifier!;
   }
 }
-
