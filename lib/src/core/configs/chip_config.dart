@@ -32,6 +32,33 @@ class ChipConfig extends ComponentConfig {
       if (map['theme']['brightness'] == null) {
         map['theme']['brightness'] = 'light';
       }
+      if (map['theme']['disabledColor'] == null) {
+        map['theme']['disabledColor'] = '#FFFFFF';
+      }
+      if (map['theme']['labelStyle'] == null) {
+        map['theme']['labelStyle'] = {
+          'color': '#FFFFFF',
+        };
+      }
+      if (map['theme']['padding'] == null) {
+        map['theme']['padding'] = {
+          'bottom': 8.0,
+          'left': 8.0,
+          'right': 8.0,
+          'top': 8.0
+        };
+      }
+      if (map['theme']['secondaryLabelStyle'] == null) {
+        map['theme']['secondaryLabelStyle'] = {
+          'color': '#FFFFFF',
+        };
+      }
+      if (map['theme']['secondarySelectedColor'] == null) {
+        map['theme']['secondarySelectedColor'] = '#FFFFFF';
+      }
+      if (map['theme']['selectedColor'] == null) {
+        map['theme']['selectedColor'] = '#FFFFFF';
+      }
     }
     return ChipConfig(
       theme: ThemeDecoder.decodeChipThemeData(map['theme']),
