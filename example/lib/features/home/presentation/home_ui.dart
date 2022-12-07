@@ -28,7 +28,9 @@ class HomeUI extends UI<HomeViewModel> {
         backgroundColor: Theme.of(context).colorScheme.surface,
         title: Text(
           'Tweets',
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                fontWeight: FontWeight.w800,
+              ),
         ),
         centerTitle: true,
         leading: ProfileIcon.small(
