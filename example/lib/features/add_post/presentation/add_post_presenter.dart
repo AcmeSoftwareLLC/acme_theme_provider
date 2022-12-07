@@ -31,7 +31,6 @@ class AddPostPresenter
         post: post,
       ),
       refresh: useCase.refresh,
-      tweetAdded: output.tweetAdded,
     );
   }
 }
