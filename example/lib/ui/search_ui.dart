@@ -10,23 +10,34 @@ class SearchUI extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        leading: ProfileIcon.small(imagePath: 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',),
+        leading: ProfileIcon.small(
+          imagePath:
+              'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
+        ),
         title: _SearchBar(),
         actions: [
           GestureDetector(
-            onTap: () => context.router.push(Routes.settings,),
+            onTap: () => context.router.push(
+              Routes.settings,
+            ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
+              child: ImageIcon(
+                  AssetImage(
+                    'assets/icons/settings_stroke_icon.png',
+                    package: 'example',
+                  ),
+                  color: Theme.of(context).colorScheme.primary),
             ),
           )
         ],
       ),
-      body: Container(child: Column(
-        children: [
-          _TrendsWidget(),
-        ],
-      ),
+      body: Container(
+        child: Column(
+          children: [
+            _TrendsWidget(),
+          ],
+        ),
         color: Theme.of(context).colorScheme.surfaceVariant,
       ),
     );
@@ -34,10 +45,8 @@ class SearchUI extends StatelessWidget {
 }
 
 class _SearchBar extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-
     return SizedBox(
       child: Container(
         height: 32,
@@ -45,12 +54,20 @@ class _SearchBar extends StatelessWidget {
           textAlign: TextAlign.center,
           decoration: InputDecoration(
             filled: true,
-            fillColor:  Theme.of(context).colorScheme.surfaceVariant,
+            fillColor: Theme.of(context).colorScheme.surfaceVariant,
             floatingLabelBehavior: FloatingLabelBehavior.never,
             contentPadding: EdgeInsets.symmetric(horizontal: 40),
-            prefixIcon: ImageIcon(AssetImage('assets/icons/search_stroke_icon.png'), color: Theme.of(context).colorScheme.outline,),
+            prefixIcon: ImageIcon(
+              AssetImage(
+                'assets/icons/search_stroke_icon.png',
+                package: 'example',
+              ),
+              color: Theme.of(context).colorScheme.outline,
+            ),
             labelText: 'Search Twitter',
-            labelStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.outline,),
+            labelStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.outline,
+                ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide: BorderSide(
@@ -73,7 +90,6 @@ class _TrendsWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-
         Container(
           width: _screenWidth,
           color: Theme.of(context).colorScheme.surface,
@@ -84,22 +100,40 @@ class _TrendsWidget extends StatelessWidget {
                 height: 48,
                 width: _screenWidth,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  child: Text('Trends for you', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w800, )),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  child: Text('Trends for you',
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                            fontWeight: FontWeight.w800,
+                          )),
                 ),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Theme.of(context).colorScheme.surfaceVariant,),
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.surfaceVariant,
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 36, left: 80, right: 80),
-                child: Text('No new trends for you', style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w800),),
+                child: Text(
+                  'No new trends for you',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(fontWeight: FontWeight.w800),
+                ),
               ),
               SizedBox(height: 20),
               Text(
-                  'It seems like there\'s not a lot to show you right\n now, but you can see trends for other areas', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant), ),
+                'It seems like there\'s not a lot to show you right\n now, but you can see trends for other areas',
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant),
+              ),
               SizedBox(height: 20),
-              AppElevatedButton(title: 'Change location', onPressed: ( ){},),
+              AppElevatedButton(
+                title: 'Change location',
+                onPressed: () {},
+              ),
               SizedBox(height: 40),
             ],
           ),

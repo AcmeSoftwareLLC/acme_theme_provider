@@ -1,5 +1,4 @@
 import 'package:clean_framework_router/clean_framework_router.dart';
-import 'package:example/features/home/presentation/another_ui.dart';
 import 'package:example/features/home/presentation/home_page.dart';
 import 'package:example/features/add_post/presentation/add_post_ui.dart';
 import 'package:example/ui/settings_ui.dart';
@@ -36,8 +35,10 @@ class NoteRouter extends AppRouter<Routes> {
         builder: (context, state) => NotificationsUI(),
         route: Routes.notifications,
       ),
-      AppRoute(builder: (context, state) => MessageUI(), route: Routes.messages),
-      AppRoute(builder: (context, state) => SettingsUI(), route: Routes.settings),
+      AppRoute(
+          builder: (context, state) => MessageUI(), route: Routes.messages),
+      AppRoute(
+          builder: (context, state) => SettingsUI(), route: Routes.settings),
     ]);
   }
 }

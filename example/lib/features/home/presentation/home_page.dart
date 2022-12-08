@@ -35,25 +35,37 @@ class _HomePageState extends State<HomePage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: ImageIcon(
-              AssetImage('assets/icons/home_icon.png'),
+              AssetImage(
+                'assets/icons/home_icon.png',
+                package: 'example',
+              ),
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(
-              AssetImage('assets/icons/search_stroke_icon.png'),
+              AssetImage(
+                'assets/icons/search_stroke_icon.png',
+                package: 'example',
+              ),
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(
-              AssetImage('assets/icons/bell_stroke_icon.png'),
+              AssetImage(
+                'assets/icons/bell_stroke_icon.png',
+                package: 'example',
+              ),
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(
-              AssetImage('assets/icons/message_stroke_icon.png'),
+              AssetImage(
+                'assets/icons/message_stroke_icon.png',
+                package: 'example',
+              ),
             ),
             label: '',
           ),

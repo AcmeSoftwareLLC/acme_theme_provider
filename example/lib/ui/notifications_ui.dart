@@ -10,15 +10,31 @@ class NotificationsUI extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.surface,
-          title: Text('Notifications', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w800),),
+          title: Text(
+            'Notifications',
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(fontWeight: FontWeight.w800),
+          ),
           centerTitle: true,
-          leading: ProfileIcon.small(imagePath: 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',),
+          leading: ProfileIcon.small(
+            imagePath:
+                'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
+          ),
           actions: [
             GestureDetector(
-              onTap: () => context.router.push(Routes.settings,),
+              onTap: () => context.router.push(
+                Routes.settings,
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ImageIcon(AssetImage('assets/icons/settings_stroke_icon.png'), color: Theme.of(context).colorScheme.primary),
+                child: ImageIcon(
+                    AssetImage(
+                      'assets/icons/settings_stroke_icon.png',
+                      package: 'example',
+                    ),
+                    color: Theme.of(context).colorScheme.primary),
               ),
             )
           ],
@@ -33,20 +49,24 @@ class NotificationsUI extends StatelessWidget {
                 ),
               ],
               labelColor: Theme.of(context).colorScheme.primary,
-              labelStyle: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500,),
-              unselectedLabelStyle: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurfaceVariant,),
+              labelStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+              unselectedLabelStyle:
+                  Theme.of(context).textTheme.titleMedium!.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
               unselectedLabelColor: Theme.of(context).colorScheme.outline,
               indicatorColor: Theme.of(context).colorScheme.primary,
-
             ),
             preferredSize: Size.fromHeight(50),
           ),
           shape: Border(
               bottom: BorderSide(
-                color: Theme.of(context).colorScheme.surfaceVariant,
-                width: 1,
-              )
-          ),
+            color: Theme.of(context).colorScheme.surfaceVariant,
+            width: 1,
+          )),
         ),
         body: TabBarView(
           children: [
@@ -70,20 +90,23 @@ class _AllNotificationsUI extends StatelessWidget {
       itemCount: 10,
     );
   }
-
 }
-class _NotificationCard extends StatelessWidget {
 
+class _NotificationCard extends StatelessWidget {
   final int index;
 
   const _NotificationCard({required this.index});
+
   @override
   Widget build(BuildContext context) {
     final _screenWidth = MediaQuery.of(context).size.width;
     return Container(
       height: 280,
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(width: 1, color: Theme.of(context).colorScheme.surfaceVariant),),
+        border: Border(
+          bottom: BorderSide(
+              width: 1, color: Theme.of(context).colorScheme.surfaceVariant),
+        ),
       ),
       child: Column(
         children: [
@@ -92,12 +115,28 @@ class _NotificationCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ImageIcon(AssetImage('assets/icons/star_solid_icon.png'), color: Theme.of(context).colorScheme.primary,),
-                ProfileIcon.medium(imagePath: index.isEven? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg' :'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',),
+                ImageIcon(
+                  AssetImage(
+                    'assets/icons/star_solid_icon.png',
+                    package: 'example',
+                  ),
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                ProfileIcon.medium(
+                  imagePath: index.isEven
+                      ? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg'
+                      : 'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',
+                ),
                 SizedBox(
                   width: _screenWidth / 2,
                 ),
-                ImageIcon(AssetImage('assets/icons/down_arrow_icon.png'), color: Theme.of(context).colorScheme.onSurfaceVariant,),
+                ImageIcon(
+                  AssetImage(
+                    'assets/icons/down_arrow_icon.png',
+                    package: 'example',
+                  ),
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
                 SizedBox(
                   width: _screenWidth / 80,
                 ),
@@ -110,11 +149,28 @@ class _NotificationCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('In case you missed Saad Drusteer\'s Tweet', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),),
                 Text(
-                    'Are you using WordPress and migrating to the JAMstack? I wrote up a case study about how the Smashing magazine moved to JAMstack and saw great performance improvements and better security', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant, fontWeight: FontWeight.w400,),),
-                SizedBox(height: 10,),
-                Text('smashingdrusteer.com/2020/01/migrat...', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.outline), ),
+                  'In case you missed Saad Drusteer\'s Tweet',
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant),
+                ),
+                Text(
+                  'Are you using WordPress and migrating to the JAMstack? I wrote up a case study about how the Smashing magazine moved to JAMstack and saw great performance improvements and better security',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        fontWeight: FontWeight.w400,
+                      ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'smashingdrusteer.com/2020/01/migrat...',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Theme.of(context).colorScheme.outline),
+                ),
               ],
             ),
           ),
@@ -150,7 +206,10 @@ class _MentionsCard extends StatelessWidget {
     return Container(
       height: 456,
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(width: 1, color: Theme.of(context).colorScheme.surfaceVariant),),
+        border: Border(
+          bottom: BorderSide(
+              width: 1, color: Theme.of(context).colorScheme.surfaceVariant),
+        ),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -162,35 +221,87 @@ class _MentionsCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ProfileIcon.medium(imagePath: index.isOdd? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg' :'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',),
-
+                ProfileIcon.medium(
+                  imagePath: index.isOdd
+                      ? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg'
+                      : 'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',
+                ),
                 Text('Mariane', style: Theme.of(context).textTheme.titleMedium),
-                SizedBox(width: 4,),
-                Text('@mariane', style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.outline),),
-                SizedBox(width: 4,),
-                Text('1/21/20',  style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.outline),),
+                SizedBox(
+                  width: 4,
+                ),
+                Text(
+                  '@mariane',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(color: Theme.of(context).colorScheme.outline),
+                ),
+                SizedBox(
+                  width: 4,
+                ),
+                Text(
+                  '1/21/20',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(color: Theme.of(context).colorScheme.outline),
+                ),
                 SizedBox(
                   width: _screenWidth / 8,
                 ),
-                ImageIcon(AssetImage('assets/icons/down_arrow_icon.png'), color: Theme.of(context).colorScheme.onSurfaceVariant,),
-                SizedBox(width: 8,),
+                ImageIcon(
+                  AssetImage(
+                    'assets/icons/down_arrow_icon.png',
+                    package: 'example',
+                  ),
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+                SizedBox(
+                  width: 8,
+                ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 80, right: 24,  ),
+            padding: const EdgeInsets.only(
+              left: 80,
+              right: 24,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Hey', style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground),),
-                Text('@theflaticon @iconmonstr @pixsellz @dan ielbruce_ @romanshamin @_vect_ @glyphish !', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.primary)),
-                Text('Check out our new article "Top Users of the month"', style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground),),
-                Text('marianee.com/blog/top-users...', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.primary),),
-                SizedBox(height: 10,),
+                Text(
+                  'Hey',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.w400,
+                      color: Theme.of(context).colorScheme.onBackground),
+                ),
+                Text(
+                    '@theflaticon @iconmonstr @pixsellz @dan ielbruce_ @romanshamin @_vect_ @glyphish !',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.primary)),
+                Text(
+                  'Check out our new article "Top Users of the month"',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.w400,
+                      color: Theme.of(context).colorScheme.onBackground),
+                ),
+                Text(
+                  'marianee.com/blog/top-users...',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Theme.of(context).colorScheme.primary),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: Theme.of(context).colorScheme.surfaceVariant),
+                    border: Border.all(
+                        color: Theme.of(context).colorScheme.surfaceVariant),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   child: ClipRRect(
@@ -208,14 +319,25 @@ class _MentionsCard extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text('Top users of the month', style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onBackground),),
+                          child: Text(
+                            'Top users of the month',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    fontWeight: FontWeight.w400,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground),
+                          ),
                         ),
-
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -223,24 +345,48 @@ class _MentionsCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          ImageIcon(AssetImage('assets/icons/comment_stroke_icon.png'), color: Theme.of(context).colorScheme.onBackground,),
+                          ImageIcon(
+                            AssetImage(
+                              'assets/icons/comment_stroke_icon.png',
+                              package: 'example',
+                            ),
+                            color: Theme.of(context).colorScheme.onBackground,
+                          ),
                           Text('7'),
                         ],
                       ),
                       Row(
                         children: [
-                          ImageIcon(AssetImage('assets/icons/retweet_solid_stroke_icon.png'), color: Theme.of(context).colorScheme.secondary,),
-                        Text('1'),
+                          ImageIcon(
+                            AssetImage(
+                                'assets/icons/retweet_solid_stroke_icon.png'),
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                          Text('1'),
                         ],
                       ),
                       Row(
                         children: [
-                          ImageIcon(AssetImage('assets/icons/heart_solid_icon.png'), color: Theme.of(context).colorScheme.primary,),
-                        Text('3'),
+                          ImageIcon(
+                            AssetImage(
+                              'assets/icons/heart_solid_icon.png',
+                              package: 'example',
+                            ),
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          Text('3'),
                         ],
                       ),
-                      ImageIcon(AssetImage('assets/icons/share_stroke_icon.png'), color: Theme.of(context).colorScheme.onSurfaceVariant,),
-                      SizedBox(width: 10,)
+                      ImageIcon(
+                        AssetImage(
+                          'assets/icons/share_stroke_icon.png',
+                          package: 'example',
+                        ),
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      )
                     ],
                   ),
                 ),

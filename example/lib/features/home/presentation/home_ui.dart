@@ -45,6 +45,7 @@ class HomeUI extends UI<HomeViewModel> {
               child: ImageIcon(
                 AssetImage(
                   'assets/icons/settings_stroke_icon.png',
+                  package: 'example',
                 ),
                 color: Theme.of(context).colorScheme.primary,
               ),

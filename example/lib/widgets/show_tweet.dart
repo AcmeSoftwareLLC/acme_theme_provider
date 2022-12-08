@@ -40,6 +40,7 @@ class ShowTweet extends StatelessWidget {
                 ImageIcon(
                   AssetImage(
                     'assets/icons/heart_solid_icon.png',
+                    package: 'example',
                   ),
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
@@ -103,6 +104,7 @@ class ShowTweet extends StatelessWidget {
                       ImageIcon(
                         AssetImage(
                           'assets/icons/down_arrow_icon.png',
+                          package: 'example',
                         ),
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
@@ -125,6 +127,7 @@ class ShowTweet extends StatelessWidget {
                             ImageIcon(
                               AssetImage(
                                 'assets/icons/comment_stroke_icon.png',
+                                package: 'example',
                               ),
                               color: Theme.of(context)
                                   .colorScheme
@@ -141,6 +144,7 @@ class ShowTweet extends StatelessWidget {
                             ImageIcon(
                               AssetImage(
                                 'assets/icons/retweet_solid_stroke_icon.png',
+                                package: 'example',
                               ),
                               color: Theme.of(context)
                                   .colorScheme
@@ -157,6 +161,7 @@ class ShowTweet extends StatelessWidget {
                             ImageIcon(
                               AssetImage(
                                 'assets/icons/heart_stroke_icon.png',
+                                package: 'example',
                               ),
                               color: Theme.of(context)
                                   .colorScheme
@@ -169,7 +174,10 @@ class ShowTweet extends StatelessWidget {
                           ],
                         ),
                         ImageIcon(
-                          AssetImage('assets/icons/share_stroke_icon.png'),
+                          AssetImage(
+                            'assets/icons/share_stroke_icon.png',
+                            package: 'example',
+                          ),
                           color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                       ],
