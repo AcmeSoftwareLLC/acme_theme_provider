@@ -1,5 +1,6 @@
 import 'package:acme_theme_provider/src/core/component_config.dart';
 import 'package:flutter/material.dart';
+import 'package:json_class/json_class.dart';
 import 'package:json_theme/json_theme.dart';
 
 class ChipConfig extends ComponentConfig {
@@ -25,43 +26,8 @@ class ChipConfig extends ComponentConfig {
   final Color? deleteIconColor;
 
   factory ChipConfig.fromMap(Map<String, dynamic> map) {
-    if (map['theme'] != null) {
-      if (map['theme']['backgroundColor'] == null) {
-        map['theme']['backgroundColor'] = '#FFFFFF';
-      }
-      if (map['theme']['brightness'] == null) {
-        map['theme']['brightness'] = 'light';
-      }
-      if (map['theme']['disabledColor'] == null) {
-        map['theme']['disabledColor'] = '#FFFFFF';
-      }
-      if (map['theme']['labelStyle'] == null) {
-        map['theme']['labelStyle'] = {
-          'color': '#FFFFFF',
-        };
-      }
-      if (map['theme']['padding'] == null) {
-        map['theme']['padding'] = {
-          'bottom': 8.0,
-          'left': 8.0,
-          'right': 8.0,
-          'top': 8.0
-        };
-      }
-      if (map['theme']['secondaryLabelStyle'] == null) {
-        map['theme']['secondaryLabelStyle'] = {
-          'color': '#FFFFFF',
-        };
-      }
-      if (map['theme']['secondarySelectedColor'] == null) {
-        map['theme']['secondarySelectedColor'] = '#FFFFFF';
-      }
-      if (map['theme']['selectedColor'] == null) {
-        map['theme']['selectedColor'] = '#FFFFFF';
-      }
-    }
     return ChipConfig(
-      theme: ThemeDecoder.decodeChipThemeData(map['theme']),
+      theme: _decodeChipThemeData(map['theme']),
       clipBehaviour: ThemeDecoder.decodeClip(map['clipBehaviour']) ?? Clip.none,
       visualDensity: ThemeDecoder.decodeVisualDensity(map['visualDensity']),
       materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
@@ -111,4 +77,81 @@ class ChipConfig extends ComponentConfig {
       deleteIconColor: deleteIconColor ?? this.deleteIconColor,
     );
   }
+}
+
+// Copied from ThemeDecoder with minor tweaks,
+// as some the field were forced to be non-null.
+ChipThemeData? _decodeChipThemeData(dynamic value) {
+  ChipThemeData? result;
+
+  if (value is ChipThemeData) {
+    result = value;
+  } else if (value != null) {
+    result = ChipThemeData(
+      backgroundColor: ThemeDecoder.decodeColor(
+        value['backgroundColor'],
+        validate: false,
+      ),
+      brightness: ThemeDecoder.decodeBrightness(
+        value['brightness'],
+        validate: false,
+      ),
+      checkmarkColor: ThemeDecoder.decodeColor(
+        value['checkmarkColor'],
+        validate: false,
+      ),
+      deleteIconColor: ThemeDecoder.decodeColor(
+        value['deleteIconColor'],
+        validate: false,
+      ),
+      disabledColor: ThemeDecoder.decodeColor(
+        value['disabledColor'],
+        validate: false,
+      ),
+      elevation: JsonClass.parseDouble(value['elevation']),
+      labelPadding: ThemeDecoder.decodeEdgeInsetsGeometry(
+        value['labelPadding'],
+        validate: false,
+      ),
+      labelStyle: ThemeDecoder.decodeTextStyle(
+        value['labelStyle'],
+        validate: false,
+      ),
+      padding: ThemeDecoder.decodeEdgeInsetsGeometry(
+        value['padding'],
+        validate: false,
+      ),
+      pressElevation: JsonClass.parseDouble(value['pressElevation']),
+      secondaryLabelStyle: ThemeDecoder.decodeTextStyle(
+        value['secondaryLabelStyle'],
+        validate: false,
+      ),
+      secondarySelectedColor: ThemeDecoder.decodeColor(
+        value['secondarySelectedColor'],
+        validate: false,
+      ),
+      selectedColor: ThemeDecoder.decodeColor(
+        value['selectedColor'],
+        validate: false,
+      ),
+      shape: ThemeDecoder.decodeShapeBorder(
+        value['shape'],
+        validate: false,
+      ) as OutlinedBorder?,
+      side: ThemeDecoder.decodeBorderSide(value['side']),
+      selectedShadowColor: ThemeDecoder.decodeColor(
+        value['selectedShadowColor'],
+        validate: false,
+      ),
+      shadowColor: ThemeDecoder.decodeColor(
+        value['shadowColor'],
+        validate: false,
+      ),
+      showCheckmark: value['showCheckmark'] == null
+          ? null
+          : JsonClass.parseBool(value['showCheckmark']),
+    );
+  }
+
+  return result;
 }
