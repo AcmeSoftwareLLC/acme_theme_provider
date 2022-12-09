@@ -150,7 +150,7 @@ packages:
     source: sdk
     version: "0.0.0"
   go_router:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: go_router
       url: "https://pub.dartlang.org"
@@ -604,4 +604,4 @@ packages:
     version: "1.0.1+7"
 sdks:
   dart: ">=2.18.0 <3.0.0"
-  flutter: ">=3.0.4"
+  flutter: ">=3.3.0"

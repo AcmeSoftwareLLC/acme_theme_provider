@@ -11,7 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
   acme_theme_provider:
-    path: ../
+    git:
+      url: https://github.com/MattHamburger/acme_theme_provider.git
+      ref: sarbagya/components
   clean_framework: ^2.0.0-dev.0
   clean_framework_router: ^0.2.0-dev.2
   clean_framework_rest: ^0.2.0-dev.0
@@ -28,6 +30,7 @@ dev_dependencies:
 
 dependency_overrides:
   go_router: 5.1.2
+
 
 flutter:
   uses-material-design: true
