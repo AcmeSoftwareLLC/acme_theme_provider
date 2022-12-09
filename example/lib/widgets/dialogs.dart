@@ -51,7 +51,10 @@ Future<void> showOKDialog({
             ),
           ),
           TextButton(
-            onPressed: onOk,
+            onPressed: () {
+              Navigator.pop(context);
+              onOk();
+            },
             child: Text(
               'OK',
               style: Theme.of(context).textTheme.labelLarge!.copyWith(
