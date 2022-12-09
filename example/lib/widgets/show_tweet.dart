@@ -22,6 +22,7 @@ class ShowTweet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(imagePath);
     var time = Random().nextInt(24);
     var totalComment = Random().nextInt(200);
     var totalReTweet = Random().nextInt(200);
