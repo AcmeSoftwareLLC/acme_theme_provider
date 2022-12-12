@@ -27,9 +27,9 @@ class SampleThemeApp extends StatelessWidget {
                 return AppRouterScope(
                   builder: (context) => MaterialApp.router(
                     title: 'Twitter Clone App',
-                    theme: theme.lightTheme,
-                    darkTheme: theme.darkTheme,
-                    themeMode: theme.themeMode,
+                    // theme: theme.lightTheme,
+                    // darkTheme: theme.darkTheme,
+                    // themeMode: theme.themeMode,
                     routerConfig: context.router.config,
                   ),
                   create: () => NoteRouter(),
