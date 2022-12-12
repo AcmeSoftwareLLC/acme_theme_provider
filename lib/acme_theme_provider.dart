@@ -1,17 +1,22 @@
 library acme_theme_provider;
 
+import 'package:acme_theme_provider/src/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'src/asset_theme_provider.dart';
+import 'src/providers/asset_theme_provider.dart';
+import 'src/core/component_config.dart';
 import 'src/custom_colors.dart';
-import 'src/network_theme_provider.dart';
+import 'src/providers/network_theme_provider.dart';
 import 'src/typedefs.dart';
 
 export 'src/custom_colors.dart';
 export 'src/theme.dart' show TextStyleBuilder;
+export 'src/typedefs.dart';
+export 'src/widgets.dart';
+export 'src/core/component_config.dart';
 
-abstract class AcmeThemeProvider<T extends Object> extends StatelessWidget {
+class AcmeThemeProvider<T extends Object> extends StatelessWidget {
   final String source;
   final ThemedWidgetBuilder builder;
   final ThemeOverride? overrideFn;
@@ -44,7 +49,54 @@ abstract class AcmeThemeProvider<T extends Object> extends StatelessWidget {
     String cacheKey,
   }) = NetworkThemeProvider;
 
+  @override
+  Widget build(BuildContext context) {
+    return scopedBuilder(context, AcmeTheme.fromJson(source));
+  }
+
+  Widget scopedBuilder(BuildContext context, AcmeTheme theme) {
+    return ComponentScope(
+      components: theme.components,
+      child: builder(context, theme),
+    );
+  }
+
   static Future<void> prefetchAsset(String assetPath) async {
     await rootBundle.loadString(assetPath);
+  }
+
+  static T _of<T extends ComponentConfig>(BuildContext context, String name) {
+    final result = context.dependOnInheritedWidgetOfExactType<ComponentScope>();
+    final components = result?.components;
+
+    assert(components != null, '\n\nNo AcmeThemeProvider found in context\n');
+    assert(
+      components!.containsKey(name),
+      '\n\nNo configuration found for "$name".\n\n'
+      'Please ensure that config for the component is present in the theme json.\n',
+    );
+
+    return components![name] as T;
+  }
+}
+
+class ComponentScope extends InheritedWidget {
+  const ComponentScope({
+    super.key,
+    required this.components,
+    required super.child,
+  });
+
+  final Map<String, ComponentConfig> components;
+
+  @override
+  bool updateShouldNotify(ComponentScope oldWidget) {
+    return oldWidget.components != components;
+  }
+}
+
+extension ComponentConfigExtension on BuildContext {
+  T config<T extends ComponentConfig>(String name) {
+    return AcmeThemeProvider._of<T>(this, name);
   }
 }

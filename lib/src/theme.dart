@@ -11,12 +11,14 @@ class AcmeTheme<T extends Object> {
   final ThemeData lightTheme;
   final ThemeData darkTheme;
   final ThemeMode themeMode;
+  final Map<String, ComponentConfig> components;
 
   AcmeTheme._({
     required this.name,
     required this.lightTheme,
     required this.darkTheme,
     required this.themeMode,
+    required this.components,
   });
 
   factory AcmeTheme.fallback({
@@ -60,6 +62,7 @@ class AcmeTheme<T extends Object> {
       lightTheme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.light,
+      components: {},
     );
   }
 
@@ -94,6 +97,9 @@ class AcmeTheme<T extends Object> {
         customColorsConverterCreator: customColorsConverterCreator,
       ),
       themeMode: ThemeMode.values[themeMap['theme_mode'] ?? 1],
+      components: Map.from(themeMap['components']).map(
+        (k, v) => MapEntry(k, ComponentConfig.decode(v['type'], v)),
+      ),
     );
   }
 
@@ -107,6 +113,7 @@ class AcmeTheme<T extends Object> {
       lightTheme: lightTheme ?? this.lightTheme,
       darkTheme: darkTheme ?? this.darkTheme,
       themeMode: themeMode ?? this.themeMode,
+      components: components,
     );
   }
 }
@@ -118,7 +125,7 @@ ThemeData _resolveTheme<T extends Object>(
   Brightness fallbackBrightness, {
   CustomColorsConverterCreator<T>? customColorsConverterCreator,
 }) {
-  if (rawThemeData is Map) {
+  if (rawThemeData is Map && rawThemeData.isNotEmpty) {
     final customColors = Map.from(rawThemeData['customColors'] ?? {});
     final extensions = [
       if (customColorsConverterCreator != null)
@@ -136,6 +143,7 @@ ThemeData _resolveTheme<T extends Object>(
     final fallbackThemeData = ThemeData(
       brightness: fallbackBrightness,
       extensions: extensions,
+      useMaterial3: true,
     );
 
     final themeData = decodedThemeData ?? fallbackThemeData;
@@ -175,6 +183,7 @@ ThemeData _resolveTheme<T extends Object>(
           colors: {},
         ),
     ],
+    useMaterial3: true,
   );
 }
 
