@@ -1,3 +1,3 @@
-# Acme Theme Provider
-A theme provider for themes generated using Acme Theme Components.
+# Acme Theme
+A package to use the themes and components extracted from Acme Theme Builder.
 
