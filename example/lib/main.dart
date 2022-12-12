@@ -17,8 +17,8 @@ void main() {
 
 class SampleThemeApp extends StatelessWidget {
   final ThemeMode themeMode;
-  final ThemeData themeData;
-  final ThemeData darkThemeData;
+  final ThemeData? themeData;
+  final ThemeData? darkThemeData;
 
   const SampleThemeApp({
     super.key,
