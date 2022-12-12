@@ -8,10 +8,25 @@ import 'package:flutter/material.dart';
 
 void main() {
   loadProviders();
-  runApp(SampleThemeApp());
+  runApp(SampleThemeApp(
+    themeMode: ThemeMode.light,
+    themeData: ThemeData.light(),
+    darkThemeData: ThemeData.dark(),
+  ));
 }
 
 class SampleThemeApp extends StatelessWidget {
+  final ThemeMode themeMode;
+  final ThemeData themeData;
+  final ThemeData darkThemeData;
+
+  const SampleThemeApp({
+    super.key,
+    required this.themeMode,
+    required this.themeData,
+    required this.darkThemeData,
+  });
+
   @override
   Widget build(BuildContext context) {
     return AppProvidersContainer(
@@ -27,9 +42,9 @@ class SampleThemeApp extends StatelessWidget {
                 return AppRouterScope(
                   builder: (context) => MaterialApp.router(
                     title: 'Twitter Clone App',
-                    // theme: theme.lightTheme,
-                    // darkTheme: theme.darkTheme,
-                    // themeMode: theme.themeMode,
+                    theme: themeData,
+                    darkTheme: darkThemeData,
+                    themeMode: themeMode,
                     routerConfig: context.router.config,
                   ),
                   create: () => NoteRouter(),
