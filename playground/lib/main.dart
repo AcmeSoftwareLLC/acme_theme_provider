@@ -175,7 +175,7 @@ class MyApp extends StatelessWidget {
       },
     };
 
-    return AcmeThemeProvider(
+    return AcmeThemeScope(
       source: jsonEncode(theme),
       builder: (context, theme) {
         return MaterialApp(

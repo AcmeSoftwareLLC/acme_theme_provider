@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: AcmeThemeProvider<BrandColors>.asset(
+            child: AcmeThemeScope<BrandColors>.asset(
               path: 'assets/example-theme.acme',
               overrideFn: (theme) => theme.copyWith(themeMode: ThemeMode.light),
               customColorsConverterCreator: BrandColorsConverter.new,
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: AcmeThemeProvider<BrandColors>.network(
+            child: AcmeThemeScope<BrandColors>.network(
               url:
                   'https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/sarbagya/custom-colors/example/assets/example-theme.acme',
               overrideFn: (theme) => theme.copyWith(themeMode: ThemeMode.dark),

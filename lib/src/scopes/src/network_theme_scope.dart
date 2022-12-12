@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:acme_theme/acme_theme.dart';
 import 'package:acme_theme/src/theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +8,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class NetworkThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
-  NetworkThemeProvider({
+import 'acme_theme_scope.dart';
+
+class NetworkThemeScope<T extends Object> extends AcmeThemeScope<T> {
+  NetworkThemeScope({
     super.key,
     required String url,
     required super.builder,
@@ -48,7 +49,7 @@ class NetworkThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
             customColorsConverterCreator: customColorsConverterCreator,
           );
         } else if (hasFallback) {
-          return AcmeThemeProvider.asset(
+          return AcmeThemeScope.asset(
             path: fallbackAssetPath!,
             builder: builder,
             overrideFn: overrideFn,

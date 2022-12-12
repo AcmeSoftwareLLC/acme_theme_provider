@@ -1,9 +1,10 @@
-import 'package:acme_theme/acme_theme.dart';
 import 'package:acme_theme/src/theme.dart';
 import 'package:flutter/material.dart';
 
-class AssetThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
-  const AssetThemeProvider({
+import 'acme_theme_scope.dart';
+
+class AssetThemeScope<T extends Object> extends AcmeThemeScope<T> {
+  const AssetThemeScope({
     super.key,
     required this.path,
     required super.builder,
