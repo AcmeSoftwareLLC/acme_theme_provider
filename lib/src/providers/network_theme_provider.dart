@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:acme_theme_provider/acme_theme_provider.dart';
-import 'package:acme_theme_provider/src/theme.dart';
+import 'package:acme_theme/acme_theme.dart';
+import 'package:acme_theme/src/theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';

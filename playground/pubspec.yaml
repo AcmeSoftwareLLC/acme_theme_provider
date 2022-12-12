@@ -7,7 +7,7 @@ environment:
   sdk: '>=2.18.4 <3.0.0'
 
 dependencies:
-  acme_theme_provider:
+  acme_theme:
     path: ../
   flutter:
     sdk: flutter

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:acme_theme_provider/acme_theme_provider.dart';
+import 'package:acme_theme/acme_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:playground/playground_page.dart';
 

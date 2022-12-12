@@ -1,6 +1,6 @@
 name: example
 description: An example app to demonstrate the use of Acme Theme Importer
-publish_to: 'none'
+publish_to: none
 version: 1.0.0+1
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  acme_theme_provider:
+  acme_theme:
     path: ../
 
 dev_dependencies:

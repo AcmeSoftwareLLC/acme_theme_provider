@@ -1,13 +1,13 @@
-import 'package:acme_theme_provider/src/core/configs/alert_dialog_config.dart';
-import 'package:acme_theme_provider/src/core/configs/button_config.dart';
-import 'package:acme_theme_provider/src/core/configs/card_config.dart';
-import 'package:acme_theme_provider/src/core/configs/dialog_config.dart';
-import 'package:acme_theme_provider/src/core/configs/chip_config.dart';
-import 'package:acme_theme_provider/src/core/configs/dropdown_button_config.dart';
-import 'package:acme_theme_provider/src/core/configs/slider_config.dart';
-import 'package:acme_theme_provider/src/core/configs/snack_bar_config.dart';
-import 'package:acme_theme_provider/src/core/configs/switch_config.dart';
-import 'package:acme_theme_provider/src/core/configs/text_field_config.dart';
+import 'package:acme_theme/src/core/configs/alert_dialog_config.dart';
+import 'package:acme_theme/src/core/configs/button_config.dart';
+import 'package:acme_theme/src/core/configs/card_config.dart';
+import 'package:acme_theme/src/core/configs/dialog_config.dart';
+import 'package:acme_theme/src/core/configs/chip_config.dart';
+import 'package:acme_theme/src/core/configs/dropdown_button_config.dart';
+import 'package:acme_theme/src/core/configs/slider_config.dart';
+import 'package:acme_theme/src/core/configs/snack_bar_config.dart';
+import 'package:acme_theme/src/core/configs/switch_config.dart';
+import 'package:acme_theme/src/core/configs/text_field_config.dart';
 
 import 'configs/app_bar_config.dart';
 

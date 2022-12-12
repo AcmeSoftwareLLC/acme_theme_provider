@@ -1,5 +1,5 @@
-import 'package:acme_theme_provider/src/core/configs/chip_config.dart';
-import 'package:acme_theme_provider/src/core/core_widget.dart';
+import 'package:acme_theme/src/core/configs/chip_config.dart';
+import 'package:acme_theme/src/core/core_widget.dart';
 import 'package:flutter/material.dart';
 
 abstract class CoreChip extends CoreWidget<ChipConfig> {

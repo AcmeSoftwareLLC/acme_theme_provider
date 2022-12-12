@@ -1,6 +1,6 @@
-library acme_theme_provider;
+library acme_theme;
 
-import 'package:acme_theme_provider/src/theme.dart';
+import 'package:acme_theme/src/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

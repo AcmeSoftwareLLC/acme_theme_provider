@@ -1,4 +1,4 @@
-import 'package:acme_theme_provider/src/core/component_config.dart';
+import 'package:acme_theme/src/core/component_config.dart';
 import 'package:flutter/material.dart';
 import 'package:json_theme/json_theme.dart';
 
