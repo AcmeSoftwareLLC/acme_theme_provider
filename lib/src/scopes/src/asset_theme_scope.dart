@@ -1,9 +1,15 @@
-import 'package:acme_theme_provider/acme_theme_provider.dart';
-import 'package:acme_theme_provider/src/theme.dart';
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import 'package:flutter/material.dart';
 
-class AssetThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
-  const AssetThemeProvider({
+import '../../theme.dart';
+import 'acme_theme_scope.dart';
+
+/// A [Widget] that provides a [AcmeThemeData] to its descendants
+/// based on the provided asset.
+class AssetThemeScope<T extends Object> extends AcmeThemeScope<T> {
+  /// Creates a [AcmeThemeScope] that provides a [AcmeThemeData] to its descendants.
+  const AssetThemeScope({
     super.key,
     required this.path,
     required super.builder,
@@ -11,6 +17,7 @@ class AssetThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
     super.customColorsConverterCreator,
   }) : super(source: path);
 
+  /// The asset theme path.
   final String path;
 
   @override
@@ -18,15 +25,15 @@ class AssetThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
     return FutureBuilder<String>(
       future: DefaultAssetBundle.of(context).loadString(source),
       builder: (context, snapshot) {
-        AcmeTheme theme;
+        AcmeThemeData theme;
 
         if (snapshot.hasData) {
-          theme = AcmeTheme<T>.fromJson(
+          theme = AcmeThemeData<T>.fromJson(
             snapshot.data!,
             customColorsConverterCreator: customColorsConverterCreator,
           );
         } else {
-          theme = AcmeTheme<T>.fallback(
+          theme = AcmeThemeData<T>.fallback(
             customColorsConverterCreator: customColorsConverterCreator,
           );
         }

@@ -1,6 +1,9 @@
-import 'package:acme_theme_provider/src/core/configs/dialog_config.dart';
-import 'package:acme_theme_provider/src/core/core_widget.dart';
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import 'package:flutter/material.dart';
+
+import '../configs/dialog_config.dart';
+import '../core_widget.dart';
 
 abstract class CoreDialog extends CoreWidget<DialogConfig> {
   const CoreDialog({

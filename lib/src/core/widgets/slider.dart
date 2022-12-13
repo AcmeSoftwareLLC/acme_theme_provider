@@ -1,6 +1,9 @@
-import 'package:acme_theme_provider/src/core/configs/slider_config.dart';
-import 'package:acme_theme_provider/src/core/core_widget.dart';
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import 'package:flutter/material.dart';
+
+import '../configs/slider_config.dart';
+import '../core_widget.dart';
 
 abstract class CoreSlider extends CoreWidget<SliderConfig> {
   const CoreSlider({

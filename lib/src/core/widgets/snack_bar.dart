@@ -1,6 +1,9 @@
-import 'package:acme_theme_provider/acme_theme_provider.dart';
-import 'package:acme_theme_provider/src/core/core_widget.dart';
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import 'package:flutter/material.dart';
+
+import '../../../acme_theme.dart';
+import '../core_widget.dart';
 
 abstract class CoreSnackBar extends SnackBar
     implements CoreWidget<SnackBarConfig> {

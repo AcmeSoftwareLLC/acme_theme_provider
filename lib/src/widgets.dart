@@ -1,3 +1,5 @@
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 export 'core/widgets/app_bar.dart';
 export 'core/widgets/button.dart';
 export 'core/widgets/text_field.dart';

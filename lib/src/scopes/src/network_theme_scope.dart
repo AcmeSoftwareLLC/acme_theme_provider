@@ -1,16 +1,22 @@
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import 'dart:io';
 
-import 'package:acme_theme_provider/acme_theme_provider.dart';
-import 'package:acme_theme_provider/src/theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class NetworkThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
-  NetworkThemeProvider({
+import '../../theme.dart';
+import 'acme_theme_scope.dart';
+
+/// A [Widget] that provides a [AcmeThemeData] to its descendants
+/// based on the provided network url.
+class NetworkThemeScope<T extends Object> extends AcmeThemeScope<T> {
+  /// Creates a [NetworkThemeScope] that provides a [AcmeThemeData] to its descendants.
+  NetworkThemeScope({
     super.key,
     required String url,
     required super.builder,
@@ -27,8 +33,10 @@ class NetworkThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
   /// The fallback asset theme path.
   final String? fallbackAssetPath;
 
+  /// The network headers to be provided while requesting the theme from network.
   final Map<String, String>? headers;
 
+  /// The cache key to be used for caching the theme.
   final String cacheKey;
 
   late final Uri? _uri;
@@ -41,21 +49,21 @@ class NetworkThemeProvider<T extends Object> extends AcmeThemeProvider<T> {
     return FutureBuilder<String>(
       future: _fetchTheme(),
       builder: (context, snapshot) {
-        AcmeTheme theme;
+        AcmeThemeData theme;
         if (snapshot.hasData) {
-          theme = AcmeTheme<T>.fromJson(
+          theme = AcmeThemeData<T>.fromJson(
             snapshot.data!,
             customColorsConverterCreator: customColorsConverterCreator,
           );
         } else if (hasFallback) {
-          return AcmeThemeProvider.asset(
+          return AcmeThemeScope.asset(
             path: fallbackAssetPath!,
             builder: builder,
             overrideFn: overrideFn,
             customColorsConverterCreator: customColorsConverterCreator,
           );
         } else {
-          theme = AcmeTheme<T>.fallback(
+          theme = AcmeThemeData<T>.fallback(
             customColorsConverterCreator: customColorsConverterCreator,
           );
         }

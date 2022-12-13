@@ -1,5 +1,8 @@
-import 'package:acme_theme_provider/acme_theme_provider.dart';
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import 'package:flutter/widgets.dart';
+
+import '../../acme_theme.dart';
 
 abstract class CoreWidget<C extends ComponentConfig> extends StatefulWidget {
   const CoreWidget({

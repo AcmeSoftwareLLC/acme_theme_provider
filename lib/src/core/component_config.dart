@@ -1,28 +1,29 @@
-import 'package:acme_theme_provider/src/core/configs/alert_dialog_config.dart';
-import 'package:acme_theme_provider/src/core/configs/button_config.dart';
-import 'package:acme_theme_provider/src/core/configs/card_config.dart';
-import 'package:acme_theme_provider/src/core/configs/dialog_config.dart';
-import 'package:acme_theme_provider/src/core/configs/chip_config.dart';
-import 'package:acme_theme_provider/src/core/configs/dropdown_button_config.dart';
-import 'package:acme_theme_provider/src/core/configs/slider_config.dart';
-import 'package:acme_theme_provider/src/core/configs/snack_bar_config.dart';
-import 'package:acme_theme_provider/src/core/configs/switch_config.dart';
-import 'package:acme_theme_provider/src/core/configs/text_field_config.dart';
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
 
+import 'configs/alert_dialog_config.dart';
 import 'configs/app_bar_config.dart';
+import 'configs/button_config.dart';
+import 'configs/card_config.dart';
+import 'configs/chip_config.dart';
+import 'configs/dialog_config.dart';
+import 'configs/dropdown_button_config.dart';
+import 'configs/slider_config.dart';
+import 'configs/snack_bar_config.dart';
+import 'configs/switch_config.dart';
+import 'configs/text_field_config.dart';
 
-export 'configs/app_bar_config.dart';
-export 'configs/card_config.dart';
-export 'configs/text_field_config.dart';
-export 'configs/chip_config.dart';
-export 'configs/dropdown_button_config.dart';
-export 'configs/switch_config.dart';
-export 'configs/button_config.dart';
-export 'configs/dialog_config.dart';
 export 'configs/alert_dialog_config.dart';
+export 'configs/app_bar_config.dart';
+export 'configs/button_config.dart';
+export 'configs/card_config.dart';
+export 'configs/chip_config.dart';
+export 'configs/dialog_config.dart';
+export 'configs/dropdown_button_config.dart';
 export 'configs/slider_config.dart';
 export 'configs/slider_config.dart';
 export 'configs/snack_bar_config.dart';
+export 'configs/switch_config.dart';
+export 'configs/text_field_config.dart';
 
 enum ComponentType {
   appBar('app.bar', 'AppBar'),

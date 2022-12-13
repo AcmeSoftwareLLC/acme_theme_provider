@@ -1,7 +1,10 @@
-import 'package:acme_theme_provider/src/core/configs/text_field_config.dart';
-import 'package:acme_theme_provider/src/core/core_widget.dart';
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../configs/text_field_config.dart';
+import '../core_widget.dart';
 
 abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
   const CoreTextField({

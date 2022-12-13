@@ -1,7 +1,10 @@
-import 'package:acme_theme_provider/src/core/component_config.dart';
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme/json_theme.dart';
+
+import '../component_config.dart';
 
 class ChipConfig extends ComponentConfig {
   const ChipConfig({
