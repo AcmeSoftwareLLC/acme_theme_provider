@@ -1,7 +1,8 @@
-import 'package:acme_theme/src/core/configs/dropdown_button_config.dart';
-import 'package:acme_theme/src/core/core_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../configs/dropdown_button_config.dart';
+import '../core_widget.dart';
 
 abstract class CoreDropdownButton<T> extends CoreWidget<DropdownButtonConfig> {
   const CoreDropdownButton({

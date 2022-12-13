@@ -1,6 +1,7 @@
-import 'package:acme_theme/src/core/configs/button_config.dart';
-import 'package:acme_theme/src/core/core_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../configs/button_config.dart';
+import '../core_widget.dart';
 
 abstract class CoreButton extends CoreWidget<ButtonConfig> {
   const CoreButton({

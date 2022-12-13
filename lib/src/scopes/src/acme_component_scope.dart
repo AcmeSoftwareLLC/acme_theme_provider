@@ -1,4 +1,4 @@
-import 'package:acme_theme/src/core/component_config.dart';
+import '../../core/component_config.dart';
 import 'package:flutter/widgets.dart';
 
 import 'acme_theme_scope.dart';

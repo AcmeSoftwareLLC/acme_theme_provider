@@ -1,6 +1,7 @@
-import 'package:acme_theme/acme_theme.dart';
-import 'package:acme_theme/src/core/core_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../../../acme_theme.dart';
+import '../core_widget.dart';
 
 abstract class CoreSnackBar extends SnackBar
     implements CoreWidget<SnackBarConfig> {

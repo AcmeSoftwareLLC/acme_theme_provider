@@ -1,10 +1,10 @@
-import 'package:acme_theme/src/core/component_config.dart';
-import 'package:acme_theme/src/custom_colors.dart';
-import 'package:acme_theme/src/theme.dart';
-import 'package:acme_theme/src/typedefs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../core/component_config.dart';
+import '../../custom_colors.dart';
+import '../../theme.dart';
+import '../../typedefs.dart';
 import 'acme_component_scope.dart';
 import 'asset_theme_scope.dart';
 import 'network_theme_scope.dart';

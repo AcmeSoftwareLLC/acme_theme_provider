@@ -1,7 +1,8 @@
-import 'package:acme_theme/src/core/configs/text_field_config.dart';
-import 'package:acme_theme/src/core/core_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../configs/text_field_config.dart';
+import '../core_widget.dart';
 
 abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
   const CoreTextField({

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:ui' as ui;
 
-import 'package:acme_theme/acme_theme.dart';
+import '../acme_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:json_theme/json_theme.dart';

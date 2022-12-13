@@ -1,5 +1,6 @@
-import 'package:acme_theme/acme_theme.dart';
 import 'package:flutter/widgets.dart';
+
+import '../../acme_theme.dart';
 
 abstract class CoreWidget<C extends ComponentConfig> extends StatefulWidget {
   const CoreWidget({

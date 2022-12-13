@@ -1,6 +1,6 @@
-import 'package:acme_theme/src/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../../theme.dart';
 import 'acme_theme_scope.dart';
 
 class AssetThemeScope<T extends Object> extends AcmeThemeScope<T> {

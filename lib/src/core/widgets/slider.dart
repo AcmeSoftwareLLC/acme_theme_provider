@@ -1,6 +1,7 @@
-import 'package:acme_theme/src/core/configs/slider_config.dart';
-import 'package:acme_theme/src/core/core_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../configs/slider_config.dart';
+import '../core_widget.dart';
 
 abstract class CoreSlider extends CoreWidget<SliderConfig> {
   const CoreSlider({
