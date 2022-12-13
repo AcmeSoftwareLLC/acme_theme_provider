@@ -1,25 +1,25 @@
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import 'dart:convert';
 import 'dart:ui' as ui;
 
-import 'package:acme_theme_provider/acme_theme_provider.dart';
+import '../acme_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:json_theme/json_theme.dart';
 
-class AcmeTheme<T extends Object> {
-  final String name;
-  final ThemeData lightTheme;
-  final ThemeData darkTheme;
-  final ThemeMode themeMode;
-
-  AcmeTheme._({
+/// Defines the configuration of the overall visual Theme based on the provided properties.
+class AcmeThemeData<T extends Object> {
+  AcmeThemeData._({
     required this.name,
     required this.lightTheme,
     required this.darkTheme,
     required this.themeMode,
+    required this.components,
   });
 
-  factory AcmeTheme.fallback({
+  /// The fallback theme to use when no theme configurations are provided.
+  factory AcmeThemeData.fallback({
     CustomColorsConverterCreator<T>? customColorsConverterCreator,
   }) {
     final extensions = [
@@ -55,15 +55,17 @@ class AcmeTheme<T extends Object> {
       primaryTextTheme: typography.white,
     );
 
-    return AcmeTheme._(
+    return AcmeThemeData._(
       name: 'Acme Theme',
       lightTheme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.light,
+      components: {},
     );
   }
 
-  factory AcmeTheme.fromJson(
+  /// The theme created based on the provided [json].
+  factory AcmeThemeData.fromJson(
     String json, {
     CustomColorsConverterCreator<T>? customColorsConverterCreator,
   }) {
@@ -81,7 +83,7 @@ class AcmeTheme<T extends Object> {
       _keyRequired('dark_theme_data'),
     );
 
-    return AcmeTheme._(
+    return AcmeThemeData._(
       name: themeMap['name'] ?? 'Acme Theme',
       lightTheme: _resolveTheme<T>(
         themeMap['theme_data'],
@@ -94,19 +96,39 @@ class AcmeTheme<T extends Object> {
         customColorsConverterCreator: customColorsConverterCreator,
       ),
       themeMode: ThemeMode.values[themeMap['theme_mode'] ?? 1],
+      components: Map.from(themeMap['components']).map(
+        (k, v) => MapEntry(k, ComponentConfig.decode(v['type'], v)),
+      ),
     );
   }
 
-  AcmeTheme copyWith({
+  /// The name of the theme.
+  final String name;
+
+  /// The light theme.
+  final ThemeData lightTheme;
+
+  /// The dark theme.
+  final ThemeData darkTheme;
+
+  /// The theme mode.
+  final ThemeMode themeMode;
+
+  /// The component configurations.
+  final Map<String, ComponentConfig> components;
+
+  /// Creates a copy of this theme but with the given fields replaced with the new values.
+  AcmeThemeData copyWith({
     ThemeData? lightTheme,
     ThemeData? darkTheme,
     ThemeMode? themeMode,
   }) {
-    return AcmeTheme._(
-      name: this.name,
+    return AcmeThemeData._(
+      name: name,
       lightTheme: lightTheme ?? this.lightTheme,
       darkTheme: darkTheme ?? this.darkTheme,
       themeMode: themeMode ?? this.themeMode,
+      components: components,
     );
   }
 }
@@ -118,7 +140,7 @@ ThemeData _resolveTheme<T extends Object>(
   Brightness fallbackBrightness, {
   CustomColorsConverterCreator<T>? customColorsConverterCreator,
 }) {
-  if (rawThemeData is Map) {
+  if (rawThemeData is Map && rawThemeData.isNotEmpty) {
     final customColors = Map.from(rawThemeData['customColors'] ?? {});
     final extensions = [
       if (customColorsConverterCreator != null)
@@ -136,6 +158,7 @@ ThemeData _resolveTheme<T extends Object>(
     final fallbackThemeData = ThemeData(
       brightness: fallbackBrightness,
       extensions: extensions,
+      useMaterial3: true,
     );
 
     final themeData = decodedThemeData ?? fallbackThemeData;
@@ -175,6 +198,7 @@ ThemeData _resolveTheme<T extends Object>(
           colors: {},
         ),
     ],
+    useMaterial3: true,
   );
 }
 
@@ -186,11 +210,13 @@ TextStyle? _getStyle(Map<String, TextStyleBuilder> fonts, TextStyle? style) {
   return style?.merge(textStyleBuilder());
 }
 
-class InvalidAcmeThemeException {
+/// The exception thrown when the provided json is not a valid [AcmeThemeData].
+class InvalidAcmeThemeException implements Exception {
   @override
   String toString() => 'Invalid Acme Theme';
 }
 
+/// Signature for building a [TextStyle].
 typedef TextStyleBuilder = TextStyle Function({
   TextStyle? textStyle,
   Color? color,

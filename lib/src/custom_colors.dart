@@ -1,9 +1,13 @@
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import 'package:flutter/material.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Signature to create a [CustomColorsConverter] based on custom colors..
 typedef CustomColorsConverterCreator<T extends Object>
     = CustomColorsConverter<T> Function(Map<String, CustomColor>);
 
+///
 abstract class CustomColorsConverter<T extends Object> {
   const CustomColorsConverter(Map<String, CustomColor> colors)
       : _colors = colors;
@@ -32,7 +36,10 @@ class MapCustomColorConverter
   Map<String, CustomColor> convert() => _colors;
 }
 
+/// The CustomColors theme  extension allows you to define custom colors for your product
+/// and attach it to the [ThemeData.extensions] property.
 class CustomColors<T extends Object> extends ThemeExtension<CustomColors<T>> {
+  /// Creates a new instance of the [CustomColors] theme extension.
   CustomColors({
     required this.converter,
     required Map<String, CustomColor> colors,
@@ -42,8 +49,9 @@ class CustomColors<T extends Object> extends ThemeExtension<CustomColors<T>> {
   final Map<String, CustomColor> _colors;
 
   @override
-  ThemeExtension<CustomColors<T>> copyWith(
-      {MapEntry<String, CustomColor>? color}) {
+  ThemeExtension<CustomColors<T>> copyWith({
+    MapEntry<String, CustomColor>? color,
+  }) {
     if (color == null) return this;
 
     final colors = Map.of(_colors);
@@ -74,10 +82,13 @@ class CustomColors<T extends Object> extends ThemeExtension<CustomColors<T>> {
 
   T call() => converter(_colors).convert();
 
+  /// Returns the [CustomColor]s.
   Map<String, CustomColor> get colors => Map.unmodifiable(_colors);
 
+  /// Returns the [CustomColor] for the given [name].
   CustomColor getColor(String name) => _colors[name]!;
 
+  /// Returns the [CustomColor] resolved through the [context].
   static T of<T extends Object>(BuildContext context) {
     final colors = Theme.of(context).extension<CustomColors<T>>();
 
@@ -86,7 +97,9 @@ class CustomColors<T extends Object> extends ThemeExtension<CustomColors<T>> {
   }
 }
 
+/// A custom color definition.
 class CustomColor {
+  /// Creates a custom color definition.
   CustomColor({
     required this.name,
     required this.color,
@@ -95,12 +108,22 @@ class CustomColor {
     required this.onColorContainer,
   });
 
+  /// The name of the color.
   final String name;
+
+  /// The main color.
   final Color color;
+
+  /// A color that's clearly legible when drawn on [color].
   final Color onColor;
+
+  /// A color used for elements needing less emphasis than the [color].
   final Color colorContainer;
+
+  /// A color that's clearly legible when drawn on [colorContainer].
   final Color onColorContainer;
 
+  /// Creates an instance of [CustomColor] from the [map].
   factory CustomColor.fromMap(String name, Map<String, dynamic> map) {
     return CustomColor(
       name: name,
@@ -111,6 +134,7 @@ class CustomColor {
     );
   }
 
+  /// Creates a copy of this [CustomColor] with the given fields replaced with the new values.
   CustomColor copyWith({
     Color? color,
     Color? onColor,
@@ -126,6 +150,7 @@ class CustomColor {
     );
   }
 
+  /// Linearly interpolate between two [CustomColor]s.
   CustomColor lerp(CustomColor other, double t) {
     return CustomColor(
       name: name,
@@ -140,6 +165,7 @@ class CustomColor {
     );
   }
 
+  /// Creates a [Map] representation of this [CustomColor].
   Map<String, String> toMap() {
     return {
       'default': ThemeEncoder.encodeColor(color)!,
