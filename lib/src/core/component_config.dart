@@ -1,3 +1,5 @@
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import 'configs/alert_dialog_config.dart';
 import 'configs/app_bar_config.dart';
 import 'configs/button_config.dart';

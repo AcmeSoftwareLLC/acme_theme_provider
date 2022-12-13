@@ -1,3 +1,6 @@
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
+/// The Acme Theme Library
 library acme_theme;
 
 export 'src/custom_colors.dart';

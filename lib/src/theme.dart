@@ -1,3 +1,5 @@
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import 'dart:convert';
 import 'dart:ui' as ui;
 

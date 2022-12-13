@@ -1,3 +1,5 @@
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import 'package:flutter/material.dart';
 
 import '../configs/dialog_config.dart';

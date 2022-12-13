@@ -1,3 +1,5 @@
+// Copyright (c) 2022. Acme Software LLC. All rights reserved.
+
 import '../../core/component_config.dart';
 import 'package:flutter/widgets.dart';
 
