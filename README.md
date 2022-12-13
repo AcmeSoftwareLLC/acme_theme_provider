@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/main/images/acme_theme.png" height="100" alt="Acme Theme" />
+<img src="https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/main/images/acme-theme.png" height="100" alt="Acme Theme" />
 </p>
 
 <p align="center">
@@ -29,3 +29,7 @@ You can then use this package to import the theme into your Flutter app.
 
 ### Downloads
 <a href="https://apps.apple.com/np/app/acme-theme-builder/id1536335046"><img src="https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/main/images/app-store.svg"/></a>
+
+<a href="https://apps.microsoft.com/store/detail/acme-theme-builder/9P69SSD49MVB?hl=en-ai&gl=ai"><img src="https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/main/images/microsoft-store.svg"/></a>
+
+<a href="https://play.google.com/store/apps/details?id=com.acmesoftware.theme&hl=en&gl=US"><img src="https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/main/images/play-store.svg"/></a>
