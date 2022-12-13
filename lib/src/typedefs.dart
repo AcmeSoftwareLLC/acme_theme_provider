@@ -4,7 +4,8 @@ import 'package:flutter/widgets.dart';
 
 import 'theme.dart';
 
-/// Signature which creates a [Widget] based on the [AcmeTheme].
-typedef ThemedWidgetBuilder = Widget Function(BuildContext, AcmeTheme);
+/// Signature to create a [Widget] based on the [AcmeThemeData].
+typedef ThemedWidgetBuilder = Widget Function(BuildContext, AcmeThemeData);
 
-typedef ThemeOverride = AcmeTheme Function(AcmeTheme);
+/// Signature to create a new [AcmeThemeData] based on the resolved [AcmeThemeData].
+typedef ThemeOverride = AcmeThemeData Function(AcmeThemeData);

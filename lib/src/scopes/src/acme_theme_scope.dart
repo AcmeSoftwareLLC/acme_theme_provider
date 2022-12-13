@@ -46,10 +46,10 @@ class AcmeThemeScope<T extends Object> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return scopedBuilder(context, AcmeTheme.fromJson(source));
+    return scopedBuilder(context, AcmeThemeData.fromJson(source));
   }
 
-  Widget scopedBuilder(BuildContext context, AcmeTheme theme) {
+  Widget scopedBuilder(BuildContext context, AcmeThemeData theme) {
     return AcmeComponentScope(
       components: theme.components,
       child: builder(context, theme),

@@ -21,15 +21,15 @@ class AssetThemeScope<T extends Object> extends AcmeThemeScope<T> {
     return FutureBuilder<String>(
       future: DefaultAssetBundle.of(context).loadString(source),
       builder: (context, snapshot) {
-        AcmeTheme theme;
+        AcmeThemeData theme;
 
         if (snapshot.hasData) {
-          theme = AcmeTheme<T>.fromJson(
+          theme = AcmeThemeData<T>.fromJson(
             snapshot.data!,
             customColorsConverterCreator: customColorsConverterCreator,
           );
         } else {
-          theme = AcmeTheme<T>.fallback(
+          theme = AcmeThemeData<T>.fallback(
             customColorsConverterCreator: customColorsConverterCreator,
           );
         }

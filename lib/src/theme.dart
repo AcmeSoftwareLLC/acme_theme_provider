@@ -8,14 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:json_theme/json_theme.dart';
 
-class AcmeTheme<T extends Object> {
-  final String name;
-  final ThemeData lightTheme;
-  final ThemeData darkTheme;
-  final ThemeMode themeMode;
-  final Map<String, ComponentConfig> components;
-
-  AcmeTheme._({
+/// Defines the configuration of the overall visual Theme based on the provided properties.
+class AcmeThemeData<T extends Object> {
+  AcmeThemeData._({
     required this.name,
     required this.lightTheme,
     required this.darkTheme,
@@ -23,7 +18,8 @@ class AcmeTheme<T extends Object> {
     required this.components,
   });
 
-  factory AcmeTheme.fallback({
+  /// The fallback theme to use when no theme configurations are provided.
+  factory AcmeThemeData.fallback({
     CustomColorsConverterCreator<T>? customColorsConverterCreator,
   }) {
     final extensions = [
@@ -59,7 +55,7 @@ class AcmeTheme<T extends Object> {
       primaryTextTheme: typography.white,
     );
 
-    return AcmeTheme._(
+    return AcmeThemeData._(
       name: 'Acme Theme',
       lightTheme: lightTheme,
       darkTheme: darkTheme,
@@ -68,7 +64,8 @@ class AcmeTheme<T extends Object> {
     );
   }
 
-  factory AcmeTheme.fromJson(
+  /// The theme created based on the provided [json].
+  factory AcmeThemeData.fromJson(
     String json, {
     CustomColorsConverterCreator<T>? customColorsConverterCreator,
   }) {
@@ -86,7 +83,7 @@ class AcmeTheme<T extends Object> {
       _keyRequired('dark_theme_data'),
     );
 
-    return AcmeTheme._(
+    return AcmeThemeData._(
       name: themeMap['name'] ?? 'Acme Theme',
       lightTheme: _resolveTheme<T>(
         themeMap['theme_data'],
@@ -105,12 +102,19 @@ class AcmeTheme<T extends Object> {
     );
   }
 
-  AcmeTheme copyWith({
+  final String name;
+  final ThemeData lightTheme;
+  final ThemeData darkTheme;
+  final ThemeMode themeMode;
+  final Map<String, ComponentConfig> components;
+
+  /// Creates a copy of this theme but with the given fields replaced with the new values.
+  AcmeThemeData copyWith({
     ThemeData? lightTheme,
     ThemeData? darkTheme,
     ThemeMode? themeMode,
   }) {
-    return AcmeTheme._(
+    return AcmeThemeData._(
       name: name,
       lightTheme: lightTheme ?? this.lightTheme,
       darkTheme: darkTheme ?? this.darkTheme,
@@ -197,11 +201,13 @@ TextStyle? _getStyle(Map<String, TextStyleBuilder> fonts, TextStyle? style) {
   return style?.merge(textStyleBuilder());
 }
 
-class InvalidAcmeThemeException {
+/// The exception thrown when the provided json is not a valid [AcmeThemeData].
+class InvalidAcmeThemeException implements Exception {
   @override
   String toString() => 'Invalid Acme Theme';
 }
 
+/// Signature for building a [TextStyle].
 typedef TextStyleBuilder = TextStyle Function({
   TextStyle? textStyle,
   Color? color,

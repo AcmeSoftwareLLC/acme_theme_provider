@@ -44,9 +44,9 @@ class NetworkThemeScope<T extends Object> extends AcmeThemeScope<T> {
     return FutureBuilder<String>(
       future: _fetchTheme(),
       builder: (context, snapshot) {
-        AcmeTheme theme;
+        AcmeThemeData theme;
         if (snapshot.hasData) {
-          theme = AcmeTheme<T>.fromJson(
+          theme = AcmeThemeData<T>.fromJson(
             snapshot.data!,
             customColorsConverterCreator: customColorsConverterCreator,
           );
@@ -58,7 +58,7 @@ class NetworkThemeScope<T extends Object> extends AcmeThemeScope<T> {
             customColorsConverterCreator: customColorsConverterCreator,
           );
         } else {
-          theme = AcmeTheme<T>.fallback(
+          theme = AcmeThemeData<T>.fallback(
             customColorsConverterCreator: customColorsConverterCreator,
           );
         }
