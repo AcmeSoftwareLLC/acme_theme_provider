@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import '../../theme.dart';
 import 'acme_theme_scope.dart';
 
+/// A [Widget] that provides a [AcmeThemeData] to its descendants
+/// based on the provided asset.
 class AssetThemeScope<T extends Object> extends AcmeThemeScope<T> {
+  /// Creates a [AcmeThemeScope] that provides a [AcmeThemeData] to its descendants.
   const AssetThemeScope({
     super.key,
     required this.path,
@@ -14,6 +17,7 @@ class AssetThemeScope<T extends Object> extends AcmeThemeScope<T> {
     super.customColorsConverterCreator,
   }) : super(source: path);
 
+  /// The asset theme path.
   final String path;
 
   @override

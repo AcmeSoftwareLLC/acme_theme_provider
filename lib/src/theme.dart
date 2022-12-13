@@ -102,10 +102,19 @@ class AcmeThemeData<T extends Object> {
     );
   }
 
+  /// The name of the theme.
   final String name;
+
+  /// The light theme.
   final ThemeData lightTheme;
+
+  /// The dark theme.
   final ThemeData darkTheme;
+
+  /// The theme mode.
   final ThemeMode themeMode;
+
+  /// The component configurations.
   final Map<String, ComponentConfig> components;
 
   /// Creates a copy of this theme but with the given fields replaced with the new values.

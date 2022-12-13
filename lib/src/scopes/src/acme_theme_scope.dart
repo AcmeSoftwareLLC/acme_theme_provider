@@ -11,12 +11,14 @@ import 'acme_component_scope.dart';
 import 'asset_theme_scope.dart';
 import 'network_theme_scope.dart';
 
+/// A [Widget] that provides a [AcmeThemeData] to its descendants.
 class AcmeThemeScope<T extends Object> extends StatelessWidget {
   final String source;
   final ThemedWidgetBuilder builder;
   final ThemeOverride? overrideFn;
   final CustomColorsConverterCreator<T>? customColorsConverterCreator;
 
+  /// Creates a [AcmeThemeScope] that provides a [AcmeThemeData] to its descendants.
   const AcmeThemeScope({
     super.key,
     required this.source,

@@ -12,7 +12,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../theme.dart';
 import 'acme_theme_scope.dart';
 
+/// A [Widget] that provides a [AcmeThemeData] to its descendants
+/// based on the provided network url.
 class NetworkThemeScope<T extends Object> extends AcmeThemeScope<T> {
+  /// Creates a [NetworkThemeScope] that provides a [AcmeThemeData] to its descendants.
   NetworkThemeScope({
     super.key,
     required String url,
@@ -30,8 +33,10 @@ class NetworkThemeScope<T extends Object> extends AcmeThemeScope<T> {
   /// The fallback asset theme path.
   final String? fallbackAssetPath;
 
+  /// The network headers to be provided while requesting the theme from network.
   final Map<String, String>? headers;
 
+  /// The cache key to be used for caching the theme.
   final String cacheKey;
 
   late final Uri? _uri;
