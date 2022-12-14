@@ -15,22 +15,7 @@ class SearchUI extends StatelessWidget {
               'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
         ),
         title: _SearchBar(),
-        actions: [
-          GestureDetector(
-            onTap: () => context.router.push(
-              Routes.settings,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ImageIcon(
-                  AssetImage(
-                    'assets/icons/settings_stroke_icon.png',
-                    package: 'example',
-                  ),
-                  color: Theme.of(context).colorScheme.primary),
-            ),
-          )
-        ],
+        centerTitle: true,
       ),
       body: Container(
         child: Column(

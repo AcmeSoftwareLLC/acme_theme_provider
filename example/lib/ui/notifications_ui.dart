@@ -22,22 +22,6 @@ class NotificationsUI extends StatelessWidget {
             imagePath:
                 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
           ),
-          actions: [
-            GestureDetector(
-              onTap: () => context.router.push(
-                Routes.settings,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ImageIcon(
-                    AssetImage(
-                      'assets/icons/settings_stroke_icon.png',
-                      package: 'example',
-                    ),
-                    color: Theme.of(context).colorScheme.primary),
-              ),
-            )
-          ],
           bottom: PreferredSize(
             child: TabBar(
               tabs: [
