@@ -8,11 +8,13 @@ import 'package:flutter/material.dart';
 
 void main() {
   loadProviders();
-  runApp(SampleThemeApp(
-    themeMode: ThemeMode.light,
-    themeData: ThemeData.light(),
-    darkThemeData: ThemeData.dark(),
-  ));
+  runApp(
+    SampleThemeApp(
+      themeMode: ThemeMode.light,
+      themeData: ThemeData.light(),
+      darkThemeData: ThemeData.dark(),
+    ),
+  );
 }
 
 class SampleThemeApp extends StatelessWidget {
