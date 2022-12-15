@@ -2,11 +2,13 @@ import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/features/home/presentation/home_presenter.dart';
 import 'package:example/features/home/presentation/home_view_model.dart';
+import 'package:example/main.dart';
 import 'package:example/providers.dart';
 import 'package:example/routes.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:example/widgets/show_tweet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomeUI extends UI<HomeViewModel> {
   HomeUI({
@@ -35,6 +37,22 @@ class HomeUI extends UI<HomeViewModel> {
           imagePath:
               'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              SettingsListenerScope.of(context).onSettingPressed();
+            },
+            icon: SvgPicture.asset(
+              'assets/icons/acme_brand_bg.svg',
+              package: 'example',
+              height: 20,
+              width: 35,
+            ),
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+        ],
       ),
       body: _TweetItem(
         viewModel: viewModel,
