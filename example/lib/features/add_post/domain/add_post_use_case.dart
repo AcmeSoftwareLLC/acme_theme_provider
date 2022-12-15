@@ -77,7 +77,6 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
             userImage: tweet.imagePath,
           );
         }
-
         return entity.merge(
           tweets: tweets,
         );
