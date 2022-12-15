@@ -155,7 +155,7 @@ packages:
       name: go_router
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.2"
+    version: "5.2.4"
   google_fonts:
     dependency: transitive
     description:
@@ -260,7 +260,7 @@ packages:
       name: json_class
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.2+13"
+    version: "2.1.2+14"
   json_schema2:
     dependency: transitive
     description:
@@ -274,7 +274,7 @@ packages:
       name: json_theme
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.3+1"
+    version: "4.0.3+2"
   logger:
     dependency: "direct main"
     description:
@@ -400,7 +400,7 @@ packages:
       name: rest_client
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0+3"
+    version: "2.2.0+4"
   riverpod:
     dependency: transitive
     description:
@@ -449,7 +449,7 @@ packages:
       name: shared_preferences_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.2"
   shared_preferences_macos:
     dependency: transitive
     description:
@@ -477,7 +477,7 @@ packages:
       name: shared_preferences_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.2"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -601,7 +601,7 @@ packages:
       name: yaon
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1+7"
+    version: "1.0.1+8"
 sdks:
   dart: ">=2.18.0 <3.0.0"
   flutter: ">=3.3.0"

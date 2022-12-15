@@ -56,7 +56,6 @@ class AddPostUI extends UI<AddPostViewModel> {
                         'Are you sure you wanna add to tweet without an image?',
                     content: 'This will add to your post without an image',
                     onOk: () {
-                      context.router.pop();
                       viewModel.addTweet();
                       context.router.push(Routes.home);
                       viewModel.refresh();
@@ -69,7 +68,6 @@ class AddPostUI extends UI<AddPostViewModel> {
                     content:
                         'This will add to your post, you can see in the feed',
                     onOk: () {
-                      context.router.pop();
                       viewModel.addTweet();
                       context.router.push(Routes.home);
                       viewModel.refresh();
