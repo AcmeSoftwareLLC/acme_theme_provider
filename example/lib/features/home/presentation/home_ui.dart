@@ -5,10 +5,11 @@ import 'package:example/features/home/presentation/home_view_model.dart';
 import 'package:example/main.dart';
 import 'package:example/providers.dart';
 import 'package:example/routes.dart';
+import 'package:example/widgets/app_icons.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:example/widgets/show_tweet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeUI extends UI<HomeViewModel> {
   HomeUI({
@@ -40,17 +41,23 @@ class HomeUI extends UI<HomeViewModel> {
         actions: [
           IconButton(
             onPressed: () {
-              SettingsListenerScope.of(context).onSettingPressed();
+              SampleAppListenerScope.of(context).onIconPressed();
             },
-            icon: SvgPicture.asset(
-              'assets/icons/acme_brand_bg.svg',
-              package: 'example',
-              height: 20,
-              width: 35,
-            ),
+            icon: SampleAppListenerScope.of(context).isOnThemeBuilder
+                ? SvgPicture.asset(
+                    'assets/icons/acme_brand_bg.svg',
+                    package: 'example',
+                    height: 35,
+                    width: 25,
+                  )
+                : SvgPicture.asset(
+                    'assets/icons/acme_brand_bg.svg',
+                    height: 35,
+                    width: 25,
+                  ),
           ),
           const SizedBox(
-            width: 16,
+            width: 8,
           ),
         ],
       ),

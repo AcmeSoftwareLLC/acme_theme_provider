@@ -1,3 +1,6 @@
+import 'package:clean_framework_router/clean_framework_router.dart';
+import 'package:example/routes.dart';
+import 'package:example/widgets/app_icons.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +21,20 @@ class MessageUI extends StatelessWidget {
           imagePath:
               'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
         ),
+        actions: [
+          GestureDetector(
+            onTap: () => context.router.push(
+              Routes.settings,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: AppIcons(
+                iconPath: 'assets/icons/settings_stroke_icon.png',
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+          )
+        ],
         bottom: PreferredSize(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -32,12 +49,9 @@ class MessageUI extends StatelessWidget {
                   fillColor: Theme.of(context).colorScheme.surfaceVariant,
                   floatingLabelBehavior: FloatingLabelBehavior.never,
                   contentPadding: EdgeInsets.symmetric(horizontal: 40),
-                  prefixIcon: ImageIcon(
-                    AssetImage(
-                      'assets/icons/search_stroke_icon.png',
-                      package: 'example',
-                    ),
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  prefixIcon: AppIcons(
+                    iconPath: 'assets/icons/search_stroke_icon.png',
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                   labelText: 'Search for people and groups',
                   labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -58,10 +72,11 @@ class MessageUI extends StatelessWidget {
           preferredSize: Size.fromHeight(64),
         ),
         shape: Border(
-            bottom: BorderSide(
-          color: Theme.of(context).colorScheme.surfaceVariant,
-          width: 0.5,
-        )),
+          bottom: BorderSide(
+            color: Theme.of(context).colorScheme.surfaceVariant,
+            width: 0.5,
+          ),
+        ),
       ),
       body: _MessageList(),
     );

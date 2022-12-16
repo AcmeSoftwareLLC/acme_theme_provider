@@ -1,3 +1,6 @@
+import 'package:clean_framework_router/clean_framework_router.dart';
+import 'package:example/routes.dart';
+import 'package:example/widgets/app_icons.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +23,20 @@ class NotificationsUI extends StatelessWidget {
             imagePath:
                 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
           ),
+          actions: [
+            GestureDetector(
+              onTap: () => context.router.push(
+                Routes.settings,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: AppIcons(
+                  iconPath: 'assets/icons/settings_stroke_icon.png',
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+            )
+          ],
           bottom: PreferredSize(
             child: TabBar(
               tabs: [
@@ -97,11 +114,8 @@ class _NotificationCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ImageIcon(
-                  AssetImage(
-                    'assets/icons/star_solid_icon.png',
-                    package: 'example',
-                  ),
+                AppIcons(
+                  iconPath: 'assets/icons/star_solid_icon.png',
                   color: Theme.of(context).colorScheme.primary,
                 ),
                 ProfileIcon.medium(
@@ -112,11 +126,8 @@ class _NotificationCard extends StatelessWidget {
                 SizedBox(
                   width: _screenWidth / 2,
                 ),
-                ImageIcon(
-                  AssetImage(
-                    'assets/icons/down_arrow_icon.png',
-                    package: 'example',
-                  ),
+                AppIcons(
+                  iconPath: 'assets/icons/down_arrow_icon.png',
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
                 SizedBox(
@@ -232,11 +243,8 @@ class _MentionsCard extends StatelessWidget {
                 SizedBox(
                   width: _screenWidth / 8,
                 ),
-                ImageIcon(
-                  AssetImage(
-                    'assets/icons/down_arrow_icon.png',
-                    package: 'example',
-                  ),
+                AppIcons(
+                  iconPath: 'assets/icons/down_arrow_icon.png',
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
                 SizedBox(
@@ -327,11 +335,8 @@ class _MentionsCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          ImageIcon(
-                            AssetImage(
-                              'assets/icons/comment_stroke_icon.png',
-                              package: 'example',
-                            ),
+                          AppIcons(
+                            iconPath: 'assets/icons/comment_stroke_icon.png',
                             color: Theme.of(context).colorScheme.onBackground,
                           ),
                           Text('7'),
@@ -339,9 +344,9 @@ class _MentionsCard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          ImageIcon(
-                            AssetImage(
-                                'assets/icons/retweet_solid_stroke_icon.png'),
+                          AppIcons(
+                            iconPath:
+                                'assets/icons/retweet_solid_stroke_icon.png',
                             color: Theme.of(context).colorScheme.secondary,
                           ),
                           Text('1'),
@@ -349,21 +354,15 @@ class _MentionsCard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          ImageIcon(
-                            AssetImage(
-                              'assets/icons/heart_solid_icon.png',
-                              package: 'example',
-                            ),
+                          AppIcons(
+                            iconPath: 'assets/icons/heart_solid_icon.png',
                             color: Theme.of(context).colorScheme.primary,
                           ),
                           Text('3'),
                         ],
                       ),
-                      ImageIcon(
-                        AssetImage(
-                          'assets/icons/share_stroke_icon.png',
-                          package: 'example',
-                        ),
+                      AppIcons(
+                        iconPath: 'assets/icons/share_stroke_icon.png',
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                       SizedBox(

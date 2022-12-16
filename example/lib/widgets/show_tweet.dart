@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:math';
+import 'package:example/widgets/app_icons.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -38,11 +39,8 @@ class ShowTweet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                ImageIcon(
-                  AssetImage(
-                    'assets/icons/heart_solid_icon.png',
-                    package: 'example',
-                  ),
+                AppIcons(
+                  iconPath: 'assets/icons/heart_solid_icon.png',
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
                 SizedBox(
@@ -102,11 +100,8 @@ class ShowTweet extends StatelessWidget {
                           ),
                         ],
                       ),
-                      ImageIcon(
-                        AssetImage(
-                          'assets/icons/down_arrow_icon.png',
-                          package: 'example',
-                        ),
+                      AppIcons(
+                        iconPath: 'assets/icons/down_arrow_icon.png',
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ],
@@ -125,11 +120,8 @@ class ShowTweet extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            ImageIcon(
-                              AssetImage(
-                                'assets/icons/comment_stroke_icon.png',
-                                package: 'example',
-                              ),
+                            AppIcons(
+                              iconPath: 'assets/icons/comment_stroke_icon.png',
                               color: Theme.of(context)
                                   .colorScheme
                                   .onSurfaceVariant,
@@ -142,11 +134,9 @@ class ShowTweet extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            ImageIcon(
-                              AssetImage(
-                                'assets/icons/retweet_solid_stroke_icon.png',
-                                package: 'example',
-                              ),
+                            AppIcons(
+                              iconPath:
+                                  'assets/icons/retweet_solid_stroke_icon.png',
                               color: Theme.of(context)
                                   .colorScheme
                                   .onSurfaceVariant,
@@ -159,11 +149,8 @@ class ShowTweet extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            ImageIcon(
-                              AssetImage(
-                                'assets/icons/heart_stroke_icon.png',
-                                package: 'example',
-                              ),
+                            AppIcons(
+                              iconPath: 'assets/icons/heart_stroke_icon.png',
                               color: Theme.of(context)
                                   .colorScheme
                                   .onSurfaceVariant,
@@ -174,11 +161,8 @@ class ShowTweet extends StatelessWidget {
                             ),
                           ],
                         ),
-                        ImageIcon(
-                          AssetImage(
-                            'assets/icons/share_stroke_icon.png',
-                            package: 'example',
-                          ),
+                        AppIcons(
+                          iconPath: 'assets/icons/share_stroke_icon.png',
                           color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                       ],

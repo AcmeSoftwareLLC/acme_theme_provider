@@ -13,9 +13,10 @@ void main() {
       themeMode: ThemeMode.light,
       themeData: ThemeData.light(),
       darkThemeData: ThemeData.dark(),
-      onSettingIconPressed: () {
+      onIconPressed: () {
         print('setting pressed');
       },
+      isOnThemeBuilder: false,
     ),
   );
 }
@@ -24,20 +25,23 @@ class SampleThemeApp extends StatelessWidget {
   final ThemeMode themeMode;
   final ThemeData? themeData;
   final ThemeData? darkThemeData;
-  final VoidCallback onSettingIconPressed;
+  final VoidCallback onIconPressed;
+  final bool isOnThemeBuilder;
 
   const SampleThemeApp({
     super.key,
     required this.themeMode,
     required this.themeData,
     required this.darkThemeData,
-    required this.onSettingIconPressed,
+    required this.onIconPressed,
+    required this.isOnThemeBuilder,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SettingsListenerScope(
-      onSettingPressed: onSettingIconPressed,
+    return SampleAppListenerScope(
+      onIconPressed: onIconPressed,
+      isOnThemeBuilder: isOnThemeBuilder,
       child: AppProvidersContainer(
         providersContext: providersContext,
         child: ThemeScope(
@@ -94,24 +98,26 @@ class ThemeScope extends InheritedNotifier<ThemeNotifier> {
   }
 }
 
-class SettingsListenerScope extends InheritedWidget {
-  const SettingsListenerScope({
+class SampleAppListenerScope extends InheritedWidget {
+  const SampleAppListenerScope({
     super.key,
     required super.child,
-    required this.onSettingPressed,
+    required this.onIconPressed,
+    required this.isOnThemeBuilder,
   });
 
-  final VoidCallback onSettingPressed;
+  final VoidCallback onIconPressed;
+  final bool isOnThemeBuilder;
 
-  static SettingsListenerScope of(BuildContext context) {
-    final SettingsListenerScope? result =
-        context.dependOnInheritedWidgetOfExactType<SettingsListenerScope>();
+  static SampleAppListenerScope of(BuildContext context) {
+    final SampleAppListenerScope? result =
+        context.dependOnInheritedWidgetOfExactType<SampleAppListenerScope>();
     assert(result != null, 'No SettingsListner found in context');
     return result!;
   }
 
   @override
-  bool updateShouldNotify(SettingsListenerScope old) {
+  bool updateShouldNotify(SampleAppListenerScope old) {
     return false;
   }
 }

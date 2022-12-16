@@ -1,4 +1,7 @@
+import 'package:clean_framework_router/clean_framework_router.dart';
+import 'package:example/routes.dart';
 import 'package:example/widgets/app_buttons.dart';
+import 'package:example/widgets/app_icons.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +17,20 @@ class SearchUI extends StatelessWidget {
         ),
         title: _SearchBar(),
         centerTitle: true,
+        actions: [
+          GestureDetector(
+            onTap: () => context.router.push(
+              Routes.settings,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: AppIcons(
+                iconPath: 'assets/icons/settings_stroke_icon.png',
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+          )
+        ],
       ),
       body: Container(
         child: Column(
@@ -40,11 +57,8 @@ class _SearchBar extends StatelessWidget {
             fillColor: Theme.of(context).colorScheme.surfaceVariant,
             floatingLabelBehavior: FloatingLabelBehavior.never,
             contentPadding: EdgeInsets.symmetric(horizontal: 40),
-            prefixIcon: ImageIcon(
-              AssetImage(
-                'assets/icons/search_stroke_icon.png',
-                package: 'example',
-              ),
+            prefixIcon: AppIcons(
+              iconPath: 'assets/icons/search_stroke_icon.png',
               color: Theme.of(context).colorScheme.outline,
             ),
             labelText: 'Search Twitter',

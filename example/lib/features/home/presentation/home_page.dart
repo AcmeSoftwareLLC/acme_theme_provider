@@ -2,6 +2,7 @@ import 'package:example/features/home/presentation/home_ui.dart';
 import 'package:example/ui/message_ui.dart';
 import 'package:example/ui/notifications_ui.dart';
 import 'package:example/ui/search_ui.dart';
+import 'package:example/widgets/app_icons.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -34,38 +35,30 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: ImageIcon(
-              AssetImage(
-                'assets/icons/home_icon.png',
-                package: 'example',
-              ),
+            icon: AppIcons(
+              iconPath: 'assets/icons/home_icon.png',
+              color: Theme.of(context).colorScheme.secondaryContainer,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: ImageIcon(
-              AssetImage(
-                'assets/icons/search_stroke_icon.png',
-                package: 'example',
-              ),
+            icon: AppIcons(
+              iconPath: 'assets/icons/search_stroke_icon.png',
+              color: Theme.of(context).colorScheme.secondaryContainer,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: ImageIcon(
-              AssetImage(
-                'assets/icons/bell_stroke_icon.png',
-                package: 'example',
-              ),
+            icon: AppIcons(
+              iconPath: 'assets/icons/bell_stroke_icon.png',
+              color: Theme.of(context).colorScheme.secondaryContainer,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: ImageIcon(
-              AssetImage(
-                'assets/icons/message_stroke_icon.png',
-                package: 'example',
-              ),
+            icon: AppIcons(
+              iconPath: 'assets/icons/message_stroke_icon.png',
+              color: Theme.of(context).colorScheme.secondaryContainer,
             ),
             label: '',
           ),
