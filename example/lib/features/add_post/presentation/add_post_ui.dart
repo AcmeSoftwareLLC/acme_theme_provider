@@ -83,6 +83,7 @@ class AddPostUI extends UI<AddPostViewModel> {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: null,
         isExtended: true,
         onPressed: () {
           viewModel.openGallery();

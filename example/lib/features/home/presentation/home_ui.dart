@@ -58,6 +58,7 @@ class HomeUI extends UI<HomeViewModel> {
         viewModel: viewModel,
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: null,
         onPressed: () => context.router.push(Routes.addTweet),
         child: Icon(
           Icons.add,
