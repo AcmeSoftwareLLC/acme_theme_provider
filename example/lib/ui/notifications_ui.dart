@@ -83,6 +83,7 @@ class _AllNotificationsUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
       itemBuilder: (context, index) {
         return _NotificationCard(index: index);
       },
@@ -98,7 +99,6 @@ class _NotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _screenWidth = MediaQuery.of(context).size.width;
     return Container(
       height: 280,
       decoration: BoxDecoration(
@@ -110,28 +110,26 @@ class _NotificationCard extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 32, top: 16),
+            padding: const EdgeInsets.only(left: 32, top: 16, right: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcons(
-                  iconPath: 'assets/icons/star_solid_icon.png',
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                ProfileIcon.medium(
-                  imagePath: index.isEven
-                      ? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg'
-                      : 'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',
-                ),
-                SizedBox(
-                  width: _screenWidth / 2,
+                Row(
+                  children: [
+                    AppIcons(
+                      iconPath: 'assets/icons/star_solid_icon.png',
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    ProfileIcon.medium(
+                      imagePath: index.isEven
+                          ? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg'
+                          : 'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',
+                    ),
+                  ],
                 ),
                 AppIcons(
                   iconPath: 'assets/icons/down_arrow_icon.png',
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
-                SizedBox(
-                  width: _screenWidth / 80,
+                  color: Theme.of(context).colorScheme.surfaceVariant,
                 ),
               ],
             ),
@@ -209,7 +207,10 @@ class _MentionsCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 16, top: 16),
+            padding: const EdgeInsets.only(
+              left: 16,
+              top: 16,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,

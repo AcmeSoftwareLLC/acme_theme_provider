@@ -11,8 +11,8 @@ void main() {
   runApp(
     SampleThemeApp(
       themeMode: ThemeMode.light,
-      themeData: ThemeData.light(),
-      darkThemeData: ThemeData.dark(),
+      themeData: ThemeData.light(useMaterial3: true),
+      darkThemeData: ThemeData.dark(useMaterial3: true),
       onIconPressed: () {
         print('setting pressed');
       },
@@ -55,9 +55,10 @@ class SampleThemeApp extends StatelessWidget {
                   return AppRouterScope(
                     builder: (context) => MaterialApp.router(
                       title: 'Twitter Clone App',
-                      theme: themeData,
-                      darkTheme: darkThemeData,
-                      themeMode: themeMode,
+                      theme: isOnThemeBuilder ? themeData : theme.lightTheme,
+                      darkTheme:
+                          isOnThemeBuilder ? darkThemeData : theme.darkTheme,
+                      themeMode: isOnThemeBuilder ? themeMode : theme.themeMode,
                       routerConfig: context.router.config,
                     ),
                     create: () => NoteRouter(),
