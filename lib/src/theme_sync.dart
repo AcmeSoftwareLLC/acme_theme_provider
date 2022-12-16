@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multicast_dns/multicast_dns.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'scopes/scopes.dart';
@@ -24,7 +25,7 @@ class _AcmeThemeSyncState extends State<AcmeThemeSync> {
   @override
   void initState() {
     super.initState();
-
+    _lookupAcmeThemeBuilderObservatory();
     _channel = WebSocketChannel.connect(Uri.parse('ws://localhost:23456'));
     _channel.sink.add('connect');
   }
@@ -44,5 +45,31 @@ class _AcmeThemeSyncState extends State<AcmeThemeSync> {
         return widget.scopeBuilder(context, widget.builder);
       },
     );
+  }
+
+  Future<void> _lookupAcmeThemeBuilderObservatory() async {
+    const String name = 'acme.theme.builder';
+    final MDnsClient client = MDnsClient();
+    await client.start();
+
+    final ptrRecords = client.lookup<PtrResourceRecord>(
+      ResourceRecordQuery.serverPointer(name),
+    );
+
+    await for (final ptr in ptrRecords) {
+      final srvRecords = client.lookup<SrvResourceRecord>(
+        ResourceRecordQuery.service(ptr.domainName),
+      );
+
+      await for (final srv in srvRecords) {
+        print(
+          'Acme Theme Builder observatory instance found at '
+          '${srv.target}:${srv.port}.',
+        );
+      }
+    }
+    client.stop();
+
+    print('Done.');
   }
 }
