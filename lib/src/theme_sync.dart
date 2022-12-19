@@ -12,12 +12,12 @@ class AcmeThemeSync extends StatefulWidget {
     super.key,
     required this.builder,
     required this.scopeBuilder,
-    required this.onObservatoryConnected,
+    this.onObservatoryConnected,
   });
 
   final ThemedWidgetBuilder builder;
   final Widget Function(BuildContext, ThemedWidgetBuilder) scopeBuilder;
-  final ValueChanged<AcmeThemeBuilderObservatoryInfo> onObservatoryConnected;
+  final ValueChanged<AcmeThemeBuilderObservatoryInfo>? onObservatoryConnected;
 
   @override
   State<AcmeThemeSync> createState() => _AcmeThemeSyncState();
@@ -64,7 +64,7 @@ class _AcmeThemeSyncState extends State<AcmeThemeSync> {
             nsd.stopDiscovery(discovery);
 
             _channel = WebSocketChannel.connect(Uri.parse('ws://$address'));
-            widget.onObservatoryConnected(
+            widget.onObservatoryConnected?.call(
               AcmeThemeBuilderObservatoryInfo(
                 host: service.host,
                 port: service.port,
