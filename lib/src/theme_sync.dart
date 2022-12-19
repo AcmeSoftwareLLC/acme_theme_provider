@@ -7,7 +7,14 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'scopes/scopes.dart';
 import 'typedefs.dart';
 
+/// A [Widget] that connects with the available Acme Theme Builder Observatory,
+/// and provides the [AcmeThemeData] resolved from the observatory to its descendants.
+///
+/// If no observatory is available, the [scopeBuilder] will be used.
+///
+/// This widget is useful for testing and development purposes.
 class AcmeThemeSync extends StatefulWidget {
+  /// Creates an instance of [AcmeThemeSync].
   const AcmeThemeSync({
     super.key,
     required this.builder,
@@ -15,8 +22,13 @@ class AcmeThemeSync extends StatefulWidget {
     this.onObservatoryConnected,
   });
 
+  /// The builder function that will be used to build the widget tree.
   final ThemedWidgetBuilder builder;
+
+  /// The builder function that will be used to build the widget tree when no observatory is available.
   final Widget Function(BuildContext, ThemedWidgetBuilder) scopeBuilder;
+
+  /// The callback that will be called when an observatory is connected.
   final ValueChanged<AcmeThemeBuilderObservatoryInfo>? onObservatoryConnected;
 
   @override
@@ -79,12 +91,17 @@ class _AcmeThemeSyncState extends State<AcmeThemeSync> {
   }
 }
 
+/// The information about the Acme Theme Builder Observatory.
 class AcmeThemeBuilderObservatoryInfo {
+  /// Creates an instance of [AcmeThemeBuilderObservatoryInfo].
   const AcmeThemeBuilderObservatoryInfo({
     required this.host,
     required this.port,
   });
 
+  /// The host of the Acme Theme Builder Observatory.
   final String? host;
+
+  /// The port of the Acme Theme Builder Observatory.
   final int? port;
 }
