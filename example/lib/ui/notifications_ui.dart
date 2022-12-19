@@ -100,11 +100,12 @@ class _NotificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 280,
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-              width: 1, color: Theme.of(context).colorScheme.surfaceVariant),
+            width: 1,
+            color: Theme.of(context).colorScheme.surfaceVariant,
+          ),
         ),
       ),
       child: Column(
@@ -162,6 +163,9 @@ class _NotificationCard extends StatelessWidget {
                       .bodyMedium!
                       .copyWith(color: Theme.of(context).colorScheme.outline),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
               ],
             ),
           ),
@@ -188,194 +192,227 @@ class _MentionsUI extends StatelessWidget {
 class _MentionsCard extends StatelessWidget {
   final int index;
 
-  const _MentionsCard({required this.index});
+  const _MentionsCard({
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
     final _screenHeight = MediaQuery.of(context).size.height;
     final _screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: 456,
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
               width: 1, color: Theme.of(context).colorScheme.surfaceVariant),
         ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 16,
-              top: 16,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ProfileIcon.medium(
-                  imagePath: index.isOdd
-                      ? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg'
-                      : 'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',
-                ),
-                Text('Mariane', style: Theme.of(context).textTheme.titleMedium),
-                SizedBox(
-                  width: 4,
-                ),
-                Text(
-                  '@mariane',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: Theme.of(context).colorScheme.outline),
-                ),
-                SizedBox(
-                  width: 4,
-                ),
-                Text(
-                  '1/21/20',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: Theme.of(context).colorScheme.outline),
-                ),
-                SizedBox(
-                  width: _screenWidth / 8,
-                ),
-                AppIcons(
-                  iconPath: 'assets/icons/down_arrow_icon.png',
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 80,
-              right: 24,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Hey',
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).colorScheme.onBackground),
-                ),
-                Text(
-                    '@theflaticon @iconmonstr @pixsellz @dan ielbruce_ @romanshamin @_vect_ @glyphish !',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.primary)),
-                Text(
-                  'Check out our new article "Top Users of the month"',
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).colorScheme.onBackground),
-                ),
-                Text(
-                  'marianee.com/blog/top-users...',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: Theme.of(context).colorScheme.primary),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Theme.of(context).colorScheme.surfaceVariant),
-                    borderRadius: BorderRadius.circular(15.0),
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ProfileIcon.medium(
+                    imagePath: index.isOdd
+                        ? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg'
+                        : 'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15.0),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Flexible(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Image.network(
-                          index.isEven
-                              ? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg'
-                              : 'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',
-                          height: _screenHeight / 6,
-                          width: _screenWidth,
-                          fit: BoxFit.cover,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text('Mariane',
+                                style: Theme.of(context).textTheme.titleMedium),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              '@mariane',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .outline),
+                            ),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              '1/21/20',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .outline),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          'Hey',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
+                        ),
+                        Text(
+                          '@theflaticon @iconmonstr @pixsellz @dan ielbruce_ @romanshamin @_vect_ @glyphish !',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                        ),
+                        Text(
+                          'Check out our new article "Top Users of the month"',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                fontWeight: FontWeight.w400,
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
+                              ),
+                        ),
+                        Text(
+                          'marianee.com/blog/top-users...',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color:
+                                  Theme.of(context).colorScheme.surfaceVariant,
+                            ),
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image.network(
+                                  index.isEven
+                                      ? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg'
+                                      : 'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',
+                                  height: _screenHeight / 6,
+                                  width: _screenWidth,
+                                  fit: BoxFit.cover,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Top users of the month',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                          fontWeight: FontWeight.w400,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onBackground,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Top users of the month',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                    fontWeight: FontWeight.w400,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  AppIcons(
+                                    iconPath:
+                                        'assets/icons/comment_stroke_icon.png',
                                     color: Theme.of(context)
                                         .colorScheme
-                                        .onBackground),
+                                        .onBackground,
+                                  ),
+                                  Text('7'),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  AppIcons(
+                                    iconPath:
+                                        'assets/icons/retweet_solid_stroke_icon.png',
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                  ),
+                                  Text('1'),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  AppIcons(
+                                    iconPath:
+                                        'assets/icons/heart_solid_icon.png',
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                                  Text('3'),
+                                ],
+                              ),
+                              AppIcons(
+                                iconPath: 'assets/icons/share_stroke_icon.png',
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              )
+                            ],
                           ),
                         ),
                       ],
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          AppIcons(
-                            iconPath: 'assets/icons/comment_stroke_icon.png',
-                            color: Theme.of(context).colorScheme.onBackground,
-                          ),
-                          Text('7'),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          AppIcons(
-                            iconPath:
-                                'assets/icons/retweet_solid_stroke_icon.png',
-                            color: Theme.of(context).colorScheme.secondary,
-                          ),
-                          Text('1'),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          AppIcons(
-                            iconPath: 'assets/icons/heart_solid_icon.png',
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                          Text('3'),
-                        ],
-                      ),
-                      AppIcons(
-                        iconPath: 'assets/icons/share_stroke_icon.png',
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      )
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+            AppIcons(
+              iconPath: 'assets/icons/down_arrow_icon.png',
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ],
+        ),
       ),
     );
   }
