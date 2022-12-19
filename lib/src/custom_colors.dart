@@ -14,8 +14,10 @@ abstract class CustomColorsConverter<T extends Object> {
 
   final Map<String, CustomColor> _colors;
 
+  /// Converts the custom colors to a custom color object.
   T convert();
 
+  /// Resolves the custom color from [key].
   CustomColor call(String key) {
     return _colors[key] ??
         CustomColor(
@@ -28,6 +30,7 @@ abstract class CustomColorsConverter<T extends Object> {
   }
 }
 
+/// Defines a custom color converter.
 class MapCustomColorConverter
     extends CustomColorsConverter<Map<String, CustomColor>> {
   const MapCustomColorConverter(super.colors);

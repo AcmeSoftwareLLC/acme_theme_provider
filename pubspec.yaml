@@ -14,10 +14,12 @@ dependencies:
   http: ^0.13.5
   json_class: ^2.1.2+14
   json_theme: ^4.0.3+2
+  meta: '>=1.8.0 <2.0.0'
   path: '>=1.8.2 <2.0.0'
   path_provider: ^2.0.11
   shared_preferences: ^2.0.15
   web_socket_channel: ^2.2.0
+  nsd: ^2.3.0
 
 dev_dependencies:
   flutter_test:
