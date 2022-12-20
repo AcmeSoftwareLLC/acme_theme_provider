@@ -7,15 +7,14 @@ import 'package:example/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  BuildContext context;
   loadProviders();
   runApp(
     SampleThemeApp(
       themeMode: ThemeMode.light,
       themeData: ThemeData.light(useMaterial3: true),
       darkThemeData: ThemeData.dark(useMaterial3: true),
-      onIconPressed: () {
-        print('setting pressed');
-      },
+      onIconPressed: () {},
       isOnThemeBuilder: false,
     ),
   );

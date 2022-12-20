@@ -5,7 +5,6 @@ import 'package:example/features/home/presentation/home_view_model.dart';
 import 'package:example/main.dart';
 import 'package:example/providers.dart';
 import 'package:example/routes.dart';
-import 'package:example/widgets/app_icons.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:example/widgets/show_tweet.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +40,9 @@ class HomeUI extends UI<HomeViewModel> {
         actions: [
           IconButton(
             onPressed: () {
-              SampleAppListenerScope.of(context).onIconPressed();
+              SampleAppListenerScope.of(context).isOnThemeBuilder
+                  ? SampleAppListenerScope.of(context).onIconPressed()
+                  : context.router.go(Routes.settings);
             },
             icon: SampleAppListenerScope.of(context).isOnThemeBuilder
                 ? SvgPicture.asset(
