@@ -1,4 +1,4 @@
-import 'package:acme_theme_provider/acme_theme_provider.dart';
+import 'package:acme_theme/acme_theme.dart';
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/brand_colors.dart';
@@ -7,7 +7,6 @@ import 'package:example/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  BuildContext context;
   loadProviders();
   runApp(
     SampleThemeApp(
@@ -38,36 +37,29 @@ class SampleThemeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SampleAppListenerScope(
-      onIconPressed: onIconPressed,
-      isOnThemeBuilder: isOnThemeBuilder,
-      child: AppProvidersContainer(
-        providersContext: providersContext,
-        child: ThemeScope(
-          notifier: ThemeNotifier(),
-          child: Builder(
-            builder: (context) {
-              return AcmeThemeProvider<BrandColors>.asset(
-                path: ThemeScope.of(context).assetPath,
-                customColorsConverterCreator: BrandColorsConverter.new,
-                builder: (context, theme) {
-                  return AppRouterScope(
-                    builder: (context) => MaterialApp.router(
-                      debugShowCheckedModeBanner: false,
-                      useInheritedMediaQuery: true,
-                      title: 'Twitter Clone App',
-                      theme: isOnThemeBuilder ? themeData : theme.lightTheme,
-                      darkTheme:
-                          isOnThemeBuilder ? darkThemeData : theme.darkTheme,
-                      themeMode: isOnThemeBuilder ? themeMode : theme.themeMode,
-                      routerConfig: context.router.config,
-                    ),
-                    create: () => NoteRouter(),
-                  );
-                },
-              );
-            },
-          ),
+    return AppProvidersContainer(
+      providersContext: providersContext,
+      child: ThemeScope(
+        notifier: ThemeNotifier(),
+        child: Builder(
+          builder: (context) {
+            return AcmeThemeScope<BrandColors>.asset(
+              path: ThemeScope.of(context).assetPath,
+              customColorsConverterCreator: BrandColorsConverter.new,
+              builder: (context, theme) {
+                return AppRouterScope(
+                  builder: (context) => MaterialApp.router(
+                    title: 'Twitter Clone App',
+                    theme: theme.lightTheme,
+                    darkTheme: theme.darkTheme,
+                    themeMode: theme.themeMode,
+                    routerConfig: context.router.config,
+                  ),
+                  create: () => NoteRouter(),
+                );
+              },
+            );
+          },
         ),
       ),
     );
@@ -88,7 +80,8 @@ class ThemeNotifier extends ChangeNotifier {
 }
 
 class ThemeScope extends InheritedNotifier<ThemeNotifier> {
-  ThemeScope({
+  const ThemeScope({
+    super.key,
     required super.notifier,
     required super.child,
   });
@@ -119,7 +112,7 @@ class SampleAppListenerScope extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(SampleAppListenerScope old) {
+  bool updateShouldNotify(SampleAppListenerScope oldWidget) {
     return false;
   }
 }

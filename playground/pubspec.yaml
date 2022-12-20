@@ -1,0 +1,21 @@
+name: playground
+description: A playground to play with components and it's configuration.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.4 <3.0.0'
+
+dependencies:
+  acme_theme:
+    path: ../
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+
+flutter:
+  uses-material-design: true
