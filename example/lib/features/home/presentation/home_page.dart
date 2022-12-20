@@ -6,6 +6,8 @@ import 'package:example/widgets/app_icons.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -13,11 +15,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  List<Widget> _widgetOptions = <Widget>[
+  final List<Widget> _widgetOptions = <Widget>[
     HomeUI(),
-    SearchUI(),
-    NotificationsUI(),
-    MessageUI(),
+    const SearchUI(),
+    const NotificationsUI(),
+    const MessageUI(),
   ];
 
   void _onItemTapped(int index) {

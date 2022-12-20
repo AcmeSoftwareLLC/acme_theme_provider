@@ -24,7 +24,7 @@ class NoteRouter extends AppRouter<Routes> {
   RouterConfiguration configureRouter() {
     return RouterConfiguration(routes: [
       AppRoute(
-        builder: (context, state) => HomePage(),
+        builder: (context, state) => const HomePage(),
         route: Routes.home,
       ),
       AppRoute(
@@ -32,13 +32,17 @@ class NoteRouter extends AppRouter<Routes> {
         route: Routes.addTweet,
       ),
       AppRoute(
-        builder: (context, state) => NotificationsUI(),
+        builder: (context, state) => const NotificationsUI(),
         route: Routes.notifications,
       ),
       AppRoute(
-          builder: (context, state) => MessageUI(), route: Routes.messages),
+        builder: (context, state) => const MessageUI(),
+        route: Routes.messages,
+      ),
       AppRoute(
-          builder: (context, state) => SettingsUI(), route: Routes.settings),
+        builder: (context, state) => const SettingsUI(),
+        route: Routes.settings,
+      ),
     ]);
   }
 }

@@ -37,29 +37,36 @@ class SampleThemeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppProvidersContainer(
-      providersContext: providersContext,
-      child: ThemeScope(
-        notifier: ThemeNotifier(),
-        child: Builder(
-          builder: (context) {
-            return AcmeThemeScope<BrandColors>.asset(
-              path: ThemeScope.of(context).assetPath,
-              customColorsConverterCreator: BrandColorsConverter.new,
-              builder: (context, theme) {
-                return AppRouterScope(
-                  builder: (context) => MaterialApp.router(
-                    title: 'Twitter Clone App',
-                    theme: theme.lightTheme,
-                    darkTheme: theme.darkTheme,
-                    themeMode: theme.themeMode,
-                    routerConfig: context.router.config,
-                  ),
-                  create: () => NoteRouter(),
-                );
-              },
-            );
-          },
+    return SampleAppListenerScope(
+      onIconPressed: onIconPressed,
+      isOnThemeBuilder: isOnThemeBuilder,
+      child: AppProvidersContainer(
+        providersContext: providersContext,
+        child: ThemeScope(
+          notifier: ThemeNotifier(),
+          child: Builder(
+            builder: (context) {
+              return AcmeThemeScope<BrandColors>.asset(
+                path: ThemeScope.of(context).assetPath,
+                customColorsConverterCreator: BrandColorsConverter.new,
+                builder: (context, theme) {
+                  return AppRouterScope(
+                    builder: (context) => MaterialApp.router(
+                      debugShowCheckedModeBanner: false,
+                      useInheritedMediaQuery: true,
+                      title: 'Twitter Clone App',
+                      theme: isOnThemeBuilder ? themeData : theme.lightTheme,
+                      darkTheme:
+                          isOnThemeBuilder ? darkThemeData : theme.darkTheme,
+                      themeMode: isOnThemeBuilder ? themeMode : theme.themeMode,
+                      routerConfig: context.router.config,
+                    ),
+                    create: () => NoteRouter(),
+                  );
+                },
+              );
+            },
+          ),
         ),
       ),
     );

@@ -5,9 +5,12 @@ import 'package:example/widgets/profile_icon.dart';
 import 'package:flutter/material.dart';
 
 class NotificationsUI extends StatelessWidget {
+  const NotificationsUI({super.key});
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.surface,
@@ -19,27 +22,14 @@ class NotificationsUI extends StatelessWidget {
                 .copyWith(fontWeight: FontWeight.w800),
           ),
           centerTitle: true,
-          leading: ProfileIcon.small(
+          leading: const ProfileIcon.small(
             imagePath:
                 'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
           ),
-          actions: [
-            GestureDetector(
-              onTap: () => context.router.push(
-                Routes.settings,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: AppIcons(
-                  iconPath: 'assets/icons/settings_stroke_icon.png',
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              ),
-            )
-          ],
           bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(50),
             child: TabBar(
-              tabs: [
+              tabs: const [
                 Tab(
                   text: 'All',
                 ),
@@ -59,7 +49,6 @@ class NotificationsUI extends StatelessWidget {
               unselectedLabelColor: Theme.of(context).colorScheme.outline,
               indicatorColor: Theme.of(context).colorScheme.primary,
             ),
-            preferredSize: Size.fromHeight(50),
           ),
           shape: Border(
               bottom: BorderSide(
@@ -74,7 +63,6 @@ class NotificationsUI extends StatelessWidget {
           ],
         ),
       ),
-      length: 2,
     );
   }
 }
@@ -153,7 +141,7 @@ class _NotificationCard extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                       ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
@@ -163,7 +151,7 @@ class _NotificationCard extends StatelessWidget {
                       .bodyMedium!
                       .copyWith(color: Theme.of(context).colorScheme.outline),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
               ],
@@ -198,8 +186,8 @@ class _MentionsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _screenHeight = MediaQuery.of(context).size.height;
-    final _screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -208,7 +196,7 @@ class _MentionsCard extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -223,7 +211,7 @@ class _MentionsCard extends StatelessWidget {
                         ? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg'
                         : 'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Flexible(
@@ -236,7 +224,7 @@ class _MentionsCard extends StatelessWidget {
                           children: [
                             Text('Mariane',
                                 style: Theme.of(context).textTheme.titleMedium),
-                            SizedBox(
+                            const SizedBox(
                               width: 4,
                             ),
                             Text(
@@ -249,7 +237,7 @@ class _MentionsCard extends StatelessWidget {
                                           .colorScheme
                                           .outline),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 4,
                             ),
                             Text(
@@ -304,7 +292,7 @@ class _MentionsCard extends StatelessWidget {
                                 color: Theme.of(context).colorScheme.primary,
                               ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Container(
@@ -324,8 +312,8 @@ class _MentionsCard extends StatelessWidget {
                                   index.isEven
                                       ? 'https://xsgames.co/randomusers/assets/avatars/male/$index.jpg'
                                       : 'https://xsgames.co/randomusers/assets/avatars/female/$index.jpg',
-                                  height: _screenHeight / 6,
-                                  width: _screenWidth,
+                                  height: screenHeight / 6,
+                                  width: screenWidth,
                                   fit: BoxFit.cover,
                                 ),
                                 Padding(
@@ -347,7 +335,7 @@ class _MentionsCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Padding(
@@ -364,7 +352,7 @@ class _MentionsCard extends StatelessWidget {
                                         .colorScheme
                                         .onBackground,
                                   ),
-                                  Text('7'),
+                                  const Text('7'),
                                 ],
                               ),
                               Row(
@@ -375,7 +363,7 @@ class _MentionsCard extends StatelessWidget {
                                     color:
                                         Theme.of(context).colorScheme.secondary,
                                   ),
-                                  Text('1'),
+                                  const Text('1'),
                                 ],
                               ),
                               Row(
@@ -386,7 +374,7 @@ class _MentionsCard extends StatelessWidget {
                                     color:
                                         Theme.of(context).colorScheme.primary,
                                   ),
-                                  Text('3'),
+                                  const Text('3'),
                                 ],
                               ),
                               AppIcons(
@@ -395,7 +383,7 @@ class _MentionsCard extends StatelessWidget {
                                     .colorScheme
                                     .onSurfaceVariant,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               )
                             ],

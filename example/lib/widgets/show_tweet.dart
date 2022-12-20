@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class ShowTweet extends StatelessWidget {
   const ShowTweet({
+    super.key,
     required this.post,
     required this.imagePath,
     required this.firstName,
@@ -42,7 +43,7 @@ class ShowTweet extends StatelessWidget {
                   iconPath: 'assets/icons/heart_solid_icon.png',
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ProfileIcon.large(
@@ -50,7 +51,7 @@ class ShowTweet extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               width: 8,
             ),
             Flexible(
@@ -70,13 +71,13 @@ class ShowTweet extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            firstName + ' ' + lastName,
+                            '$firstName $lastName',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
                                 .copyWith(fontWeight: FontWeight.w700),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           SizedBox(
@@ -87,14 +88,14 @@ class ShowTweet extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Text(
                             '${time}h',
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                         ],
@@ -109,11 +110,11 @@ class ShowTweet extends StatelessWidget {
                     post,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(right: 65),
+                    padding: const EdgeInsets.only(right: 65),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -167,7 +168,7 @@ class ShowTweet extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Column(
@@ -183,8 +184,8 @@ class ShowTweet extends StatelessWidget {
                                         Theme.of(context).colorScheme.primary,
                                   ),
                             )
-                          : SizedBox(),
-                      SizedBox(
+                          : const SizedBox(),
+                      const SizedBox(
                         height: 5,
                       ),
                     ],
@@ -195,20 +196,20 @@ class ShowTweet extends StatelessWidget {
                           height: screenHeight / 3.2,
                           fit: BoxFit.contain,
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
                 ],
               ),
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Divider(
           thickness: 0.2,
           color: Theme.of(context).colorScheme.outline,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
       ],

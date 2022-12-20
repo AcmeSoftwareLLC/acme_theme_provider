@@ -4,6 +4,7 @@ import 'package:example/features/home/domain/home_ui_output.dart';
 import 'package:example/features/home/external_interface/home_get_all_tweets_gateway.dart';
 import 'package:example/features/home/external_interface/home_get_tweet_gateway.dart';
 import 'package:example/features/theme/tweet.dart';
+import 'package:flutter/foundation.dart';
 
 class HomeUseCase extends UseCase<HomeEntity> {
   HomeUseCase()
@@ -39,7 +40,9 @@ class HomeUseCase extends UseCase<HomeEntity> {
         );
       },
       onFailure: (e) {
-        print('the error is: ${e.message}');
+        if (kDebugMode) {
+          print('the error is: ${e.message}');
+        }
         return entity;
       },
     );

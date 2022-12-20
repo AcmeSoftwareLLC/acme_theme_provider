@@ -33,7 +33,7 @@ class HomeUI extends UI<HomeViewModel> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         centerTitle: true,
-        leading: ProfileIcon.small(
+        leading: const ProfileIcon.small(
           imagePath:
               'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
         ),
@@ -68,7 +68,7 @@ class HomeUI extends UI<HomeViewModel> {
       floatingActionButton: FloatingActionButton(
         heroTag: null,
         onPressed: () => context.router.push(Routes.addTweet),
-        child: Icon(
+        child: const Icon(
           Icons.add,
         ),
       ),
@@ -98,7 +98,7 @@ class _TweetItem extends StatelessWidget {
                 children: [
                   ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       return Column(
                         children: [
@@ -115,7 +115,7 @@ class _TweetItem extends StatelessWidget {
                     },
                     itemCount: viewModel.tweets.length,
                   ),
-                  ShowTweet(
+                  const ShowTweet(
                       post: 'You can see all the typography in this tweet',
                       imagePath: '',
                       firstName: 'James',
@@ -123,7 +123,7 @@ class _TweetItem extends StatelessWidget {
                       userName: 'haribahadur1992',
                       userImage:
                           'https://xsgames.co/randomusers/assets/avatars/female/40.jpg'),
-                  ShowTweet(
+                  const ShowTweet(
                     post: 'Welcome to the new age',
                     imagePath: '',
                     firstName: 'Alex',

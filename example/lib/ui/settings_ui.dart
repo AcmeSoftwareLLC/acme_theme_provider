@@ -1,62 +1,75 @@
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/main.dart';
+import 'package:example/routes.dart';
 import 'package:example/widgets/app_buttons.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:flutter/material.dart';
 
 class SettingsUI extends StatefulWidget {
+  const SettingsUI({super.key});
+
   @override
   State<SettingsUI> createState() => _SettingsUIState();
 }
 
 class _SettingsUIState extends State<SettingsUI> {
-
   @override
   Widget build(BuildContext context) {
-    final _screenWidth = MediaQuery.of(context).size.width;
-    final _screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
       appBar: AppBar(
-        title: Text('Settings', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w800)),
+        title: Text('Settings',
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(fontWeight: FontWeight.w800)),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.surface,
-        leading: ProfileIcon.small(
+        leading: const ProfileIcon.small(
           imagePath:
               'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
         ),
         shape: Border(
             bottom: BorderSide(
-              color: Theme.of(context).colorScheme.surfaceVariant,
-              width: 0.5,
-            )
-        ),
+          color: Theme.of(context).colorScheme.surfaceVariant,
+          width: 0.5,
+        )),
       ),
       body: Container(
-        height: _screenHeight/2,
+        height: screenHeight / 2,
         color: Theme.of(context).colorScheme.surface,
         child: Column(
-         mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               height: 48,
-              width: _screenWidth,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                child: Text('Change current theme', style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w900, )),
-              ),
+              width: screenWidth,
               decoration: BoxDecoration(
-                border: Border.all(color: Theme.of(context).colorScheme.surfaceVariant,),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.surfaceVariant,
+                ),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                child: Text('Change current theme',
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          fontWeight: FontWeight.w900,
+                        )),
               ),
             ),
-
             _ThemeSelectionTile(
-              changeCurrentTheme: (theme) =>
-                  ThemeScope.of(context).changeAsset('assets/themes/$theme.acme'),
+              changeCurrentTheme: (theme) => ThemeScope.of(context)
+                  .changeAsset('assets/themes/$theme.acme'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             AppElevatedButton(
-              title: 'Done', onPressed: ( ) => context.router.pop()
+              title: 'Done',
+              onPressed: () => context.router.go(
+                Routes.home,
+              ),
             ),
           ],
         ),
@@ -93,12 +106,16 @@ class _ThemeSelectionTileState extends State<_ThemeSelectionTile> {
       itemBuilder: (BuildContext context, int index) {
         return Container(
           decoration: BoxDecoration(
-            border: Border.all(width: 0.5, color: Theme.of(context).colorScheme.surfaceVariant),
+            border: Border.all(
+                width: 0.5,
+                color: Theme.of(context).colorScheme.surfaceVariant),
           ),
           child: ListTile(
             title: Text(themePaths[index]),
             selected: index == _selectedIndex,
-            trailing: _selectedIndex == index ? Icon(Icons.check) : SizedBox.shrink(),
+            trailing: _selectedIndex == index
+                ? const Icon(Icons.check)
+                : const SizedBox.shrink(),
             onTap: () {
               _selectedIndex = index;
               widget.changeCurrentTheme(themePaths[index]);

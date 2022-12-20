@@ -35,13 +35,13 @@ class AddPostUI extends UI<AddPostViewModel> {
             viewModel.refresh();
             context.router.go(Routes.home);
           },
-          child: Text(
+          child: const Text(
             'Cancel',
           ),
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: ElevatedButton(
               onPressed: () {
                 if (viewModel.post.isEmpty) {
@@ -75,7 +75,7 @@ class AddPostUI extends UI<AddPostViewModel> {
                   );
                 }
               },
-              child: Text(
+              child: const Text(
                 'Tweet',
               ),
             ),
@@ -88,14 +88,14 @@ class AddPostUI extends UI<AddPostViewModel> {
         onPressed: () {
           viewModel.openGallery();
         },
-        icon: Icon(Icons.add),
+        icon: const Icon(Icons.add),
         label: Text(
           viewModel.imagePath.isEmpty ? 'Add image' : 'Change image',
           style: Theme.of(context).textTheme.labelMedium,
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: AddPostUIBody(
           viewModel: viewModel,
           screenHeight: screenHeight,
@@ -107,7 +107,8 @@ class AddPostUI extends UI<AddPostViewModel> {
 }
 
 class AddPostUIBody extends StatelessWidget {
-  AddPostUIBody({
+  const AddPostUIBody({
+    super.key,
     required this.viewModel,
     required this.screenHeight,
     required this.screenWidth,
@@ -135,7 +136,7 @@ class AddPostUIBody extends StatelessWidget {
             ),
             onChanged: (val) => viewModel.enterPost(val),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           viewModel.imagePath.isNotEmpty
@@ -144,7 +145,7 @@ class AddPostUIBody extends StatelessWidget {
                   height: screenHeight / 3.2,
                   fit: BoxFit.contain,
                 )
-              : SizedBox(),
+              : const SizedBox(),
         ],
       ),
     );

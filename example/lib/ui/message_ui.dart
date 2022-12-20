@@ -5,6 +5,8 @@ import 'package:example/widgets/profile_icon.dart';
 import 'package:flutter/material.dart';
 
 class MessageUI extends StatelessWidget {
+  const MessageUI({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,28 +19,15 @@ class MessageUI extends StatelessWidget {
               .copyWith(fontWeight: FontWeight.w800),
         ),
         centerTitle: true,
-        leading: ProfileIcon.small(
+        leading: const ProfileIcon.small(
           imagePath:
               'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
         ),
-        actions: [
-          GestureDetector(
-            onTap: () => context.router.push(
-              Routes.settings,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: AppIcons(
-                iconPath: 'assets/icons/settings_stroke_icon.png',
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
-          )
-        ],
         bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(64),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-            child: Container(
+            child: SizedBox(
               height: 32,
               child: TextField(
                 style: TextStyle(
@@ -48,7 +37,7 @@ class MessageUI extends StatelessWidget {
                   filled: true,
                   fillColor: Theme.of(context).colorScheme.surfaceVariant,
                   floatingLabelBehavior: FloatingLabelBehavior.never,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 40),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 40),
                   prefixIcon: AppIcons(
                     iconPath: 'assets/icons/search_stroke_icon.png',
                     color: Theme.of(context).colorScheme.primary,
@@ -60,7 +49,7 @@ class MessageUI extends StatelessWidget {
                       ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       width: 0,
                       style: BorderStyle.none,
                     ),
@@ -69,7 +58,6 @@ class MessageUI extends StatelessWidget {
               ),
             ),
           ),
-          preferredSize: Size.fromHeight(64),
         ),
         shape: Border(
           bottom: BorderSide(
@@ -110,7 +98,7 @@ class _MessageTile extends StatelessWidget {
         border: Border.all(
             width: 0.5, color: Theme.of(context).colorScheme.surfaceVariant),
       ),
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       child: ListTile(
         onTap: () {},
         focusColor: Theme.of(context).colorScheme.primaryContainer,
@@ -125,7 +113,7 @@ class _MessageTile extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Text(
@@ -134,7 +122,7 @@ class _MessageTile extends StatelessWidget {
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                       fontWeight: FontWeight.w400),
                 ),
-                Expanded(
+                const Expanded(
                     child: SizedBox(
                   width: 40,
                 )),
