@@ -54,6 +54,8 @@ class SampleThemeApp extends StatelessWidget {
                 builder: (context, theme) {
                   return AppRouterScope(
                     builder: (context) => MaterialApp.router(
+                      debugShowCheckedModeBanner: false,
+                      useInheritedMediaQuery: true,
                       title: 'Twitter Clone App',
                       theme: isOnThemeBuilder ? themeData : theme.lightTheme,
                       darkTheme:

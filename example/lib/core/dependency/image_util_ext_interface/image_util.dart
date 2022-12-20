@@ -7,10 +7,11 @@ class ImageUtil {
     ImagePicker? imagePicker,
     ThemeProviderImageCropper? walletImageCropper,
   })  : _imagePicker = imagePicker ?? ImagePicker(),
-        _walletImageCropper = walletImageCropper ?? ThemeProviderImageCropper();
+        _themeProviderImageCropper =
+            walletImageCropper ?? ThemeProviderImageCropper();
 
   final ImagePicker _imagePicker;
-  final ThemeProviderImageCropper _walletImageCropper;
+  final ThemeProviderImageCropper _themeProviderImageCropper;
 
   Future<String?> pickImage({
     required ImagePickerSource imagePickerSource,
@@ -33,7 +34,7 @@ class ImageUtil {
 
   Future<String?> cropImageInSquare(String imagePath) async {
     try {
-      final croppedFilePath = await _walletImageCropper.cropImage(
+      final croppedFilePath = await _themeProviderImageCropper.cropImage(
         imagePath: imagePath,
       );
 

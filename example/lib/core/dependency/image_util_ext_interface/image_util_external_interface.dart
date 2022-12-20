@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:example/core/dependency/image_util_ext_interface/image_util.dart';
 import 'package:example/core/dependency/image_util_ext_interface/image_util_request.dart';
@@ -43,14 +46,20 @@ class ImageUtilExternalInterface
     ResponseSender send,
   ) async {
     try {
+      final originalImagePath = await _imageUtil.pickImage(
+        imagePickerSource: request.imagePickerSource,
+        maxWidth: request.maxWidth,
+        maxHeight: request.maxHeight,
+      );
+      final documentDirectory = await getTemporaryDirectory();
+      final sandBoxImagePath = join(
+        documentDirectory.path,
+        '${DateTime.now().millisecondsSinceEpoch}-${basename(originalImagePath!)}',
+      );
+      await File(originalImagePath).copy(sandBoxImagePath);
+
       send(
-        ImageUtilSuccessResponse(
-          await _imageUtil.pickImage(
-            imagePickerSource: request.imagePickerSource,
-            maxWidth: request.maxWidth,
-            maxHeight: request.maxHeight,
-          ),
-        ),
+        ImageUtilSuccessResponse(sandBoxImagePath),
       );
     } on ImageUtilException catch (e) {
       sendError(ImageUtilExceptionFailureResponse(message: e.message));
