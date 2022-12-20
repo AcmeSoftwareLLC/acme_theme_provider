@@ -1,4 +1,4 @@
-import 'package:acme_theme_provider/acme_theme_provider.dart';
+import 'package:acme_theme/acme_theme.dart';
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:example/brand_colors.dart';
@@ -8,10 +8,12 @@ import 'package:flutter/material.dart';
 
 void main() {
   loadProviders();
-  runApp(SampleThemeApp());
+  runApp(const SampleThemeApp());
 }
 
 class SampleThemeApp extends StatelessWidget {
+  const SampleThemeApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AppProvidersContainer(
@@ -20,7 +22,7 @@ class SampleThemeApp extends StatelessWidget {
         notifier: ThemeNotifier(),
         child: Builder(
           builder: (context) {
-            return AcmeThemeProvider<BrandColors>.asset(
+            return AcmeThemeScope<BrandColors>.asset(
               path: ThemeScope.of(context).assetPath,
               customColorsConverterCreator: BrandColorsConverter.new,
               builder: (context, theme) {
@@ -57,7 +59,8 @@ class ThemeNotifier extends ChangeNotifier {
 }
 
 class ThemeScope extends InheritedNotifier<ThemeNotifier> {
-  ThemeScope({
+  const ThemeScope({
+    super.key,
     required super.notifier,
     required super.child,
   });

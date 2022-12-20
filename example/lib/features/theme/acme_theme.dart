@@ -1,4 +1,4 @@
-import 'package:acme_theme_provider/acme_theme_provider.dart';
+import 'package:acme_theme/acme_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:json_theme/json_theme.dart';
 
@@ -18,13 +18,10 @@ class AcmeTheme {
     final decodedLightTheme = ThemeDecoder.decodeThemeData(rawThemeData);
     final decodedDarkTheme = ThemeDecoder.decodeThemeData(rawDarkThemeData);
 
-
     return AcmeTheme(
       name: json['name'] ?? '',
-      themeData: (decodedLightTheme ?? ThemeData.light()).copyWith(
-      ),
-      darkThemeData: (decodedDarkTheme ?? ThemeData.dark()).copyWith(
-      ),
+      themeData: (decodedLightTheme ?? ThemeData.light()).copyWith(),
+      darkThemeData: (decodedDarkTheme ?? ThemeData.dark()).copyWith(),
       themeMode: themeMode ?? ThemeMode.light,
     );
   }
@@ -35,7 +32,8 @@ class AcmeTheme {
   final String name;
 
   AcmeTheme apply(
-    ThemeData data,) {
+    ThemeData data,
+  ) {
     final isDark = themeMode == ThemeMode.dark;
     return copyWith(
       themeMode: themeMode,
