@@ -1,1 +1,29 @@
-
+{
+  "name": "Acme Theme Codelabs",
+  "theme": "#0984E3",
+  "logo":"/assets/icon_logomark.png",
+  "logoDark":"/assets/icon_logomark_dark.png",
+  "favicon":"/assets/icon_logomark.png",
+  "sidebar": [
+    ["Installation", "/"],
+    ["Using Acme Theme in Flutter's starter app",[
+      ["Introduction","/codelabs/acme-theme/intro"],
+      ["Setup","/codelabs/acme-theme/setup"],
+      ["Starter app","/codelabs/acme-theme/starter_app"],
+      ]
+    ],
+    ["Acme Theme implementation in a sample app",
+      [
+        ["Introduction", "/codelabs/feature-flag/intro"],
+        ["Download Starter App", "/codelabs/feature-flag/starter"],
+        ["Get Familiar", "/codelabs/feature-flag/get-familiar"],
+        ["Flag Schema", "/codelabs/feature-flag/flag-schema"],
+        ["Feature Provider", "/codelabs/feature-flag/feature-provider"],
+        ["Feature Client", "/codelabs/feature-flag/feature-client"],
+        ["FeatureBuilder", "/codelabs/feature-flag/feature-builder"],
+        ["Using Flags in non-UI code", "/codelabs/feature-flag/non-ui-flag-resolution"],
+        ["Writing tests", "/codelabs/feature-flag/test"]
+      ]
+    ],
+  ]
+}
