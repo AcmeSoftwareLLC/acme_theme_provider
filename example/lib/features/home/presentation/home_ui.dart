@@ -52,9 +52,7 @@ class HomeUI extends UI<HomeViewModel> {
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
-          const SizedBox(
-            width: 8,
-          ),
+          const SizedBox(width: 8),
         ],
       ),
       body: _TweetItem(
