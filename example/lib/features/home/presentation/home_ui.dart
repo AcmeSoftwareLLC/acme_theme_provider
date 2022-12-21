@@ -40,23 +40,20 @@ class HomeUI extends UI<HomeViewModel> {
         ),
         actions: [
           IconButton(
-            onPressed: () {
-              SampleAppListenerScope.of(context).isOnThemeBuilder
-                  ? SampleAppListenerScope.of(context).onIconPressed()
-                  : context.router.go(Routes.settings);
-            },
-            icon: SampleAppListenerScope.of(context).isOnThemeBuilder
-                ? SvgPicture.asset(
-                    'assets/icons/acme_brand_bg.svg',
-                    package: 'acme_theme_example',
-                    height: 35,
-                    width: 25,
-                  )
-                : AppIcons(
-                    iconPath: 'assets/icons/settings_stroke_icon.png',
-                    color: Theme.of(context).primaryColor,
-                  ),
-          ),
+              onPressed: () {
+                SampleAppListenerScope.of(context).isOnThemeBuilder
+                    ? SampleAppListenerScope.of(context).onIconPressed()
+                    : context.router.go(Routes.settings);
+              },
+              icon: SampleAppListenerScope.of(context).isOnThemeBuilder
+                  ? Icon(
+                      Icons.switch_left,
+                      color: Theme.of(context).colorScheme.primary,
+                    )
+                  : Icon(
+                      Icons.settings,
+                      color: Theme.of(context).colorScheme.primary,
+                    )),
           const SizedBox(
             width: 8,
           ),
