@@ -30,8 +30,7 @@ dev_dependencies:
 
 dependency_overrides:
   go_router: 5.1.2
-  acme_theme:
-    path: ../
+
 
 flutter:
   uses-material-design: true
