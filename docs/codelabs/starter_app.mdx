@@ -148,5 +148,22 @@ Remember, here we are just using the primary color for reference, you are suppos
 
 Enough talk, now let us run the app to see the changes in the theme.
 
+You can also add a theme from the web, using AcmeThemeScope.network, which requires the url of the theme instead of the path to the asset.
+
+
+```
+AcmeThemeScope.network(
+      url: 'url-to-theme',
+      builder: (BuildContext context, theme) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: theme.lightTheme,
+          home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        );
+      },
+    )
+```
+
+
 
 
