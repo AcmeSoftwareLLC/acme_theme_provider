@@ -17,7 +17,7 @@ class AppIcons extends StatelessWidget {
         ? ImageIcon(
             AssetImage(
               iconPath,
-              package: 'example',
+              package: 'acme_theme_example',
             ),
             color: color,
           )
