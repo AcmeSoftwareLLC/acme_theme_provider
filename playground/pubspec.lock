@@ -4,9 +4,9 @@ packages:
   acme_theme:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
+      name: acme_theme
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.6.0"
   args:
     dependency: transitive
