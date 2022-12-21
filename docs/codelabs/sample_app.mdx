@@ -1,0 +1,191 @@
+#Using the Acme Theme package in the sample application
+
+The Theme Provider package comes bundled with a sample application that can help you understand the working of the Theme Provider better. To start things off, clone the following repo: 
+
+```
+https://github.com/MattHamburger/acme_theme_provider.git
+```
+
+After you’ve cloned this repository, navigate to the example folder, where you will find the project files related with the sample app.
+The sample app is a twitter UI clone, where you can add a tweet, change themes within the entire app and navigate between multiple screens, to see the changes in the theme.
+
+Open the example/lib/main.dart file. It is the entrypoint of the sample app.
+
+#Setup:
+
+Here, we have created a class that extends ChangeNotifier. The class is called ThemeNotifier and as its name suggests, it notifies its descendants about the changes in the theme.
+
+```
+class ThemeNotifier extends ChangeNotifier {
+  String _assetPath = 'assets/example-theme.acme';
+
+  String get assetPath => _assetPath;
+
+  void changeAsset(String assetPath) {
+    if (_assetPath != assetPath) {
+      _assetPath = assetPath;
+      notifyListeners();
+    }
+  }
+}
+
+```
+
+A simple getter, gets for us the assetPath.
+We have created a method that takes the assetPath as an argument and if the assetPaths don’t match, then the private variable assetPath is replaced with the value which is sent as the argument. Notice how we have called the notifyListeners() method, which is available for any class that extends the ChangeNotifier and it notifies the listeners of a change in state, or any other value.
+
+We have created another class, that extends the InheritedNotifier, of the type ThemeNotifier(the class we created above), and the InheritedNotifier actually extends InheritedWidget, so you know that this is closely related to the provider implementation.
+
+```
+class ThemeScope extends InheritedNotifier<ThemeNotifier> {
+  ThemeScope({
+    required super.notifier,
+    required super.child,
+  });
+
+  static ThemeNotifier of(BuildContext context) {
+    final scope = context.dependOnInheritedWidgetOfExactType<ThemeScope>();
+    assert(scope != null);
+    return scope!.notifier!;
+  }
+}
+```
+
+As you can see above, the ThemeScope takes in a notifier and a child. 
+The class has a static method ‘of’, which uses the dependOnInheritedWidgetOfExactType function, that obtains the nearest widget of the given type T, which must be the type of a concrete InheritedWidget subclass, and registers this build context with that widget, so that when that widget changes (or a new widget of that type is introduced, or the widget goes away), it rebuilds this build context, and new values are obtained. Here the concrete type would be ThemeScope. Once we assert that the scope is not null, we return the scope.notifier, which sends notifications of change to the dependents, so that they can be triggered accordingly.
+
+Now that we completed the setup, let us see how we have made use of the classes that we’ve created, in the root of our sample application.
+ 
+```
+class ThemeScope extends InheritedNotifier<ThemeNotifier> {
+  ThemeScope({
+    required super.notifier,
+    required super.child,
+  });
+
+  static ThemeNotifier of(BuildContext context) {
+    final scope = context.dependOnInheritedWidgetOfExactType<ThemeScope>();
+    assert(scope != null);
+    return scope!.notifier!;
+  }
+}
+```
+
+Firstly, we have wrapped the entirety of the app with the AppProvidersContainer, which is a container for all the providers used within the app. It takes the providersContext from the providers in the app. It requires a child, and the child must be the ThemeScope, which we created earlier.
+
+```
+    return AppProvidersContainer(
+      providersContext: providersContext,
+      child: ThemeScope(
+        notifier: ThemeNotifier(),
+        child: Builder(
+          builder: (context) {
+            return AcmeThemeScope<BrandColors>.asset(
+              path: ThemeScope.of(context).assetPath,
+              customColorsConverterCreator: BrandColorsConverter.new,
+              builder: (context, theme) {
+                return AppRouterScope(
+                  builder: (context) => MaterialApp.router(
+                    title: 'Twitter Clone App',
+                    theme: theme.lightTheme,
+                    darkTheme: theme.darkTheme,
+                    themeMode: theme.themeMode,
+                    routerConfig: context.router.config,
+                  ),
+                  create: () => NoteRouter(),
+                );
+              },
+            );
+          },
+        ),
+      ),
+    );
+```
+
+Since the ThemeScope requires a notifier, we provide the ThemeNotifier class we had created at the start, which is exactly the notifier we want to use here.
+
+Then we go ahead and use a Builder, provided by Flutter itself, and return the AcmeThemeScope.asset from that builder.
+As we did with the starter counter app, the Acme ThemeProvider is set up here in a similar way. Since we are providing the theme from the asset, we give it an assetpath. Here, the assetPath comes from the getter, which belongs to the ThemeNotifier. 
+
+By using: 
+
+```
+ThemeScope.of(context).assetPath 
+```
+
+we are getting the assetPath here. The ‘of’ method is the static method we had created in the ThemeScope class, and it allows us access to the assetPath in the aforementioned way.
+
+Since the AcmeThemeProvider also requires a builder, let’s go ahead and return our MaterialApp from here.
+
+```
+
+return AppRouterScope(
+                  builder: (context) => MaterialApp.router(
+                    title: 'Twitter Clone App',
+                    theme: theme.lightTheme,
+                    darkTheme: theme.darkTheme,
+                    themeMode: theme.themeMode,
+                    routerConfig: context.router.config,
+                  ),
+                  create: () => NoteRouter(),
+                );
+                
+```
+
+Here you might see that we have used AppRouterScope, which is a requirement for us, since we have used clean_framework_router to manage the routes in our sample application. We have also used the MaterialApp.router, which is another requirement for us, and it makes use of the Router, instead of the default Navigator.
+The MaterialApp.router takes in the similar parameters as a normal MaterialApp would, and here you can see that simply the title, theme, darkTheme and themeMode are provided, which is pretty straightforward 
+The MaterialApp.router also requires a routerConfig, and that config is provided by the current context.
+You might’ve noticed that the AppRouterScope also requires a create method and that create method actually returns the main Router for the entire application, in this case it’s the NoteRouter. 
+
+Ok, but how does this all relate to changing the theme dynamically? Let’s run the sample application first, and things will be very clear.
+
+
+Secondly, navigate to the SettingsUI, by clicking on the Settings icon at the top right of the AppBar
+
+Here, you can see a list of themes that are selectable, go on, and select any one theme to see the dynamic changes in the themes, components and other Theme values and data.
+
+Instantly, you can see the changes in the application. Click on ‘Done’ and navigate around the different screens to see the changes.
+
+(The designs you see in the sample application are inspired from: https://www.figma.com/file/dgJmcjhbebi8zEJXWTKs07/Twitter-UI-Screens-(Community),
+With some twists of our own. One notable change is obviously the theme and the other is the Typography used in the application.
+
+
+If you look inside lib/ui/settings_ui, you will see the following private class, which is the actual ListTile containing the theme
+
+
+```
+_ThemeSelectionTile(
+              changeCurrentTheme: (theme) => ThemeScope.of(context)
+                  .changeAsset('assets/themes/$theme.acme'),
+            ),
+ ```
+ 
+ Remember the changeAsset method we created at the beginning inside the ThemeNotifier, well, this is where it is being used so that we can provide the name of the theme asset from the UI. 
+Here’s how it is being accessed:
+
+```
+ThemeScope.of(context).changeAsset(assetPath)
+```
+
+And finally, the ThemeScope.of() method, belonging to the ThemeScope class, has come in handy here as well, in order to provide us an access to the changeAsset() method inside of the ThemeNotifier class, which is the notifier for the ThemeScope in the root of our sample application.
+
+```
+class ThemeScope extends InheritedNotifier<ThemeNotifier> {
+  ThemeScope({
+    required super.notifier,
+    required super.child,
+  });
+
+  static ThemeNotifier of(BuildContext context) {
+    final scope = context.dependOnInheritedWidgetOfExactType<ThemeScope>();
+    assert(scope != null);
+    return scope!.notifier!;
+  }
+}
+```
+
+In this way, once a different theme asset has been selected in the SettingsUI, we can see the change in theme, in the whole application; the change which has been dynamically provided by  the Acme Theme.
+            
+
+
+
