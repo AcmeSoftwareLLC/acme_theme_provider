@@ -9,10 +9,9 @@
     ["Using Acme Theme in Flutter's Starter app",[
       ["Introduction","/codelabs/acme_theme_provider/intro"],
       ["Setup","/codelabs/acme_theme_provider/setup"],
-      ["UI Layer","/codelabs/acme_theme_provider/ui-layer"],
-      ["Domain Layer","/codelabs/acme_theme_provider/domain-layer"],
-      ["Adaptive Layer","/codelabs/acme_theme_provider/adaptive-layer"],
-      ["External Interface Layer","/codelabs/acme_theme_provider/external-interface-layer"]
+      ["Starter App","/codelabs/acme_theme_provider/starter_app"],
+      ["Components","/codelabs/acme_theme_provider/components"],
+      ["Sample App","/codelabs/acme_theme_provider/sample_app"],
       ]
     ],
   ]
