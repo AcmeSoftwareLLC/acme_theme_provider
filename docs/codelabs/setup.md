@@ -1,0 +1,9 @@
+# Setup
+
+To begin, start by exporting a theme you created using the ThemeBuilder application.
+Once you have the theme saved in your file system, we switch to an IDE of your preference, to import the theme in Flutter.
+
+# What you’ll learn
+
+Using the Acme Theme package in a new Flutter project
+Implementation of Acme Theme in a sample application
