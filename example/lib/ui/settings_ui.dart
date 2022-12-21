@@ -32,10 +32,11 @@ class _SettingsUIState extends State<SettingsUI> {
               'https://xsgames.co/randomusers/assets/avatars/female/40.jpg',
         ),
         shape: Border(
-            bottom: BorderSide(
-          color: Theme.of(context).colorScheme.surfaceVariant,
-          width: 0.5,
-        )),
+          bottom: BorderSide(
+            color: Theme.of(context).colorScheme.surfaceVariant,
+            width: 0.5,
+          ),
+        ),
       ),
       body: Container(
         height: screenHeight / 2,
@@ -67,7 +68,7 @@ class _SettingsUIState extends State<SettingsUI> {
             const SizedBox(height: 20),
             AppElevatedButton(
               title: 'Done',
-              onPressed: () => context.router.go(
+              onPressed: () => context.router.push(
                 Routes.home,
               ),
             ),

@@ -5,6 +5,7 @@ import 'package:example/features/home/presentation/home_view_model.dart';
 import 'package:example/main.dart';
 import 'package:example/providers.dart';
 import 'package:example/routes.dart';
+import 'package:example/widgets/app_icons.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:example/widgets/show_tweet.dart';
 import 'package:flutter/material.dart';
@@ -51,10 +52,9 @@ class HomeUI extends UI<HomeViewModel> {
                     height: 35,
                     width: 25,
                   )
-                : SvgPicture.asset(
-                    'assets/icons/acme_brand_bg.svg',
-                    height: 35,
-                    width: 25,
+                : AppIcons(
+                    iconPath: 'assets/icons/settings_stroke_icon.png',
+                    color: Theme.of(context).primaryColor,
                   ),
           ),
           const SizedBox(
