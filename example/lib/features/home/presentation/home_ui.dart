@@ -48,7 +48,7 @@ class HomeUI extends UI<HomeViewModel> {
             icon: SampleAppListenerScope.of(context).isOnThemeBuilder
                 ? SvgPicture.asset(
                     'assets/icons/acme_brand_bg.svg',
-                    package: 'example',
+                    package: 'acme_theme_example',
                     height: 35,
                     width: 25,
                   )
