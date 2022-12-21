@@ -40,20 +40,18 @@ class HomeUI extends UI<HomeViewModel> {
         ),
         actions: [
           IconButton(
-              onPressed: () {
-                SampleAppListenerScope.of(context).isOnThemeBuilder
-                    ? SampleAppListenerScope.of(context).onIconPressed()
-                    : context.router.go(Routes.settings);
-              },
-              icon: SampleAppListenerScope.of(context).isOnThemeBuilder
-                  ? Icon(
-                      Icons.switch_left,
-                      color: Theme.of(context).colorScheme.primary,
-                    )
-                  : Icon(
-                      Icons.settings,
-                      color: Theme.of(context).colorScheme.primary,
-                    )),
+            onPressed: () {
+              SampleAppListenerScope.of(context).isOnThemeBuilder
+                  ? SampleAppListenerScope.of(context).onIconPressed()
+                  : context.router.go(Routes.settings);
+            },
+            icon: Icon(
+              SampleAppListenerScope.of(context).isOnThemeBuilder
+                  ? Icons.switch_right
+                  : Icons.settings,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
           const SizedBox(
             width: 8,
           ),
