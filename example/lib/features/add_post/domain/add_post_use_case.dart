@@ -5,6 +5,7 @@ import 'package:example/features/add_post/external_interface/add_post_gateway.da
 import 'package:example/features/add_post/external_interface/add_post_image_picker_gateway.dart';
 import 'package:example/features/add_post/external_interface/get_random_user_gateway.dart';
 import 'package:example/features/theme/tweet.dart';
+import 'package:flutter/foundation.dart';
 
 class AddPostUseCase extends UseCase<AddPostEntity> {
   AddPostUseCase()
@@ -82,7 +83,9 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
         );
       },
       onFailure: (e) {
-        print('the error is: ${e.message}');
+        if (kDebugMode) {
+          print('the error is: ${e.message}');
+        }
         return entity;
       },
     );

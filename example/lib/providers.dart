@@ -20,7 +20,6 @@ final homeUseCaseProvider =
 final addPostUseCaseProvider =
     UseCaseProvider<AddPostEntity, AddPostUseCase>((_) => AddPostUseCase());
 
-
 final noteImagePickerGatewayProvider = GatewayProvider<AddPostPickerGateway>(
   (_) => AddPostPickerGateway(),
 );
@@ -37,7 +36,6 @@ final homeGetTweetGatewayProvider = GatewayProvider<HomeGetTweetGateway>(
 final addPostGatewayProvider = GatewayProvider<AddPostGateway>(
   (_) => AddPostGateway(provider: addPostUseCaseProvider),
 );
-
 
 final notesStoreExternalInterfaceProvider = ExternalInterfaceProvider(
     (_) => HomeTweetsStoreExternalInterface(gatewayConnections: [

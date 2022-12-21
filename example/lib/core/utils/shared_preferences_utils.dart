@@ -22,6 +22,4 @@ class SharedPreferencesUtils {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getStringList('theme_names');
   }
-
-
 }

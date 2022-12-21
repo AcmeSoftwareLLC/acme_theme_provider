@@ -1,4 +1,3 @@
-
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:example/core/database/acme_database.dart';
 import 'package:example/core/database/db_request.dart';

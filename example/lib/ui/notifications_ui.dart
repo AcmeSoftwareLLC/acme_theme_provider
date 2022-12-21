@@ -1,5 +1,3 @@
-import 'package:clean_framework_router/clean_framework_router.dart';
-import 'package:example/routes.dart';
 import 'package:example/widgets/app_icons.dart';
 import 'package:example/widgets/profile_icon.dart';
 import 'package:flutter/material.dart';
