@@ -5,11 +5,9 @@ import 'package:acme_theme_example/features/home/presentation/home_view_model.da
 import 'package:acme_theme_example/main.dart';
 import 'package:acme_theme_example/providers.dart';
 import 'package:acme_theme_example/routes.dart';
-import 'package:acme_theme_example/widgets/app_icons.dart';
 import 'package:acme_theme_example/widgets/profile_icon.dart';
 import 'package:acme_theme_example/widgets/show_tweet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeUI extends UI<HomeViewModel> {
   HomeUI({
