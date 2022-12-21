@@ -1,17 +1,17 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_rest/clean_framework_rest.dart';
-import 'package:example/core/dependency/image_util_ext_interface/image_util_external_interface.dart';
-import 'package:example/features/add_post/external_interface/get_random_user_gateway.dart';
-import 'package:example/features/home/external_interface/home_get_tweet_gateway.dart';
-import 'package:example/features/add_post/domain/add_post_entity.dart';
-import 'package:example/features/home/domain/home_entity.dart';
-import 'package:example/features/home/domain/home_use_case.dart';
-import 'package:example/features/home/external_interface/home_tweets_store_external_interface.dart';
-import 'package:example/features/home/external_interface/home_get_all_tweets_gateway.dart';
-import 'package:example/features/add_post/domain/add_post_use_case.dart';
-import 'package:example/features/add_post/external_interface/add_post_gateway.dart';
-import 'package:example/features/add_post/external_interface/add_post_image_picker_gateway.dart';
+import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util_external_interface.dart';
+import 'package:acme_theme_example/features/add_post/external_interface/get_random_user_gateway.dart';
+import 'package:acme_theme_example/features/home/external_interface/home_get_tweet_gateway.dart';
+import 'package:acme_theme_example/features/add_post/domain/add_post_entity.dart';
+import 'package:acme_theme_example/features/home/domain/home_entity.dart';
+import 'package:acme_theme_example/features/home/domain/home_use_case.dart';
+import 'package:acme_theme_example/features/home/external_interface/home_tweets_store_external_interface.dart';
+import 'package:acme_theme_example/features/home/external_interface/home_get_all_tweets_gateway.dart';
+import 'package:acme_theme_example/features/add_post/domain/add_post_use_case.dart';
+import 'package:acme_theme_example/features/add_post/external_interface/add_post_gateway.dart';
+import 'package:acme_theme_example/features/add_post/external_interface/add_post_image_picker_gateway.dart';
 
 final providersContext = ProvidersContext();
 

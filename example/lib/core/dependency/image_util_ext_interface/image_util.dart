@@ -1,6 +1,6 @@
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:example/core/dependency/image_util_ext_interface/image_picker_source.dart';
+import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_picker_source.dart';
 
 class ImageUtil {
   ImageUtil({

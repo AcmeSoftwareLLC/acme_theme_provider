@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:example/core/dependency/image_util_ext_interface/image_util.dart';
-import 'package:example/core/dependency/image_util_ext_interface/image_util_request.dart';
-import 'package:example/core/dependency/image_util_ext_interface/image_util_response.dart';
+import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util.dart';
+import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util_request.dart';
+import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util_response.dart';
 
 class ImageUtilExternalInterface
     extends ExternalInterface<ImageUtilRequest, SuccessResponse> {

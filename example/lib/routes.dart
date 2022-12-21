@@ -1,9 +1,9 @@
 import 'package:clean_framework_router/clean_framework_router.dart';
-import 'package:example/features/home/presentation/home_page.dart';
-import 'package:example/features/add_post/presentation/add_post_ui.dart';
-import 'package:example/ui/settings_ui.dart';
-import 'package:example/ui/message_ui.dart';
-import 'package:example/ui/notifications_ui.dart';
+import 'package:acme_theme_example/features/home/presentation/home_page.dart';
+import 'package:acme_theme_example/features/add_post/presentation/add_post_ui.dart';
+import 'package:acme_theme_example/ui/settings_ui.dart';
+import 'package:acme_theme_example/ui/message_ui.dart';
+import 'package:acme_theme_example/ui/notifications_ui.dart';
 
 enum Routes with RoutesMixin {
   home('/'),

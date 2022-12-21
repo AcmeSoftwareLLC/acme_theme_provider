@@ -1,5 +1,5 @@
 import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:example/core/dependency/image_util_ext_interface/image_picker_source.dart';
+import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_picker_source.dart';
 
 abstract class ImageUtilRequest extends Request {}
 

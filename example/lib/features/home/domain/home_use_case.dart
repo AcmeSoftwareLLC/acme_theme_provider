@@ -1,9 +1,9 @@
 import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:example/features/home/domain/home_entity.dart';
-import 'package:example/features/home/domain/home_ui_output.dart';
-import 'package:example/features/home/external_interface/home_get_all_tweets_gateway.dart';
-import 'package:example/features/home/external_interface/home_get_tweet_gateway.dart';
-import 'package:example/features/theme/tweet.dart';
+import 'package:acme_theme_example/features/home/domain/home_entity.dart';
+import 'package:acme_theme_example/features/home/domain/home_ui_output.dart';
+import 'package:acme_theme_example/features/home/external_interface/home_get_all_tweets_gateway.dart';
+import 'package:acme_theme_example/features/home/external_interface/home_get_tweet_gateway.dart';
+import 'package:acme_theme_example/features/theme/tweet.dart';
 import 'package:flutter/foundation.dart';
 
 class HomeUseCase extends UseCase<HomeEntity> {

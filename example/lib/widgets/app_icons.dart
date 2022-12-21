@@ -1,4 +1,4 @@
-import 'package:example/main.dart';
+import 'package:acme_theme_example/main.dart';
 import 'package:flutter/material.dart';
 
 class AppIcons extends StatelessWidget {

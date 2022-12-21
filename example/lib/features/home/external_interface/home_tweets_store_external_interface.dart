@@ -1,9 +1,9 @@
 import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:example/core/database/acme_database.dart';
-import 'package:example/core/database/db_external_interface.dart';
-import 'package:example/features/home/external_interface/home_get_all_tweets_gateway.dart';
-import 'package:example/features/home/external_interface/home_get_tweet_gateway.dart';
-import 'package:example/features/add_post/external_interface/add_post_gateway.dart';
+import 'package:acme_theme_example/core/database/acme_database.dart';
+import 'package:acme_theme_example/core/database/db_external_interface.dart';
+import 'package:acme_theme_example/features/home/external_interface/home_get_all_tweets_gateway.dart';
+import 'package:acme_theme_example/features/home/external_interface/home_get_tweet_gateway.dart';
+import 'package:acme_theme_example/features/add_post/external_interface/add_post_gateway.dart';
 
 class HomeTweetsStoreExternalInterface extends DbExternalInterface {
   HomeTweetsStoreExternalInterface({required super.gatewayConnections});

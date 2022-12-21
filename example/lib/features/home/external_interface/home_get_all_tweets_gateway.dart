@@ -1,9 +1,9 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:example/core/database/db_gateway.dart';
-import 'package:example/core/database/db_request.dart';
-import 'package:example/core/database/db_success_response.dart';
-import 'package:example/providers.dart';
+import 'package:acme_theme_example/core/database/db_gateway.dart';
+import 'package:acme_theme_example/core/database/db_request.dart';
+import 'package:acme_theme_example/core/database/db_success_response.dart';
+import 'package:acme_theme_example/providers.dart';
 
 class HomeGetAllTweetsGateway extends DbGateway<HomeGetAllTweetsGatewayOutput,
     HomeGetAllTweetsSuccessResponse, HomeGetAllTweetsSuccessInput> {

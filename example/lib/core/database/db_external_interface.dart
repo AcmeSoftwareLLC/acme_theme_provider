@@ -1,7 +1,7 @@
 import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:example/core/database/acme_database.dart';
-import 'package:example/core/database/db_request.dart';
-import 'package:example/core/database/db_success_response.dart';
+import 'package:acme_theme_example/core/database/acme_database.dart';
+import 'package:acme_theme_example/core/database/db_request.dart';
+import 'package:acme_theme_example/core/database/db_success_response.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class DbExternalInterface<R extends DbRequest,

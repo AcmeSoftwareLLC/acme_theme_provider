@@ -1,6 +1,6 @@
-import 'package:example/widgets/app_buttons.dart';
-import 'package:example/widgets/app_icons.dart';
-import 'package:example/widgets/profile_icon.dart';
+import 'package:acme_theme_example/widgets/app_buttons.dart';
+import 'package:acme_theme_example/widgets/app_icons.dart';
+import 'package:acme_theme_example/widgets/profile_icon.dart';
 import 'package:flutter/material.dart';
 
 class SearchUI extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:clean_framework_router/clean_framework_router.dart';
-import 'package:example/main.dart';
-import 'package:example/routes.dart';
-import 'package:example/widgets/app_buttons.dart';
-import 'package:example/widgets/profile_icon.dart';
+import 'package:acme_theme_example/main.dart';
+import 'package:acme_theme_example/routes.dart';
+import 'package:acme_theme_example/widgets/app_buttons.dart';
+import 'package:acme_theme_example/widgets/profile_icon.dart';
 import 'package:flutter/material.dart';
 
 class SettingsUI extends StatefulWidget {

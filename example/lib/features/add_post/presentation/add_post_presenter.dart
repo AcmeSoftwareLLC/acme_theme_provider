@@ -1,8 +1,8 @@
 import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:example/features/add_post/domain/add_post_ui_output.dart';
-import 'package:example/features/add_post/presentation/add_post_view_model.dart';
+import 'package:acme_theme_example/features/add_post/domain/add_post_ui_output.dart';
+import 'package:acme_theme_example/features/add_post/presentation/add_post_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:example/features/add_post/domain/add_post_use_case.dart';
+import 'package:acme_theme_example/features/add_post/domain/add_post_use_case.dart';
 
 class AddPostPresenter
     extends Presenter<AddPostViewModel, AddPostUIOutput, AddPostUseCase> {

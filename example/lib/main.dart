@@ -1,9 +1,9 @@
 import 'package:acme_theme/acme_theme.dart';
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
-import 'package:example/brand_colors.dart';
-import 'package:example/providers.dart';
-import 'package:example/routes.dart';
+import 'package:acme_theme_example/brand_colors.dart';
+import 'package:acme_theme_example/providers.dart';
+import 'package:acme_theme_example/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {

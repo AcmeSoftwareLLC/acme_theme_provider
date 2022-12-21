@@ -1,7 +1,7 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_rest/clean_framework_rest.dart';
-import 'package:example/providers.dart';
+import 'package:acme_theme_example/providers.dart';
 
 class GetRandomUserGateway extends RestGateway<GetRandomUserGatewayOutput,
     RandomUserGatewayRequest, GetRandomUserSuccessInput> {

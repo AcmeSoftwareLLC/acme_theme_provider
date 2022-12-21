@@ -1,5 +1,5 @@
 import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:example/features/theme/tweet.dart';
+import 'package:acme_theme_example/features/theme/tweet.dart';
 
 class HomeUIOutput extends Output {
   final List<Tweet> tweets;

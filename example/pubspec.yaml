@@ -1,4 +1,4 @@
-name: example
+name: acme_theme_example
 description: An example app to demonstrate the use of Acme Theme Importer
 publish_to: none
 version: 1.0.0+1

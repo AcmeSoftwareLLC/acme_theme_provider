@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:clean_framework/clean_framework_providers.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
-import 'package:example/features/add_post/presentation/add_post_presenter.dart';
-import 'package:example/features/add_post/presentation/add_post_view_model.dart';
-import 'package:example/providers.dart';
-import 'package:example/routes.dart';
-import 'package:example/widgets/dialogs.dart';
+import 'package:acme_theme_example/features/add_post/presentation/add_post_presenter.dart';
+import 'package:acme_theme_example/features/add_post/presentation/add_post_view_model.dart';
+import 'package:acme_theme_example/providers.dart';
+import 'package:acme_theme_example/routes.dart';
+import 'package:acme_theme_example/widgets/dialogs.dart';
 import 'package:flutter/material.dart';
 
 class AddPostUI extends UI<AddPostViewModel> {

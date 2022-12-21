@@ -1,8 +1,8 @@
-import 'package:example/features/home/presentation/home_ui.dart';
-import 'package:example/ui/message_ui.dart';
-import 'package:example/ui/notifications_ui.dart';
-import 'package:example/ui/search_ui.dart';
-import 'package:example/widgets/app_icons.dart';
+import 'package:acme_theme_example/features/home/presentation/home_ui.dart';
+import 'package:acme_theme_example/ui/message_ui.dart';
+import 'package:acme_theme_example/ui/notifications_ui.dart';
+import 'package:acme_theme_example/ui/search_ui.dart';
+import 'package:acme_theme_example/widgets/app_icons.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
