@@ -6,16 +6,13 @@ Type in the following command to create a new Flutter project
 
 
 ```
-
 flutter create my_app
-
 ```
 
 Alternatively, you can create a new Flutter project from an IDE of your choice, which will load up the contents of the Flutter starter project for you.
 The MyApp class of your main.dart file will look something like this, which contains the code for the Counter app, by default.
 
 ```
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -31,7 +28,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 ```
 
 Let us run the application once to see how the default starter page looks without using the themes exported from ThemeBuilder
@@ -40,18 +36,14 @@ Let us run the application once to see how the default starter page looks withou
 Right away, we want to include the theme exported from ThemeBuilder, in our starter Counter app, so, let’s add that to the dependencies, under the assets as such:
 
 ```
-
   assets:
-    - assets/example-theme.acme
-    
+    - assets/example-theme.acme  
 ```    
 
 Run:
 
 ```
-
 ‘flutter pub get’ 
-
 ```
 
 from the terminal or simply follow the instructions of your IDE to get the recently added assets. 
@@ -69,7 +61,6 @@ import 'package:acme_theme/acme_theme.dart';
 Now, the next step is to wrap the root of your application i.e. the MaterialApp with the AcmeThemeScope.
 
 ```
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -87,21 +78,18 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 ```
 
 Here, we are using AcmeThemeScope.asset, as the theme is being provided from the asset.
 
 ```
-
   const factory AcmeThemeScope.asset({
     Key? key,
     required String path,
     required ThemedWidgetBuilder builder,
     ThemeOverride? overrideFn,
     CustomColorsConverterCreator<T>? customColorsConverterCreator,
-  }) = AssetThemeScope;
-  
+  }) = AssetThemeScope; 
 ```
 
 The AcmeThemeScope.asset( ) requires the following parameters by default and they are:
@@ -113,7 +101,6 @@ assets/example-theme.acme
 ‘builder’: The Widget builder function, which must return a widget, and in this case, the builder must return the MaterialApp.
 
 ```
-
 return AcmeThemeScope.asset(
       path: 'assets/example-theme.acme',
       builder: (BuildContext context, theme) {
@@ -123,16 +110,13 @@ return AcmeThemeScope.asset(
           home: const MyHomePage(title: 'Flutter Demo Home Page'),
         );
       },
-    );
-    
+    );   
 ```
 
 Here you can clearly see that the path is simply a string, that is the path of the theme asset and the builder function for AcmeThemeScope.asset returns the MaterialApp.
 
 ```
-
 theme: theme.lightTheme,
-
 ```
 
 Add the 'theme' property inside the MaterialApp, to fetch the ThemeData related to the theme and all the other visual properties.
@@ -146,23 +130,18 @@ AppBar(
         title: Text(widget.title),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
-
 ```
 
 Simply add the following ‘backgroundColor’ property to give the AppBar a background color from the theme.
 
 ```
-
  backgroundColor: Theme.of(context).colorScheme.primary,
-
 ```
 
 One thing you must’ve noticed is that we are giving the color using Theme.of(context).colorScheme, which is the only right way to give the proper color from the theme of the current context. You should be using Theme.of(context) wherever you need to give the colors from the theme. Not only that, for all other components as well, you are recommended to use Theme.of(context) to get the Theme Data. For example, for providing style to a Text widget, you must give it as: 
 
 ```
-
- Text(‘Hello World’, style: Theme.of(context).textTheme.titleMedium),), 
- 
+ Text(‘Hello World’, style: Theme.of(context).textTheme.titleMedium),),  
 ```
 
 Remember, here we are just using the primary color for reference, you are supposed to make use of the M3 guidelines to provide the exact color for the components in your application.
