@@ -87,3 +87,10 @@ app.*.map.json
 !**/ios/**/default.mode2v3
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
+
+# MacOs
+GeneratedPluginRegistrant.swift
+
+# Windows
+generated_plugin_registrant.cc
+generated_plugins.cmake
