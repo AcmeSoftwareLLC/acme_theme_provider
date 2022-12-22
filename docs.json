@@ -25,6 +25,10 @@
           "/codelabs/starter_app/starter_app"
         ],
         [
+          "Implementation",
+          "/codelabs/starter_app/implementation"
+        ],
+        [
           "Components",
           "/codelabs/starter_app/components"
         ]
@@ -36,6 +40,22 @@
         [
           "Sample App",
           "/codelabs/sample_app/sample_app"
+        ],
+        [
+          "Sample App Setup",
+          "/codelabs/sample_app/sample_app_setup"
+        ],
+        [
+          "ThemeScope",
+          "/codelabs/sample_app/theme_scope"
+        ],
+        [
+          "Changing Themes",
+          "/codelabs/sample_app/changing_themes"
+        ],
+        [
+          "Sample App Settings",
+          "/codelabs/sample_app/settings"
         ]
       ]
     ]

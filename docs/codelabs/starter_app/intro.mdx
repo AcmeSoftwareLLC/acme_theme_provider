@@ -1,11 +1,11 @@
 # Introduction
 
-# What is Acme Theme?
+## What is Acme Theme?
 
 The Acme Theme is a package, which delivers a convenient approach to dynamically changing an application’s themes, using a provider, for the themes that have been generated using the ThemeBuilder application. If you are familiar with providers in Flutter, you know how the main idea behind a provider is to provide a value or data, wherever needed, only affecting the parts of an application that depend on the provider. Whatever change is observed in the state, is reflected in the UI through widgets that get rebuilt. Acme Theme, basically provides themes, color schemes and other theme data throughout an entire application, and automatically rebuilds the UI. Overriding themes is a powerful concept that changes the way an application looks in the matter of mere seconds, and Acme Theme accomplishes exactly that.
 
 
-# AcmeThemeScope
+## AcmeThemeScope
 
 The class AcmeThemeScope itself is a StatelessWidget, that has the following constructor definition:
 
@@ -26,6 +26,7 @@ The class requires the ‘source’ of the theme file and a ‘builder’ functi
 The ‘overrideFn’ is a ThemeOverride that is responsible for overriding the current Theme Data.
 The ‘customColorsConverterCreator’ is a typedef used in place of the CustomColorsConverter, which converts the Custom Colors from a theme.
 
+## AcmeThemeScope.asset( )
 
 The 2 factory constructors AcmeThemeScope.asset() and AcmeThemeScope.network(), allow the theme to be fetched from asset and network respectively.
 
@@ -55,7 +56,9 @@ The 2 factory constructors AcmeThemeScope.asset() and AcmeThemeScope.network(), 
   }) = NetworkThemeScope;
   
  ```
- 
+
+## AssetThemeScope
+
 The AcmeThemeScope.asset redirects to the AssetThemeScope, under the hood, while AcmeThemeScope.network redirects to the NetworkThemeScope.
  
 The AssetThemeScope actually does the heavy lifting for AcmeThemeScope.asset as it gets the Theme data from Json, by taking a source as an input, and then overriding the current theme of the application, by returning a scoped builder with the current context and the overridden theme. Basically, it creates an AcmeThemeData from the provided asset path and if you look inside the AssetThemeScope, you will see that the overrideFn is being called, which is a ThemeOverride as we learnt earlier and it carries the responsibility of overriding the existing Acme Theme data.
