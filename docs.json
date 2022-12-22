@@ -26,7 +26,7 @@
         ],
         [
           "Components",
-          "/codelabs//starter_app/components"
+          "/codelabs/starter_app/components"
         ]
       ]
     ],
@@ -34,24 +34,8 @@
       "Using Acme Theme in Acme's Sample App",
       [
         [
-          "Introduction",
-          "/codelabs/intro"
-        ],
-        [
-          "Setup",
-          "/codelabs/setup"
-        ],
-        [
-          "Starter App",
-          "/codelabs/starter_app"
-        ],
-        [
-          "Components",
-          "/codelabs/components"
-        ],
-        [
           "Sample App",
-          "/codelabs/acme_theme_provider/sample_app"
+          "/codelabs/sample_app/sample_app"
         ]
       ]
     ]
