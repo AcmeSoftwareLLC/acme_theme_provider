@@ -1,5 +1,27 @@
 # AcmeThemeScope implementation in Flutter's Starter App
 
+Now, the next step is to wrap the root of your application i.e. the MaterialApp with the AcmeThemeScope.
+
+```
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AcmeThemeScope.asset(
+      path: 'assets/example-theme.acme',
+      builder: (BuildContext context, theme) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: theme.lightTheme,
+          home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        );
+      },
+    );
+  }
+}
+```
+
 Here, we are using AcmeThemeScope.asset, as the theme is being provided from the asset.
 
 ```

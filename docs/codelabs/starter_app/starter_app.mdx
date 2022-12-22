@@ -2,14 +2,6 @@
 
 This codelab will help you use the Acme Theme package in the Counter App, provided by the Flutter SDK.
 
-Type in the following command to create a new Flutter project
-
-
-```
-flutter create my_app
-```
-
-Alternatively, you can create a new Flutter project from an IDE of your choice, which will load up the contents of the Flutter starter project for you.
 The MyApp class of your main.dart file will look something like this, which contains the code for the Counter app, by default.
 
 ```
@@ -57,28 +49,6 @@ Now in your ‘main.dart’ file, let us import the Acme Theme plugin.
 
 import 'package:acme_theme/acme_theme.dart';
 
-```
-
-Now, the next step is to wrap the root of your application i.e. the MaterialApp with the AcmeThemeScope.
-
-```
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AcmeThemeScope.asset(
-      path: 'assets/example-theme.acme',
-      builder: (BuildContext context, theme) {
-        return MaterialApp(
-          title: 'Flutter Demo',
-          theme: theme.lightTheme,
-          home: const MyHomePage(title: 'Flutter Demo Home Page'),
-        );
-      },
-    );
-  }
-}
 ```
 
 
