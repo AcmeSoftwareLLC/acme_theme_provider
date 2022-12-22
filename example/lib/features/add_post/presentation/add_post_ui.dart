@@ -66,7 +66,7 @@ class AddPostUI extends UI<AddPostViewModel> {
                     context: context,
                     title: 'Are you sure you wanna add to the post?',
                     content:
-                        'This will add to your post, you can see in the feed',
+                        'This will add to your post, you can see in the feed ',
                     onOk: () {
                       viewModel.addTweet();
                       context.router.push(Routes.home);
