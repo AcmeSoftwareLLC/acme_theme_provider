@@ -1,0 +1,3 @@
+dependency_overrides:
+  acme_theme:
+    path: ../

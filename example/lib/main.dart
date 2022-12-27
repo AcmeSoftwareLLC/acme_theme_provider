@@ -1,105 +1,125 @@
 import 'package:acme_theme/acme_theme.dart';
-import 'package:example/brand_colors.dart';
+import 'package:clean_framework/clean_framework.dart';
+import 'package:clean_framework_router/clean_framework_router.dart';
+import 'package:acme_theme_example/brand_colors.dart';
+import 'package:acme_theme_example/providers.dart';
+import 'package:acme_theme_example/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  loadProviders();
+  runApp(
+    SampleThemeApp(
+      themeMode: ThemeMode.light,
+      themeData: ThemeData.light(useMaterial3: true),
+      darkThemeData: ThemeData.dark(useMaterial3: true),
+      onIconPressed: () {},
+      isOnThemeBuilder: false,
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SampleThemeApp extends StatelessWidget {
+  final ThemeMode themeMode;
+  final ThemeData? themeData;
+  final ThemeData? darkThemeData;
+  final VoidCallback onIconPressed;
+  final bool isOnThemeBuilder;
+
+  const SampleThemeApp({
+    super.key,
+    required this.themeMode,
+    required this.themeData,
+    required this.darkThemeData,
+    required this.onIconPressed,
+    required this.isOnThemeBuilder,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Row(
-        children: [
-          Expanded(
-            child: AcmeThemeScope<BrandColors>.asset(
-              path: 'assets/example-theme.acme',
-              overrideFn: (theme) => theme.copyWith(themeMode: ThemeMode.light),
-              customColorsConverterCreator: BrandColorsConverter.new,
-              builder: (context, theme) {
-                return MaterialApp(
-                  title: 'Asset Theme Example',
-                  theme: theme.lightTheme,
-                  darkTheme: theme.darkTheme,
-                  themeMode: theme.themeMode,
-                  home: const MyHomePage(title: 'Asset Theme Example'),
-                );
-              },
-            ),
+    return SampleAppListenerScope(
+      onIconPressed: onIconPressed,
+      isOnThemeBuilder: isOnThemeBuilder,
+      child: AppProvidersContainer(
+        providersContext: providersContext,
+        child: ThemeScope(
+          notifier: ThemeNotifier(),
+          child: Builder(
+            builder: (context) {
+              return AcmeThemeScope<BrandColors>.asset(
+                path: ThemeScope.of(context).assetPath,
+                customColorsConverterCreator: BrandColorsConverter.new,
+                builder: (context, theme) {
+                  return AppRouterScope(
+                    builder: (context) => MaterialApp.router(
+                      debugShowCheckedModeBanner: false,
+                      useInheritedMediaQuery: true,
+                      title: 'Twitter Clone App',
+                      theme: isOnThemeBuilder ? themeData : theme.lightTheme,
+                      darkTheme:
+                          isOnThemeBuilder ? darkThemeData : theme.darkTheme,
+                      themeMode: isOnThemeBuilder ? themeMode : theme.themeMode,
+                      routerConfig: context.router.config,
+                    ),
+                    create: () => NoteRouter(),
+                  );
+                },
+              );
+            },
           ),
-          Expanded(
-            child: AcmeThemeScope<BrandColors>.network(
-              url:
-                  'https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/sarbagya/custom-colors/example/assets/example-theme.acme',
-              overrideFn: (theme) => theme.copyWith(themeMode: ThemeMode.dark),
-              customColorsConverterCreator: BrandColorsConverter.new,
-              builder: (context, theme) {
-                return MaterialApp(
-                  title: 'Network Theme Example',
-                  theme: theme.lightTheme,
-                  darkTheme: theme.darkTheme,
-                  themeMode: theme.themeMode,
-                  home: const MyHomePage(title: 'Network Theme Example'),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-              style: TextStyle(color: BrandColors.of(context).live.color),
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4!.copyWith(
-                    color: BrandColors.of(context).dead.color,
-                  ),
-            ),
-          ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
     );
+  }
+}
+
+class ThemeNotifier extends ChangeNotifier {
+  String _assetPath = 'assets/example-theme.acme';
+
+  String get assetPath => _assetPath;
+
+  void changeAsset(String assetPath) {
+    if (_assetPath != assetPath) {
+      _assetPath = assetPath;
+      notifyListeners();
+    }
+  }
+}
+
+class ThemeScope extends InheritedNotifier<ThemeNotifier> {
+  const ThemeScope({
+    super.key,
+    required super.notifier,
+    required super.child,
+  });
+
+  static ThemeNotifier of(BuildContext context) {
+    final scope = context.dependOnInheritedWidgetOfExactType<ThemeScope>();
+    assert(scope != null);
+    return scope!.notifier!;
+  }
+}
+
+class SampleAppListenerScope extends InheritedWidget {
+  const SampleAppListenerScope({
+    super.key,
+    required super.child,
+    required this.onIconPressed,
+    required this.isOnThemeBuilder,
+  });
+
+  final VoidCallback onIconPressed;
+  final bool isOnThemeBuilder;
+
+  static SampleAppListenerScope of(BuildContext context) {
+    final SampleAppListenerScope? result =
+        context.dependOnInheritedWidgetOfExactType<SampleAppListenerScope>();
+    assert(result != null, 'No SettingsListner found in context');
+    return result!;
+  }
+
+  @override
+  bool updateShouldNotify(SampleAppListenerScope oldWidget) {
+    return false;
   }
 }
