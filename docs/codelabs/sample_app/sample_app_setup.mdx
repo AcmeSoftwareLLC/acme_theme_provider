@@ -1,0 +1,27 @@
+# Setup
+
+## ThemeNotifier
+Open the example/lib/main.dart file. It is the entrypoint of the sample app.
+Here, we have created a class that extends ChangeNotifier. The class is called ThemeNotifier and as its name suggests, it notifies its descendants about the changes in the theme.
+
+```
+class ThemeNotifier extends ChangeNotifier {
+  String _assetPath = 'assets/example-theme.acme';
+
+  String get assetPath => _assetPath;
+
+  void changeAsset(String assetPath) {
+    if (_assetPath != assetPath) {
+      _assetPath = assetPath;
+      notifyListeners();
+    }
+  }
+}
+
+```
+
+A simple getter, gets for us the assetPath.
+We have created a method that takes the assetPath as an argument and if the assetPaths don’t match, then the private variable assetPath is replaced with the value which is sent as the argument. Notice how we have called the notifyListeners() method, which is available for any class that extends the ChangeNotifier and it notifies the listeners of a change in state, or any other value.
+
+
+Now that we completed the setup, let us see how we have made use of the classes that we’ve created, in the root of our sample application.

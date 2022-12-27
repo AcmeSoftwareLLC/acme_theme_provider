@@ -1,0 +1,89 @@
+# ThemeScope
+
+We have created another class, that extends the InheritedNotifier, of the type ThemeNotifier(the class we created above), and the InheritedNotifier actually extends InheritedWidget, so you know that this is closely related to the provider implementation.
+
+```
+class ThemeScope extends InheritedNotifier<ThemeNotifier> {
+  ThemeScope({
+    required super.notifier,
+    required super.child,
+  });
+
+  static ThemeNotifier of(BuildContext context) {
+    final scope = context.dependOnInheritedWidgetOfExactType<ThemeScope>();
+    assert(scope != null);
+    return scope!.notifier!;
+  }
+}
+```
+
+As you can see above, the ThemeScope takes in a notifier and a child.
+The class has a static method ‘of’, which uses the dependOnInheritedWidgetOfExactType function, that obtains the nearest widget of the given type T, which must be the type of a concrete InheritedWidget subclass, and registers this build context with that widget, so that when that widget changes (or a new widget of that type is introduced, or the widget goes away), it rebuilds this build context, and new values are obtained. Here the concrete type would be ThemeScope. Once we assert that the scope is not null, we return the scope.notifier, which sends notifications of change to the dependents, so that they can be triggered accordingly.
+
+Now let's take a look at the main widget tree.
+Firstly, we have wrapped the entirety of the app with the AppProvidersContainer, which is a container for all the providers used within the app. It takes the providersContext from the providers in the app. It requires a child, and the child must be the ThemeScope, which we created earlier.
+
+```
+    return AppProvidersContainer(
+      providersContext: providersContext,
+      child: ThemeScope(
+        notifier: ThemeNotifier(),
+        child: Builder(
+          builder: (context) {
+            return AcmeThemeScope<BrandColors>.asset(
+              path: ThemeScope.of(context).assetPath,
+              customColorsConverterCreator: BrandColorsConverter.new,
+              builder: (context, theme) {
+                return AppRouterScope(
+                  builder: (context) => MaterialApp.router(
+                    title: 'Twitter Clone App',
+                    theme: theme.lightTheme,
+                    darkTheme: theme.darkTheme,
+                    themeMode: theme.themeMode,
+                    routerConfig: context.router.config,
+                  ),
+                  create: () => NoteRouter(),
+                );
+              },
+            );
+          },
+        ),
+      ),
+    );
+```
+
+Since the ThemeScope requires a notifier, we provide the ThemeNotifier class we had created at the start, which is exactly the notifier we want to use here.
+
+Then we go ahead and use a Builder, provided by Flutter itself, and return the AcmeThemeScope.asset from that builder.
+As we did with the starter counter app, the Acme Theme is set up here in a similar way. Since we are providing the theme from the asset, we give it an assetpath. Here, the assetPath comes from the getter, which belongs to the ThemeNotifier.
+
+By using:
+
+```
+ThemeScope.of(context).assetPath
+```
+
+we are getting the assetPath here. The ‘of’ method is the static method we had created in the ThemeScope class, and it allows us access to the assetPath in the aforementioned way.
+
+Since the AcmeThemeScope also requires a builder, let’s go ahead and return our MaterialApp from here.
+
+```
+
+return AppRouterScope(
+                  builder: (context) => MaterialApp.router(
+                    title: 'Twitter Clone App',
+                    theme: theme.lightTheme,
+                    darkTheme: theme.darkTheme,
+                    themeMode: theme.themeMode,
+                    routerConfig: context.router.config,
+                  ),
+                  create: () => NoteRouter(),
+                );
+
+```
+
+
+Here you might see that we have used AppRouterScope, which is a requirement for us, since we have used clean_framework_router to manage the routes in our sample application. We have also used the MaterialApp.router, which is another requirement for us, and it makes use of the Router, instead of the default Navigator.
+The MaterialApp.router takes in the similar parameters as a normal MaterialApp would, and here you can see that simply the title, theme, darkTheme and themeMode are provided, which is pretty straightforward
+The MaterialApp.router also requires a routerConfig, and that config is provided by the current context.
+You might’ve noticed that the AppRouterScope also requires a create method and that create method actually returns the main Router for the entire application, in this case it’s the NoteRouter.

@@ -1,0 +1,50 @@
+# Components
+
+You can export individual components via the ThemeBuilder application, and then import them into a Flutter app of your own. There’s a wider variety of Flutter widgets that you can export as components and Buttons, AppBar, AlertDialog, SnackBar are some of them.
+
+To begin, make sure you have added a component of your liking in the ThemeBuilder application. For this example, we have added a button component, with the name ‘MyButton’
+
+After adding the component, export the theme, so that the components are exported along with the theme. Right after that, make sure you have added the theme into the assets folder of your application, and pointed to that Theme asset as the path to the AcmeThemeScope.asset(), which wraps your application.
+
+Now that you have imported the theme into your app, you will be able to access the components along with it.
+
+Create a custom class with the same name, as the name of your component,  in the main.dart file of the Counter app we have been working on.. Here, in this example, we have added a completely new theme in the assets and since it's a button component with the name MyButton, the class must extend the CoreButton class. Remember, this will be similar for every other component exported, e.g. for Custom Card component, it must extend the CoreCard class and so on.
+
+```
+class MyButton extends CoreButton {
+  const MyButton({super.key, required super.child, required super.onPressed});
+}
+```
+
+Add the necessary parameters as required by the constructor of the class. It is as simple as this, and now the only thing you need to do is to plug this component into the widget tree of the Home Page of the Counter app.
+
+```
+@override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'You have pushed the button $_counter times:',
+            ),
+            const SizedBox(height: 16,),
+            MyButton(onPressed: _incrementCounter, child: const Text('Press')),
+          ],
+        ),
+      ),
+    );
+  }
+```
+<Image src="/assets/starter_app_components.png" caption="Starter app with components"/>
+
+<Image src="/assets/starter_app_components_pressed.png" caption="Starter app with Custom Button component pressed"/>
+
+As you can see above, we have replaced the default FAB and moved its logic to the MyButton Custom Component, so that when you press the new Custom Button, the counter increases. Let’s see the output in the UI as well.
+
+In this way, we have successfully used the component exported from the ThemeBuilder application.
