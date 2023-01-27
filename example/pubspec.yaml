@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  acme_theme: ^0.6.0
+  acme_theme: ^0.7.0
   clean_framework: ^2.0.4
   clean_framework_rest: ^0.4.0
   clean_framework_router: ^0.4.0
