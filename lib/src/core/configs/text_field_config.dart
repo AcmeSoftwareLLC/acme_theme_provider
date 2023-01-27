@@ -13,7 +13,6 @@ class TextFieldConfig extends ComponentConfig {
     required this.textStyle,
     required this.textDirection,
     required this.maxLines,
-    required this.toolbarOptions,
     required this.maxLength,
     required this.minLines,
     required this.cursorHeight,
@@ -35,7 +34,6 @@ class TextFieldConfig extends ComponentConfig {
   final Clip clip;
   final TextDirection? textDirection;
   final int? maxLines;
-  final ToolbarOptions? toolbarOptions;
   final int? maxLength;
   final int? minLines;
   final double? cursorHeight;
@@ -59,7 +57,6 @@ class TextFieldConfig extends ComponentConfig {
       textStyle: ThemeDecoder.decodeTextStyle(map['textStyle']),
       textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
       maxLines: map['maxLines'],
-      toolbarOptions: ThemeDecoder.decodeToolbarOptions(map['toolBarOptions']),
       maxLength: map['maxLength'],
       minLines: map['minLines'],
       cursorHeight: map['cursorHeight'],
@@ -90,7 +87,6 @@ class TextFieldConfig extends ComponentConfig {
       'clip': ThemeEncoder.encodeClip(clip),
       'textStyle': ThemeEncoder.encodeTextStyle(textStyle),
       'textDirection': ThemeEncoder.encodeTextDirection(textDirection),
-      'toolBarOptions': ThemeEncoder.encodeToolbarOptions(toolbarOptions),
       'textAlignVertical':
           ThemeEncoder.encodeTextAlignVertical(textAlignVertical),
       'textCapitalization':
@@ -118,7 +114,6 @@ class TextFieldConfig extends ComponentConfig {
     Clip? clip,
     TextDirection? textDirection,
     int? maxLines,
-    ToolbarOptions? toolbarOptions,
     int? maxLength,
     int? minLines,
     double? cursorHeight,
@@ -140,7 +135,6 @@ class TextFieldConfig extends ComponentConfig {
       textStyle: textStyle ?? this.textStyle,
       textDirection: textDirection ?? this.textDirection,
       maxLines: maxLines ?? this.maxLines,
-      toolbarOptions: toolbarOptions ?? this.toolbarOptions,
       maxLength: maxLength ?? this.maxLength,
       minLines: minLines ?? this.minLines,
       cursorHeight: cursorHeight ?? this.cursorHeight,

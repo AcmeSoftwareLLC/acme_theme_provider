@@ -1,4 +1,4 @@
-import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:acme_theme_example/features/theme/tweet.dart';
 
 class AddPostEntity extends Entity {
@@ -10,7 +10,7 @@ class AddPostEntity extends Entity {
   final String imagePath;
   final Map<String, Tweet> tweets;
 
-  AddPostEntity({
+  const AddPostEntity({
     this.post = '',
     this.firstName = '',
     this.lastName = '',
@@ -20,7 +20,8 @@ class AddPostEntity extends Entity {
     this.tweets = const {},
   });
 
-  AddPostEntity merge({
+  @override
+  AddPostEntity copyWith({
     String? post,
     String? firstName,
     String? lastName,

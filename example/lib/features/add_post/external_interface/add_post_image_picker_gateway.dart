@@ -1,5 +1,4 @@
-import 'package:clean_framework/clean_framework.dart';
-import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util_gateway.dart';
 import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util_request.dart';
 import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util_response.dart';
@@ -45,14 +44,14 @@ class AddPostImagePickerRequest extends GalleryImagePickerRequest {
 }
 
 class AddPostPickerGatewayOutput extends Output {
-  AddPostPickerGatewayOutput();
+  const AddPostPickerGatewayOutput();
 
   @override
   List<Object?> get props => [];
 }
 
 class AddPostPickerGatewaySuccessInput extends SuccessInput {
-  AddPostPickerGatewaySuccessInput({
+  const AddPostPickerGatewaySuccessInput({
     required this.imagePath,
   });
 

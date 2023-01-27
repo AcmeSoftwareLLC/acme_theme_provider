@@ -1,4 +1,4 @@
-import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:acme_theme_example/core/database/db_request.dart';
 import 'package:acme_theme_example/core/database/db_success_response.dart';
 

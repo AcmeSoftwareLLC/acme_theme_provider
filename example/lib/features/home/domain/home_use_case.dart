@@ -1,4 +1,4 @@
-import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:acme_theme_example/features/home/domain/home_entity.dart';
 import 'package:acme_theme_example/features/home/domain/home_ui_output.dart';
 import 'package:acme_theme_example/features/home/external_interface/home_get_all_tweets_gateway.dart';
@@ -9,15 +9,8 @@ import 'package:flutter/foundation.dart';
 class HomeUseCase extends UseCase<HomeEntity> {
   HomeUseCase()
       : super(
-          entity: HomeEntity(),
-          outputFilters: {
-            HomeUIOutput: (HomeEntity entity) {
-              return HomeUIOutput(
-                tweets: entity.tweets,
-                isLoading: entity.isLoading,
-              );
-            },
-          },
+          entity: const HomeEntity(),
+          transformers: [HomeUIOutputTransformer()],
         );
 
   Future<void> init({bool isReset = false}) async {
@@ -60,6 +53,17 @@ class HomeUseCase extends UseCase<HomeEntity> {
   }
 
   Future<void> refresh() async {
-    entity = HomeEntity();
+    entity = const HomeEntity();
+  }
+}
+
+class HomeUIOutputTransformer
+    extends OutputTransformer<HomeEntity, HomeUIOutput> {
+  @override
+  HomeUIOutput transform(HomeEntity entity) {
+    return HomeUIOutput(
+      tweets: entity.tweets,
+      isLoading: entity.isLoading,
+    );
   }
 }

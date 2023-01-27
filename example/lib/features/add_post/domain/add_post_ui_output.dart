@@ -1,7 +1,7 @@
-import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 
 class AddPostUIOutput extends Output {
-  AddPostUIOutput({
+  const AddPostUIOutput({
     required this.post,
     required this.imagePath,
   });

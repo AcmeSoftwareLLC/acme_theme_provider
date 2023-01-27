@@ -1,6 +1,5 @@
-import 'package:clean_framework/clean_framework.dart';
-import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:clean_framework_rest/clean_framework_rest.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
+import 'package:clean_framework_rest/clean_framework_rest_legacy.dart';
 import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util_external_interface.dart';
 import 'package:acme_theme_example/features/add_post/external_interface/get_random_user_gateway.dart';
 import 'package:acme_theme_example/features/home/external_interface/home_get_tweet_gateway.dart';

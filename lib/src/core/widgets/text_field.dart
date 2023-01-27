@@ -26,6 +26,7 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
     this.onAppPrivateCommand,
     this.inputFormatters,
     this.selectionControls,
+    this.contextMenuBuilder = _defaultContextMenuBuilder,
   });
 
   final VoidCallback? onTap;
@@ -44,6 +45,7 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
   final ScrollController? scrollController;
   final TextSelectionControls? selectionControls;
   final AppPrivateCommandCallback? onAppPrivateCommand;
+  final EditableTextContextMenuBuilder contextMenuBuilder;
 
   @override
   Widget render(BuildContext context, TextFieldConfig config) {
@@ -58,7 +60,7 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
         textAlign: config.textAlign,
         maxLines: config.maxLines,
         textDirection: config.textDirection,
-        toolbarOptions: config.toolbarOptions,
+        contextMenuBuilder: contextMenuBuilder,
         maxLength: config.maxLength,
         autofillHints: autofillHints,
         buildCounter: buildCounter,
@@ -87,6 +89,13 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
         controller: controller,
         inputFormatters: inputFormatters,
       ),
+    );
+  }
+
+  static Widget _defaultContextMenuBuilder(
+      BuildContext context, EditableTextState editableTextState) {
+    return AdaptiveTextSelectionToolbar.editableText(
+      editableTextState: editableTextState,
     );
   }
 }

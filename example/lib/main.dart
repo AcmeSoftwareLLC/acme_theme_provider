@@ -1,5 +1,5 @@
 import 'package:acme_theme/acme_theme.dart';
-import 'package:clean_framework/clean_framework.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:acme_theme_example/brand_colors.dart';
 import 'package:acme_theme_example/providers.dart';
