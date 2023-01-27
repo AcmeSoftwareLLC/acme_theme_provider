@@ -1,0 +1,37 @@
+# Sample App Settings
+
+If you look inside example/lib/ui/settings_ui, you will see the following private class, which is the actual ListTile containing the theme that represents the Theme asset
+
+
+```
+_ThemeSelectionTile(
+              changeCurrentTheme: (theme) => ThemeScope.of(context)
+                  .changeAsset('assets/themes/$theme.acme'),
+            ),
+ ```
+
+Remember the changeAsset method we created at the beginning inside the ThemeNotifier, well, this is where it is being used so that we can provide the name of the theme asset from the UI.
+Here’s how it is being accessed:
+
+```
+ThemeScope.of(context).changeAsset(assetPath)
+```
+
+And finally, the ThemeScope.of() method, belonging to the ThemeScope class, has come in handy here as well, in order to provide us an access to the changeAsset() method inside of the ThemeNotifier class, which is the notifier for the ThemeScope in the root of our sample application.
+
+```
+class ThemeScope extends InheritedNotifier<ThemeNotifier> {
+  ThemeScope({
+    required super.notifier,
+    required super.child,
+  });
+
+  static ThemeNotifier of(BuildContext context) {
+    final scope = context.dependOnInheritedWidgetOfExactType<ThemeScope>();
+    assert(scope != null);
+    return scope!.notifier!;
+  }
+}
+```
+
+In this way, once a different theme asset has been selected in the SettingsUI, we can see the change in theme, in the whole application; the change which has been dynamically provided by the Acme Theme.

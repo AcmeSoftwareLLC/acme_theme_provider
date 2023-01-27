@@ -1,4 +1,8 @@
 # Changelog
+## 0.7.0
+**Jan 27, 2023**
+- Upgraded dependencies.
+- Removed `ToolbarOptions` as Flutter no longer supports it since Flutter 3.7
 
 ## 0.6.0
 **Dec 19, 2022**
