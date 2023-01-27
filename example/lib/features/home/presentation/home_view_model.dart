@@ -1,4 +1,4 @@
-import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:acme_theme_example/features/theme/tweet.dart';
 import 'package:flutter/cupertino.dart';
 

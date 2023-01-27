@@ -1,4 +1,4 @@
-import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:acme_theme_example/core/database/db_gateway.dart';
 import 'package:acme_theme_example/core/database/db_request.dart';
 import 'package:acme_theme_example/core/database/db_success_response.dart';
@@ -37,7 +37,7 @@ class HomeGetTweetSuccessResponse extends DbSuccessResponse {
 }
 
 class HomeGetTweetGatewayOutput extends Output {
-  HomeGetTweetGatewayOutput({required this.userName});
+  const HomeGetTweetGatewayOutput({required this.userName});
 
   final String userName;
 
@@ -46,7 +46,7 @@ class HomeGetTweetGatewayOutput extends Output {
 }
 
 class HomeGetTweetSuccessInput extends SuccessInput {
-  HomeGetTweetSuccessInput({required this.tweet});
+  const HomeGetTweetSuccessInput({required this.tweet});
 
   final Tweet tweet;
 }

@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:acme_theme_example/features/add_post/presentation/add_post_presenter.dart';
 import 'package:acme_theme_example/features/add_post/presentation/add_post_view_model.dart';

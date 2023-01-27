@@ -1,4 +1,4 @@
-import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:acme_theme_example/features/theme/tweet.dart';
 
 class HomeEntity extends Entity {
@@ -6,12 +6,13 @@ class HomeEntity extends Entity {
   final String userName;
   final bool isLoading;
 
-  HomeEntity({
+  const HomeEntity({
     this.tweets = const [],
     this.userName = '',
     this.isLoading = true,
   });
 
+  @override
   HomeEntity copyWith({
     List<Tweet>? tweets,
     String? userName,

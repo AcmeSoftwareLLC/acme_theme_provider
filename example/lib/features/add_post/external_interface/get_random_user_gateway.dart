@@ -1,6 +1,5 @@
-import 'package:clean_framework/clean_framework.dart';
-import 'package:clean_framework/clean_framework_providers.dart';
-import 'package:clean_framework_rest/clean_framework_rest.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
+import 'package:clean_framework_rest/clean_framework_rest_legacy.dart';
 import 'package:acme_theme_example/providers.dart';
 
 class GetRandomUserGateway extends RestGateway<GetRandomUserGatewayOutput,
@@ -48,14 +47,14 @@ class GetRandomUserGateway extends RestGateway<GetRandomUserGatewayOutput,
 }
 
 class GetRandomUserGatewayOutput extends Output {
-  GetRandomUserGatewayOutput();
+  const GetRandomUserGatewayOutput();
 
   @override
   List<Object?> get props => [];
 }
 
 class GetRandomUserSuccessInput extends SuccessInput {
-  GetRandomUserSuccessInput({
+  const GetRandomUserSuccessInput({
     required this.firstName,
     required this.lastName,
     required this.userName,
