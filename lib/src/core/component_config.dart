@@ -20,7 +20,6 @@ export 'configs/chip_config.dart';
 export 'configs/dialog_config.dart';
 export 'configs/dropdown_button_config.dart';
 export 'configs/slider_config.dart';
-export 'configs/slider_config.dart';
 export 'configs/snack_bar_config.dart';
 export 'configs/switch_config.dart';
 export 'configs/text_field_config.dart';
