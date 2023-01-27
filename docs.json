@@ -1,0 +1,63 @@
+{
+  "name": "Acme Theme Codelabs",
+  "theme": "#0984E3",
+  "logo": "/assets/icon_logomark.png",
+  "logoDark": "/assets/icon_logomark_dark.png",
+  "favicon": "/assets/icon_logomark.png",
+  "sidebar": [
+    [
+      "Installation",
+      "/"
+    ],
+    [
+      "Using Acme Theme in Flutter's Starter app",
+      [
+        [
+          "Introduction",
+          "/codelabs/starter_app/intro"
+        ],
+        [
+          "Setup",
+          "/codelabs/starter_app/setup"
+        ],
+        [
+          "Starter App",
+          "/codelabs/starter_app/starter_app"
+        ],
+        [
+          "Implementation",
+          "/codelabs/starter_app/implementation"
+        ],
+        [
+          "Components",
+          "/codelabs/starter_app/components"
+        ]
+      ]
+    ],
+    [
+      "Using Acme Theme in Acme's Sample App",
+      [
+        [
+          "Sample App",
+          "/codelabs/sample_app/sample_app"
+        ],
+        [
+          "Sample App Setup",
+          "/codelabs/sample_app/sample_app_setup"
+        ],
+        [
+          "ThemeScope",
+          "/codelabs/sample_app/theme_scope"
+        ],
+        [
+          "Changing Themes",
+          "/codelabs/sample_app/changing_themes"
+        ],
+        [
+          "Sample App Settings",
+          "/codelabs/sample_app/settings"
+        ]
+      ]
+    ]
+  ]
+}

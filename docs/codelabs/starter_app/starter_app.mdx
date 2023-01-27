@@ -1,0 +1,54 @@
+# Using the Acme Theme package in a new Flutter project
+
+This codelab will help you use the Acme Theme package in the Counter App, provided by the Flutter SDK.
+
+The MyApp class of your main.dart file will look something like this, which contains the code for the Counter app, by default.
+
+```
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+```
+
+Let us run the application once to see how the default starter page looks without using the themes exported from ThemeBuilder
+
+<Image src="/assets/starter_app.png" caption="Flutter's Starter App"/>
+
+Right away, we want to include the theme exported from ThemeBuilder, in our starter Counter app, so, let’s add that to the dependencies, under the assets as such:
+
+```
+  assets:
+    - assets/example-theme.acme  
+```    
+
+Run:
+
+```
+flutter pub get 
+```
+
+from the terminal or simply follow the instructions of your IDE to get the recently added assets. 
+
+This Codelab assumes that you have already added the acme_theme package in the pubspec.yaml of your project. If not, please go ahead and add it.
+
+Now in your ‘main.dart’ file, let us import the Acme Theme plugin.
+
+```
+
+import 'package:acme_theme/acme_theme.dart';
+
+```
+
+
