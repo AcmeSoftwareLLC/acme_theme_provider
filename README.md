@@ -28,8 +28,8 @@ Once you have downloaded the app, you can create desired theme & components, and
 You can then use this package to import the theme into your Flutter app.
 
 ### Downloads
-<a href="https://apps.apple.com/np/app/acme-theme-builder/id1536335046"><img src="https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/main/images/app-store.svg"/></a>
+<a href="https://apps.apple.com/np/app/acme-theme-builder/id1536335046"><img src="https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/main/images/app-store.svg" width="200"/></a>
 
-<a href="https://apps.microsoft.com/store/detail/acme-theme-builder/9P69SSD49MVB?hl=en-ai&gl=ai"><img src="https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/main/images/microsoft-store.svg"/></a>
+<a href="https://apps.microsoft.com/store/detail/acme-theme-builder/9P69SSD49MVB?hl=en-ai&gl=ai"><img src="https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/main/images/microsoft-store.svg" width="200"/></a>
 
-<a href="https://play.google.com/store/apps/details?id=com.acmesoftware.theme&hl=en&gl=US"><img src="https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/main/images/play-store.svg"/></a>
+<a href="https://play.google.com/store/apps/details?id=com.acmesoftware.theme&hl=en&gl=US"><img src="https://raw.githubusercontent.com/MattHamburger/acme_theme_provider/main/images/play-store.svg" width="200"/></a>

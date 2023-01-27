@@ -18,7 +18,7 @@ class AcmeThemeScope<T extends Object> extends StatelessWidget {
   final ThemeOverride? overrideFn;
   final CustomColorsConverterCreator<T>? customColorsConverterCreator;
 
-  /// Creates a [AcmeThemeScope] that provides a [AcmeThemeData] to its descendants.
+  /// Creates an [AcmeThemeScope] that provides a [AcmeThemeData] to its descendants.
   const AcmeThemeScope({
     super.key,
     required this.source,
@@ -27,6 +27,7 @@ class AcmeThemeScope<T extends Object> extends StatelessWidget {
     this.customColorsConverterCreator,
   });
 
+  /// Creates an [AcmeThemeData] from the provided asset [path].
   const factory AcmeThemeScope.asset({
     Key? key,
     required String path,
@@ -35,6 +36,7 @@ class AcmeThemeScope<T extends Object> extends StatelessWidget {
     CustomColorsConverterCreator<T>? customColorsConverterCreator,
   }) = AssetThemeScope;
 
+  /// Creates an [AcmeThemeData] from the provided network [url].
   factory AcmeThemeScope.network({
     Key? key,
     required String url,
@@ -51,6 +53,7 @@ class AcmeThemeScope<T extends Object> extends StatelessWidget {
     return scopedBuilder(context, AcmeThemeData.fromJson(source));
   }
 
+  /// Builds the widget tree with [AcmeComponentScope].
   Widget scopedBuilder(BuildContext context, AcmeThemeData theme) {
     return AcmeComponentScope(
       components: theme.components,
@@ -58,10 +61,12 @@ class AcmeThemeScope<T extends Object> extends StatelessWidget {
     );
   }
 
+  /// Loads the resource from [assetPath] and caches it.
   static Future<void> prefetchAsset(String assetPath) async {
     await rootBundle.loadString(assetPath);
   }
 
+  /// Returns the [ComponentConfig] for the [name].
   static T componentOf<T extends ComponentConfig>(
     BuildContext context,
     String name,
