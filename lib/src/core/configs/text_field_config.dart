@@ -1,6 +1,7 @@
 // Copyright (c) 2022. Acme Software LLC. All rights reserved.
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:json_theme/json_theme.dart';
 
 import '../component_config.dart';
@@ -26,6 +27,8 @@ class TextFieldConfig extends ComponentConfig {
     required this.textSelectionTheme,
     required this.mouseCursor,
     required this.keyboardType,
+    required this.readOnly,
+    required this.obscureText,
   });
 
   final InputDecorationTheme? theme;
@@ -47,6 +50,8 @@ class TextFieldConfig extends ComponentConfig {
   final TextSelectionThemeData? textSelectionTheme;
   final MouseCursor? mouseCursor;
   final TextInputType? keyboardType;
+  final bool? readOnly;
+  final bool? obscureText;
 
   factory TextFieldConfig.fromMap(Map<String, dynamic> map) {
     return TextFieldConfig(
@@ -75,6 +80,8 @@ class TextFieldConfig extends ComponentConfig {
           ThemeDecoder.decodeTextSelectionThemeData(map['textSelectionTheme']),
       mouseCursor: ThemeDecoder.decodeMouseCursor(map['mouseCursor']),
       keyboardType: ThemeDecoder.decodeTextInputType(map['keyboardType']),
+      readOnly: map['readOnly'] ?? false,
+      obscureText: map['obscureText'] ?? false,
     );
   }
 
@@ -104,6 +111,8 @@ class TextFieldConfig extends ComponentConfig {
       'cursorHeight': cursorHeight,
       'cursorWidth': cursorWidth,
       'cursorRadius': ThemeEncoder.encodeRadius(cursorRadius),
+      'readOnly': readOnly,
+      'obscureText': obscureText,
     };
   }
 
@@ -127,6 +136,8 @@ class TextFieldConfig extends ComponentConfig {
     TextSelectionThemeData? textSelectionTheme,
     MouseCursor? mouseCursor,
     TextInputType? keyboardType,
+    bool? readOnly,
+    bool? obscureText,
   }) {
     return TextFieldConfig(
       theme: theme ?? this.theme,
@@ -148,6 +159,8 @@ class TextFieldConfig extends ComponentConfig {
       textSelectionTheme: textSelectionTheme ?? this.textSelectionTheme,
       mouseCursor: mouseCursor ?? this.mouseCursor,
       keyboardType: keyboardType ?? this.keyboardType,
+      readOnly: readOnly ?? this.readOnly,
+      obscureText: obscureText ?? this.obscureText,
     );
   }
 }

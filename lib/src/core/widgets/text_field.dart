@@ -27,6 +27,8 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
     this.inputFormatters,
     this.selectionControls,
     this.contextMenuBuilder = _defaultContextMenuBuilder,
+    this.readOnly = false,
+    this.obscureText = false,
   });
 
   final VoidCallback? onTap;
@@ -46,6 +48,8 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
   final TextSelectionControls? selectionControls;
   final AppPrivateCommandCallback? onAppPrivateCommand;
   final EditableTextContextMenuBuilder contextMenuBuilder;
+  final bool readOnly;
+  final bool obscureText;
 
   @override
   Widget render(BuildContext context, TextFieldConfig config) {
@@ -88,6 +92,8 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
         scrollController: scrollController,
         controller: controller,
         inputFormatters: inputFormatters,
+        readOnly: readOnly,
+        obscureText: obscureText,
       ),
     );
   }
