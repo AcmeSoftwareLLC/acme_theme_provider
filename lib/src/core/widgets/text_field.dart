@@ -29,6 +29,7 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
     this.contextMenuBuilder = _defaultContextMenuBuilder,
     this.readOnly = false,
     this.obscureText = false,
+    this.enabled = true,
   });
 
   final VoidCallback? onTap;
@@ -50,6 +51,7 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
   final EditableTextContextMenuBuilder contextMenuBuilder;
   final bool readOnly;
   final bool obscureText;
+  final bool enabled;
 
   @override
   Widget render(BuildContext context, TextFieldConfig config) {
@@ -94,6 +96,7 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
         inputFormatters: inputFormatters,
         readOnly: readOnly,
         obscureText: obscureText,
+        enabled: enabled,
       ),
     );
   }

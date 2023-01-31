@@ -1,7 +1,6 @@
 // Copyright (c) 2022. Acme Software LLC. All rights reserved.
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:json_theme/json_theme.dart';
 
 import '../component_config.dart';
@@ -29,6 +28,7 @@ class TextFieldConfig extends ComponentConfig {
     required this.keyboardType,
     required this.readOnly,
     required this.obscureText,
+    required this.enabled,
   });
 
   final InputDecorationTheme? theme;
@@ -52,6 +52,7 @@ class TextFieldConfig extends ComponentConfig {
   final TextInputType? keyboardType;
   final bool? readOnly;
   final bool? obscureText;
+  final bool? enabled;
 
   factory TextFieldConfig.fromMap(Map<String, dynamic> map) {
     return TextFieldConfig(
@@ -82,6 +83,7 @@ class TextFieldConfig extends ComponentConfig {
       keyboardType: ThemeDecoder.decodeTextInputType(map['keyboardType']),
       readOnly: map['readOnly'] ?? false,
       obscureText: map['obscureText'] ?? false,
+      enabled: map['enabled'] ?? true,
     );
   }
 
@@ -113,6 +115,7 @@ class TextFieldConfig extends ComponentConfig {
       'cursorRadius': ThemeEncoder.encodeRadius(cursorRadius),
       'readOnly': readOnly,
       'obscureText': obscureText,
+      'enabled': enabled,
     };
   }
 
@@ -138,6 +141,7 @@ class TextFieldConfig extends ComponentConfig {
     TextInputType? keyboardType,
     bool? readOnly,
     bool? obscureText,
+    bool? enabled,
   }) {
     return TextFieldConfig(
       theme: theme ?? this.theme,
@@ -161,6 +165,7 @@ class TextFieldConfig extends ComponentConfig {
       keyboardType: keyboardType ?? this.keyboardType,
       readOnly: readOnly ?? this.readOnly,
       obscureText: obscureText ?? this.obscureText,
+      enabled: enabled ?? this.enabled,
     );
   }
 }
