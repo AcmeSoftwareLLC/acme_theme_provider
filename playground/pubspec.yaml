@@ -11,6 +11,7 @@ dependencies:
     path: ../
   flutter:
     sdk: flutter
+  clean_framework: ^2.0.4
 
 dev_dependencies:
   flutter_test:

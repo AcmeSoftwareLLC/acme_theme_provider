@@ -1,22 +1,16 @@
-import 'dart:convert';
 
-import 'package:acme_theme/acme_theme.dart';
+import 'package:clean_framework/clean_framework.dart';
 import 'package:flutter/material.dart';
-import 'package:playground/helpers/acme_color_decoder.dart';
-import 'package:playground/playground_page.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+class AcmeColorDecoder {
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final colorDecoder = AcmeColorDecoder();
-    final theme = {
+  Map<String, dynamic> decodeColor(String componentName, ColorScheme colorScheme, String componentType, Map<String, dynamic> theme){
+    final surface = colorScheme.surface;
+    final colorValue = surface.value.toRadixString(16);
+    final hex = '#$colorValue';
+    print('hex: #${colorValue}, int: ${surface.value}');
+    print('the color is: $colorValue');
+    final theme1 = {
       'theme_mode': 0,
       'theme_data': {},
       'dark_theme_data': {},
@@ -24,7 +18,7 @@ class MyApp extends StatelessWidget {
         'OneAppBar': {
           'type': 'app.bar',
           'theme': {
-            'backgroundColor': 'surface',
+            'backgroundColor': hex,
             'toolbarHeight': 300,
           },
           'divider': {
@@ -35,7 +29,7 @@ class MyApp extends StatelessWidget {
         'TwoAppBar': {
           'type': 'app.bar',
           'theme': {
-            'backgroundColor': 'surface',
+            'backgroundColor': hex,
             'foregroundColor': '#FFFFFF',
           },
         },
@@ -61,13 +55,13 @@ class MyApp extends StatelessWidget {
         },
         'FirstTextField': {
           'type': 'text.field',
-          'theme': {
+          'theme1': {
             'fillColor': '#FFFF00',
           },
         },
         'SecondTextField': {
           'type': 'text.field',
-          'theme': {
+          'theme1': {
             'fillColor': '#800000',
             'filled': true,
             'labelStyle': {
@@ -77,14 +71,14 @@ class MyApp extends StatelessWidget {
         },
         'FirstCard': {
           'type': 'card',
-          'theme': {
+          'theme1': {
             'color': '#FF00FF',
             'elevation': 4.0,
           },
         },
         'SecondCard': {
           'type': 'card',
-          'theme': {
+          'theme1': {
             'color': '#FFDDFF',
             'elevation': 8.0,
             'shadowColor': '#800000',
@@ -109,7 +103,7 @@ class MyApp extends StatelessWidget {
         },
         'FirstSwitch': {
           'type': 'switch',
-          'theme': {
+          'theme1': {
             'overlayColor': '#FFFFFFAA',
             'splashRadius': 20.0,
             'thumbColor': '#FFFFFF',
@@ -127,7 +121,7 @@ class MyApp extends StatelessWidget {
         },
         'FirstSlider': {
           'type': 'slider',
-          'theme': {'thumbColor': '#000000'},
+          'theme1': {'thumbColor': '#000000'},
         },
         'SecondSlider': {
           'type': 'slider',
@@ -136,7 +130,7 @@ class MyApp extends StatelessWidget {
         },
         'FirstSnackBar': {
           'type': 'snack.bar',
-          'theme': {
+          'theme1': {
             'backgroundColor': '#000000',
             'behavior': 'floating',
           },
@@ -144,7 +138,7 @@ class MyApp extends StatelessWidget {
         },
         'FirstChip': {
           'type': 'chip',
-          'theme': {
+          'theme1': {
             'disabledColor': '#FF0000',
             'secondarySelectedColor': '#FF0000',
             'selectedColor': '#AABBCC',
@@ -164,13 +158,13 @@ class MyApp extends StatelessWidget {
         },
         'FirstAlertDialog': {
           'type': 'alert.dialog',
-          'theme': {
+          'theme1': {
             'backgroundColor': '#FFFF00',
           }
         },
         'FirstDialog': {
           'type': 'dialog',
-          'theme': {
+          'theme1': {
             'backgroundColor': '#55FF00CC',
             'shape': {'type': 'stadium'}
           },
@@ -178,19 +172,46 @@ class MyApp extends StatelessWidget {
       },
     };
 
-    final newTheme = colorDecoder.decodeColor('OneAppBar', colorScheme, 'app.bar', theme);
+    final deserializer = Deserializer(theme);
+    final color = deserializer('components');
+    // final componentData = Deserializer(componentColors);
+    // final comp = componentData.getString('AppBar');
+    // print('here: ${comp.toString()}');
 
 
-    return AcmeThemeScope(
-      source: jsonEncode(newTheme),
-      builder: (context, theme) {
-        return MaterialApp(
-          title: 'Playground',
-          theme: theme.lightTheme,
-          darkTheme: theme.darkTheme,
-          home: const PlaygroundPage(),
-        );
-      },
-    );
+    final newColor = color(componentName);
+    final componentTheme = newColor.getMap('theme');
+    final componentColor = componentTheme.values.first;
+    print(componentColor);
+
+
+    final componentColors = {
+      'app.bar': 'surface',
+      'text_field': 'surface-variant',
+      'card': 'on surface',
+      'slider' : 'primary',
+
+    };
+
+
+    // final colorValue = int.parse(componentColor);
+
+
+
+
+    // switch (componentType) {
+    //   case 'app.bar':
+    //     return colorValue;
+    //   case 'card':
+    //     return 'on surface';
+    //   case 'slider':
+    //     return 'primary';
+    // }
+
+
+    return theme1;
+
+
+
   }
 }

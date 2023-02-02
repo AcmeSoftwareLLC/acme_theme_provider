@@ -76,6 +76,7 @@ class _AcmeThemeSyncState extends State<AcmeThemeSync> {
             nsd.stopDiscovery(discovery);
 
             _channel = WebSocketChannel.connect(Uri.parse('ws://$address'));
+            print(_channel);
             widget.onObservatoryConnected?.call(
               AcmeThemeBuilderObservatoryInfo(
                 host: service.host,
