@@ -21,7 +21,7 @@ class PlayGroundAppBars extends StatelessWidget {
                 appBar: OneAppBar(
                   title: Text('One App Bar',
                       style: theme.textTheme.titleLarge!.copyWith(
-                        color: theme.colorScheme.primary,
+                        color: theme.colorScheme.surface,
                       )),
                   leading: Icon(
                     Icons.menu,

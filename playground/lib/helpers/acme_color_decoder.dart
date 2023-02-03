@@ -177,8 +177,8 @@ class AcmeColorDecoder {
   }
 }
 
-Color _getComponentColor(String componentType, ColorScheme colorScheme) {
-  switch (componentType) {
+Color _getComponentColor(String componentColor, ColorScheme colorScheme) {
+  switch (componentColor) {
     case 'surface':
       return colorScheme.surface;
     case 'on-surface':
