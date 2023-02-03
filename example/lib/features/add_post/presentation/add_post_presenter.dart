@@ -1,4 +1,4 @@
-import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:acme_theme_example/features/add_post/domain/add_post_ui_output.dart';
 import 'package:acme_theme_example/features/add_post/presentation/add_post_view_model.dart';
 import 'package:flutter/material.dart';

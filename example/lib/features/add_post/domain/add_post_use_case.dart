@@ -1,4 +1,4 @@
-import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:acme_theme_example/features/add_post/domain/add_post_entity.dart';
 import 'package:acme_theme_example/features/add_post/domain/add_post_ui_output.dart';
 import 'package:acme_theme_example/features/add_post/external_interface/add_post_gateway.dart';
@@ -10,26 +10,19 @@ import 'package:flutter/foundation.dart';
 class AddPostUseCase extends UseCase<AddPostEntity> {
   AddPostUseCase()
       : super(
-          entity: AddPostEntity(),
-          outputFilters: {
-            AddPostUIOutput: (AddPostEntity entity) {
-              return AddPostUIOutput(
-                post: entity.post,
-                imagePath: entity.imagePath,
-              );
-            },
-          },
+          entity: const AddPostEntity(),
+          transformers: [AddPostUIOutputTransformer()],
         );
 
   void onPostEntered({required String post}) {
-    entity = entity.merge(post: post);
+    entity = entity.copyWith(post: post);
   }
 
   Future<void> pickImage() async {
     await request<AddPostPickerGatewayOutput, AddPostPickerGatewaySuccessInput>(
-      AddPostPickerGatewayOutput(),
+      const AddPostPickerGatewayOutput(),
       onSuccess: (AddPostPickerGatewaySuccessInput input) {
-        return entity.merge(
+        return entity.copyWith(
           imagePath: input.imagePath,
         );
       },
@@ -39,9 +32,9 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
 
   Future<void> getRandomUser() async {
     await request<GetRandomUserGatewayOutput, GetRandomUserSuccessInput>(
-      GetRandomUserGatewayOutput(),
+      const GetRandomUserGatewayOutput(),
       onSuccess: (input) {
-        return entity.merge(
+        return entity.copyWith(
           firstName: input.firstName,
           lastName: input.lastName,
           userName: input.userName,
@@ -78,7 +71,7 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
             userImage: tweet.imagePath,
           );
         }
-        return entity.merge(
+        return entity.copyWith(
           tweets: tweets,
         );
       },
@@ -92,12 +85,23 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
   }
 
   Future<void> addedTweet() async {
-    entity = entity.merge(
+    entity = entity.copyWith(
       tweetAdded: true,
     );
   }
 
   Future<void> refresh() async {
-    entity = AddPostEntity();
+    entity = const AddPostEntity();
+  }
+}
+
+class AddPostUIOutputTransformer
+    extends OutputTransformer<AddPostEntity, AddPostUIOutput> {
+  @override
+  AddPostUIOutput transform(AddPostEntity entity) {
+    return AddPostUIOutput(
+      post: entity.post,
+      imagePath: entity.imagePath,
+    );
   }
 }

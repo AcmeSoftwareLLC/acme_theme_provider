@@ -1,4 +1,4 @@
-import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:acme_theme_example/features/home/domain/home_ui_output.dart';
 import 'package:acme_theme_example/features/home/domain/home_use_case.dart';
 import 'package:acme_theme_example/features/home/presentation/home_view_model.dart';

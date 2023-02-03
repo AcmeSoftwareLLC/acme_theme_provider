@@ -1,11 +1,11 @@
-import 'package:clean_framework/clean_framework_providers.dart';
+import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:acme_theme_example/features/theme/tweet.dart';
 
 class HomeUIOutput extends Output {
   final List<Tweet> tweets;
   final bool isLoading;
 
-  HomeUIOutput({
+  const HomeUIOutput({
     required this.tweets,
     required this.isLoading,
   });
