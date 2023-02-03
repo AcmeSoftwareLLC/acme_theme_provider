@@ -20,7 +20,9 @@ class PlayGroundAppBars extends StatelessWidget {
                 primary: false,
                 appBar: OneAppBar(
                   title: Text('One App Bar',
-                      style: theme.textTheme.titleLarge!.copyWith(color: theme.colorScheme.primary,)),
+                      style: theme.textTheme.titleLarge!.copyWith(
+                        color: theme.colorScheme.primary,
+                      )),
                   leading: Icon(
                     Icons.menu,
                     color: theme.colorScheme.onSurface,
@@ -39,8 +41,11 @@ class PlayGroundAppBars extends StatelessWidget {
               child: Scaffold(
                 primary: false,
                 appBar: TwoAppBar(
-                  title: Text('Two App Bar',
-                      style: theme.textTheme.titleLarge!.copyWith(color: theme.colorScheme.primary),),
+                  title: Text(
+                    'Two App Bar',
+                    style: theme.textTheme.titleLarge!
+                        .copyWith(color: theme.colorScheme.primary),
+                  ),
                   leading: Icon(
                     Icons.home,
                     color: theme.colorScheme.onSurface,
