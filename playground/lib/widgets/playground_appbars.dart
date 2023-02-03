@@ -7,6 +7,7 @@ class PlayGroundAppBars extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return DefaultTabController(
       length: 3,
       child: Padding(
@@ -18,14 +19,26 @@ class PlayGroundAppBars extends StatelessWidget {
               child: Scaffold(
                 primary: false,
                 appBar: OneAppBar(
-                  title:  Text('One App Bar', style: TextStyle(color: Theme.of(context).colorScheme.onSurface),),
-                  leading: const Icon(Icons.menu),
-                  bottom: const TabBar(
-                    tabs: [
+                  title: Text('One App Bar',
+                      style: theme.textTheme.titleLarge!
+                          .copyWith(color: Colors.black)),
+                  leading: Icon(
+                    Icons.menu,
+                    color: theme.colorScheme.primary,
+                  ),
+                  bottom: TabBar(
+                    tabs: const [
                       Tab(text: 'Tab 1'),
                       Tab(text: 'Tab 2'),
                       Tab(text: 'Tab 3'),
                     ],
+                    labelStyle: theme.textTheme.titleMedium!
+                        .copyWith(color: Colors.black),
+                    labelColor: Colors.black,
+                    unselectedLabelColor: Colors.black,
+                    unselectedLabelStyle: theme.textTheme.titleMedium!
+                        .copyWith(color: Colors.black),
+                    indicatorColor: theme.colorScheme.primary,
                   ),
                 ),
               ),
@@ -34,8 +47,13 @@ class PlayGroundAppBars extends StatelessWidget {
               child: Scaffold(
                 primary: false,
                 appBar: TwoAppBar(
-                  title: const Text('Two App Bar'),
-                  leading: const Icon(Icons.home),
+                  title: Text('Two App Bar',
+                      style: theme.textTheme.titleLarge!
+                          .copyWith(color: Colors.black)),
+                  leading: Icon(
+                    Icons.home,
+                    color: theme.colorScheme.primary,
+                  ),
                 ),
               ),
             ),

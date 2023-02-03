@@ -178,8 +178,7 @@ class MyApp extends StatelessWidget {
       },
     };
 
-    final newTheme = colorDecoder.decodeColor('OneAppBar', colorScheme, 'app.bar', theme);
-
+    final newTheme = colorDecoder.decodeColor('OneAppBar', colorScheme, theme);
 
     return AcmeThemeScope(
       source: jsonEncode(newTheme),

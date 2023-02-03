@@ -1,16 +1,18 @@
-
 import 'package:clean_framework/clean_framework.dart';
 import 'package:flutter/material.dart';
 
 class AcmeColorDecoder {
-
-  Map<String, dynamic> decodeColor(String componentName, ColorScheme colorScheme, String componentType, Map<String, dynamic> theme){
-    final surface = colorScheme.surface;
-    final colorValue = surface.value.toRadixString(16);
-    final hex = '#$colorValue';
-    print('hex: #${colorValue}, int: ${surface.value}');
-    print('the color is: $colorValue');
-    final theme1 = {
+  Map<String, dynamic> decodeColor(String componentType,
+      ColorScheme colorScheme, Map<String, dynamic> theme) {
+    final deserializer = Deserializer(theme);
+    final color = deserializer('components');
+    final newColor = color(componentType);
+    final componentTheme = newColor.getMap('theme');
+    final componentColor = componentTheme.values.first;
+    final compColor = _getComponentColor(componentColor, colorScheme);
+    final colorValue = compColor.value.toRadixString(16);
+    final hexValue = '#$colorValue';
+    final modifiedTheme = {
       'theme_mode': 0,
       'theme_data': {},
       'dark_theme_data': {},
@@ -18,7 +20,7 @@ class AcmeColorDecoder {
         'OneAppBar': {
           'type': 'app.bar',
           'theme': {
-            'backgroundColor': hex,
+            'backgroundColor': hexValue,
             'toolbarHeight': 300,
           },
           'divider': {
@@ -29,7 +31,7 @@ class AcmeColorDecoder {
         'TwoAppBar': {
           'type': 'app.bar',
           'theme': {
-            'backgroundColor': hex,
+            'backgroundColor': hexValue,
             'foregroundColor': '#FFFFFF',
           },
         },
@@ -55,13 +57,13 @@ class AcmeColorDecoder {
         },
         'FirstTextField': {
           'type': 'text.field',
-          'theme1': {
+          'modifiedTheme': {
             'fillColor': '#FFFF00',
           },
         },
         'SecondTextField': {
           'type': 'text.field',
-          'theme1': {
+          'modifiedTheme': {
             'fillColor': '#800000',
             'filled': true,
             'labelStyle': {
@@ -71,14 +73,14 @@ class AcmeColorDecoder {
         },
         'FirstCard': {
           'type': 'card',
-          'theme1': {
+          'modifiedTheme': {
             'color': '#FF00FF',
             'elevation': 4.0,
           },
         },
         'SecondCard': {
           'type': 'card',
-          'theme1': {
+          'modifiedTheme': {
             'color': '#FFDDFF',
             'elevation': 8.0,
             'shadowColor': '#800000',
@@ -103,7 +105,7 @@ class AcmeColorDecoder {
         },
         'FirstSwitch': {
           'type': 'switch',
-          'theme1': {
+          'modifiedTheme': {
             'overlayColor': '#FFFFFFAA',
             'splashRadius': 20.0,
             'thumbColor': '#FFFFFF',
@@ -121,7 +123,7 @@ class AcmeColorDecoder {
         },
         'FirstSlider': {
           'type': 'slider',
-          'theme1': {'thumbColor': '#000000'},
+          'modifiedTheme': {'thumbColor': '#000000'},
         },
         'SecondSlider': {
           'type': 'slider',
@@ -130,7 +132,7 @@ class AcmeColorDecoder {
         },
         'FirstSnackBar': {
           'type': 'snack.bar',
-          'theme1': {
+          'modifiedTheme': {
             'backgroundColor': '#000000',
             'behavior': 'floating',
           },
@@ -138,7 +140,7 @@ class AcmeColorDecoder {
         },
         'FirstChip': {
           'type': 'chip',
-          'theme1': {
+          'modifiedTheme': {
             'disabledColor': '#FF0000',
             'secondarySelectedColor': '#FF0000',
             'selectedColor': '#AABBCC',
@@ -158,60 +160,31 @@ class AcmeColorDecoder {
         },
         'FirstAlertDialog': {
           'type': 'alert.dialog',
-          'theme1': {
+          'modifiedTheme': {
             'backgroundColor': '#FFFF00',
           }
         },
         'FirstDialog': {
           'type': 'dialog',
-          'theme1': {
+          'modifiedTheme': {
             'backgroundColor': '#55FF00CC',
             'shape': {'type': 'stadium'}
           },
         },
       },
     };
-
-    final deserializer = Deserializer(theme);
-    final color = deserializer('components');
-    // final componentData = Deserializer(componentColors);
-    // final comp = componentData.getString('AppBar');
-    // print('here: ${comp.toString()}');
-
-
-    final newColor = color(componentName);
-    final componentTheme = newColor.getMap('theme');
-    final componentColor = componentTheme.values.first;
-    print(componentColor);
-
-
-    final componentColors = {
-      'app.bar': 'surface',
-      'text_field': 'surface-variant',
-      'card': 'on surface',
-      'slider' : 'primary',
-
-    };
-
-
-    // final colorValue = int.parse(componentColor);
-
-
-
-
-    // switch (componentType) {
-    //   case 'app.bar':
-    //     return colorValue;
-    //   case 'card':
-    //     return 'on surface';
-    //   case 'slider':
-    //     return 'primary';
-    // }
-
-
-    return theme1;
-
-
-
+    return modifiedTheme;
   }
+}
+
+Color _getComponentColor(String componentType, ColorScheme colorScheme) {
+  switch (componentType) {
+    case 'surface':
+      return colorScheme.surface;
+    case 'on-surface':
+      return colorScheme.onSurface;
+    case 'surface-variant':
+      return colorScheme.surfaceVariant;
+  }
+  return colorScheme.primary;
 }
