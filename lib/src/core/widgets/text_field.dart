@@ -27,6 +27,11 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
     this.inputFormatters,
     this.selectionControls,
     this.contextMenuBuilder = _defaultContextMenuBuilder,
+    this.maxLines = 3,
+    this.keyboardType = TextInputType.text,
+    this.readOnly = false,
+    this.obscureText = false,
+    this.enabled = true,
   });
 
   final VoidCallback? onTap;
@@ -46,6 +51,11 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
   final TextSelectionControls? selectionControls;
   final AppPrivateCommandCallback? onAppPrivateCommand;
   final EditableTextContextMenuBuilder contextMenuBuilder;
+  final int? maxLines;
+  final TextInputType? keyboardType;
+  final bool readOnly;
+  final bool obscureText;
+  final bool enabled;
 
   @override
   Widget render(BuildContext context, TextFieldConfig config) {
@@ -58,7 +68,7 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
         style: config.textStyle,
         clipBehavior: config.clip,
         textAlign: config.textAlign,
-        maxLines: config.maxLines,
+        maxLines: maxLines ?? config.maxLines,
         textDirection: config.textDirection,
         contextMenuBuilder: contextMenuBuilder,
         maxLength: config.maxLength,
@@ -67,7 +77,7 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
         cursorHeight: config.cursorHeight,
         cursorRadius: config.cursorRadius,
         cursorWidth: config.cursorWidth,
-        keyboardType: config.keyboardType,
+        keyboardType: keyboardType ?? config.keyboardType,
         minLines: config.minLines,
         mouseCursor: config.mouseCursor,
         scrollPhysics: config.scrollPhysics,
@@ -88,6 +98,9 @@ abstract class CoreTextField extends CoreWidget<TextFieldConfig> {
         scrollController: scrollController,
         controller: controller,
         inputFormatters: inputFormatters,
+        readOnly: readOnly,
+        obscureText: obscureText,
+        enabled: enabled,
       ),
     );
   }
