@@ -178,10 +178,10 @@ class MyApp extends StatelessWidget {
       },
     };
 
-    final newTheme = colorDecoder.decodeColor('OneAppBar', colorScheme, theme);
+    final modifiedTheme = colorDecoder.decodeColor('OneAppBar', colorScheme, theme);
 
     return AcmeThemeScope(
-      source: jsonEncode(newTheme),
+      source: jsonEncode(modifiedTheme),
       builder: (context, theme) {
         return MaterialApp(
           title: 'Playground',

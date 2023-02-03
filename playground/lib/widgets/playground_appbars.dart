@@ -20,25 +20,17 @@ class PlayGroundAppBars extends StatelessWidget {
                 primary: false,
                 appBar: OneAppBar(
                   title: Text('One App Bar',
-                      style: theme.textTheme.titleLarge!
-                          .copyWith(color: Colors.black)),
+                      style: theme.textTheme.titleLarge!.copyWith(color: theme.colorScheme.primary,)),
                   leading: Icon(
                     Icons.menu,
-                    color: theme.colorScheme.primary,
+                    color: theme.colorScheme.onSurface,
                   ),
-                  bottom: TabBar(
-                    tabs: const [
+                  bottom: const TabBar(
+                    tabs: [
                       Tab(text: 'Tab 1'),
                       Tab(text: 'Tab 2'),
                       Tab(text: 'Tab 3'),
                     ],
-                    labelStyle: theme.textTheme.titleMedium!
-                        .copyWith(color: Colors.black),
-                    labelColor: Colors.black,
-                    unselectedLabelColor: Colors.black,
-                    unselectedLabelStyle: theme.textTheme.titleMedium!
-                        .copyWith(color: Colors.black),
-                    indicatorColor: theme.colorScheme.primary,
                   ),
                 ),
               ),
@@ -48,11 +40,10 @@ class PlayGroundAppBars extends StatelessWidget {
                 primary: false,
                 appBar: TwoAppBar(
                   title: Text('Two App Bar',
-                      style: theme.textTheme.titleLarge!
-                          .copyWith(color: Colors.black)),
+                      style: theme.textTheme.titleLarge!.copyWith(color: theme.colorScheme.primary),),
                   leading: Icon(
                     Icons.home,
-                    color: theme.colorScheme.primary,
+                    color: theme.colorScheme.onSurface,
                   ),
                 ),
               ),
