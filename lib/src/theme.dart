@@ -141,7 +141,9 @@ ThemeData _resolveTheme<T extends Object>(
   CustomColorsConverterCreator<T>? customColorsConverterCreator,
 }) {
   if (rawThemeData is Map && rawThemeData.isNotEmpty) {
-    final customColors = Map.from(rawThemeData['customColors'] ?? {});
+    final resThemeData = Map.of(rawThemeData);
+    final customColors = Map.from(resThemeData['customColors'] ?? {});
+
     final extensions = [
       if (customColorsConverterCreator != null)
         CustomColors<T>(
@@ -152,7 +154,9 @@ ThemeData _resolveTheme<T extends Object>(
         ),
     ];
 
-    final decodedThemeData = ThemeDecoder.decodeThemeData(rawThemeData)
+    resThemeData.remove('customColors');
+
+    final decodedThemeData = ThemeDecoder.decodeThemeData(resThemeData)
         ?.copyWith(extensions: extensions);
 
     final fallbackThemeData = ThemeData(

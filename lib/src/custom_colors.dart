@@ -177,6 +177,9 @@ class CustomColor {
       'onContainer': ThemeEncoder.encodeColor(onColorContainer)!,
     };
   }
+
+  @override
+  String toString() => '$name: ${toMap()}';
 }
 
 Color _decodeColor(String colorHex) {
