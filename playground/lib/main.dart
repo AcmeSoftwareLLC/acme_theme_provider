@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:acme_theme/acme_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:playground/helpers/acme_color_decoder.dart';
 import 'package:playground/playground_page.dart';
 
 void main() {
@@ -14,8 +13,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final colorDecoder = AcmeColorDecoder();
     final theme = {
       'theme_mode': 0,
       'theme_data': {},
@@ -24,7 +21,7 @@ class MyApp extends StatelessWidget {
         'OneAppBar': {
           'type': 'app.bar',
           'theme': {
-            'backgroundColor': 'surface',
+            'backgroundColor': '#55FF0000',
             'toolbarHeight': 300,
           },
           'divider': {
@@ -35,7 +32,7 @@ class MyApp extends StatelessWidget {
         'TwoAppBar': {
           'type': 'app.bar',
           'theme': {
-            'backgroundColor': 'surface',
+            'backgroundColor': '#0000FF',
             'foregroundColor': '#FFFFFF',
           },
         },
@@ -178,11 +175,8 @@ class MyApp extends StatelessWidget {
       },
     };
 
-    final modifiedTheme =
-        colorDecoder.decodeColor('OneAppBar', colorScheme, theme);
-
     return AcmeThemeScope(
-      source: jsonEncode(modifiedTheme),
+      source: jsonEncode(theme),
       builder: (context, theme) {
         return MaterialApp(
           title: 'Playground',

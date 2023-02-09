@@ -7,7 +7,6 @@ class PlayGroundAppBars extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return DefaultTabController(
       length: 3,
       child: Padding(
@@ -19,14 +18,8 @@ class PlayGroundAppBars extends StatelessWidget {
               child: Scaffold(
                 primary: false,
                 appBar: OneAppBar(
-                  title: Text('One App Bar',
-                      style: theme.textTheme.titleLarge!.copyWith(
-                        color: theme.colorScheme.surface,
-                      )),
-                  leading: Icon(
-                    Icons.menu,
-                    color: theme.colorScheme.onSurface,
-                  ),
+                  title: const Text('One App Bar'),
+                  leading: const Icon(Icons.menu),
                   bottom: const TabBar(
                     tabs: [
                       Tab(text: 'Tab 1'),
@@ -41,15 +34,8 @@ class PlayGroundAppBars extends StatelessWidget {
               child: Scaffold(
                 primary: false,
                 appBar: TwoAppBar(
-                  title: Text(
-                    'Two App Bar',
-                    style: theme.textTheme.titleLarge!
-                        .copyWith(color: theme.colorScheme.primary),
-                  ),
-                  leading: Icon(
-                    Icons.home,
-                    color: theme.colorScheme.onSurface,
-                  ),
+                  title: const Text('Two App Bar'),
+                  leading: const Icon(Icons.home),
                 ),
               ),
             ),
