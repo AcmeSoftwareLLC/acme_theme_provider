@@ -18,7 +18,7 @@ class PlayGroundAppBars extends StatelessWidget {
               child: Scaffold(
                 primary: false,
                 appBar: OneAppBar(
-                  title:  Text('One App Bar', style: TextStyle(color: Theme.of(context).colorScheme.onSurface),),
+                  title: const Text('One App Bar'),
                   leading: const Icon(Icons.menu),
                   bottom: const TabBar(
                     tabs: [
