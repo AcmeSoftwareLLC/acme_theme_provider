@@ -11,18 +11,15 @@ class AcmeColorDecoder {
       String colorValue;
       if (key.contains('.')) {
         final subKeys = key.split('.');
-        colorValue =
-            '${componentTheme[subKeys[0]][subKeys[1]][subKeys[2]][subKeys[3]]}';
+        colorValue = '${componentTheme[subKeys[3]]}';
         if (!colorValue.startsWith('#')) {
           componentTheme[key] = _getComponentColor(colorValue, colorScheme);
         }
       } else {
-        colorValue =
-            '${componentTheme['components']['OneAppBar']['theme'][key]}';
-        String resultItem =
-            componentTheme['components']['OneAppBar']['theme'][key];
+        colorValue = '${componentTheme[key]}';
+        String resultItem = componentTheme[key];
         resultItem = _getComponentColor(colorValue, colorScheme).toString();
-        componentTheme['components']['OneAppBar']['theme'][key] = resultItem;
+        componentTheme[key] = resultItem;
       }
     }
     return componentTheme;
