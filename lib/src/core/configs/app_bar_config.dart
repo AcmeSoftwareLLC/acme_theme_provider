@@ -29,9 +29,7 @@ class AppBarConfig extends ComponentConfig {
     final bottomOpacity = map['bottomOpacity'];
 
     return AppBarConfig(
-      theme: ThemeDecoder.decodeAppBarTheme(
-          AcmeColorDecoder().cleanupColors(map['theme'], colorScheme,
-              keys: ['components.OneAppBar.theme.backgroundColor']),
+      theme: ThemeDecoder.decodeAppBarTheme(map['theme'],
           validate: false),
       divider: divider == null ? null : DividerAppBarConfig.fromMap(divider),
       toolbarOpacity: toolbarOpacity ?? 1,

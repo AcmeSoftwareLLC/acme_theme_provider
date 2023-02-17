@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         'OneAppBar': {
           'type': 'app.bar',
           'theme': {
-            'backgroundColor': '#55FF0000',
+            'backgroundColor': 'surface',
             'toolbarHeight': 300,
           },
           'divider': {

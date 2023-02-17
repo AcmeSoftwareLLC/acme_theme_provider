@@ -19,8 +19,7 @@ class CardConfig extends ComponentConfig {
 
   factory CardConfig.fromMap(Map<String, dynamic> map, ColorScheme colorScheme) {
     return CardConfig(
-      theme: ThemeDecoder.decodeCardTheme( AcmeColorDecoder().cleanupColors(map['theme'], colorScheme,
-          keys: ['color']),
+      theme: ThemeDecoder.decodeCardTheme(map['theme'],
           validate: false),
       semanticContainer: map['semanticContainer'] ?? true,
       borderOnForeground: map['borderOnForeground'] ?? true,
