@@ -11,16 +11,13 @@ class AcmeColorDecoder {
       String colorValue;
       if (key.contains('.')) {
         final subKeys = key.split('.');
-        print('the subkeys are: $subKeys');
         colorValue = '${componentTheme[subKeys[3]]}';
-        print('data :$colorValue');
         if (!colorValue.startsWith('#')) {
           componentTheme[key] = _getComponentColor(colorValue, colorScheme);
         }
       } else {
         colorValue = '${componentTheme[key]}';
         String resultItem = componentTheme[key];
-        print('resultItem: $resultItem');
         resultItem = _getComponentColor(colorValue, colorScheme).toString();
         componentTheme[key] = resultItem;
       }
@@ -37,6 +34,6 @@ class AcmeColorDecoder {
       case 'surface-variant':
         return colorScheme.surfaceVariant;
     }
-    return colorScheme.primary;
+    return colorScheme.surfaceVariant;
   }
 }

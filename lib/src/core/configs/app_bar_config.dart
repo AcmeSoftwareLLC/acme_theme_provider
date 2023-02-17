@@ -21,15 +21,17 @@ class AppBarConfig extends ComponentConfig {
   final double bottomOpacity;
   final double? leadingWidth;
 
-  factory AppBarConfig.fromMap(
-      Map<String, dynamic> map, ColorScheme colorScheme) {
+  factory AppBarConfig.fromMap(Map<String, dynamic> map,
+      ColorScheme colorScheme, AcmeColorDecoder acmeColorDecoder) {
     final divider = map['divider'];
     final leadingWidth = map['leadingWidth'];
     final toolbarOpacity = map['toolbarOpacity'];
     final bottomOpacity = map['bottomOpacity'];
 
     return AppBarConfig(
-      theme: ThemeDecoder.decodeAppBarTheme(map['theme'],
+      theme: ThemeDecoder.decodeAppBarTheme(
+          acmeColorDecoder.cleanupColors(map['theme'], colorScheme,
+              keys: ['backgroundColor']),
           validate: false),
       divider: divider == null ? null : DividerAppBarConfig.fromMap(divider),
       toolbarOpacity: toolbarOpacity ?? 1,
