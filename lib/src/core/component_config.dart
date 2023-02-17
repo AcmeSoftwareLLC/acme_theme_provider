@@ -80,21 +80,24 @@ abstract class ComponentConfig {
   const ComponentConfig();
 
   /// Decodes the provided [rawConfig] into a [ComponentConfig], as per the provided [type].
-  static ComponentConfig decode(String type, Map<String, dynamic> rawConfig) {
+  static ComponentConfig decode(
+      String type, Map<String, dynamic> rawConfig, ThemeData theme) {
     final resolvedType = ComponentType.values.firstWhere(
       (e) => e.value == type,
       orElse: () => ComponentType.unknown,
     );
 
+    final colorScheme = theme.colorScheme;
+
     switch (resolvedType) {
       case ComponentType.appBar:
-        return AppBarConfig.fromMap(rawConfig);
+        return AppBarConfig.fromMap(rawConfig, colorScheme);
       case ComponentType.button:
         return ButtonConfig.fromMap(rawConfig);
       case ComponentType.textField:
         return TextFieldConfig.fromMap(rawConfig);
       case ComponentType.card:
-        return CardConfig.fromMap(rawConfig);
+        return CardConfig.fromMap(rawConfig, colorScheme);
       case ComponentType.dropDown:
         return DropdownButtonConfig.fromMap(rawConfig);
       case ComponentType.switchToggle:

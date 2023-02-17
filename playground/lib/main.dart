@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
         'FirstCard': {
           'type': 'card',
           'theme': {
-            'color': '#FF00FF',
+            'color': 'surface-variant',
             'elevation': 4.0,
           },
         },

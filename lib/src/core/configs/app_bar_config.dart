@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:json_theme/json_theme.dart';
 
+import '../../../helpers/acme_color_decoder.dart';
 import '../component_config.dart';
 
 class AppBarConfig extends ComponentConfig {
@@ -20,14 +21,18 @@ class AppBarConfig extends ComponentConfig {
   final double bottomOpacity;
   final double? leadingWidth;
 
-  factory AppBarConfig.fromMap(Map<String, dynamic> map) {
+  factory AppBarConfig.fromMap(
+      Map<String, dynamic> map, ColorScheme colorScheme) {
     final divider = map['divider'];
     final leadingWidth = map['leadingWidth'];
     final toolbarOpacity = map['toolbarOpacity'];
     final bottomOpacity = map['bottomOpacity'];
 
     return AppBarConfig(
-      theme: ThemeDecoder.decodeAppBarTheme(map['theme']),
+      theme: ThemeDecoder.decodeAppBarTheme(
+          AcmeColorDecoder().cleanupColors(map['theme'], colorScheme,
+              keys: ['components.OneAppBar.theme.backgroundColor']),
+          validate: false),
       divider: divider == null ? null : DividerAppBarConfig.fromMap(divider),
       toolbarOpacity: toolbarOpacity ?? 1,
       bottomOpacity: bottomOpacity ?? 1,

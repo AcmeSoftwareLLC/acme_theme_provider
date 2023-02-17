@@ -97,7 +97,10 @@ class AcmeThemeData<T extends Object> {
       ),
       themeMode: ThemeMode.values[themeMap['theme_mode'] ?? 1],
       components: Map.from(themeMap['components']).map(
-        (k, v) => MapEntry(k, ComponentConfig.decode(v['type'], v)),
+        (k, v) => MapEntry(
+            k,
+            ComponentConfig.decode(v['type'], v,
+                _getThemeData(themeMap, customColorsConverterCreator))),
       ),
     );
   }
@@ -200,6 +203,23 @@ ThemeData _resolveTheme<T extends Object>(
     ],
     useMaterial3: true,
   );
+}
+
+ThemeData _getThemeData(
+  Map<String, dynamic> themeMap,
+  CustomColorsConverterCreator? customColorsConverterCreator,
+) {
+  return themeMap['theme_mode'] == ThemeMode.light
+      ? _resolveTheme(
+          themeMap['light_theme_data'],
+          Brightness.light,
+          customColorsConverterCreator: customColorsConverterCreator,
+        )
+      : _resolveTheme(
+          themeMap['dark_theme_data'],
+          Brightness.dark,
+          customColorsConverterCreator: customColorsConverterCreator,
+        );
 }
 
 TextStyle? _getStyle(Map<String, TextStyleBuilder> fonts, TextStyle? style) {
