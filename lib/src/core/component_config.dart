@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../../helpers/acme_color_decoder.dart';
 import 'configs/alert_dialog_config.dart';
 import 'configs/app_bar_config.dart';
 import 'configs/button_config.dart';
@@ -88,10 +89,11 @@ abstract class ComponentConfig {
     );
 
     final colorScheme = theme.colorScheme;
+    final acmeColorDecoder = AcmeColorDecoder();
 
     switch (resolvedType) {
       case ComponentType.appBar:
-        return AppBarConfig.fromMap(rawConfig, colorScheme);
+        return AppBarConfig.fromMap(rawConfig, colorScheme, acmeColorDecoder);
       case ComponentType.button:
         return ButtonConfig.fromMap(rawConfig);
       case ComponentType.textField:

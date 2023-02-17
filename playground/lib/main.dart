@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = {
-      'theme_mode': 0,
+      'theme_mode': 1,
       'theme_data': {},
       'dark_theme_data': {},
       'components': {
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         'TwoAppBar': {
           'type': 'app.bar',
           'theme': {
-            'backgroundColor': '#0000FF',
+            'backgroundColor': 'surface',
             'foregroundColor': '#FFFFFF',
           },
         },
@@ -180,6 +180,7 @@ class MyApp extends StatelessWidget {
       builder: (context, theme) {
         return MaterialApp(
           title: 'Playground',
+          color: theme.lightTheme.colorScheme.surface,
           theme: theme.lightTheme,
           darkTheme: theme.darkTheme,
           home: const PlaygroundPage(),

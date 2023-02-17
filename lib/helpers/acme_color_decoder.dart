@@ -34,6 +34,6 @@ class AcmeColorDecoder {
       case 'surface-variant':
         return colorScheme.surfaceVariant;
     }
-    return colorScheme.primary;
+    return colorScheme.surfaceVariant;
   }
 }
