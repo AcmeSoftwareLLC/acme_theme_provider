@@ -1,6 +1,6 @@
 // Copyright (c) 2022. Acme Software LLC. All rights reserved.
 
-import 'package:acme_theme/helpers/acme_color_decoder.dart';
+import '../../../helpers/acme_color_decoder.dart';
 import 'package:flutter/material.dart';
 import 'package:json_theme/json_theme.dart';
 
@@ -17,11 +17,12 @@ class CardConfig extends ComponentConfig {
   final bool semanticContainer;
   final bool borderOnForeground;
 
-  factory CardConfig.fromMap(Map<String, dynamic> map, ColorScheme colorScheme, AcmeColorDecoder acmeColorDecoder) {
+  factory CardConfig.fromMap(Map<String, dynamic> map, ColorScheme colorScheme,
+      AcmeColorDecoder acmeColorDecoder) {
     return CardConfig(
       theme: ThemeDecoder.decodeCardTheme(
-          acmeColorDecoder.cleanupColors(map['theme'], colorScheme,
-              keys: ['components.SecondCard.theme.']),
+          acmeColorDecoder
+              .cleanupColors(map['theme'], colorScheme, keys: ['components.FirstCard.theme.color']),
           validate: false),
       semanticContainer: map['semanticContainer'] ?? true,
       borderOnForeground: map['borderOnForeground'] ?? true,
