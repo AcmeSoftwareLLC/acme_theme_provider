@@ -211,7 +211,7 @@ TextStyle? _getStyle(Map<String, TextStyleBuilder> fonts, TextStyle? style) {
   if (fontFamily.contains('_')) fontFamily = fontFamily.split('_').first;
 
   final textStyleBuilder = fonts[fontFamily] ?? GoogleFonts.roboto;
-  return style?.merge(textStyleBuilder());
+  return style?.merge(textStyleBuilder()).copyWith(inherit: false);
 }
 
 /// The exception thrown when the provided json is not a valid [AcmeThemeData].
