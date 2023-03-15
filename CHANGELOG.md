@@ -1,4 +1,9 @@
 # Changelog
+## 0.7.1
+**Mar 15, 2023**
+- Upgraded dependencies.
+- Fixed issue with inherit being true for fallback text style.
+
 ## 0.7.0
 **Jan 27, 2023**
 - Upgraded dependencies.
