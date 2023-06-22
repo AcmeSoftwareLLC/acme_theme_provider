@@ -19,7 +19,7 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
   }
 
   Future<void> pickImage() async {
-    await request<AddPostPickerGatewayOutput, AddPostPickerGatewaySuccessInput>(
+    await request<AddPostPickerGatewaySuccessInput>(
       const AddPostPickerGatewayOutput(),
       onSuccess: (AddPostPickerGatewaySuccessInput input) {
         return entity.copyWith(
@@ -31,7 +31,7 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
   }
 
   Future<void> getRandomUser() async {
-    await request<GetRandomUserGatewayOutput, GetRandomUserSuccessInput>(
+    await request<GetRandomUserSuccessInput>(
       const GetRandomUserGatewayOutput(),
       onSuccess: (input) {
         return entity.copyWith(
@@ -48,7 +48,7 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
   }
 
   Future<void> addTweet() async {
-    await request<AddPostGatewayOutput, AddPostSuccessInput>(
+    await request<AddPostSuccessInput>(
       AddPostGatewayOutput(
         tweet: Tweet(
           post: entity.post,

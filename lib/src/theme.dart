@@ -21,6 +21,7 @@ class AcmeThemeData<T extends Object> {
   /// The fallback theme to use when no theme configurations are provided.
   factory AcmeThemeData.fallback({
     CustomColorsConverterCreator<T>? customColorsConverterCreator,
+    ThemeMode themeMode = ThemeMode.light,
   }) {
     final extensions = [
       if (customColorsConverterCreator != null)
@@ -30,18 +31,12 @@ class AcmeThemeData<T extends Object> {
         ),
     ];
 
-    final typography = Typography.material2021();
-
     final lightTheme = ThemeData.from(
       colorScheme: ColorScheme.fromSeed(
         seedColor: Colors.red,
       ),
       useMaterial3: true,
-      textTheme: typography.black,
-    ).copyWith(
-      extensions: extensions,
-      primaryTextTheme: typography.black,
-    );
+    ).copyWith(extensions: extensions);
 
     final darkTheme = ThemeData.from(
       colorScheme: ColorScheme.fromSeed(
@@ -49,17 +44,19 @@ class AcmeThemeData<T extends Object> {
         brightness: Brightness.dark,
       ),
       useMaterial3: true,
-      textTheme: typography.white,
-    ).copyWith(
-      extensions: extensions,
-      primaryTextTheme: typography.white,
-    );
+    ).copyWith(extensions: extensions);
 
     return AcmeThemeData._(
       name: 'Acme Theme',
-      lightTheme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: ThemeMode.light,
+      lightTheme: ThemeData.localize(
+        lightTheme,
+        lightTheme.typography.geometryThemeFor(ScriptCategory.englishLike),
+      ),
+      darkTheme: ThemeData.localize(
+        darkTheme,
+        darkTheme.typography.geometryThemeFor(ScriptCategory.englishLike),
+      ),
+      themeMode: themeMode,
       components: {},
     );
   }
@@ -211,7 +208,7 @@ TextStyle? _getStyle(Map<String, TextStyleBuilder> fonts, TextStyle? style) {
   if (fontFamily.contains('_')) fontFamily = fontFamily.split('_').first;
 
   final textStyleBuilder = fonts[fontFamily] ?? GoogleFonts.roboto;
-  return style?.merge(textStyleBuilder()).copyWith(inherit: false);
+  return textStyleBuilder(textStyle: style);
 }
 
 /// The exception thrown when the provided json is not a valid [AcmeThemeData].

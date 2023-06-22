@@ -1,4 +1,13 @@
 # Changelog
+## 0.7.3
+**Jun 22, 2023**
+- Updates dependencies to latest version.
+
+## 0.7.2
+**Mar 20, 2023**
+- Upgraded dependencies.
+- Fixed text style inherits.
+
 ## 0.7.1
 **Mar 15, 2023**
 - Upgraded dependencies.

@@ -14,7 +14,7 @@ class HomeUseCase extends UseCase<HomeEntity> {
         );
 
   Future<void> init({bool isReset = false}) async {
-    await request<HomeGetAllTweetsGatewayOutput, HomeGetAllTweetsSuccessInput>(
+    await request<HomeGetAllTweetsSuccessInput>(
       HomeGetAllTweetsGatewayOutput(),
       onSuccess: (input) {
         return entity.copyWith(
@@ -42,7 +42,7 @@ class HomeUseCase extends UseCase<HomeEntity> {
   }
 
   Future<void> getSelectedTweet(String title) async {
-    await request<HomeGetTweetGatewayOutput, HomeGetTweetSuccessInput>(
+    await request<HomeGetTweetSuccessInput>(
         HomeGetTweetGatewayOutput(userName: title), onSuccess: (input) {
       return entity.copyWith(
         userName: input.tweet.post,
