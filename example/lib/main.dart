@@ -51,16 +51,18 @@ class SampleThemeApp extends StatelessWidget {
                 customColorsConverterCreator: BrandColorsConverter.new,
                 builder: (context, theme) {
                   return AppRouterScope(
-                    builder: (context) => MaterialApp.router(
-                      debugShowCheckedModeBanner: false,
-                      useInheritedMediaQuery: true,
-                      title: 'Twitter Clone App',
-                      theme: isOnThemeBuilder ? themeData : theme.lightTheme,
-                      darkTheme:
-                          isOnThemeBuilder ? darkThemeData : theme.darkTheme,
-                      themeMode: isOnThemeBuilder ? themeMode : theme.themeMode,
-                      routerConfig: context.router.config,
-                    ),
+                    builder: (context) {
+                      return MaterialApp.router(
+                        debugShowCheckedModeBanner: false,
+                        title: 'Twitter Clone App',
+                        theme: isOnThemeBuilder ? themeData : theme.lightTheme,
+                        darkTheme:
+                            isOnThemeBuilder ? darkThemeData : theme.darkTheme,
+                        themeMode:
+                            isOnThemeBuilder ? themeMode : theme.themeMode,
+                        routerConfig: context.router.config,
+                      );
+                    },
                     create: () => NoteRouter(),
                   );
                 },
