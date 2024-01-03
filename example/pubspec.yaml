@@ -10,9 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # acme_theme: ^0.7.2
+  
+  # TODO(Chris): Change acme_theme source to pub.dev when published.
   acme_theme:
-    path: ../../acme_theme_provider
+    git: https://github.com/AcmeSoftwareLLC/acme_theme_provider.git
+
   clean_framework: ^3.2.0
   clean_framework_rest: ^0.4.3
   clean_framework_router: ^0.5.1
