@@ -13,9 +13,7 @@ dependencies:
   
   # TODO(Chris): Change acme_theme source to pub.dev when published.
   acme_theme:
-    git: 
-      url: https://github.com/AcmeSoftwareLLC/acme_theme_provider.git
-      ref: chris/flutter-upgrade-fixes
+    git: https://github.com/AcmeSoftwareLLC/acme_theme_provider.git
 
   clean_framework: ^3.2.0
   clean_framework_rest: ^0.4.3
