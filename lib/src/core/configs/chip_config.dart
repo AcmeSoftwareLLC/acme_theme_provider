@@ -111,7 +111,7 @@ ChipThemeData? _decodeChipThemeData(dynamic value) {
         value['disabledColor'],
         validate: false,
       ),
-      elevation: JsonClass.maybeParseDouble(value['elevation']),
+      elevation: JsonClass.parseDouble(value['elevation']),
       labelPadding: ThemeDecoder.decodeEdgeInsetsGeometry(
         value['labelPadding'],
         validate: false,
@@ -124,7 +124,7 @@ ChipThemeData? _decodeChipThemeData(dynamic value) {
         value['padding'],
         validate: false,
       ),
-      pressElevation: JsonClass.maybeParseDouble(value['pressElevation']),
+      pressElevation: JsonClass.parseDouble(value['pressElevation']),
       secondaryLabelStyle: ThemeDecoder.decodeTextStyle(
         value['secondaryLabelStyle'],
         validate: false,
