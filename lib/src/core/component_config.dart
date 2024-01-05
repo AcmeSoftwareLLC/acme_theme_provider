@@ -8,7 +8,7 @@ import 'configs/button_config.dart';
 import 'configs/card_config.dart';
 import 'configs/chip_config.dart';
 import 'configs/dialog_config.dart';
-import 'configs/dropdown_button_config.dart';
+import 'configs/dropdown_menu_config.dart';
 import 'configs/slider_config.dart';
 import 'configs/snack_bar_config.dart';
 import 'configs/switch_config.dart';
@@ -21,6 +21,7 @@ export 'configs/card_config.dart';
 export 'configs/chip_config.dart';
 export 'configs/dialog_config.dart';
 export 'configs/dropdown_button_config.dart';
+export 'configs/dropdown_menu_config.dart';
 export 'configs/slider_config.dart';
 export 'configs/snack_bar_config.dart';
 export 'configs/switch_config.dart';
@@ -40,8 +41,8 @@ enum ComponentType {
   /// The component type for [Card].
   card('card', 'Card'),
 
-  /// The component type for [DropdownButton].
-  dropDown('dropdown.button', 'DropdownButton'),
+  /// The component type for [DropdownMenu].
+  dropDown('dropdown.menu', 'DropdownMenu'),
 
   /// The component type for [Switch].
   switchToggle('switch', 'Switch'),
@@ -96,7 +97,7 @@ abstract class ComponentConfig {
       case ComponentType.card:
         return CardConfig.fromMap(rawConfig);
       case ComponentType.dropDown:
-        return DropdownButtonConfig.fromMap(rawConfig);
+        return DropdownMenuConfig.fromMap(rawConfig);
       case ComponentType.switchToggle:
         return SwitchConfig.fromMap(rawConfig);
       case ComponentType.slider:
