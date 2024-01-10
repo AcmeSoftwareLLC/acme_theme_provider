@@ -33,7 +33,7 @@ abstract class CoreChip extends CoreWidget<ChipConfig> {
         focusNode: focusNode,
         avatar: avatar,
         deleteButtonTooltipMessage: deleteButtonTooltipMessage,
-        deleteIcon: deleteIcon,
+        deleteIcon: deleteIcon ?? Icon(config.defaultDeleteIcon),
         onDeleted: onDeleted,
         materialTapTargetSize: config.materialTapTargetSize,
         clipBehavior: config.clipBehaviour,
