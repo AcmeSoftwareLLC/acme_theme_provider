@@ -44,29 +44,38 @@ abstract class CoreDropdownMenu<T> extends CoreWidget<DropdownMenuConfig> {
   @override
   @nonVirtual
   Widget render(BuildContext context, DropdownMenuConfig config) {
-    return DropdownMenu(
-      width: config.width,
-      menuHeight: config.menuHeight,
-      textStyle: config.textStyle,
-      inputDecorationTheme: config.inputDecorationTheme,
-      menuStyle: config.menuStyle,
-      requestFocusOnTap: config.requestFocusOnTap,
-      expandedInsets: config.expandedInsets,
-      enabled: enabled,
-      enableFilter: enableFilter,
-      enableSearch: enableSearch,
-      leadingIcon: leadingIcon ?? Icon(config.defaultLeadingIcon),
-      trailingIcon: trailingIcon ?? Icon(config.defaultTrailingIcon),
-      label: label,
-      hintText: hintText,
-      helperText: helperText,
-      errorText: errorText,
-      selectedTrailingIcon:
-          selectedTrailingIcon ?? Icon(config.defaultSelectedIcon),
-      controller: controller,
-      initialSelection: initialSelection,
-      onSelected: onSelected,
-      dropdownMenuEntries: dropdownMenuEntries,
+    return Theme(
+      data: Theme.of(context).copyWith(
+        dropdownMenuTheme: DropdownMenuThemeData(
+          textStyle: config.textStyle,
+          inputDecorationTheme: config.inputDecorationTheme,
+          menuStyle: config.menuStyle,
+        ),
+      ),
+      child: DropdownMenu(
+        width: config.width,
+        menuHeight: config.menuHeight,
+        textStyle: config.textStyle,
+        inputDecorationTheme: config.inputDecorationTheme,
+        menuStyle: config.menuStyle,
+        requestFocusOnTap: config.requestFocusOnTap,
+        expandedInsets: config.expandedInsets,
+        enabled: enabled,
+        enableFilter: enableFilter,
+        enableSearch: enableSearch,
+        leadingIcon: leadingIcon ?? Icon(config.defaultLeadingIcon),
+        trailingIcon: trailingIcon ?? Icon(config.defaultTrailingIcon),
+        label: label,
+        hintText: hintText,
+        helperText: helperText,
+        errorText: errorText,
+        selectedTrailingIcon:
+            selectedTrailingIcon ?? Icon(config.defaultSelectedIcon),
+        controller: controller,
+        initialSelection: initialSelection,
+        onSelected: onSelected,
+        dropdownMenuEntries: dropdownMenuEntries,
+      ),
     );
   }
 }
