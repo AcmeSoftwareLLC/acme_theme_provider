@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../configs/dropdown_menu_config.dart';
+import '../configs/dropdown_menu_entry_config.dart';
 import '../core_widget.dart';
 
 abstract class CoreDropdownMenu<T> extends CoreWidget<DropdownMenuConfig> {
@@ -74,8 +75,33 @@ abstract class CoreDropdownMenu<T> extends CoreWidget<DropdownMenuConfig> {
         controller: controller,
         initialSelection: initialSelection,
         onSelected: onSelected,
-        dropdownMenuEntries: dropdownMenuEntries,
+        dropdownMenuEntries: _applyDropdownEntryThemeConfig(
+            dropdownMenuEntries, config.menuEntryConfig),
       ),
     );
+  }
+
+  List<DropdownMenuEntry<dynamic>> _applyDropdownEntryThemeConfig(
+      List<DropdownMenuEntry<dynamic>> entries,
+      DropdownMenuEntryConfig? config) {
+    if (config == null) return entries;
+
+    List<DropdownMenuEntry<dynamic>> newEntryList = [];
+
+    for (var entry in entries) {
+      DropdownMenuEntry newEntry = DropdownMenuEntry(
+        value: entry.value,
+        label: entry.label,
+        labelWidget: entry.labelWidget,
+        leadingIcon: entry.leadingIcon ?? Icon(config.defaultLeadingIcon),
+        trailingIcon: entry.trailingIcon ?? Icon(config.defaultTrailingIcon),
+        enabled: entry.enabled,
+        style: entry.style ?? config.style,
+      );
+
+      newEntryList.add(newEntry);
+    }
+
+    return newEntryList;
   }
 }

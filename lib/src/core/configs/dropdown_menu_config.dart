@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:json_theme/json_theme.dart';
 
 import '../component_config.dart';
+import 'dropdown_menu_entry_config.dart';
 
 class DropdownMenuConfig extends ComponentConfig {
   const DropdownMenuConfig({
@@ -17,6 +18,7 @@ class DropdownMenuConfig extends ComponentConfig {
     this.defaultLeadingIcon,
     this.defaultTrailingIcon,
     this.defaultSelectedIcon,
+    this.menuEntryConfig,
   });
 
   final double? width;
@@ -29,6 +31,7 @@ class DropdownMenuConfig extends ComponentConfig {
   final IconData? defaultLeadingIcon;
   final IconData? defaultTrailingIcon;
   final IconData? defaultSelectedIcon;
+  final DropdownMenuEntryConfig? menuEntryConfig;
 
   factory DropdownMenuConfig.fromMap(Map<String, dynamic> map) {
     return DropdownMenuConfig(
@@ -53,6 +56,8 @@ class DropdownMenuConfig extends ComponentConfig {
           ThemeDecoder.decodeIconData(map['defaultTrailingIcon']),
       defaultSelectedIcon:
           ThemeDecoder.decodeIconData(map['defaultSelectedIcon']),
+      menuEntryConfig:
+          DropdownMenuEntryConfig.fromMap(map['menuEntryConfig'] ?? {}),
     );
   }
 
@@ -78,6 +83,7 @@ class DropdownMenuConfig extends ComponentConfig {
       'defaultLeadingIcon': ThemeEncoder.encodeIconData(defaultLeadingIcon),
       'defaultTrailingIcon': ThemeEncoder.encodeIconData(defaultTrailingIcon),
       'defaultSelectedIcon': ThemeEncoder.encodeIconData(defaultSelectedIcon),
+      'menuEntryConfig': menuEntryConfig?.toMap() ?? {},
     };
   }
 
@@ -92,6 +98,7 @@ class DropdownMenuConfig extends ComponentConfig {
     IconData? defaultLeadingIcon,
     IconData? defaultTrailingIcon,
     IconData? defaultSelectedIcon,
+    DropdownMenuEntryConfig? menuEntryConfig,
   }) {
     return DropdownMenuConfig(
       width: width ?? this.width,
@@ -104,6 +111,7 @@ class DropdownMenuConfig extends ComponentConfig {
       defaultLeadingIcon: defaultLeadingIcon ?? this.defaultLeadingIcon,
       defaultTrailingIcon: defaultTrailingIcon ?? this.defaultTrailingIcon,
       defaultSelectedIcon: defaultSelectedIcon ?? this.defaultSelectedIcon,
+      menuEntryConfig: menuEntryConfig ?? this.menuEntryConfig,
     );
   }
 }
