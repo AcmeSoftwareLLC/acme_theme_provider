@@ -14,6 +14,9 @@ class DropdownMenuConfig extends ComponentConfig {
     required this.menuStyle,
     required this.requestFocusOnTap,
     required this.expandedInsets,
+    this.defaultLeadingIcon,
+    this.defaultTrailingIcon,
+    this.defaultSelectedIcon,
   });
 
   final double? width;
@@ -23,6 +26,9 @@ class DropdownMenuConfig extends ComponentConfig {
   final MenuStyle? menuStyle;
   final bool? requestFocusOnTap;
   final EdgeInsets? expandedInsets;
+  final IconData? defaultLeadingIcon;
+  final IconData? defaultTrailingIcon;
+  final IconData? defaultSelectedIcon;
 
   factory DropdownMenuConfig.fromMap(Map<String, dynamic> map) {
     return DropdownMenuConfig(
@@ -41,6 +47,12 @@ class DropdownMenuConfig extends ComponentConfig {
       expandedInsets: ThemeDecoder.decodeEdgeInsets(
         map['expandedInsets'],
       ),
+      defaultLeadingIcon:
+          ThemeDecoder.decodeIconData(map['defaultLeadingIcon']),
+      defaultTrailingIcon:
+          ThemeDecoder.decodeIconData(map['defaultTrailingIcon']),
+      defaultSelectedIcon:
+          ThemeDecoder.decodeIconData(map['defaultSelectedIcon']),
     );
   }
 
@@ -63,6 +75,9 @@ class DropdownMenuConfig extends ComponentConfig {
       'expandedInsets': ThemeEncoder.encodeEdgeInsets(
         expandedInsets,
       ),
+      'defaultLeadingIcon': ThemeEncoder.encodeIconData(defaultLeadingIcon),
+      'defaultTrailingIcon': ThemeEncoder.encodeIconData(defaultTrailingIcon),
+      'defaultSelectedIcon': ThemeEncoder.encodeIconData(defaultSelectedIcon),
     };
   }
 
@@ -74,6 +89,9 @@ class DropdownMenuConfig extends ComponentConfig {
     MenuStyle? menuStyle,
     bool? requestFocusOnTap,
     EdgeInsets? expandedInsets,
+    IconData? defaultLeadingIcon,
+    IconData? defaultTrailingIcon,
+    IconData? defaultSelectedIcon,
   }) {
     return DropdownMenuConfig(
       width: width ?? this.width,
@@ -83,6 +101,9 @@ class DropdownMenuConfig extends ComponentConfig {
       menuStyle: menuStyle ?? this.menuStyle,
       requestFocusOnTap: requestFocusOnTap ?? this.requestFocusOnTap,
       expandedInsets: expandedInsets ?? this.expandedInsets,
+      defaultLeadingIcon: defaultLeadingIcon ?? this.defaultLeadingIcon,
+      defaultTrailingIcon: defaultTrailingIcon ?? this.defaultTrailingIcon,
+      defaultSelectedIcon: defaultSelectedIcon ?? this.defaultSelectedIcon,
     );
   }
 }
