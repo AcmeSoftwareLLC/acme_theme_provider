@@ -114,4 +114,52 @@ class DropdownMenuConfig extends ComponentConfig {
       menuEntryConfig: menuEntryConfig ?? this.menuEntryConfig,
     );
   }
+
+  DropdownMenuConfig clearDefaultLeadingIcon() {
+    return DropdownMenuConfig(
+      width: this.width,
+      menuHeight: this.menuHeight,
+      textStyle: this.textStyle,
+      inputDecorationTheme: this.inputDecorationTheme,
+      menuStyle: this.menuStyle,
+      requestFocusOnTap: this.requestFocusOnTap,
+      expandedInsets: this.expandedInsets,
+      defaultLeadingIcon: null,
+      defaultTrailingIcon: this.defaultTrailingIcon,
+      defaultSelectedIcon: this.defaultSelectedIcon,
+      menuEntryConfig: this.menuEntryConfig,
+    );
+  }
+
+  DropdownMenuConfig clearDefaultTrailingIcon() {
+    return DropdownMenuConfig(
+      width: this.width,
+      menuHeight: this.menuHeight,
+      textStyle: this.textStyle,
+      inputDecorationTheme: this.inputDecorationTheme,
+      menuStyle: this.menuStyle,
+      requestFocusOnTap: this.requestFocusOnTap,
+      expandedInsets: this.expandedInsets,
+      defaultLeadingIcon: this.defaultLeadingIcon,
+      defaultTrailingIcon: null,
+      defaultSelectedIcon: this.defaultSelectedIcon,
+      menuEntryConfig: this.menuEntryConfig,
+    );
+  }
+
+  DropdownMenuConfig clearDefaultSelectedIcon() {
+    return DropdownMenuConfig(
+      width: this.width,
+      menuHeight: this.menuHeight,
+      textStyle: this.textStyle,
+      inputDecorationTheme: this.inputDecorationTheme,
+      menuStyle: this.menuStyle,
+      requestFocusOnTap: this.requestFocusOnTap,
+      expandedInsets: this.expandedInsets,
+      defaultLeadingIcon: this.defaultLeadingIcon,
+      defaultTrailingIcon: this.defaultTrailingIcon,
+      defaultSelectedIcon: null,
+      menuEntryConfig: this.menuEntryConfig,
+    );
+  }
 }
