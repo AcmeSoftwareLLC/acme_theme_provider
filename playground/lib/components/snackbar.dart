@@ -1,4 +1,5 @@
 import 'package:acme_theme/acme_theme.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 class FirstSnackBar extends CoreSnackBar {
   const FirstSnackBar({
@@ -7,4 +8,10 @@ class FirstSnackBar extends CoreSnackBar {
     super.animation,
     super.action,
   });
+
+  @override
+  StringBuffer getWidgetbookExportCode(BuildContext context) {
+    // TODO: implement getWidgetbookExportCode
+    throw UnimplementedError();
+  }
 }

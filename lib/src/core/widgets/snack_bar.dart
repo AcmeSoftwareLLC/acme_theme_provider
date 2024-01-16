@@ -108,4 +108,10 @@ class _SnackBar extends CoreSnackBar {
     required super.dismissDirection,
     required super.clipBehavior,
   });
+
+  @override
+  StringBuffer getWidgetbookExportCode(BuildContext context) {
+    // TODO: implement getWidgetbookExportCode
+    return StringBuffer();
+  }
 }

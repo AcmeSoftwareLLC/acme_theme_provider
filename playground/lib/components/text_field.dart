@@ -6,6 +6,12 @@ class FirstTextField extends CoreTextField {
     super.key,
     super.inputDecoration = const InputDecoration(hintText: 'First Text Field'),
   });
+
+  @override
+  StringBuffer getWidgetbookExportCode(BuildContext context) {
+    // TODO: implement getWidgetbookExportCode
+    throw UnimplementedError();
+  }
 }
 
 class SecondTextField extends CoreTextField {
@@ -15,4 +21,10 @@ class SecondTextField extends CoreTextField {
       labelText: 'Second Text Field',
     ),
   });
+
+  @override
+  StringBuffer getWidgetbookExportCode(BuildContext context) {
+    // TODO: implement getWidgetbookExportCode
+    throw UnimplementedError();
+  }
 }

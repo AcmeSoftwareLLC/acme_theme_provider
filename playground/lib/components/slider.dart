@@ -1,4 +1,5 @@
 import 'package:acme_theme/acme_theme.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 class FirstSlider extends CoreSlider {
   const FirstSlider({
@@ -6,6 +7,12 @@ class FirstSlider extends CoreSlider {
     required super.value,
     required super.onChanged,
   });
+
+  @override
+  StringBuffer getWidgetbookExportCode(BuildContext context) {
+    // TODO: implement getWidgetbookExportCode
+    throw UnimplementedError();
+  }
 }
 
 class SecondSlider extends CoreSlider {
@@ -14,4 +21,10 @@ class SecondSlider extends CoreSlider {
     required super.value,
     required super.onChanged,
   });
+
+  @override
+  StringBuffer getWidgetbookExportCode(BuildContext context) {
+    // TODO: implement getWidgetbookExportCode
+    throw UnimplementedError();
+  }
 }

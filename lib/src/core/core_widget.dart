@@ -26,6 +26,17 @@ abstract class CoreWidget<C extends ComponentConfig> extends StatefulWidget {
 
   /// Builds a widget based on the provided [child].
   Widget build(BuildContext context, Widget child) => child;
+
+  StringBuffer getWidgetbookExportCode(BuildContext context);
+
+  static StringBuffer getInitGeneratedCode() {
+    StringBuffer buffer = StringBuffer();
+
+    buffer.writeln(
+        "import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;");
+
+    return buffer;
+  }
 }
 
 class _CoreState<C extends ComponentConfig> extends State<CoreWidget> {

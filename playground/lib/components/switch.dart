@@ -1,4 +1,5 @@
 import 'package:acme_theme/acme_theme.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 class FirstSwitch extends CoreSwitch {
   const FirstSwitch({
@@ -6,6 +7,12 @@ class FirstSwitch extends CoreSwitch {
     required super.value,
     required super.onChanged,
   });
+
+  @override
+  StringBuffer getWidgetbookExportCode(BuildContext context) {
+    // TODO: implement getWidgetbookExportCode
+    throw UnimplementedError();
+  }
 }
 
 class SecondSwitch extends CoreSwitch {
@@ -14,4 +21,10 @@ class SecondSwitch extends CoreSwitch {
     required super.value,
     required super.onChanged,
   });
+
+  @override
+  StringBuffer getWidgetbookExportCode(BuildContext context) {
+    // TODO: implement getWidgetbookExportCode
+    throw UnimplementedError();
+  }
 }

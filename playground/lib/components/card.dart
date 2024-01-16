@@ -7,6 +7,12 @@ class FirstCard extends CoreCard {
     required Widget child,
     EdgeInsetsGeometry padding = const EdgeInsets.all(8),
   }) : super(child: Padding(padding: padding, child: child));
+
+  @override
+  StringBuffer getWidgetbookExportCode(BuildContext context) {
+    // TODO: implement getWidgetbookExportCode
+    throw UnimplementedError();
+  }
 }
 
 class SecondCard extends CoreCard {
@@ -14,4 +20,10 @@ class SecondCard extends CoreCard {
     super.key,
     required super.child,
   });
+
+  @override
+  StringBuffer getWidgetbookExportCode(BuildContext context) {
+    // TODO: implement getWidgetbookExportCode
+    throw UnimplementedError();
+  }
 }
