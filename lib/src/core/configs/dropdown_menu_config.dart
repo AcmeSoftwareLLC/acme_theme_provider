@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:json_theme/json_theme.dart';
 
 import '../component_config.dart';
-import 'dropdown_menu_entry_config.dart';
 
 class DropdownMenuConfig extends ComponentConfig {
   const DropdownMenuConfig({
@@ -115,51 +114,31 @@ class DropdownMenuConfig extends ComponentConfig {
     );
   }
 
-  DropdownMenuConfig clearDefaultLeadingIcon() {
-    return DropdownMenuConfig(
-      width: this.width,
-      menuHeight: this.menuHeight,
-      textStyle: this.textStyle,
-      inputDecorationTheme: this.inputDecorationTheme,
-      menuStyle: this.menuStyle,
-      requestFocusOnTap: this.requestFocusOnTap,
-      expandedInsets: this.expandedInsets,
-      defaultLeadingIcon: null,
-      defaultTrailingIcon: this.defaultTrailingIcon,
-      defaultSelectedIcon: this.defaultSelectedIcon,
-      menuEntryConfig: this.menuEntryConfig,
-    );
-  }
+  DropdownMenuConfig clearDefaultLeadingIcon() =>
+      _clearIcon(() => defaultLeadingIcon);
 
-  DropdownMenuConfig clearDefaultTrailingIcon() {
-    return DropdownMenuConfig(
-      width: this.width,
-      menuHeight: this.menuHeight,
-      textStyle: this.textStyle,
-      inputDecorationTheme: this.inputDecorationTheme,
-      menuStyle: this.menuStyle,
-      requestFocusOnTap: this.requestFocusOnTap,
-      expandedInsets: this.expandedInsets,
-      defaultLeadingIcon: this.defaultLeadingIcon,
-      defaultTrailingIcon: null,
-      defaultSelectedIcon: this.defaultSelectedIcon,
-      menuEntryConfig: this.menuEntryConfig,
-    );
-  }
+  DropdownMenuConfig clearDefaultTrailingIcon() =>
+      _clearIcon(() => defaultTrailingIcon);
 
-  DropdownMenuConfig clearDefaultSelectedIcon() {
+  DropdownMenuConfig clearDefaultSelectedIcon() =>
+      _clearIcon(() => defaultSelectedIcon);
+
+  DropdownMenuConfig _clearIcon(IconData? Function() clearFunction) {
     return DropdownMenuConfig(
-      width: this.width,
-      menuHeight: this.menuHeight,
-      textStyle: this.textStyle,
-      inputDecorationTheme: this.inputDecorationTheme,
-      menuStyle: this.menuStyle,
-      requestFocusOnTap: this.requestFocusOnTap,
-      expandedInsets: this.expandedInsets,
-      defaultLeadingIcon: this.defaultLeadingIcon,
-      defaultTrailingIcon: this.defaultTrailingIcon,
-      defaultSelectedIcon: null,
-      menuEntryConfig: this.menuEntryConfig,
+      width: width,
+      menuHeight: menuHeight,
+      textStyle: textStyle,
+      inputDecorationTheme: inputDecorationTheme,
+      menuStyle: menuStyle,
+      requestFocusOnTap: requestFocusOnTap,
+      expandedInsets: expandedInsets,
+      defaultLeadingIcon:
+          clearFunction() == defaultLeadingIcon ? null : defaultLeadingIcon,
+      defaultTrailingIcon:
+          clearFunction() == defaultTrailingIcon ? null : defaultTrailingIcon,
+      defaultSelectedIcon:
+          clearFunction() == defaultSelectedIcon ? null : defaultSelectedIcon,
+      menuEntryConfig: menuEntryConfig,
     );
   }
 }
