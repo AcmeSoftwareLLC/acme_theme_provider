@@ -115,15 +115,15 @@ class DropdownMenuConfig extends ComponentConfig {
   }
 
   DropdownMenuConfig clearDefaultLeadingIcon() =>
-      _clearIcon(() => defaultLeadingIcon);
+      _clearIcon(defaultLeadingIcon);
 
   DropdownMenuConfig clearDefaultTrailingIcon() =>
-      _clearIcon(() => defaultTrailingIcon);
+      _clearIcon(defaultTrailingIcon);
 
   DropdownMenuConfig clearDefaultSelectedIcon() =>
-      _clearIcon(() => defaultSelectedIcon);
+      _clearIcon(defaultSelectedIcon);
 
-  DropdownMenuConfig _clearIcon(IconData? Function() clearFunction) {
+  DropdownMenuConfig _clearIcon(IconData? iconToClear) {
     return DropdownMenuConfig(
       width: width,
       menuHeight: menuHeight,
@@ -133,11 +133,11 @@ class DropdownMenuConfig extends ComponentConfig {
       requestFocusOnTap: requestFocusOnTap,
       expandedInsets: expandedInsets,
       defaultLeadingIcon:
-          clearFunction() == defaultLeadingIcon ? null : defaultLeadingIcon,
+          iconToClear == defaultLeadingIcon ? null : defaultLeadingIcon,
       defaultTrailingIcon:
-          clearFunction() == defaultTrailingIcon ? null : defaultTrailingIcon,
+          iconToClear == defaultTrailingIcon ? null : defaultTrailingIcon,
       defaultSelectedIcon:
-          clearFunction() == defaultSelectedIcon ? null : defaultSelectedIcon,
+          iconToClear == defaultSelectedIcon ? null : defaultSelectedIcon,
       menuEntryConfig: menuEntryConfig,
     );
   }
