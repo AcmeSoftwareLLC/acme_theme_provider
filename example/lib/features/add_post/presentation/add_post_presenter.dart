@@ -20,11 +20,11 @@ class AddPostPresenter extends Presenter<AddPostViewModel,
   @override
   AddPostViewModel createViewModel(
     AddPostUseCase useCase,
-    AddPostDomainToUIModel output,
+    AddPostDomainToUIModel domainModel,
   ) {
     return AddPostViewModel(
-      post: output.post,
-      imagePath: output.imagePath,
+      post: domainModel.post,
+      imagePath: domainModel.imagePath,
       addTweet: useCase.addTweet,
       openGallery: useCase.pickImage,
       enterPost: (String post) => useCase.onPostEntered(
