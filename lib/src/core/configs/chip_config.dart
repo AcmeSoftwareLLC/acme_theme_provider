@@ -16,6 +16,7 @@ class ChipConfig extends ComponentConfig {
     required this.iconTheme,
     required this.surfaceTintColor,
     required this.deleteIconColor,
+    this.defaultDeleteIcon,
   });
 
   final ChipThemeData? theme;
@@ -27,6 +28,7 @@ class ChipConfig extends ComponentConfig {
   final IconThemeData? iconTheme;
   final Color? surfaceTintColor;
   final Color? deleteIconColor;
+  final IconData? defaultDeleteIcon;
 
   factory ChipConfig.fromMap(Map<String, dynamic> map) {
     return ChipConfig(
@@ -39,6 +41,7 @@ class ChipConfig extends ComponentConfig {
       iconTheme: ThemeDecoder.decodeIconThemeData(map['iconTheme']),
       surfaceTintColor: ThemeDecoder.decodeColor(map['surfaceTintColor']),
       deleteIconColor: ThemeDecoder.decodeColor(map['deleteIconColor']),
+      defaultDeleteIcon: ThemeDecoder.decodeIconData(map['defaultDeleteIcon']),
     );
   }
 
@@ -55,6 +58,7 @@ class ChipConfig extends ComponentConfig {
       'iconTheme': ThemeEncoder.encodeIconThemeData(iconTheme),
       'surfaceTintColor': ThemeEncoder.encodeColor(surfaceTintColor),
       'deleteIconColor': ThemeEncoder.encodeColor(deleteIconColor),
+      'defaultDeleteIcon': ThemeEncoder.encodeIconData(defaultDeleteIcon),
     };
   }
 
@@ -67,6 +71,7 @@ class ChipConfig extends ComponentConfig {
     VisualDensity? visualDensity,
     MaterialTapTargetSize? materialTapTargetSize,
     bool? autofocus,
+    IconData? defaultDeleteIcon,
   }) {
     return ChipConfig(
       theme: theme ?? this.theme,
@@ -78,6 +83,7 @@ class ChipConfig extends ComponentConfig {
       iconTheme: iconTheme ?? this.iconTheme,
       surfaceTintColor: surfaceTintColor ?? this.surfaceTintColor,
       deleteIconColor: deleteIconColor ?? this.deleteIconColor,
+      defaultDeleteIcon: defaultDeleteIcon ?? this.defaultDeleteIcon,
     );
   }
 }

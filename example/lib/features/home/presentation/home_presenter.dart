@@ -1,11 +1,11 @@
-import 'package:clean_framework/clean_framework_legacy.dart';
-import 'package:acme_theme_example/features/home/domain/home_ui_output.dart';
+import 'package:acme_theme_example/features/home/domain/home_domain_models.dart';
 import 'package:acme_theme_example/features/home/domain/home_use_case.dart';
 import 'package:acme_theme_example/features/home/presentation/home_view_model.dart';
+import 'package:clean_framework/clean_framework.dart';
 import 'package:flutter/material.dart';
 
 class HomePresenter
-    extends Presenter<HomeViewModel, HomeUIOutput, HomeUseCase> {
+    extends Presenter<HomeViewModel, HomeDomainToUIModel, HomeUseCase> {
   const HomePresenter({
     super.key,
     required super.provider,
@@ -19,11 +19,12 @@ class HomePresenter
   }
 
   @override
-  HomeViewModel createViewModel(HomeUseCase useCase, HomeUIOutput output) {
+  HomeViewModel createViewModel(
+      HomeUseCase useCase, HomeDomainToUIModel domainModel) {
     return HomeViewModel(
-      tweets: output.tweets,
+      tweets: domainModel.tweets,
       onTweetSelected: useCase.getSelectedTweet,
-      isLoading: output.isLoading,
+      isLoading: domainModel.isLoading,
     );
   }
 }

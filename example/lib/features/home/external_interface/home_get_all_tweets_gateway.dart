@@ -1,26 +1,25 @@
+import 'package:acme_theme_example/core/dependency/tweet_db_ext_interface/tweet_db_gateway.dart';
+import 'package:acme_theme_example/core/dependency/tweet_db_ext_interface/tweet_db_request.dart';
+import 'package:acme_theme_example/core/dependency/tweet_db_ext_interface/tweet_db_success_response.dart';
+import 'package:acme_theme_example/features/home/domain/home_domain_inputs.dart';
+import 'package:acme_theme_example/features/home/domain/home_domain_models.dart';
 import 'package:clean_framework/clean_framework.dart';
-import 'package:clean_framework/clean_framework_legacy.dart';
-import 'package:acme_theme_example/core/database/db_gateway.dart';
-import 'package:acme_theme_example/core/database/db_request.dart';
-import 'package:acme_theme_example/core/database/db_success_response.dart';
-import 'package:acme_theme_example/providers.dart';
 
-class HomeGetAllTweetsGateway extends DbGateway<HomeGetAllTweetsGatewayOutput,
-    HomeGetAllTweetsSuccessResponse, HomeGetAllTweetsSuccessInput> {
-  HomeGetAllTweetsGateway({
-    required super.provider,
-  }) : super(context: providersContext);
-
+class HomeGetAllTweetsGateway extends TweetDbGateway<
+    HomeGetAllTweetsDomainToGatewayModel,
+    HomeGetAllTweetsRequest,
+    HomeGetAllTweetsDomainInput> {
   @override
-  DbRequest buildRequest(HomeGetAllTweetsGatewayOutput output) {
+  HomeGetAllTweetsRequest buildRequest(
+      HomeGetAllTweetsDomainToGatewayModel domainModel) {
     return HomeGetAllTweetsRequest();
   }
 
   @override
-  HomeGetAllTweetsSuccessInput onSuccess(
+  HomeGetAllTweetsDomainInput onSuccess(
     HomeGetAllTweetsSuccessResponse response,
   ) {
-    return HomeGetAllTweetsSuccessInput(
+    return HomeGetAllTweetsDomainInput(
       tweets: response.tweets.map(_getTweetData).toList(growable: false),
     );
   }
@@ -37,25 +36,19 @@ class HomeGetAllTweetsGateway extends DbGateway<HomeGetAllTweetsGatewayOutput,
       userImage: tweetItem.getString('userImage'),
     );
   }
+
+  @override
+  FailureDomainInput onFailure(FailureResponse failureResponse) {
+    return FailureDomainInput(message: failureResponse.message);
+  }
 }
 
-class HomeGetAllTweetsRequest extends DbRequest {}
+class HomeGetAllTweetsRequest extends TweetDbRequest {}
 
-class HomeGetAllTweetsSuccessResponse extends DbSuccessResponse {
+class HomeGetAllTweetsSuccessResponse extends TweetDbSuccessResponse {
   HomeGetAllTweetsSuccessResponse({required this.tweets});
 
   final List<Map<String, dynamic>> tweets;
-}
-
-class HomeGetAllTweetsGatewayOutput extends Output {
-  @override
-  List<Object?> get props => [];
-}
-
-class HomeGetAllTweetsSuccessInput extends SuccessInput {
-  const HomeGetAllTweetsSuccessInput({required this.tweets});
-
-  final List<TweetData> tweets;
 }
 
 class TweetData {

@@ -1,8 +1,7 @@
-import 'package:clean_framework/clean_framework_legacy.dart';
+import 'package:acme_theme_example/features/home/domain/home_domain_inputs.dart';
+import 'package:clean_framework/clean_framework.dart';
 import 'package:acme_theme_example/features/home/domain/home_entity.dart';
-import 'package:acme_theme_example/features/home/domain/home_ui_output.dart';
-import 'package:acme_theme_example/features/home/external_interface/home_get_all_tweets_gateway.dart';
-import 'package:acme_theme_example/features/home/external_interface/home_get_tweet_gateway.dart';
+import 'package:acme_theme_example/features/home/domain/home_domain_models.dart';
 import 'package:acme_theme_example/features/theme/tweet.dart';
 import 'package:flutter/foundation.dart';
 
@@ -10,12 +9,16 @@ class HomeUseCase extends UseCase<HomeEntity> {
   HomeUseCase()
       : super(
           entity: const HomeEntity(),
-          transformers: [HomeUIOutputTransformer()],
+          transformers: [
+            HomeDomainToUIModelTransformer(),
+          ],
         );
 
-  Future<void> init({bool isReset = false}) async {
-    await request<HomeGetAllTweetsSuccessInput>(
-      HomeGetAllTweetsGatewayOutput(),
+  Future<void> init({
+    bool isReset = false,
+  }) async {
+    await request<HomeGetAllTweetsDomainInput>(
+      HomeGetAllTweetsDomainToGatewayModel(),
       onSuccess: (input) {
         return entity.copyWith(
           tweets: [
@@ -42,8 +45,8 @@ class HomeUseCase extends UseCase<HomeEntity> {
   }
 
   Future<void> getSelectedTweet(String title) async {
-    await request<HomeGetTweetSuccessInput>(
-        HomeGetTweetGatewayOutput(userName: title), onSuccess: (input) {
+    await request<HomeGetTweetDomainInput>(
+        HomeGetTweetDomainToGatewayModel(userName: title), onSuccess: (input) {
       return entity.copyWith(
         userName: input.tweet.post,
       );
@@ -57,13 +60,34 @@ class HomeUseCase extends UseCase<HomeEntity> {
   }
 }
 
-class HomeUIOutputTransformer
-    extends OutputTransformer<HomeEntity, HomeUIOutput> {
+class HomeDomainToUIModelTransformer
+    extends DomainModelTransformer<HomeEntity, HomeDomainToUIModel> {
   @override
-  HomeUIOutput transform(HomeEntity entity) {
-    return HomeUIOutput(
+  HomeDomainToUIModel transform(HomeEntity entity) {
+    return HomeDomainToUIModel(
       tweets: entity.tweets,
       isLoading: entity.isLoading,
+    );
+  }
+}
+
+class HomeGetAllTweetsDomainInputTransformer
+    extends DomainInputTransformer<HomeEntity, HomeGetAllTweetsDomainInput> {
+  @override
+  HomeEntity transform(HomeEntity entity, HomeGetAllTweetsDomainInput input) {
+    return entity.copyWith(
+      tweets: [
+        for (var tweetData in input.tweets)
+          Tweet(
+            post: tweetData.userName,
+            imagePath: tweetData.imagePath,
+            firstName: tweetData.firstName,
+            lastName: tweetData.lastName,
+            userName: tweetData.emailId,
+            userImage: tweetData.userImage,
+          )
+      ],
+      isLoading: false,
     );
   }
 }
