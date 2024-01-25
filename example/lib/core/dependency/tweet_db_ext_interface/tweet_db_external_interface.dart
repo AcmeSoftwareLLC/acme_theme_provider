@@ -20,24 +20,30 @@ class TweetDbExternalInterface
 
   @override
   void handleRequest() {
-    on<HomeGetAllTweetsRequest>((request, send) async {
-      final tweets = await db.findAll(store: _tweetStore);
-      send(HomeGetAllTweetsSuccessResponse(tweets: tweets));
-    });
+    on<HomeGetAllTweetsRequest>(
+      (request, send) async {
+        final tweets = await db.findAll(store: _tweetStore);
+        send(HomeGetAllTweetsSuccessResponse(tweets: tweets));
+      },
+    );
 
-    on<HomeGetTweetRequest>((request, send) async {
-      final tweet =
-          await db.findFirst(store: _tweetStore, key: request.userName);
-      send(HomeGetTweetSuccessResponse(tweet: tweet!));
-    });
+    on<HomeGetTweetRequest>(
+      (request, send) async {
+        final tweet =
+            await db.findFirst(store: _tweetStore, key: request.userName);
+        send(HomeGetTweetSuccessResponse(tweet: tweet!));
+      },
+    );
 
-    on<AddPostRequest>((request, send) async {
-      await db.update(
-        store: _tweetStore,
-        key: request.tweet.post,
-        value: request.tweet.toJson(),
-      );
-    });
+    on<AddPostRequest>(
+      (request, send) async {
+        await db.update(
+          store: _tweetStore,
+          key: request.tweet.post,
+          value: request.tweet.toJson(),
+        );
+      },
+    );
   }
 
   @override
