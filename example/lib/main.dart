@@ -1,5 +1,5 @@
 import 'package:acme_theme/acme_theme.dart';
-import 'package:clean_framework/clean_framework_legacy.dart';
+import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework_router/clean_framework_router.dart';
 import 'package:acme_theme_example/brand_colors.dart';
 import 'package:acme_theme_example/providers.dart';
@@ -7,7 +7,6 @@ import 'package:acme_theme_example/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  loadProviders();
   runApp(
     SampleThemeApp(
       themeMode: ThemeMode.light,
@@ -40,8 +39,12 @@ class SampleThemeApp extends StatelessWidget {
     return SampleAppListenerScope(
       onIconPressed: onIconPressed,
       isOnThemeBuilder: isOnThemeBuilder,
-      child: AppProvidersContainer(
-        providersContext: providersContext,
+      child: AppProviderScope(
+        externalInterfaceProviders: [
+          getRandomUserExternalInterfaceProvider,
+          notesStoreExternalInterfaceProvider,
+          imageUtilExternalInterfaceProvider,
+        ],
         child: ThemeScope(
           notifier: ThemeNotifier(),
           child: Builder(
@@ -51,6 +54,7 @@ class SampleThemeApp extends StatelessWidget {
                 customColorsConverterCreator: BrandColorsConverter.new,
                 builder: (context, theme) {
                   return AppRouterScope(
+                    create: NoteRouter.new,
                     builder: (context) {
                       return MaterialApp.router(
                         debugShowCheckedModeBanner: false,
@@ -63,7 +67,6 @@ class SampleThemeApp extends StatelessWidget {
                         routerConfig: context.router.config,
                       );
                     },
-                    create: () => NoteRouter(),
                   );
                 },
               );

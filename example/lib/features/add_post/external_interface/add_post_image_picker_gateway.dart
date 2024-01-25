@@ -1,37 +1,32 @@
-import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util_gateway.dart';
 import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util_request.dart';
 import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util_response.dart';
+import 'package:acme_theme_example/features/add_post/domain/add_post_domain_inputs.dart';
+import 'package:acme_theme_example/features/add_post/domain/add_post_domain_models.dart';
 
-import 'package:acme_theme_example/providers.dart';
+import 'package:clean_framework/clean_framework.dart';
 
-class AddPostPickerGateway extends ImageUtilGateway<AddPostPickerGatewayOutput,
-    ImagePickerRequest, AddPostPickerGatewaySuccessInput> {
-  AddPostPickerGateway({
-    ProvidersContext? context,
-    UseCaseProvider? provider,
-  }) : super(
-          context: context ?? providersContext,
-          provider: provider ?? addPostUseCaseProvider,
-        );
-
+class AddPostPickerGateway extends ImageUtilGateway<
+    AddPostPickerDomainToGatewayModel,
+    ImagePickerRequest,
+    AddPostPickerGatewaySuccessDomainInput> {
   @override
   ImagePickerRequest buildRequest(
-    AddPostPickerGatewayOutput output,
+    AddPostPickerDomainToGatewayModel domainModel,
   ) {
     return AddPostImagePickerRequest();
   }
 
   @override
-  FailureInput onFailure(FailureResponse failureResponse) {
-    return FailureInput(message: failureResponse.message);
+  FailureDomainInput onFailure(FailureResponse failureResponse) {
+    return FailureDomainInput(message: failureResponse.message);
   }
 
   @override
-  AddPostPickerGatewaySuccessInput onSuccess(
+  AddPostPickerGatewaySuccessDomainInput onSuccess(
     covariant ImageUtilSuccessResponse response,
   ) {
-    return AddPostPickerGatewaySuccessInput(imagePath: response.path);
+    return AddPostPickerGatewaySuccessDomainInput(imagePath: response.path);
   }
 }
 
@@ -41,19 +36,4 @@ class AddPostImagePickerRequest extends GalleryImagePickerRequest {
           maxHeight: 1000,
           maxWidth: 1000,
         );
-}
-
-class AddPostPickerGatewayOutput extends Output {
-  const AddPostPickerGatewayOutput();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AddPostPickerGatewaySuccessInput extends SuccessInput {
-  const AddPostPickerGatewaySuccessInput({
-    required this.imagePath,
-  });
-
-  final String? imagePath;
 }

@@ -1,12 +1,20 @@
-import 'package:clean_framework/clean_framework_legacy.dart';
-import 'package:acme_theme_example/core/database/acme_database.dart';
-import 'package:acme_theme_example/core/database/db_external_interface.dart';
+import 'package:acme_theme_example/core/dependency/tweet_db_ext_interface/tweet_db_request.dart';
+import 'package:acme_theme_example/core/dependency/tweet_db_ext_interface/tweet_db_success_response.dart';
+import 'package:acme_theme_example/features/add_post/external_interface/add_post_gateway.dart';
 import 'package:acme_theme_example/features/home/external_interface/home_get_all_tweets_gateway.dart';
 import 'package:acme_theme_example/features/home/external_interface/home_get_tweet_gateway.dart';
-import 'package:acme_theme_example/features/add_post/external_interface/add_post_gateway.dart';
+import 'package:clean_framework/clean_framework.dart';
+import 'package:acme_theme_example/core/database/acme_database.dart';
+import 'package:flutter/widgets.dart';
 
-class HomeTweetsStoreExternalInterface extends DbExternalInterface {
-  HomeTweetsStoreExternalInterface({required super.gatewayConnections});
+class TweetDbExternalInterface
+    extends ExternalInterface<TweetDbRequest, TweetDbSuccessResponse> {
+  TweetDbExternalInterface() : db = AcmeDatabase() {
+    db.init();
+  }
+
+  @protected
+  final AcmeDatabase db;
 
   MapStoreRef get _tweetStore => db.store('tweet_store');
 
@@ -34,7 +42,6 @@ class HomeTweetsStoreExternalInterface extends DbExternalInterface {
 
   @override
   FailureResponse onError(Object error) {
-    // TODO: implement onError
-    throw UnimplementedError();
+    return error as FailureResponse;
   }
 }

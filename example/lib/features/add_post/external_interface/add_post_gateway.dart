@@ -1,32 +1,26 @@
+import 'package:acme_theme_example/core/dependency/tweet_db_ext_interface/tweet_db_gateway.dart';
+import 'package:acme_theme_example/core/dependency/tweet_db_ext_interface/tweet_db_request.dart';
+import 'package:acme_theme_example/core/dependency/tweet_db_ext_interface/tweet_db_success_response.dart';
+import 'package:acme_theme_example/features/add_post/domain/add_post_domain_inputs.dart';
+import 'package:acme_theme_example/features/add_post/domain/add_post_domain_models.dart';
 import 'package:clean_framework/clean_framework.dart';
-import 'package:clean_framework/clean_framework_legacy.dart';
-import 'package:acme_theme_example/core/database/db_gateway.dart';
-import 'package:acme_theme_example/core/database/db_request.dart';
-import 'package:acme_theme_example/core/database/db_success_response.dart';
 import 'package:acme_theme_example/features/theme/tweet.dart';
-import 'package:acme_theme_example/providers.dart';
 
-class AddPostGateway extends DbGateway<AddPostGatewayOutput,
-    AddPostSuccessResponse, AddPostSuccessInput> {
-  AddPostGateway({
-    required super.provider,
-  }) : super(
-          context: providersContext,
-        );
-
+class AddPostGateway extends TweetDbGateway<AddPostDomainToGatewayModel,
+    AddPostRequest, AddPostSuccessDomainInput> {
   @override
-  DbRequest buildRequest(AddPostGatewayOutput output) {
+  AddPostRequest buildRequest(AddPostDomainToGatewayModel domainModel) {
     return AddPostRequest(
-      tweet: output.tweet,
+      tweet: domainModel.tweet,
     );
   }
 
   @override
-  AddPostSuccessInput onSuccess(
+  AddPostSuccessDomainInput onSuccess(
     AddPostSuccessResponse response,
   ) {
     final deserializer = Deserializer(response.tweets);
-    return AddPostSuccessInput(
+    return AddPostSuccessDomainInput(
       tweets: deserializer.getList(
         'data',
         converter: (map) {
@@ -49,9 +43,14 @@ class AddPostGateway extends DbGateway<AddPostGatewayOutput,
       ),
     );
   }
+
+  @override
+  FailureDomainInput onFailure(FailureResponse failureResponse) {
+    return FailureDomainInput(message: failureResponse.message);
+  }
 }
 
-class AddPostRequest extends DbRequest {
+class AddPostRequest extends TweetDbRequest {
   AddPostRequest({
     required this.tweet,
   });
@@ -59,29 +58,10 @@ class AddPostRequest extends DbRequest {
   final Tweet tweet;
 }
 
-class AddPostSuccessResponse extends DbSuccessResponse {
+class AddPostSuccessResponse extends TweetDbSuccessResponse {
   AddPostSuccessResponse({
     required this.tweets,
   });
 
   final List<Tweet> tweets;
-}
-
-class AddPostGatewayOutput extends Output {
-  const AddPostGatewayOutput({
-    required this.tweet,
-  });
-
-  final Tweet tweet;
-
-  @override
-  List<Object?> get props => [tweet];
-}
-
-class AddPostSuccessInput extends SuccessInput {
-  final List<Tweet> tweets;
-
-  const AddPostSuccessInput({
-    required this.tweets,
-  });
 }

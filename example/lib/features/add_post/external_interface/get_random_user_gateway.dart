@@ -1,43 +1,45 @@
-import 'package:clean_framework/clean_framework_legacy.dart';
-import 'package:clean_framework_rest/clean_framework_rest_legacy.dart';
-import 'package:acme_theme_example/providers.dart';
+import 'package:acme_theme_example/core/dependency/random_user_ext_interface/random_user_failure_response.dart';
+import 'package:acme_theme_example/core/dependency/random_user_ext_interface/random_user_request.dart';
+import 'package:acme_theme_example/core/dependency/random_user_ext_interface/random_user_success_response.dart';
+import 'package:acme_theme_example/features/add_post/domain/add_post_domain_inputs.dart';
+import 'package:acme_theme_example/features/add_post/domain/add_post_domain_models.dart';
+import 'package:clean_framework/clean_framework.dart';
 
-class GetRandomUserGateway extends RestGateway<GetRandomUserGatewayOutput,
-    RandomUserGatewayRequest, GetRandomUserSuccessInput> {
-  GetRandomUserGateway({
-    ProvidersContext? context,
-    UseCaseProvider? provider,
-  }) : super(
-          context: context ?? providersContext,
-          provider: provider ?? addPostUseCaseProvider,
-        );
-
+class GetRandomUserGateway extends Gateway<
+    GetRandomUserDomainToGatewayModel,
+    RandomUserGatewayRequest,
+    RandomUserSuccessResponse,
+    GetRandomUserSuccessDomainInput> {
   @override
   RandomUserGatewayRequest buildRequest(
-    GetRandomUserGatewayOutput output,
+    GetRandomUserDomainToGatewayModel domainModel,
   ) {
-    return const RandomUserGatewayRequest();
+    return RandomUserGatewayRequest();
   }
 
   @override
-  FailureInput onFailure(FailureResponse failureResponse) {
-    if (failureResponse is HttpFailureResponse) {
-      if (failureResponse.statusCode == 401) return InvalidTokenFailureInput();
-      return FailureInput(message: failureResponse.error.toString());
+  FailureDomainInput onFailure(FailureResponse failureResponse) {
+    if (failureResponse is RandomUserFailureResponse) {
+      if (failureResponse.type == RandomUserFailureType.invalidToken) {
+        return InvalidTokenFailureDomainInput();
+      }
+      return FailureDomainInput(
+        message: failureResponse.errorData.toString(),
+      );
     }
-    return FailureInput(message: failureResponse.message);
+    return FailureDomainInput(message: failureResponse.message);
   }
 
   @override
-  GetRandomUserSuccessInput onSuccess(
-    RestSuccessResponse response,
+  GetRandomUserSuccessDomainInput onSuccess(
+    RandomUserSuccessResponse response,
   ) {
     final deserializer = Deserializer(response.data);
     final results = deserializer.getList('results', converter: (v) => v).first;
     final name = results.deserialize('name');
     final picture = results.deserialize('picture');
     final login = results.deserialize('login');
-    return GetRandomUserSuccessInput(
+    return GetRandomUserSuccessDomainInput(
       firstName: name.getString('first'),
       lastName: name.getString('last'),
       userName: login.getString('username'),
@@ -46,32 +48,7 @@ class GetRandomUserGateway extends RestGateway<GetRandomUserGatewayOutput,
   }
 }
 
-class GetRandomUserGatewayOutput extends Output {
-  const GetRandomUserGatewayOutput();
-
+class RandomUserGatewayRequest extends GetRandomUserRequest {
   @override
-  List<Object?> get props => [];
+  String get resource => '?nat=us&randomapi';
 }
-
-class GetRandomUserSuccessInput extends SuccessInput {
-  const GetRandomUserSuccessInput({
-    required this.firstName,
-    required this.lastName,
-    required this.userName,
-    required this.userImage,
-  });
-
-  final String firstName;
-  final String lastName;
-  final String userName;
-  final String userImage;
-}
-
-class RandomUserGatewayRequest extends GetRestRequest {
-  const RandomUserGatewayRequest();
-
-  @override
-  String get path => '?nat=us&randomapi';
-}
-
-class InvalidTokenFailureInput extends FailureInput {}
