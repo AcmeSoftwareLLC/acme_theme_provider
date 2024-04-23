@@ -1,9 +1,7 @@
+import 'package:acme_theme_example/features/add_post/domain/add_post_domain_inputs.dart';
 import 'package:clean_framework/clean_framework_legacy.dart';
 import 'package:acme_theme_example/features/add_post/domain/add_post_entity.dart';
-import 'package:acme_theme_example/features/add_post/domain/add_post_ui_output.dart';
-import 'package:acme_theme_example/features/add_post/external_interface/add_post_gateway.dart';
-import 'package:acme_theme_example/features/add_post/external_interface/add_post_image_picker_gateway.dart';
-import 'package:acme_theme_example/features/add_post/external_interface/get_random_user_gateway.dart';
+import 'package:acme_theme_example/features/add_post/domain/add_post_domain_models.dart';
 import 'package:acme_theme_example/features/theme/tweet.dart';
 import 'package:flutter/foundation.dart';
 
@@ -11,7 +9,7 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
   AddPostUseCase()
       : super(
           entity: const AddPostEntity(),
-          transformers: [AddPostUIOutputTransformer()],
+          transformers: [AddPostDomainToUIModelTransformer()],
         );
 
   void onPostEntered({required String post}) {
@@ -19,9 +17,9 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
   }
 
   Future<void> pickImage() async {
-    await request<AddPostPickerGatewaySuccessInput>(
-      const AddPostPickerGatewayOutput(),
-      onSuccess: (AddPostPickerGatewaySuccessInput input) {
+    await request<AddPostPickerGatewaySuccessDomainInput>(
+      const AddPostPickerDomainToGatewayModel(),
+      onSuccess: (AddPostPickerGatewaySuccessDomainInput input) {
         return entity.copyWith(
           imagePath: input.imagePath,
         );
@@ -31,8 +29,8 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
   }
 
   Future<void> getRandomUser() async {
-    await request<GetRandomUserSuccessInput>(
-      const GetRandomUserGatewayOutput(),
+    await request<GetRandomUserSuccessDomainInput>(
+      const GetRandomUserDomainToGatewayModel(),
       onSuccess: (input) {
         return entity.copyWith(
           firstName: input.firstName,
@@ -48,8 +46,8 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
   }
 
   Future<void> addTweet() async {
-    await request<AddPostSuccessInput>(
-      AddPostGatewayOutput(
+    await request<AddPostSuccessDomainInput>(
+      AddPostDomainToGatewayModel(
         tweet: Tweet(
           post: entity.post,
           imagePath: entity.imagePath,
@@ -95,11 +93,11 @@ class AddPostUseCase extends UseCase<AddPostEntity> {
   }
 }
 
-class AddPostUIOutputTransformer
-    extends OutputTransformer<AddPostEntity, AddPostUIOutput> {
+class AddPostDomainToUIModelTransformer
+    extends DomainModelTransformer<AddPostEntity, AddPostDomainToUIModel> {
   @override
-  AddPostUIOutput transform(AddPostEntity entity) {
-    return AddPostUIOutput(
+  AddPostDomainToUIModel transform(AddPostEntity entity) {
+    return AddPostDomainToUIModel(
       post: entity.post,
       imagePath: entity.imagePath,
     );

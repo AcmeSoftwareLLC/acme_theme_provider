@@ -1,18 +1,14 @@
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:clean_framework/clean_framework_legacy.dart';
+import 'package:clean_framework/clean_framework.dart';
 import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util.dart';
 import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util_request.dart';
 import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_util_response.dart';
 
 class ImageUtilExternalInterface
-    extends ExternalInterface<ImageUtilRequest, SuccessResponse> {
-  ImageUtilExternalInterface({
-    required List<GatewayConnection<Gateway>> gatewayConnections,
-    ImageUtil? imageUtil,
-  })  : _imageUtil = imageUtil ?? ImageUtil(),
-        super(gatewayConnections);
+    extends ExternalInterface<ImageUtilRequest, ImageUtilSuccessResponse> {
+  ImageUtilExternalInterface() : _imageUtil = ImageUtil();
   final ImageUtil _imageUtil;
 
   @override
@@ -24,7 +20,7 @@ class ImageUtilExternalInterface
 
   Future<void> _withImageCropperRequest(
     ImageCropperRequest request,
-    ResponseSender send,
+    ResponseSender<ImageUtilSuccessResponse> send,
   ) async {
     try {
       send(
@@ -43,7 +39,7 @@ class ImageUtilExternalInterface
 
   Future<void> _withImagePickerRequest(
     ImagePickerRequest request,
-    ResponseSender send,
+    ResponseSender<ImageUtilSuccessResponse> send,
   ) async {
     try {
       final originalImagePath = await _imageUtil.pickImage(
