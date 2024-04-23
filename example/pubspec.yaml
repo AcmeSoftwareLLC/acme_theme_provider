@@ -1,42 +1,40 @@
 name: acme_theme_example
 description: An example app to demonstrate the use of Acme Theme Importer
 publish_to: none
-version: 1.0.0+1
+version: 2.0.0+1
 
 environment:
-  sdk: '>=2.19.0 <4.0.0'
-  flutter: '>=3.7.0'
+  sdk: '>=3.3.4 <4.0.0'
+  flutter: '>=3.19.6'
 
 dependencies:
   flutter:
     sdk: flutter
-  acme_theme: ^0.7.2
-  clean_framework: ^3.2.0
-  clean_framework_rest: ^0.4.3
-  clean_framework_router: ^0.5.1
-  flutter_svg: ^2.0.7
-  image_cropper: ^5.0.0
-  image_picker: ^0.8.9
-  json_theme: ^6.0.1+1
-  logger: ^1.4.0
-  path: '>=1.8.2 <2.0.0'
-  path_provider: ^2.0.15
-  sembast: ^3.4.9
-  sembast_web: ^2.1.3
-  shared_preferences: ^2.1.2
+  acme_theme:
+    path: ../
+  clean_framework: ^4.0.1
+  clean_framework_http: ^0.4.3
+  clean_framework_router: ^0.5.10
+  flutter_svg: ^2.0.10+1
+  image_cropper: ^5.0.1
+  image_picker: ^1.1.0
+  json_theme: ^6.4.1+4
+  logger: ^2.2.0
+  path: '>=1.9.0 <2.0.0'
+  path_provider: ^2.1.3
+  sembast: ^3.7.1
+  sembast_web: ^2.3.0
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.1
-  very_good_analysis: ^5.0.0+1
+  flutter_lints: ^3.0.2
+  very_good_analysis: ^5.1.0
 
 
 flutter:
   uses-material-design: true
 
   assets:
-    - assets/example-theme.acme
     - assets/themes/
-    - assets/no_data.png
-    - assets/icons/

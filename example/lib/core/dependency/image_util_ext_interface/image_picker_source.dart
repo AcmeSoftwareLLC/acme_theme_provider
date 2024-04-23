@@ -1,1 +1,0 @@
-enum ImagePickerSource { camera, gallery }
