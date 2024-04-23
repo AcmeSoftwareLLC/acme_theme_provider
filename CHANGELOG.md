@@ -1,4 +1,8 @@
 # Changelog
+## 0.8.0
+**Apr 23, 2024**
+- Updates dependencies to latest version.
+
 ## 0.7.3
 **Jun 22, 2023**
 - Updates dependencies to latest version.
