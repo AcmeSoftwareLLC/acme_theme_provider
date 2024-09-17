@@ -19,7 +19,7 @@ class SearchUI extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-        color: Theme.of(context).colorScheme.surfaceVariant,
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
         child: Column(
           children: [
             _TrendsWidget(),
@@ -40,7 +40,7 @@ class _SearchBar extends StatelessWidget {
           textAlign: TextAlign.center,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Theme.of(context).colorScheme.surfaceVariant,
+            fillColor: Theme.of(context).colorScheme.surfaceContainerHighest,
             floatingLabelBehavior: FloatingLabelBehavior.never,
             contentPadding: const EdgeInsets.symmetric(horizontal: 40),
             prefixIcon: AppIcons(
@@ -84,7 +84,7 @@ class _TrendsWidget extends StatelessWidget {
                 width: screenWidth,
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Theme.of(context).colorScheme.surfaceVariant,
+                    color: Theme.of(context).colorScheme.surfaceContainerHighest,
                   ),
                 ),
                 child: Padding(

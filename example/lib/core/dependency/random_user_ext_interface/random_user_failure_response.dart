@@ -8,10 +8,10 @@ enum RandomUserFailureType {
 class RandomUserFailureResponse
     extends TypedFailureResponse<RandomUserFailureType> {
   const RandomUserFailureResponse({
-    required RandomUserFailureType type,
+    required super.type,
     super.errorData = const {},
     super.message = '',
-  }) : super(type: type);
+  });
 
   @override
   String toString() {

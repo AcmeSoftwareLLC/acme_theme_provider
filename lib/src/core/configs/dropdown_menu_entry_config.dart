@@ -50,16 +50,16 @@ class DropdownMenuEntryConfig extends ComponentConfig {
 
   DropdownMenuEntryConfig clearDefaultLeadingIcon() {
     return DropdownMenuEntryConfig(
-      style: this.style,
+      style: style,
       defaultLeadingIcon: null,
-      defaultTrailingIcon: this.defaultTrailingIcon,
+      defaultTrailingIcon: defaultTrailingIcon,
     );
   }
 
   DropdownMenuEntryConfig clearDefaultTrailingIcon() {
     return DropdownMenuEntryConfig(
-      style: this.style,
-      defaultLeadingIcon: this.defaultLeadingIcon,
+      style: style,
+      defaultLeadingIcon: defaultLeadingIcon,
       defaultTrailingIcon: null,
     );
   }

@@ -18,7 +18,7 @@ class _SettingsUIState extends State<SettingsUI> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
       appBar: AppBar(
         title: Text('Settings',
             style: Theme.of(context)
@@ -33,7 +33,7 @@ class _SettingsUIState extends State<SettingsUI> {
         ),
         shape: Border(
           bottom: BorderSide(
-            color: Theme.of(context).colorScheme.surfaceVariant,
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
             width: 0.5,
           ),
         ),
@@ -49,7 +49,7 @@ class _SettingsUIState extends State<SettingsUI> {
               width: screenWidth,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 ),
               ),
               child: Padding(
@@ -109,7 +109,7 @@ class _ThemeSelectionTileState extends State<_ThemeSelectionTile> {
           decoration: BoxDecoration(
             border: Border.all(
                 width: 0.5,
-                color: Theme.of(context).colorScheme.surfaceVariant),
+                color: Theme.of(context).colorScheme.surfaceContainerHighest),
           ),
           child: ListTile(
             title: Text(themePaths[index]),

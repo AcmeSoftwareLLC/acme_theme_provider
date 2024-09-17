@@ -26,7 +26,7 @@ abstract class CoreButton extends CoreWidget<ButtonConfig> {
   final ValueChanged<bool>? onFocusChange;
   final FocusNode? focusNode;
   final bool autofocus;
-  final MaterialStatesController? statesController;
+  final WidgetStatesController? statesController;
 
   @override
   Widget render(BuildContext context, ButtonConfig config) {

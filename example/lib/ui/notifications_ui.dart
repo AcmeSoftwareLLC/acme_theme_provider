@@ -50,7 +50,7 @@ class NotificationsUI extends StatelessWidget {
           ),
           shape: Border(
               bottom: BorderSide(
-            color: Theme.of(context).colorScheme.surfaceVariant,
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
             width: 1,
           )),
         ),
@@ -90,7 +90,7 @@ class _NotificationCard extends StatelessWidget {
         border: Border(
           bottom: BorderSide(
             width: 1,
-            color: Theme.of(context).colorScheme.surfaceVariant,
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
           ),
         ),
       ),
@@ -116,7 +116,7 @@ class _NotificationCard extends StatelessWidget {
                 ),
                 AppIcons(
                   iconPath: 'assets/icons/down_arrow_icon.png',
-                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 ),
               ],
             ),
@@ -190,7 +190,7 @@ class _MentionsCard extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-              width: 1, color: Theme.of(context).colorScheme.surfaceVariant),
+              width: 1, color: Theme.of(context).colorScheme.surfaceContainerHighest),
         ),
       ),
       child: Padding(
@@ -259,7 +259,7 @@ class _MentionsCard extends StatelessWidget {
                                   fontWeight: FontWeight.w400,
                                   color: Theme.of(context)
                                       .colorScheme
-                                      .onBackground),
+                                      .onSurface),
                         ),
                         Text(
                           '@theflaticon @iconmonstr @pixsellz @dan ielbruce_ @romanshamin @_vect_ @glyphish !',
@@ -278,7 +278,7 @@ class _MentionsCard extends StatelessWidget {
                               .copyWith(
                                 fontWeight: FontWeight.w400,
                                 color:
-                                    Theme.of(context).colorScheme.onBackground,
+                                    Theme.of(context).colorScheme.onSurface,
                               ),
                         ),
                         Text(
@@ -297,7 +297,7 @@ class _MentionsCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border.all(
                               color:
-                                  Theme.of(context).colorScheme.surfaceVariant,
+                                  Theme.of(context).colorScheme.surfaceContainerHighest,
                             ),
                             borderRadius: BorderRadius.circular(15.0),
                           ),
@@ -325,7 +325,7 @@ class _MentionsCard extends StatelessWidget {
                                           fontWeight: FontWeight.w400,
                                           color: Theme.of(context)
                                               .colorScheme
-                                              .onBackground,
+                                              .onSurface,
                                         ),
                                   ),
                                 ),
@@ -348,7 +348,7 @@ class _MentionsCard extends StatelessWidget {
                                         'assets/icons/comment_stroke_icon.png',
                                     color: Theme.of(context)
                                         .colorScheme
-                                        .onBackground,
+                                        .onSurface,
                                   ),
                                   const Text('7'),
                                 ],

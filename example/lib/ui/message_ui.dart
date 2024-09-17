@@ -33,7 +33,7 @@ class MessageUI extends StatelessWidget {
                 ),
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Theme.of(context).colorScheme.surfaceVariant,
+                  fillColor: Theme.of(context).colorScheme.surfaceContainerHighest,
                   floatingLabelBehavior: FloatingLabelBehavior.never,
                   contentPadding: const EdgeInsets.symmetric(horizontal: 40),
                   prefixIcon: AppIcons(
@@ -59,7 +59,7 @@ class MessageUI extends StatelessWidget {
         ),
         shape: Border(
           bottom: BorderSide(
-            color: Theme.of(context).colorScheme.surfaceVariant,
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
             width: 0.5,
           ),
         ),
@@ -94,7 +94,7 @@ class _MessageTile extends StatelessWidget {
       height: 80,
       decoration: BoxDecoration(
         border: Border.all(
-            width: 0.5, color: Theme.of(context).colorScheme.surfaceVariant),
+            width: 0.5, color: Theme.of(context).colorScheme.surfaceContainerHighest),
       ),
       padding: const EdgeInsets.all(8),
       child: ListTile(
