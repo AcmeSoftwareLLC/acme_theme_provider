@@ -20,7 +20,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   image_cropper: ^5.0.1
   image_picker: ^1.1.0
-  json_theme: ^6.4.1+4
+  json_theme: ^7.0.0+1
   logger: ^2.2.0
   path: '>=1.9.0 <2.0.0'
   path_provider: ^2.1.3

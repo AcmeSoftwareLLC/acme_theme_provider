@@ -1,6 +1,6 @@
 name: acme_theme
 description: A package to use the themes and components extracted from Acme Theme Builder.
-version: 0.8.1
+version: 0.8.2
 homepage: https://acmesoftware.com
 
 environment:
@@ -12,13 +12,13 @@ dependencies:
     sdk: flutter
   google_fonts: ^6.2.1
   http: ^1.2.2
-  json_class: ^3.0.0+16
-  json_theme: ^6.5.3
+  json_class: ^3.0.1
+  json_theme: ^7.0.0+1
   meta: '>=1.11.0 <2.0.0'
-  nsd: ^3.0.0
+  nsd: ^4.0.3
   path: '>=1.9.0 <2.0.0'
-  path_provider: ^2.1.4
-  shared_preferences: ^2.3.2
+  path_provider: ^2.1.5
+  shared_preferences: ^2.3.4
   web_socket_channel: ^3.0.1
 
 dev_dependencies:
