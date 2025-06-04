@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playground/components/button.dart';
 
 class PlayGroundButtons extends StatelessWidget {
-  const PlayGroundButtons({Key? key}) : super(key: key);
+  const PlayGroundButtons({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playground/components/snackbar.dart';
 
 class PlayGroundSnackBar extends StatelessWidget {
-  const PlayGroundSnackBar({Key? key}) : super(key: key);
+  const PlayGroundSnackBar({super.key});
 
   @override
   Widget build(BuildContext context) {

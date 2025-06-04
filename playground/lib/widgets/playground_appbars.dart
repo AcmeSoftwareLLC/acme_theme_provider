@@ -3,7 +3,7 @@ import 'package:playground/components/one_app_bar.dart';
 import 'package:playground/components/two_app_bar.dart';
 
 class PlayGroundAppBars extends StatelessWidget {
-  const PlayGroundAppBars({Key? key}) : super(key: key);
+  const PlayGroundAppBars({super.key});
 
   @override
   Widget build(BuildContext context) {

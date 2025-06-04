@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playground/components/text_field.dart';
 
 class PlayGroundTextFields extends StatelessWidget {
-  const PlayGroundTextFields({Key? key}) : super(key: key);
+  const PlayGroundTextFields({super.key});
 
   @override
   Widget build(BuildContext context) {

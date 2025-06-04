@@ -4,22 +4,22 @@ version: 0.8.2
 homepage: https://acmesoftware.com
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
-  flutter: '>=3.19.2'
+  sdk: '>=3.6.0 <4.0.0'
+  flutter: '>=3.32.0'
 
 dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^6.2.1
-  http: ^1.2.2
+  http: ^1.4.0
   json_class: ^3.0.1
-  json_theme: ^7.0.0+1
-  meta: '>=1.11.0 <2.0.0'
+  json_theme: ^9.0.0+1
+  meta: ^1.16.0
   nsd: ^4.0.3
-  path: '>=1.9.0 <2.0.0'
+  path: ^1.9.1
   path_provider: ^2.1.5
-  shared_preferences: ^2.3.4
-  web_socket_channel: ^3.0.1
+  shared_preferences: ^2.5.3
+  web_socket_channel: ^3.0.3
 
 dev_dependencies:
   flutter_test:

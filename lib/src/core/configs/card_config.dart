@@ -12,13 +12,13 @@ class CardConfig extends ComponentConfig {
     required this.borderOnForeground,
   });
 
-  final CardTheme? theme;
+  final CardThemeData? theme;
   final bool semanticContainer;
   final bool borderOnForeground;
 
   factory CardConfig.fromMap(Map<String, dynamic> map) {
     return CardConfig(
-      theme: ThemeDecoder.decodeCardTheme(map['theme']),
+      theme: ThemeDecoder.decodeCardThemeData(map['theme']),
       semanticContainer: map['semanticContainer'] ?? true,
       borderOnForeground: map['borderOnForeground'] ?? true,
     );
@@ -28,14 +28,14 @@ class CardConfig extends ComponentConfig {
   Map<String, dynamic> toMap() {
     return {
       'type': ComponentType.card.value,
-      'theme': ThemeEncoder.encodeCardTheme(theme),
+      'theme': ThemeEncoder.encodeCardThemeData(theme),
       'semanticContainer': semanticContainer,
       'borderOnForeground': borderOnForeground,
     };
   }
 
   CardConfig copyWith({
-    CardTheme? theme,
+    CardThemeData? theme,
     bool? semanticContainer,
     bool? borderOnForeground,
   }) {

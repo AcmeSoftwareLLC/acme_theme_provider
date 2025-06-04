@@ -12,13 +12,13 @@ class DialogConfig extends ComponentConfig {
     required this.clipBehavior,
   });
 
-  final DialogTheme? theme;
+  final DialogThemeData? theme;
   final EdgeInsetsGeometry? insetPadding;
   final Clip clipBehavior;
 
   factory DialogConfig.fromMap(Map<String, dynamic> map) {
     return DialogConfig(
-      theme: ThemeDecoder.decodeDialogTheme(map['theme']),
+      theme: ThemeDecoder.decodeDialogThemeData(map['theme']),
       insetPadding: ThemeDecoder.decodeEdgeInsetsGeometry(map['insetPadding']),
       clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.none,
     );
@@ -28,15 +28,14 @@ class DialogConfig extends ComponentConfig {
   Map<String, dynamic> toMap() {
     return {
       'type': ComponentType.dialog.value,
-      'theme': ThemeEncoder.encodeDialogTheme(theme),
-      'insetPadding':
-          ThemeEncoder.encodeEdgeInsetsGeometry(insetPadding as EdgeInsets?),
+      'theme': ThemeEncoder.encodeDialogThemeData(theme),
+      'insetPadding': ThemeEncoder.encodeEdgeInsetsGeometry(insetPadding as EdgeInsets?),
       'clipBehavior': ThemeEncoder.encodeClip(clipBehavior),
     };
   }
 
   DialogConfig copyWith({
-    DialogTheme? theme,
+    DialogThemeData? theme,
     EdgeInsetsGeometry? insetPadding,
     Clip? clipBehavior,
   }) {

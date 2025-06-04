@@ -1,14 +1,13 @@
+import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_picker_source.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:acme_theme_example/core/dependency/image_util_ext_interface/image_picker_source.dart';
 
 class ImageUtil {
   ImageUtil({
     ImagePicker? imagePicker,
     ThemeProviderImageCropper? walletImageCropper,
   })  : _imagePicker = imagePicker ?? ImagePicker(),
-        _themeProviderImageCropper =
-            walletImageCropper ?? ThemeProviderImageCropper();
+        _themeProviderImageCropper = walletImageCropper ?? ThemeProviderImageCropper();
 
   final ImagePicker _imagePicker;
   final ThemeProviderImageCropper _themeProviderImageCropper;
@@ -20,9 +19,7 @@ class ImageUtil {
   }) async {
     try {
       final image = await _imagePicker.pickImage(
-        source: imagePickerSource == ImagePickerSource.camera
-            ? ImageSource.camera
-            : ImageSource.gallery,
+        source: imagePickerSource == ImagePickerSource.camera ? ImageSource.camera : ImageSource.gallery,
         maxHeight: maxHeight,
         maxWidth: maxWidth,
       );
@@ -62,9 +59,6 @@ class ThemeProviderImageCropper {
   Future<String?> cropImage({required String imagePath}) async {
     final file = await _cropper.cropImage(
       sourcePath: imagePath,
-      aspectRatioPresets: [
-        CropAspectRatioPreset.square,
-      ],
       uiSettings: [
         AndroidUiSettings(lockAspectRatio: true),
         IOSUiSettings(minimumAspectRatio: 1),

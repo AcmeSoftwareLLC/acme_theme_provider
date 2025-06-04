@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playground/components/switch.dart';
 
 class PlayGroundSwitches extends StatefulWidget {
-  const PlayGroundSwitches({Key? key}) : super(key: key);
+  const PlayGroundSwitches({super.key});
 
   @override
   State<PlayGroundSwitches> createState() => _PlayGroundSwitchesState();
