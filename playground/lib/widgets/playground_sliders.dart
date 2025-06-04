@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playground/components/slider.dart';
 
 class PlayGroundSliders extends StatefulWidget {
-  const PlayGroundSliders({Key? key}) : super(key: key);
+  const PlayGroundSliders({super.key});
 
   @override
   State<PlayGroundSliders> createState() => _PlayGroundSlidersState();

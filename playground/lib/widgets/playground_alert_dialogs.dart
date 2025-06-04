@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playground/components/alert_dialog.dart';
 
 class PlayGroundAlertDialogs extends StatelessWidget {
-  const PlayGroundAlertDialogs({Key? key}) : super(key: key);
+  const PlayGroundAlertDialogs({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -49,21 +49,17 @@ class DropdownMenuConfig extends ComponentConfig {
       expandedInsets: ThemeDecoder.decodeEdgeInsets(
         map['expandedInsets'],
       ),
-      defaultLeadingIcon:
-          ThemeDecoder.decodeIconData(map['defaultLeadingIcon']),
-      defaultTrailingIcon:
-          ThemeDecoder.decodeIconData(map['defaultTrailingIcon']),
-      defaultSelectedIcon:
-          ThemeDecoder.decodeIconData(map['defaultSelectedIcon']),
-      menuEntryConfig:
-          DropdownMenuEntryConfig.fromMap(map['menuEntryConfig'] ?? {}),
+      defaultLeadingIcon: ThemeDecoder.decodeIconData(map['defaultLeadingIcon']),
+      defaultTrailingIcon: ThemeDecoder.decodeIconData(map['defaultTrailingIcon']),
+      defaultSelectedIcon: ThemeDecoder.decodeIconData(map['defaultSelectedIcon']),
+      menuEntryConfig: DropdownMenuEntryConfig.fromMap(map['menuEntryConfig'] ?? {}),
     );
   }
 
   @override
   Map<String, dynamic> toMap() {
     return {
-      'type': ComponentType.dropDown.value,
+      'type': ComponentType.dropDownMenu.value,
       'width': width,
       'menuHeight': menuHeight,
       'textStyle': ThemeEncoder.encodeTextStyle(
@@ -114,14 +110,11 @@ class DropdownMenuConfig extends ComponentConfig {
     );
   }
 
-  DropdownMenuConfig clearDefaultLeadingIcon() =>
-      _clearIcon(defaultLeadingIcon);
+  DropdownMenuConfig clearDefaultLeadingIcon() => _clearIcon(defaultLeadingIcon);
 
-  DropdownMenuConfig clearDefaultTrailingIcon() =>
-      _clearIcon(defaultTrailingIcon);
+  DropdownMenuConfig clearDefaultTrailingIcon() => _clearIcon(defaultTrailingIcon);
 
-  DropdownMenuConfig clearDefaultSelectedIcon() =>
-      _clearIcon(defaultSelectedIcon);
+  DropdownMenuConfig clearDefaultSelectedIcon() => _clearIcon(defaultSelectedIcon);
 
   DropdownMenuConfig _clearIcon(IconData? iconToClear) {
     return DropdownMenuConfig(
@@ -132,12 +125,9 @@ class DropdownMenuConfig extends ComponentConfig {
       menuStyle: menuStyle,
       requestFocusOnTap: requestFocusOnTap,
       expandedInsets: expandedInsets,
-      defaultLeadingIcon:
-          iconToClear == defaultLeadingIcon ? null : defaultLeadingIcon,
-      defaultTrailingIcon:
-          iconToClear == defaultTrailingIcon ? null : defaultTrailingIcon,
-      defaultSelectedIcon:
-          iconToClear == defaultSelectedIcon ? null : defaultSelectedIcon,
+      defaultLeadingIcon: iconToClear == defaultLeadingIcon ? null : defaultLeadingIcon,
+      defaultTrailingIcon: iconToClear == defaultTrailingIcon ? null : defaultTrailingIcon,
+      defaultSelectedIcon: iconToClear == defaultSelectedIcon ? null : defaultSelectedIcon,
       menuEntryConfig: menuEntryConfig,
     );
   }
