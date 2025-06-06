@@ -1,6 +1,6 @@
 name: acme_theme
 description: A package to use the themes and components extracted from Acme Theme Builder.
-version: 0.8.2
+version: 0.8.3
 homepage: https://acmesoftware.com
 
 environment:
