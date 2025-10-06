@@ -28,7 +28,7 @@ class TextFieldConfig extends ComponentConfig {
     required this.keyboardType,
   });
 
-  final InputDecorationTheme? theme;
+  final InputDecorationThemeData? theme;
   final TextAlign textAlign;
   final TextStyle? textStyle;
   final Clip clip;
@@ -50,7 +50,7 @@ class TextFieldConfig extends ComponentConfig {
 
   factory TextFieldConfig.fromMap(Map<String, dynamic> map) {
     return TextFieldConfig(
-      theme: ThemeDecoder.decodeInputDecorationTheme(map['theme']),
+      theme: ThemeDecoder.decodeInputDecorationThemeData(map['theme']),
       textAlign:
           ThemeDecoder.decodeTextAlign(map['textAlign']) ?? TextAlign.start,
       clip: ThemeDecoder.decodeClip(map['clip']) ?? Clip.hardEdge,
@@ -108,7 +108,7 @@ class TextFieldConfig extends ComponentConfig {
   }
 
   TextFieldConfig copyWith({
-    InputDecorationTheme? theme,
+    InputDecorationThemeData? theme,
     TextAlign? textAlign,
     TextStyle? textStyle,
     Clip? clip,

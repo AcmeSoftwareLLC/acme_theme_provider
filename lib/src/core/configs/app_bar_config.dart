@@ -14,7 +14,7 @@ class AppBarConfig extends ComponentConfig {
     required this.leadingWidth,
   });
 
-  final AppBarTheme? theme;
+  final AppBarThemeData? theme;
   final DividerAppBarConfig? divider;
   final double toolbarOpacity;
   final double bottomOpacity;
@@ -27,7 +27,7 @@ class AppBarConfig extends ComponentConfig {
     final bottomOpacity = map['bottomOpacity'];
 
     return AppBarConfig(
-      theme: ThemeDecoder.decodeAppBarTheme(map['theme']),
+      theme: ThemeDecoder.decodeAppBarThemeData(map['theme']),
       divider: divider == null ? null : DividerAppBarConfig.fromMap(divider),
       toolbarOpacity: toolbarOpacity ?? 1,
       bottomOpacity: bottomOpacity ?? 1,
@@ -48,7 +48,7 @@ class AppBarConfig extends ComponentConfig {
   }
 
   AppBarConfig copyWith({
-    AppBarTheme? theme,
+    AppBarThemeData? theme,
     DividerAppBarConfig? divider,
     double? toolbarOpacity,
     double? bottomOpacity,
