@@ -23,7 +23,7 @@ class DropdownMenuConfig extends ComponentConfig {
   final double? width;
   final double? menuHeight;
   final TextStyle? textStyle;
-  final InputDecorationTheme? inputDecorationTheme;
+  final InputDecorationThemeData? inputDecorationTheme;
   final MenuStyle? menuStyle;
   final bool? requestFocusOnTap;
   final EdgeInsets? expandedInsets;
@@ -39,7 +39,7 @@ class DropdownMenuConfig extends ComponentConfig {
       textStyle: ThemeDecoder.decodeTextStyle(
         map['textStyle'],
       ),
-      inputDecorationTheme: ThemeDecoder.decodeInputDecorationTheme(
+      inputDecorationTheme: ThemeDecoder.decodeInputDecorationThemeData(
         map['inputDecorationTheme'],
       ),
       menuStyle: ThemeDecoder.decodeMenuStyle(
@@ -49,10 +49,14 @@ class DropdownMenuConfig extends ComponentConfig {
       expandedInsets: ThemeDecoder.decodeEdgeInsets(
         map['expandedInsets'],
       ),
-      defaultLeadingIcon: ThemeDecoder.decodeIconData(map['defaultLeadingIcon']),
-      defaultTrailingIcon: ThemeDecoder.decodeIconData(map['defaultTrailingIcon']),
-      defaultSelectedIcon: ThemeDecoder.decodeIconData(map['defaultSelectedIcon']),
-      menuEntryConfig: DropdownMenuEntryConfig.fromMap(map['menuEntryConfig'] ?? {}),
+      defaultLeadingIcon:
+          ThemeDecoder.decodeIconData(map['defaultLeadingIcon']),
+      defaultTrailingIcon:
+          ThemeDecoder.decodeIconData(map['defaultTrailingIcon']),
+      defaultSelectedIcon:
+          ThemeDecoder.decodeIconData(map['defaultSelectedIcon']),
+      menuEntryConfig:
+          DropdownMenuEntryConfig.fromMap(map['menuEntryConfig'] ?? {}),
     );
   }
 
@@ -86,7 +90,7 @@ class DropdownMenuConfig extends ComponentConfig {
     double? width,
     double? menuHeight,
     TextStyle? textStyle,
-    InputDecorationTheme? inputDecorationTheme,
+    InputDecorationThemeData? inputDecorationTheme,
     MenuStyle? menuStyle,
     bool? requestFocusOnTap,
     EdgeInsets? expandedInsets,
@@ -110,11 +114,14 @@ class DropdownMenuConfig extends ComponentConfig {
     );
   }
 
-  DropdownMenuConfig clearDefaultLeadingIcon() => _clearIcon(defaultLeadingIcon);
+  DropdownMenuConfig clearDefaultLeadingIcon() =>
+      _clearIcon(defaultLeadingIcon);
 
-  DropdownMenuConfig clearDefaultTrailingIcon() => _clearIcon(defaultTrailingIcon);
+  DropdownMenuConfig clearDefaultTrailingIcon() =>
+      _clearIcon(defaultTrailingIcon);
 
-  DropdownMenuConfig clearDefaultSelectedIcon() => _clearIcon(defaultSelectedIcon);
+  DropdownMenuConfig clearDefaultSelectedIcon() =>
+      _clearIcon(defaultSelectedIcon);
 
   DropdownMenuConfig _clearIcon(IconData? iconToClear) {
     return DropdownMenuConfig(
@@ -125,9 +132,12 @@ class DropdownMenuConfig extends ComponentConfig {
       menuStyle: menuStyle,
       requestFocusOnTap: requestFocusOnTap,
       expandedInsets: expandedInsets,
-      defaultLeadingIcon: iconToClear == defaultLeadingIcon ? null : defaultLeadingIcon,
-      defaultTrailingIcon: iconToClear == defaultTrailingIcon ? null : defaultTrailingIcon,
-      defaultSelectedIcon: iconToClear == defaultSelectedIcon ? null : defaultSelectedIcon,
+      defaultLeadingIcon:
+          iconToClear == defaultLeadingIcon ? null : defaultLeadingIcon,
+      defaultTrailingIcon:
+          iconToClear == defaultTrailingIcon ? null : defaultTrailingIcon,
+      defaultSelectedIcon:
+          iconToClear == defaultSelectedIcon ? null : defaultSelectedIcon,
       menuEntryConfig: menuEntryConfig,
     );
   }
